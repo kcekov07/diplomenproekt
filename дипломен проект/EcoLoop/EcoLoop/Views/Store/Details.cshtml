@@ -1,0 +1,43 @@
+﻿@model EcoLoop.Data.Models.Store
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<h1>@Model.Name</h1>
+<p class="small-muted">@Model.Category</p>
+@if (!string.IsNullOrWhiteSpace(Model.ShortDescription))
+{
+    <p>@Model.ShortDescription</p>
+}
+@if (!string.IsNullOrWhiteSpace(Model.Description))
+{
+    <p>@Model.Description</p>
+}
+
+<p><strong>Адрес:</strong> @Model.Address</p>
+
+@if (!string.IsNullOrWhiteSpace(Model.WorkingHours))
+{
+    <p><strong>Работно време:</strong> @Model.WorkingHours</p>
+}
+
+@if (Model.Phones != null && Model.Phones.Any())
+{
+    <p><strong>Телефони:</strong></p>
+    <ul>
+        @foreach (var p in Model.Phones)
+        {
+            <li><a href="tel:@p.PhoneNumber">@p.PhoneNumber</a></li>
+        }
+    </ul>
+}
+
+@if (Model.Images != null && Model.Images.Any())
+{
+    <div class="store-images">
+        @foreach (var img in Model.Images)
+        {
+            <img src="@img.Url" alt="@Model.Name" style="max-width:200px;margin:0.5rem;" />
+        }
+    </div>
+}
