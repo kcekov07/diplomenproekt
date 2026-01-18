@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System;
+using System.Collections.Generic;
 
 namespace EcoLoop.Controllers
 {
@@ -18,24 +19,20 @@ namespace EcoLoop.Controllers
         private readonly ApplicationDbContext _db;
         private readonly ILogger<StoreController> _logger;
         private readonly IWebHostEnvironment _env;
-
-        // Limit per-file size (bytes)
         private const long MaxFileBytes = 5 * 1024 * 1024; // 5 MB
 
-        public StoreController(
-            ApplicationDbContext db,
-            ILogger<StoreController> logger,
-            IWebHostEnvironment env)
+        public StoreController(ApplicationDbContext db, ILogger<StoreController> logger, IWebHostEnvironment env)
         {
             _db = db;
             _logger = logger;
             _env = env;
         }
 
+        // GET: /Store/All
         public async Task<IActionResult> All()
         {
             var stores = await _db.Stores
-                .Where(s => s.Approved)
+                .Where(s => s.IsApproved)
                 .OrderByDescending(s => s.Rating)
                 .Select(s => new StoreViewModel
                 {
@@ -53,6 +50,7 @@ namespace EcoLoop.Controllers
             return View(stores);
         }
 
+        // GET: /Store/Details/{id}
         public async Task<IActionResult> Details(int id)
         {
             var store = await _db.Stores
@@ -65,6 +63,7 @@ namespace EcoLoop.Controllers
             return View(store);
         }
 
+        // GET: /Store/Add
         public IActionResult Add()
         {
             ViewData["Categories"] = new[] {
@@ -78,6 +77,7 @@ namespace EcoLoop.Controllers
             return View(new StoreAddViewModel());
         }
 
+        // POST: /Store/Add
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(StoreAddViewModel model)
@@ -91,9 +91,7 @@ namespace EcoLoop.Controllers
             };
 
             if (!ModelState.IsValid)
-            {
                 return View(model);
-            }
 
             var store = new Store
             {
@@ -108,11 +106,9 @@ namespace EcoLoop.Controllers
                 Longitude = model.Longitude,
                 AcceptsOwnPackaging = model.AcceptsOwnPackaging,
                 IsProducer = model.IsProducer,
-                WorkingHours = BuildWorkingHours(model),
-
-
+                WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours),
                 Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim(),
-                Approved = true,
+                IsApproved = true,
                 Rating = 0m
             };
 
@@ -130,18 +126,19 @@ namespace EcoLoop.Controllers
                     }
                 }
 
-                // Photos
+                // Photos - save under wwwroot/images/stores/{id}/
                 if (model.Photos != null && model.Photos.Any())
                 {
                     var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                    var uploadsRoot = Path.Combine(webRoot, "uploads", "stores", store.Id.ToString());
+                    var uploadsRoot = Path.Combine(webRoot, "images", "stores", store.Id.ToString());
                     Directory.CreateDirectory(uploadsRoot);
+
+                    var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
 
                     foreach (var file in model.Photos)
                     {
                         if (file == null || file.Length == 0) continue;
                         if (file.Length > MaxFileBytes) continue;
-                        var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
                         if (!permitted.Contains(file.ContentType)) continue;
 
                         var ext = Path.GetExtension(file.FileName);
@@ -151,14 +148,15 @@ namespace EcoLoop.Controllers
                         await using var stream = System.IO.File.Create(filePath);
                         await file.CopyToAsync(stream);
 
-                        var url = $"/uploads/stores/{store.Id}/{fileName}";
+                        var url = $"/images/stores/{store.Id}/{fileName}";
                         _db.StoreImages.Add(new StoreImage { StoreId = store.Id, FileName = fileName, Url = url });
                     }
                 }
 
                 await _db.SaveChangesAsync();
+
                 TempData["Message"] = "Магазинът е добавен успешно.";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Details", new { id = store.Id });
             }
             catch (Exception ex)
             {
@@ -168,16 +166,9 @@ namespace EcoLoop.Controllers
             }
         }
 
-        // GET: Store/Edit/{id}
-        public async Task<IActionResult> Edit(int id)
+        // GET Edit: optional id; also returns list for dropdown if needed
+        public async Task<IActionResult> Edit(int? id)
         {
-            var store = await _db.Stores
-                .Include(s => s.Images)
-                .Include(s => s.Phones)
-                .FirstOrDefaultAsync(s => s.Id == id);
-
-            if (store == null) return NotFound();
-
             ViewData["Categories"] = new[] {
                 "Еко храни🥕",
                 "Натурална козметика🧴",
@@ -185,6 +176,27 @@ namespace EcoLoop.Controllers
                 "Еко автомобили🚗",
                 "Еко продукти за дома🧼"
             };
+
+            var allStores = await _db.Stores.OrderBy(s => s.Name).Select(s => new { s.Id, s.Name }).ToListAsync();
+            ViewData["AllStores"] = allStores;
+
+            if (!id.HasValue) return View(new StoreEditViewModel());
+
+            var store = await _db.Stores.Include(s => s.Images).Include(s => s.Phones).FirstOrDefaultAsync(s => s.Id == id.Value);
+            if (store == null) return NotFound();
+
+            // try to split working hours
+            string? mon = null, sat = null, sun = null;
+            if (!string.IsNullOrWhiteSpace(store.WorkingHours))
+            {
+                var parts = store.WorkingHours.Split(';', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                foreach (var p in parts)
+                {
+                    if (p.StartsWith("Пон-Пет:", StringComparison.OrdinalIgnoreCase)) mon = p.Split(':', 2)[1].Trim();
+                    else if (p.StartsWith("Съб:", StringComparison.OrdinalIgnoreCase)) sat = p.Split(':', 2)[1].Trim();
+                    else if (p.StartsWith("Нед:", StringComparison.OrdinalIgnoreCase)) sun = p.Split(':', 2)[1].Trim();
+                }
+            }
 
             var vm = new StoreEditViewModel
             {
@@ -199,6 +211,9 @@ namespace EcoLoop.Controllers
                 AcceptsOwnPackaging = store.AcceptsOwnPackaging,
                 IsProducer = store.IsProducer,
                 WorkingHours = store.WorkingHours,
+                MonToFriHours = mon,
+                SatHours = sat,
+                SunHours = sun,
                 Website = store.Website,
                 Phones = store.Phones?.Select(p => p.PhoneNumber).ToList() ?? new List<string>(),
                 ExistingImages = store.Images?.Select(i => new StoreEditViewModel.ExistingImageViewModel { Id = i.Id, Url = i.Url }).ToList() ?? new List<StoreEditViewModel.ExistingImageViewModel>()
@@ -207,7 +222,7 @@ namespace EcoLoop.Controllers
             return View(vm);
         }
 
-        // POST: Store/Edit/5
+        // POST Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(StoreEditViewModel model)
@@ -220,16 +235,12 @@ namespace EcoLoop.Controllers
                 "Еко продукти за дома🧼"
             };
 
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
+            var allStores = await _db.Stores.OrderBy(s => s.Name).Select(s => new { s.Id, s.Name }).ToListAsync();
+            ViewData["AllStores"] = allStores;
 
-            var store = await _db.Stores
-                .Include(s => s.Images)
-                .Include(s => s.Phones)
-                .FirstOrDefaultAsync(s => s.Id == model.Id);
+            if (!ModelState.IsValid) return View(model);
 
+            var store = await _db.Stores.Include(s => s.Images).Include(s => s.Phones).FirstOrDefaultAsync(s => s.Id == model.Id);
             if (store == null) return NotFound();
 
             store.Name = model.Name?.Trim() ?? string.Empty;
@@ -243,43 +254,33 @@ namespace EcoLoop.Controllers
             store.Longitude = model.Longitude;
             store.AcceptsOwnPackaging = model.AcceptsOwnPackaging;
             store.IsProducer = model.IsProducer;
-            store.WorkingHours = BuildWorkingHours(new StoreAddViewModel
-            {
-                MonToFriHours = model.MonToFriHours,
-                SatHours = model.SatHours,
-                SunHours = model.SunHours
-            });
+            store.WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours);
             store.Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim();
 
             try
             {
-                // Replace phones: remove existing then add new
+                // replace phones
                 var existingPhones = await _db.StorePhones.Where(p => p.StoreId == store.Id).ToListAsync();
-                if (existingPhones.Any())
-                {
-                    _db.StorePhones.RemoveRange(existingPhones);
-                }
+                if (existingPhones.Any()) _db.StorePhones.RemoveRange(existingPhones);
 
                 if (model.Phones != null)
                 {
                     foreach (var raw in model.Phones.Where(p => !string.IsNullOrWhiteSpace(p)))
-                    {
                         _db.StorePhones.Add(new StorePhone { StoreId = store.Id, PhoneNumber = raw.Trim() });
-                    }
                 }
 
-                // Handle new photo uploads (append only)
+                // append photos to wwwroot/images/stores/{id}
                 if (model.Photos != null && model.Photos.Any())
                 {
                     var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-                    var uploadsRoot = Path.Combine(webRoot, "uploads", "stores", store.Id.ToString());
+                    var uploadsRoot = Path.Combine(webRoot, "images", "stores", store.Id.ToString());
                     Directory.CreateDirectory(uploadsRoot);
 
+                    var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
                     foreach (var file in model.Photos)
                     {
                         if (file == null || file.Length == 0) continue;
                         if (file.Length > MaxFileBytes) continue;
-                        var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
                         if (!permitted.Contains(file.ContentType)) continue;
 
                         var ext = Path.GetExtension(file.FileName);
@@ -289,15 +290,15 @@ namespace EcoLoop.Controllers
                         await using var stream = System.IO.File.Create(filePath);
                         await file.CopyToAsync(stream);
 
-                        var url = $"/uploads/stores/{store.Id}/{fileName}";
+                        var url = $"/images/stores/{store.Id}/{fileName}";
                         _db.StoreImages.Add(new StoreImage { StoreId = store.Id, FileName = fileName, Url = url });
                     }
                 }
 
                 await _db.SaveChangesAsync();
 
-                TempData["Message"] = "Магазинът е обновен успешно.";
-                return RedirectToAction(nameof(Details), new { id = store.Id });
+                TempData["Message"] = "Промените са записани успешно.";
+                return RedirectToAction("Details", new { id = store.Id });
             }
             catch (Exception ex)
             {
@@ -307,49 +308,48 @@ namespace EcoLoop.Controllers
             }
         }
 
-        // Helper to rollback partial store creation (used earlier in Add)
-        private async Task RollbackStoreAsync(int storeId)
+        // POST: delete image (AJAX)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteImage(int imageId)
         {
-            if (storeId <= 0) return;
+            var img = await _db.StoreImages.FindAsync(imageId);
+            if (img == null) return Json(new { ok = false, error = "not_found" });
+
             try
             {
-                var s = await _db.Stores.FindAsync(storeId);
-                if (s != null)
+                _db.StoreImages.Remove(img);
+                await _db.SaveChangesAsync();
+
+                // delete file from disk (image url stored like "/images/stores/{id}/{file}")
+                try
                 {
-                    _db.Stores.Remove(s);
-                    await _db.SaveChangesAsync();
+                    var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                    var relative = img.Url?.TrimStart('/') ?? string.Empty;
+                    var filePath = Path.Combine(webRoot, relative.Replace('/', Path.DirectorySeparatorChar));
+                    if (System.IO.File.Exists(filePath)) System.IO.File.Delete(filePath);
                 }
+                catch (Exception fx)
+                {
+                    _logger.LogWarning(fx, "Failed to delete file for image {Id}", imageId);
+                }
+
+                return Json(new { ok = true });
             }
             catch (Exception ex)
             {
-                _logger.LogWarning(ex, "Rollback failed for store {Id}", storeId);
+                _logger.LogError(ex, "Error deleting image {Id}", imageId);
+                return Json(new { ok = false, error = "delete_failed" });
             }
         }
 
-        // Add this private helper method to StoreController
-        private static string? BuildWorkingHours(StoreAddViewModel model)
+        private static string? BuildWorkingHours(string? monToFri, string? sat, string? sun)
         {
-            if (model == null)
-            {
-                return null;
-            }
-
             var parts = new List<string>();
-
-            if (!string.IsNullOrWhiteSpace(model.MonToFriHours))
-            {
-                parts.Add($"Пон-Пет: {model.MonToFriHours.Trim()}");
-            }
-            if (!string.IsNullOrWhiteSpace(model.SatHours))
-            {
-                parts.Add($"Съб: {model.SatHours.Trim()}");
-            }
-            if (!string.IsNullOrWhiteSpace(model.SunHours))
-            {
-                parts.Add($"Нед: {model.SunHours.Trim()}");
-            }
-
-            return parts.Count > 0 ? string.Join("; ", parts) : null;
+            if (!string.IsNullOrWhiteSpace(monToFri)) parts.Add($"Пон-Пет: {monToFri.Trim()}");
+            if (!string.IsNullOrWhiteSpace(sat)) parts.Add($"Съб: {sat.Trim()}");
+            if (!string.IsNullOrWhiteSpace(sun)) parts.Add($"Нед: {sun.Trim()}");
+            return parts.Count == 0 ? null : string.Join("; ", parts);
         }
     }
 }

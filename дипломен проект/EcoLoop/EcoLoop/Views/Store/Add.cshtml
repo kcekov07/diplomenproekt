@@ -6,7 +6,7 @@
 
 <h1>Добавяне на магазин</h1>
 
-<form asp-action="Add" method="post" enctype="multipart/form-data">
+<form asp-action="Add" method="post" enctype="multipart/form-data" id="storeAddForm">
     @Html.AntiForgeryToken()
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -69,7 +69,7 @@
         <div>
             <label>Неделя</label>
             <input asp-for="SunHours" placeholder="напр. затворено или 11:00-15:00" class="form-control" />
-        </div   >
+        </div>
     </div>
 
     <div id="phones">
@@ -99,22 +99,33 @@
         </label>
     </div>
 
-    <button type="submit" class="btn">Изпрати</button>
+    <div>
+        <label for="photosInput">Добави снимки</label>
+        <input id="photosInput" name="Photos" type="file" multiple accept="image/*" class="form-control" />
+        <small class="form-text text-muted">Можете да качите едновременно няколко снимки (jpg, png, webp). Можете да премахвате избрани снимки преди изпращане.</small>
+
+        <div id="photoPreviews" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;"></div>
+    </div>
+
+    <button type="submit" class="btn" style="margin-top:12px;">Изпрати</button>
 </form>
 
 @section Scripts {
     <script>
         (function () {
+            // Phones UI (existing)
             var addBtn = document.getElementById('addPhone');
             var phones = document.getElementById('phones');
 
-            function createPhoneRow() {
+            function createPhoneRow(value) {
                 var div = document.createElement('div');
                 div.className = 'phone-row';
+                div.style.marginBottom = '8px';
                 var input = document.createElement('input');
                 input.name = 'Phones';
                 input.className = 'form-control';
                 input.placeholder = '+359 ...';
+                if (value) input.value = value;
                 var remove = document.createElement('button');
                 remove.type = 'button';
                 remove.className = 'btn small remove-phone';
@@ -131,6 +142,83 @@
             });
 
             document.querySelectorAll('.remove-phone').forEach(b => b.style.display = 'none');
+
+            // Photo selection & preview with ability to remove before submit
+            var fileInput = document.getElementById('photosInput');
+            var previewContainer = document.getElementById('photoPreviews');
+
+            // DataTransfer holds current files so we can remove single ones
+            var dt = new DataTransfer();
+
+            function refreshPreviews() {
+                previewContainer.innerHTML = '';
+                Array.from(dt.files).forEach(function (file, index) {
+                    var url = URL.createObjectURL(file);
+                    var wrapper = document.createElement('div');
+                    wrapper.style.position = 'relative';
+                    wrapper.style.width = '120px';
+                    wrapper.style.height = '90px';
+                    wrapper.style.borderRadius = '8px';
+                    wrapper.style.overflow = 'hidden';
+                    wrapper.style.background = '#f6f8f6';
+                    wrapper.style.display = 'inline-block';
+
+                    var img = document.createElement('img');
+                    img.src = url;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.alt = file.name;
+
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.textContent = '✕';
+                    btn.title = 'Премахни снимката';
+                    btn.style.position = 'absolute';
+                    btn.style.top = '6px';
+                    btn.style.right = '6px';
+                    btn.style.background = 'rgba(0,0,0,0.6)';
+                    btn.style.color = '#fff';
+                    btn.style.border = 'none';
+                    btn.style.borderRadius = '16px';
+                    btn.style.width = '28px';
+                    btn.style.height = '28px';
+                    btn.style.cursor = 'pointer';
+
+                    btn.addEventListener('click', function () {
+                        // remove item from DataTransfer
+                        try {
+                            dt.items.remove(index);
+                        } catch (e) {
+                            // fallback: rebuild dt without this index
+                            var newDt = new DataTransfer();
+                            Array.from(dt.files).forEach(function (f, i) { if (i !== index) newDt.items.add(f); });
+                            dt = newDt;
+                        }
+                        fileInput.files = dt.files;
+                        refreshPreviews();
+                    });
+
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(btn);
+                    previewContainer.appendChild(wrapper);
+                });
+            }
+
+            fileInput.addEventListener('change', function (e) {
+                // append newly selected files (prevent duplicates by name+size)
+                Array.from(fileInput.files).forEach(function (file) {
+                    var exists = Array.from(dt.files).some(function (f) { return f.name === file.name && f.size === file.size; });
+                    if (!exists) dt.items.add(file);
+                });
+                fileInput.files = dt.files;
+                refreshPreviews();
+            });
+
+            // ensure DataTransfer persists if user submits form without interaction
+            document.getElementById('storeAddForm').addEventListener('submit', function () {
+                fileInput.files = dt.files;
+            });
         })();
     </script>
 }

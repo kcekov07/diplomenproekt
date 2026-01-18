@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using Microsoft.AspNetCore.Http;
+using System.Collections.Generic;
 
 namespace EcoLoop.Models
 {

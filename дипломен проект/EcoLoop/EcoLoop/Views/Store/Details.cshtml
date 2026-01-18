@@ -3,6 +3,11 @@
     ViewData["Title"] = Model.Name;
 }
 
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
 <h1>@Model.Name</h1>
 <p class="small-muted">@Model.Category</p>
 @if (!string.IsNullOrWhiteSpace(Model.ShortDescription))
@@ -37,7 +42,12 @@
     <div class="store-images">
         @foreach (var img in Model.Images)
         {
-            <img src="@img.Url" alt="@Model.Name" style="max-width:200px;margin:0.5rem;" />
+            <img src="@img.Url" alt="@Model.Name" style="max-width:200px;margin:0.5rem;border-radius:6px;" />
         }
     </div>
 }
+
+<div style="margin-top:16px;">
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-success">Редактирай</a>
+    <a asp-action="Index" asp-controller="Home" class="btn btn-link">Към началната страница</a>
+</div>

@@ -1,0 +1,49 @@
+﻿/* MAP FILTER CARD */
+.card {
+    border-radius: 14px;
+    border: 1px solid var(--eco-gray);
+}
+
+/* ============================ */
+/*       ECOLOOP THEME          */
+/* ============================ */
+
+:root {
+    --eco-green: #3CC47C; /* Fresh Green */
+    --eco-green-dark: #2A9E62; /* Deep Eco Green */
+    --eco-green-light: #CFFFE3; /* Mint */
+    --eco-bg: #F7FFF9; /* Light Eco Background */
+    --eco-text: #425847; /* Soft Eco Text */
+    --eco-gray: #EBF3EF; /* Light gray-green */
+}
+
+/* ============================ */
+/*          GLOBAL              */
+/* ============================ */
+
+body {
+    background-color: var(--eco-bg);
+    color: var(--eco-text);
+    font-family: "Segoe UI", sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ============================ */
+/*          STAT BOXES          */
+/* ============================ */
+
+.stat-box {
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--eco-gray);
+    transition: 0.25s ease;
+}
+
+    .stat-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }

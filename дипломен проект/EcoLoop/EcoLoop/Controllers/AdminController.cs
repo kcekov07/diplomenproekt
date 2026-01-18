@@ -17,7 +17,7 @@ namespace EcoLoop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var pendingStores = await _db.Stores.Where(s => !s.Approved).ToListAsync();
+            var pendingStores = await _db.Stores.Where(s => !s.IsApproved).ToListAsync();
             ViewData["PendingStores"] = pendingStores;
             return View();
         }
@@ -28,7 +28,7 @@ namespace EcoLoop.Controllers
         {
             var store = await _db.Stores.FindAsync(id);
             if (store == null) return NotFound();
-            store.Approved = true;
+            store.IsApproved = true;
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj": {}
+    "D:\\diplomenproekt\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj": {}
   },
   "projects": {
-    "D:\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj": {
+    "D:\\diplomenproekt\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj",
+        "projectUniqueName": "D:\\diplomenproekt\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj",
         "projectName": "EcoLoop",
-        "projectPath": "D:\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj",
+        "projectPath": "D:\\diplomenproekt\\дипломен проект\\EcoLoop\\EcoLoop\\EcoLoop.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\дипломен проект\\EcoLoop\\EcoLoop\\obj\\",
+        "outputPath": "D:\\diplomenproekt\\дипломен проект\\EcoLoop\\EcoLoop\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

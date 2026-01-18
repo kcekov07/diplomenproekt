@@ -1,14 +1,35 @@
-﻿@model EcoLoop.Models.StoreEditViewModel
+﻿@using System.Collections;
+@model EcoLoop.Models.StoreEditViewModel
 @{
     ViewData["Title"] = "Редакция на магазин";
     var categories = ViewData["Categories"] as string[] ?? new string[0];
+    var allStores = ViewData["AllStores"] as IEnumerable ?? new object[0];
 }
 
 <h1>Редакция на магазин</h1>
 
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
-    <input type="hidden" asp-for="Id" />
+    <input type="hidden"
+           name="Id"
+           value="@(Model?.Id ?? 0)" />
+
+    <div>
+        <label>Избери магазин за редакция</label>
+        <select id="storeSelector" class="form-control" onchange="onStoreSelect(this)">
+            <option value="">-- избери магазин --</option>
+            @foreach (var sObj in allStores)
+            {
+                // sObj is anonymous type { Id, Name } from controller; use reflection to avoid dynamic
+                var sidProp = sObj.GetType().GetProperty("Id");
+                var nameProp = sObj.GetType().GetProperty("Name");
+                var sid = sidProp != null ? (int)sidProp.GetValue(sObj) : 0;
+                var sname = nameProp != null ? nameProp.GetValue(sObj)?.ToString() : "";
+                var isSelected = Model?.Id == sid;
+                <option value="@sid" selected="@(isSelected ? "selected" : null)">@sname</option>
+            }
+        </select>
+    </div>
 
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
@@ -24,8 +45,8 @@
             <option value="">-- избери --</option>
             @foreach (var c in categories)
             {
-                var selected = string.Equals(Model?.Category, c, StringComparison.Ordinal) ? "selected" : "";
-                <option value="@c" selected="@selected">@c</option>
+                var isSelected = string.Equals(Model?.Category, c, System.StringComparison.Ordinal);
+                <option value="@c" selected="@(isSelected ? "selected" : null)">@c</option>
             }
         </select>
     </div>
@@ -71,12 +92,15 @@
 
     <div>
         <label>Съществуващи снимки</label>
-        <div class="existing-images">
+        <div class="existing-images" id="existingImages">
             @if (Model?.ExistingImages != null && Model.ExistingImages.Any())
             {
                 foreach (var img in Model.ExistingImages)
                 {
-                    <img src="@img.Url" alt="img" style="height:72px;margin-right:8px;border-radius:6px;border:1px solid #e6efe7" />
+                    <div class="existing-image" data-id="@img.Id" style="display:inline-block;margin-right:8px;position:relative;">
+                        <img src="@img.Url" alt="img" style="height:72px;border-radius:6px;border:1px solid #e6efe7" />
+                        <button type="button" class="btn small remove-image" data-id="@img.Id" style="position:absolute;top:-6px;right:-6px;">✕</button>
+                    </div>
                 }
             }
             else
@@ -99,7 +123,7 @@
             {
                 foreach (var ph in Model.Phones)
                 {
-                    <div class="phone-row">
+                    <div class="phone-row" style="margin-bottom:8px;">
                         <input name="Phones" value="@ph" class="form-control" />
                         <button type="button" class="btn small remove-phone">Премахни</button>
                     </div>
@@ -107,7 +131,7 @@
             }
             else
             {
-                <div class="phone-row">
+                <div class="phone-row" style="margin-bottom:8px;">
                     <input name="Phones" class="form-control" />
                     <button type="button" class="btn small remove-phone">Премахни</button>
                 </div>
@@ -120,8 +144,8 @@
     </div>
 
     <div>
-        <label for="Website">Уебсайт</label>
-        <input asp-for="Website" class="form-control" id="Website" />
+        <label asp-for="Website"></label>
+        <input asp-for="Website" class="form-control" />
     </div>
 
     <div>
@@ -136,11 +160,23 @@
         </label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Запази</button>
+    <div style="margin-top:12px;">
+        <button type="submit" class="btn btn-primary">Запази</button>
+        <a asp-action="Index" asp-controller="Home" class="btn btn-link">Отказ</a>
+    </div>
 </form>
 
 @section Scripts {
     <script>
+        function onStoreSelect(sel) {
+            var id = sel.value;
+            if (!id) {
+                window.location.href = '@Url.Action("Edit", "Store")';
+            } else {
+                window.location.href = '@Url.Action("Edit", "Store")' + '/' + id;
+            }
+        }
+
         (function () {
             var addBtn = document.getElementById('addPhone');
             var phoneRows = document.getElementById('phoneRows');
@@ -148,6 +184,7 @@
             function createPhoneRow(value) {
                 var div = document.createElement('div');
                 div.className = 'phone-row';
+                div.style.marginBottom = '8px';
                 var input = document.createElement('input');
                 input.name = 'Phones';
                 input.className = 'form-control';
@@ -163,18 +200,28 @@
                 return div;
             }
 
-            addBtn?.addEventListener('click', function () {
-                var row = createPhoneRow();
-                // insert before add button container so it stays above the button
-                phoneRows.appendChild(row);
+            addBtn?.addEventListener('click', function () { phoneRows.appendChild(createPhoneRow()); });
+
+            document.querySelectorAll('.remove-phone').forEach(function (b) {
+                b.addEventListener('click', function (ev) { ev.preventDefault(); b.parentElement?.remove(); });
             });
 
-            // attach remove handlers to existing remove buttons
-            document.querySelectorAll('.remove-phone').forEach(function (b) {
-                b.addEventListener('click', function (ev) {
+            // delete image AJAX with antiforgery token
+            document.querySelectorAll('.remove-image').forEach(function (btn) {
+                btn.addEventListener('click', function (ev) {
                     ev.preventDefault();
-                    var parent = b.parentElement;
-                    if (parent) parent.remove();
+                    var id = btn.getAttribute('data-id');
+                    if (!id) return;
+                    if (!confirm('Наистина ли искате да изтриете тази снимка?')) return;
+                    var token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
+                    fetch('@Url.Action("DeleteImage","Store")', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: new URLSearchParams({ imageId: id, __RequestVerificationToken: token })
+                    }).then(r => r.json()).then(j => {
+                        if (j?.ok) { btn.closest('.existing-image')?.remove(); }
+                        else alert('Грешка при изтриване на снимката');
+                    }).catch(() => alert('Грешка при изтриване на снимката'));
                 });
             });
         })();

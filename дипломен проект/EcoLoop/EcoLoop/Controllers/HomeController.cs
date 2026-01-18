@@ -23,7 +23,7 @@ namespace EcoLoop.Controllers
         {
             // Nearby / top stores (4)
             var topStores = await _db.Stores
-                .Where(s => s.Approved)
+                .Where(s => s.IsApproved)
                 .OrderByDescending(s => s.Rating)
                 .Take(8)
                 .Select(s => new StoreViewModel

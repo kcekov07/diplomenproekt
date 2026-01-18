@@ -32,7 +32,7 @@ namespace EcoLoop.Data.Models
 
         public decimal Rating { get; set; }
 
-        public bool Approved { get; set; } = false;
+        public bool IsApproved { get; set; } = false;
 
         // New
         public string? WorkingHours { get; set; }
@@ -40,5 +40,6 @@ namespace EcoLoop.Data.Models
         // Navigation
         public List<StoreImage> Images { get; set; } = new();
         public List<StorePhone> Phones { get; set; } = new();
+        
     }
 }

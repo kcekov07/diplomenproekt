@@ -1,3 +1,68 @@
+/* Map / Store map tweaks — ensure map is visible and responsive */
+
+/* Map panel styling */
+.map-panel {
+    background: var(--eco-surface, #ffffff);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(23,40,27,0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure the Leaflet container has an explicit height */
+#map {
+    width: 100%;
+    height: 72vh; /* explicit viewport-based height */
+    min-height: 420px; /* reasonable minimum for small screens */
+    display: block;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #f6fbf7, #ffffff);
+}
+
+/* Leaflet rendering improvements */
+.leaflet-container {
+    background: transparent;
+    -webkit-backface-visibility: hidden; /* improves tile rendering on some browsers */
+    backface-visibility: hidden;
+}
+
+/* Make the controls column fully height-limited and scrollable */
+.controls {
+    max-height: 72vh;
+    overflow: auto;
+    padding-right: 8px;
+}
+
+/* Small responsive tweaks */
+@media (max-width: 992px) {
+    .map-page {
+        flex-direction: column;
+    }
+
+    .map-panel {
+        order: 2;
+        width: 100%;
+    }
+
+    .controls {
+        order: 1;
+        width: 100%;
+        max-height: none;
+    }
+
+    #map {
+        height: 56vh;
+        min-height: 320px;
+    }
+}
+
+@media (max-width: 576px) {
+    #map {
+        height: 50vh;
+        min-height: 280px;
+    }
+}
 /* EcoLoop — full site stylesheet (latest) with navbar/button and grid fixes */
 /* EcoLoop — full site stylesheet (footer updated)
    NOTE: This file includes your existing theme and the new footer styles appended/merged.

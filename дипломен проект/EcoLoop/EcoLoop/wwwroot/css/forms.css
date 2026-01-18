@@ -1,0 +1,30 @@
+﻿/* Dropdown select */
+.form-select {
+    border-radius: 10px;
+    border: 1px solid var(--eco-gray);
+    padding: 6px 10px;
+    background-color: #fff;
+}
+
+/* Keep minimal form control rules (from original) */
+input[type="text"],
+input[type="search"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font: inherit;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-top: 0.5rem;
+}
