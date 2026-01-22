@@ -1,140 +1,117 @@
 ﻿@{
-    ViewData["Title"] = "Карта / Магазини";
+    ViewData["Title"] = "Карта на еко магазините";
 }
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-      integrity="sha256-sA+e2H0g6W8fN6t0Ql0A6FQ0g1S3b1eYv3vMZqgY1sM=" crossorigin="" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+<link rel="stylesheet" href="@Url.Content("~/css/map.css")" />
 
-<style>
-    .map-page {
-        display: flex;
-        gap: 1rem;
-        padding: 1rem 0;
-    }
+<div class="container">
+    <h2 style="margin:16px 0; color:var(--eco-green-dark);">
+        <span style="margin-right:8px;">🗺️</span> Карта на еко магазините
+    </h2>
 
-    .map-panel {
-        flex: 1 1 68%;
-        min-height: 72vh;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-    }
+    <div class="map-wrapper">
+        <aside class="map-sidebar" aria-label="Map filters">
+            <div class="sidebar-header-row">
+                <div class="sidebar-title"><span>🔎</span> Филтри</div>
+                <button class="theme-toggle-btn" id="toggleIcons" title="Toggle icons">⚙️</button>
+            </div>
 
-    .controls {
-        flex: 0 0 320px;
-        background: white;
-        border-radius: 12px;
-        padding: 12px;
-        height: 72vh;
-        overflow: auto;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    }
+            <div class="accordion-section">
+                <button class="accordion-btn" data-target="catContent">Категория</button>
+                <div id="catContent" class="accordion-content">
+                    <select id="categorySelect" class="form-select">
+                        <option value="*">Всички</option>
+                        <option value="Еко храни">🥕 Био храни</option>
+                        <option value="Натурална козметика">🧴 Натурална козметика</option>
+                        <option value="Еко облекло">👕 Еко облекло</option>
+                        <option value="Напитки">🍵 Напитки</option>
+                        <option value="Продукти за дома">🧼 Продукти за дома</option>
+                    </select>
+                </div>
+            </div>
 
-    .control-group {
-        margin-bottom: 12px;
-    }
+            <div class="accordion-section">
+                <button class="accordion-btn" data-target="distContent">Разстояние</button>
+                <div id="distContent" class="accordion-content">
+                    <select id="distanceSelect" class="form-select">
+                        <option value="9999">Без лимит</option>
+                        <option value="5">До 5 km</option>
+                        <option value="10">До 10 km</option>
+                        <option value="25" selected>До 25 km</option>
+                        <option value="50">До 50 km</option>
+                    </select>
+                    <div class="small-muted" style="margin-top:8px;">Работи спрямо текущото ви местоположение.</div>
+                </div>
+            </div>
 
-        .control-group label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: #176843;
-        }
+            <div class="accordion-section">
+                <button class="accordion-btn" data-target="otherContent">Още филтри</button>
+                <div id="otherContent" class="accordion-content">
+                    <div style="display:flex;flex-direction:column;gap:8px;">
+                        <label><input id="filterOwn" type="checkbox" /> Приема собствени опаковки</label>
+                        <label><input id="filterOpen" type="checkbox" /> Работи сега</label>
+                        <label>
+                            Рейтинг
+                            <select id="filterRating" class="form-select" style="margin-top:6px;">
+                                <option value="0">Всички</option>
+                                <option value="3">≥ 3</option>
+                                <option value="4">≥ 4</option>
+                                <option value="4.5">≥ 4.5</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+            </div>
 
-    .category-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px 10px;
-        border-radius: 999px;
-        margin: 4px;
-        cursor: pointer;
-        border: 1px solid #eaf3ee;
-        background: #fff;
-    }
+            <div style="margin-top:12px;">
+                <button id="btnApply" class="sidebar-full-btn popup-btn-green">🟢 Магазини около мен</button>
+                <button id="btnReset" class="sidebar-full-btn popup-btn-outline" style="margin-top:8px;">🔁 Нулирай филтрите</button>
+            </div>
 
-    .small-muted {
-        color: #6f8f7a;
-        font-size: 0.95rem;
-    }
+            <hr style="margin:12px 0;" />
 
-    #map {
-        width: 100%;
-        height: 100%;
-        min-height: 72vh;
-    }
+            <div>
+                <div class="sidebar-title" style="font-size:15px;margin-bottom:8px;">Резултати</div>
+                <div class="sidebar-results" id="resultsList">Зареждане…</div>
+            </div>
+        </aside>
 
-    .popup-title {
-        font-weight: 800;
-        color: #176843;
-        margin-bottom: 4px;
-    }
-
-    .filter-row {
-        display: flex;
-        gap: 8px;
-        align-items: center;
-    }
-
-    .rating-range {
-        width: 100%;
-    }
-</style>
-
-<div class="map-page container">
-    <div class="map-panel" id="mapPanel">
         <div id="map"></div>
     </div>
 
-    <aside class="controls" aria-label="Map filters">
-        <div class="control-group">
-            <label>Категория</label>
-            <div id="categoryFilters">
-                <button type="button" class="category-badge" data-cat="Еко храни">🥕 Био храни</button>
-                <button type="button" class="category-badge" data-cat="Натурална козметика">🧴 Натурална козметика</button>
-                <button type="button" class="category-badge" data-cat="Еко облекло">👕 Еко облекло</button>
-                <button type="button" class="category-badge" data-cat="Напитки">🍵 Напитки</button>
-                <button type="button" class="category-badge" data-cat="Продукти за дома">🧼 Продукти за дома</button>
-                <button type="button" class="category-badge" data-cat="*">Всички</button>
-            </div>
+    <!-- BELOW THE MAP: ALL STORES LIST (populated by map.js on load) -->
+    <section style="margin-top:22px;">
+        <h3 style="margin-bottom:12px;">Всички магазини</h3>
+        <div id="storesList" class="sidebar-results" style="padding:12px;">
+            Зареждане…
         </div>
-
-        <div class="control-group">
-            <label>Разстояние (км) от текущото местоположение</label>
-            <div class="filter-row">
-                <input type="range" id="distanceRange" min="1" max="200" value="25" />
-                <span id="distanceValue">25 km</span>
-            </div>
-            <div class="small-muted">Ако браузърът не даде разрешение за локация, филтърът ще използва центъра на картата.</div>
-        </div>
-
-        <div class="control-group">
-            <label>Още филтри</label>
-            <div style="display:flex;flex-direction:column;gap:8px;">
-                <label><input type="checkbox" id="filterOwnPackaging" /> Приема собствени опаковки</label>
-                <label><input type="checkbox" id="filterOpenNow" /> Работи в момента</label>
-                <label>
-                    <span>Минимален рейтинг</span>
-                    <input id="filterRating" type="number" min="0" max="5" step="0.5" value="0" style="width:80px;margin-left:8px;" />
-                </label>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <button id="applyFilters" class="btn btn-primary">Приложи филтри</button>
-            <button id="resetFilters" class="btn btn-link">Ресет</button>
-        </div>
-
-        <hr />
-
-        <div class="control-group">
-            <label>Инструкции</label>
-            <p class="small-muted">Кликнете върху пин за кратка информация. Използвайте бутона "Виж детайли" за страницата на магазина.</p>
-        </div>
-    </aside>
+    </section>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-QVwAt2b3xQ0q7p/7gkQwYg1Xg1tR9Yqj3bE1q1m0+7g=" crossorigin=""></script>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="@Url.Content("~/js/map.js")"></script>
+
+<script>
+    // accordion helper + expose controls to map.js
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.accordion-btn').forEach(function (b) {
+            b.addEventListener('click', function () {
+                var id = b.getAttribute('data-target');
+                var el = document.getElementById(id);
+                if (!el) return;
+                el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+
+        window.mapFilters = {
+            categoryEl: document.getElementById('categorySelect'),
+            distanceEl: document.getElementById('distanceSelect'),
+            ownEl: document.getElementById('filterOwn'),
+            openEl: document.getElementById('filterOpen'),
+            ratingEl: document.getElementById('filterRating'),
+            resultsEl: document.getElementById('resultsList'),
+            storesListEl: document.getElementById('storesList') // new
+        };
+    });
+</script>

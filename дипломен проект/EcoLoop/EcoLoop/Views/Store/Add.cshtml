@@ -1,224 +1,342 @@
 ﻿@model EcoLoop.Models.StoreAddViewModel
 @{
     ViewData["Title"] = "Добавяне на магазин";
-    var categories = ViewData["Categories"] as string[] ?? new string[0];
+    var categories = ViewData["Categories"] as string[] ?? Array.Empty<string>();
 }
 
-<h1>Добавяне на магазин</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-form.css" asp-append-version="true" />
+}
 
-<form asp-action="Add" method="post" enctype="multipart/form-data" id="storeAddForm">
-    @Html.AntiForgeryToken()
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Category"></label>
-        <select asp-for="Category" class="form-control">
-            <option value="">-- избери --</option>
-            @foreach (var c in categories)
-            {
-                <option value="@c">@c</option>
-            }
-        </select>
-        <span asp-validation-for="Category" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="ShortDescription"></label>
-        <input asp-for="ShortDescription" maxlength="200" class="form-control" />
-        <small class="form-text text-muted">Кратко описание (ще се показва в картите/топ магазини).</small>
-        <span asp-validation-for="ShortDescription" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-        <span asp-validation-for="Description" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Address"></label>
-        <input asp-for="Address" class="form-control" />
-        <span asp-validation-for="Address" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Latitude"></label>
-        <input asp-for="Latitude" type="number" step="0.000001" class="form-control" />
-        <label asp-for="Longitude"></label>
-        <input asp-for="Longitude" type="number" step="0.000001" class="form-control" />
-        <span asp-validation-for="Latitude" class="text-danger"></span>
-        <span asp-validation-for="Longitude" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label>Работно време</label>
-        <div>
-            <label>Пон-Пет</label>
-            <input asp-for="MonToFriHours" placeholder="напр. 09:00-18:00" class="form-control" />
+<div class="sf-page">
+    <div class="sf-wrap">
+        <div class="sf-head">
+            <div>
+                <h1 class="sf-title">Добавяне на магазин</h1>
+                <p class="sf-subtitle">Попълни основната информация и добави снимки, за да изглежда магазинът ти отлично.</p>
+            </div>
         </div>
-        <div>
-            <label>Събота</label>
-            <input asp-for="SatHours" placeholder="напр. 10:00-14:00 или празно" class="form-control" />
-        </div>
-        <div>
-            <label>Неделя</label>
-            <input asp-for="SunHours" placeholder="напр. затворено или 11:00-15:00" class="form-control" />
-        </div>
+
+        <form asp-action="Add" method="post" enctype="multipart/form-data" class="sf-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="sf-validation"></div>
+
+            <!-- SECTION: Основна информация -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Основна информация</h2>
+                    <span class="sf-hint">Полетата с * са препоръчителни</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field">
+                        <label asp-for="Name">Име *</label>
+                        <input asp-for="Name" placeholder="Напр. Eco Market" />
+                        <span asp-validation-for="Name" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Category">Категория</label>
+                        <select asp-for="Category">
+                            <option value="">-- избери --</option>
+                            @foreach (var c in categories)
+                            {
+                                <option value="@c">@c</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Category" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="ShortDescription">Кратко описание</label>
+                        <input asp-for="ShortDescription" maxlength="200" placeholder="1 изречение, което продава идеята (до 200 символа)" />
+                        <div class="sf-help">Ще се показва в картите и началната страница.</div>
+                        <span asp-validation-for="ShortDescription" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Description">Описание</label>
+                        <textarea asp-for="Description" placeholder="Разкажи за магазина, мисията, продуктите..."></textarea>
+                        <span asp-validation-for="Description" class="sf-error"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Локация -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Локация</h2>
+                    <span class="sf-hint">Адресът и координатите помагат за картата</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Address">Адрес</label>
+                        <input asp-for="Address" placeholder="ул. ..., град ..." />
+                        <span asp-validation-for="Address" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Latitude">Latitude</label>
+                        <input asp-for="Latitude" type="number" step="0.000001" placeholder="42.6977" />
+                        <span asp-validation-for="Latitude" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Longitude">Longitude</label>
+                        <input asp-for="Longitude" type="number" step="0.000001" placeholder="23.3219" />
+                        <span asp-validation-for="Longitude" class="sf-error"></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Работно време -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Работно време</h2>
+                    <span class="sf-hint">По избор</span>
+                </div>
+
+                <div class="sf-grid sf-grid--3">
+                    <div class="sf-field">
+                        <label asp-for="MonToFriHours">Пон–Пет</label>
+                        <input asp-for="MonToFriHours" placeholder="09:00-18:00" />
+                    </div>
+                    <div class="sf-field">
+                        <label asp-for="SatHours">Събота</label>
+                        <input asp-for="SatHours" placeholder="10:00-14:00" />
+                    </div>
+                    <div class="sf-field">
+                        <label asp-for="SunHours">Неделя</label>
+                        <input asp-for="SunHours" placeholder="затворено" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Еко & услуги -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Еко & услуги</h2>
+                    <span class="sf-hint">Това се показва като badges в детайлите</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="EcoTags">Еко тагове</label>
+                        <input asp-for="EcoTags" placeholder="Zero-waste, Bio, Local, Vegan" />
+                        <div class="sf-help">Раздели със запетая. Пример: <em>Zero-waste, Bio, Local</em></div>
+                    </div>
+
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Certifications">Сертификати</label>
+                        <input asp-for="Certifications" placeholder="FSC, EU Organic" />
+                    </div>
+                </div>
+
+                <div class="sf-toggles">
+                    <label class="sf-toggle">
+                        <input asp-for="AcceptsOwnPackaging" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Приема собствени опаковки</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="IsProducer" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Производител</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="HasRefillStation" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Refill / наливни продукти</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="HasDelivery" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Доставка</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- SECTION: Контакти -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Контакти</h2>
+                    <span class="sf-hint">По избор</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field">
+                        <label asp-for="Website">Уебсайт</label>
+                        <input asp-for="Website" placeholder="https://..." />
+                        <span asp-validation-for="Website" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Email">Имейл</label>
+                        <input asp-for="Email" type="email" placeholder="store@email.com" />
+                        <span asp-validation-for="Email" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="InstagramUrl">Instagram</label>
+                        <input asp-for="InstagramUrl" placeholder="https://instagram.com/..." />
+                        <span asp-validation-for="InstagramUrl" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="FacebookUrl">Facebook</label>
+                        <input asp-for="FacebookUrl" placeholder="https://facebook.com/..." />
+                        <span asp-validation-for="FacebookUrl" class="sf-error"></span>
+                    </div>
+                </div>
+
+                <!-- Телефони (оставям ти го базово, защото при теб е List<string> Phones) -->
+                <div class="sf-field sf-mt">
+                    <label>Телефони</label>
+                    <div id="phonesList" class="sf-repeater">
+                        <div class="sf-repeater__row">
+                            <input name="Phones" placeholder="+359 88 123 4567" />
+                            <button type="button" class="sf-iconbtn sf-remove" style="display:none;" title="Премахни">✕</button>
+                        </div>
+                    </div>
+                    <button type="button" id="addPhoneBtn" class="sf-secondary">+ Добави още телефон</button>
+                </div>
+            </section>
+
+            <!-- SECTION: Снимки -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Снимки</h2>
+                    <span class="sf-hint">Първата ще е cover</span>
+                </div>
+
+                <div class="sf-upload">
+                    <input id="photosInput" name="Photos" type="file" multiple accept="image/*" />
+                    <div class="sf-upload__note">Можеш да избереш няколко снимки. После можеш да махнеш някоя преди “Запази”.</div>
+                </div>
+
+                <div id="photoPreviews" class="sf-previews"></div>
+            </section>
+
+            <div class="sf-actions">
+                <button type="submit" class="sf-primary">Запази магазина</button>
+                <button type="button" class="sf-link" onclick="history.back()">
+                    ← Назад
+                </button>
+
+            </div>
+        </form>
     </div>
-
-    <div id="phones">
-        <label>Телефони</label>
-        <div class="phone-row">
-            <input name="Phones" class="form-control" placeholder="+359 88 123 4567" />
-            <button type="button" class="btn small remove-phone" style="display:none;">Премахни</button>
-        </div>
-        <button type="button" id="addPhone" class="btn">Добави още телефон</button>
-    </div>
-
-    <div>
-        <label asp-for="Website"></label>
-        <input asp-for="Website" class="form-control" />
-        <span asp-validation-for="Website" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label>
-            <input asp-for="AcceptsOwnPackaging" /> Приема собствени опаковки
-        </label>
-    </div>
-
-    <div>
-        <label>
-            <input asp-for="IsProducer" /> Производител
-        </label>
-    </div>
-
-    <div>
-        <label for="photosInput">Добави снимки</label>
-        <input id="photosInput" name="Photos" type="file" multiple accept="image/*" class="form-control" />
-        <small class="form-text text-muted">Можете да качите едновременно няколко снимки (jpg, png, webp). Можете да премахвате избрани снимки преди изпращане.</small>
-
-        <div id="photoPreviews" style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;"></div>
-    </div>
-
-    <button type="submit" class="btn" style="margin-top:12px;">Изпрати</button>
-</form>
+</div>
 
 @section Scripts {
     <script>
         (function () {
-            // Phones UI (existing)
-            var addBtn = document.getElementById('addPhone');
-            var phones = document.getElementById('phones');
+            // Phones repeater
+            const phonesList = document.getElementById('phonesList');
+            const addPhoneBtn = document.getElementById('addPhoneBtn');
 
-            function createPhoneRow(value) {
-                var div = document.createElement('div');
-                div.className = 'phone-row';
-                div.style.marginBottom = '8px';
-                var input = document.createElement('input');
-                input.name = 'Phones';
-                input.className = 'form-control';
-                input.placeholder = '+359 ...';
-                if (value) input.value = value;
-                var remove = document.createElement('button');
-                remove.type = 'button';
-                remove.className = 'btn small remove-phone';
-                remove.textContent = 'Премахни';
-                remove.addEventListener('click', function () { div.remove(); });
-                div.appendChild(input);
-                div.appendChild(remove);
-                return div;
+            function refreshRemoveButtons() {
+                const rows = phonesList.querySelectorAll('.sf-repeater__row');
+                rows.forEach((row, idx) => {
+                    const btn = row.querySelector('.sf-remove');
+                    if (!btn) return;
+                    btn.style.display = rows.length > 1 ? 'inline-flex' : 'none';
+                });
             }
 
-            addBtn?.addEventListener('click', function () {
-                phones.insertBefore(createPhoneRow(), addBtn);
-                Array.from(document.querySelectorAll('.remove-phone')).forEach(b => b.style.display = 'inline-block');
+            function addPhone(value) {
+                const row = document.createElement('div');
+                row.className = 'sf-repeater__row';
+                row.innerHTML = `
+                    <input name="Phones" placeholder="+359 88 123 4567" />
+                    <button type="button" class="sf-iconbtn sf-remove" title="Премахни">✕</button>
+                `;
+                const input = row.querySelector('input');
+                if (value) input.value = value;
+                row.querySelector('.sf-remove').addEventListener('click', () => {
+                    row.remove();
+                    refreshRemoveButtons();
+                });
+                phonesList.appendChild(row);
+                refreshRemoveButtons();
+            }
+
+            addPhoneBtn?.addEventListener('click', () => addPhone());
+            // first row remove hidden unless >1
+            const firstRemove = phonesList.querySelector('.sf-remove');
+            firstRemove?.addEventListener('click', (e) => {
+                e.preventDefault();
+                // shouldn't happen when hidden, but just in case:
+                if (phonesList.querySelectorAll('.sf-repeater__row').length > 1) {
+                    firstRemove.closest('.sf-repeater__row').remove();
+                    refreshRemoveButtons();
+                }
             });
+            refreshRemoveButtons();
 
-            document.querySelectorAll('.remove-phone').forEach(b => b.style.display = 'none');
+            // Photos preview + remove before submit (DataTransfer)
+            const fileInput = document.getElementById('photosInput');
+            const previews = document.getElementById('photoPreviews');
+            let dt = new DataTransfer();
 
-            // Photo selection & preview with ability to remove before submit
-            var fileInput = document.getElementById('photosInput');
-            var previewContainer = document.getElementById('photoPreviews');
+            function renderPreviews() {
+                previews.innerHTML = '';
+                const files = Array.from(dt.files);
 
-            // DataTransfer holds current files so we can remove single ones
-            var dt = new DataTransfer();
+                if (files.length === 0) {
+                    previews.innerHTML = `<div class="sf-empty">Няма избрани снимки.</div>`;
+                    return;
+                }
 
-            function refreshPreviews() {
-                previewContainer.innerHTML = '';
-                Array.from(dt.files).forEach(function (file, index) {
-                    var url = URL.createObjectURL(file);
-                    var wrapper = document.createElement('div');
-                    wrapper.style.position = 'relative';
-                    wrapper.style.width = '120px';
-                    wrapper.style.height = '90px';
-                    wrapper.style.borderRadius = '8px';
-                    wrapper.style.overflow = 'hidden';
-                    wrapper.style.background = '#f6f8f6';
-                    wrapper.style.display = 'inline-block';
+                files.forEach((file, index) => {
+                    const url = URL.createObjectURL(file);
 
-                    var img = document.createElement('img');
+                    const card = document.createElement('div');
+                    card.className = 'sf-preview';
+
+                    const img = document.createElement('img');
                     img.src = url;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'cover';
                     img.alt = file.name;
 
-                    var btn = document.createElement('button');
-                    btn.type = 'button';
-                    btn.textContent = '✕';
-                    btn.title = 'Премахни снимката';
-                    btn.style.position = 'absolute';
-                    btn.style.top = '6px';
-                    btn.style.right = '6px';
-                    btn.style.background = 'rgba(0,0,0,0.6)';
-                    btn.style.color = '#fff';
-                    btn.style.border = 'none';
-                    btn.style.borderRadius = '16px';
-                    btn.style.width = '28px';
-                    btn.style.height = '28px';
-                    btn.style.cursor = 'pointer';
+                    const meta = document.createElement('div');
+                    meta.className = 'sf-preview__meta';
+                    meta.innerHTML = `
+                        <div class="sf-preview__name" title="${file.name}">${file.name}</div>
+                        <div class="sf-preview__sub">${Math.round(file.size / 1024)} KB${index === 0 ? " • cover" : ""}</div>
+                    `;
 
-                    btn.addEventListener('click', function () {
-                        // remove item from DataTransfer
-                        try {
-                            dt.items.remove(index);
-                        } catch (e) {
-                            // fallback: rebuild dt without this index
-                            var newDt = new DataTransfer();
-                            Array.from(dt.files).forEach(function (f, i) { if (i !== index) newDt.items.add(f); });
-                            dt = newDt;
-                        }
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'sf-preview__remove';
+                    btn.textContent = 'Премахни';
+                    btn.addEventListener('click', () => {
+                        // remove by rebuilding DataTransfer
+                        const newDt = new DataTransfer();
+                        files.forEach((f, i) => { if (i !== index) newDt.items.add(f); });
+                        dt = newDt;
                         fileInput.files = dt.files;
-                        refreshPreviews();
+                        renderPreviews();
                     });
 
-                    wrapper.appendChild(img);
-                    wrapper.appendChild(btn);
-                    previewContainer.appendChild(wrapper);
+                    card.appendChild(img);
+                    card.appendChild(meta);
+                    card.appendChild(btn);
+                    previews.appendChild(card);
                 });
             }
 
-            fileInput.addEventListener('change', function (e) {
-                // append newly selected files (prevent duplicates by name+size)
-                Array.from(fileInput.files).forEach(function (file) {
-                    var exists = Array.from(dt.files).some(function (f) { return f.name === file.name && f.size === file.size; });
-                    if (!exists) dt.items.add(file);
-                });
+            fileInput?.addEventListener('change', () => {
+                const incoming = Array.from(fileInput.files || []);
+                incoming.forEach(f => dt.items.add(f));
                 fileInput.files = dt.files;
-                refreshPreviews();
+                renderPreviews();
             });
 
-            // ensure DataTransfer persists if user submits form without interaction
-            document.getElementById('storeAddForm').addEventListener('submit', function () {
-                fileInput.files = dt.files;
-            });
+            renderPreviews();
         })();
     </script>
 }

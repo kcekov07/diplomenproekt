@@ -1,0 +1,80 @@
+﻿.store-list {
+    width: min(1120px, 92vw);
+    margin: 18px auto;
+    font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+}
+
+.store-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.store-card {
+    background: #fff;
+    border: 1px solid rgba(15,23,42,.10);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(15,23,42,.08);
+    transition: transform .12s ease, box-shadow .12s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+    .store-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 18px 40px rgba(15,23,42,.12);
+    }
+
+.store-card__img {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    background-color: #f3f4f6;
+}
+
+.store-card__body {
+    padding: 12px 12px 14px;
+}
+
+.store-card__title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+}
+
+.store-card__meta {
+    font-size: 13px;
+    color: rgba(15,23,42,.70);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.store-card__badges {
+    margin-top: 10px;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.chip {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(47,111,78,.18);
+    background: rgba(47,111,78,.08);
+    color: #1f5a3d;
+}
+
+@media (max-width: 980px) {
+    .store-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .store-cards {
+        grid-template-columns: 1fr;
+    }
+}

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace EcoLoop.Data
 {
     public class ApplicationDbContext : IdentityDbContext<IdentityUser>
@@ -19,6 +20,10 @@ namespace EcoLoop.Data
         public DbSet<News> News { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<EcoPoints> EcoPoints { get; set; } = null!;
+       
+        public DbSet<CommentLike> CommentLikes { get; set; } = null!;
+        
+        public DbSet<CommentHelpful> CommentHelpfuls { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -35,7 +40,34 @@ namespace EcoLoop.Data
                 .HasOne(sp => sp.Store)
                 .WithMany(s => s.Phones)
                 .HasForeignKey(sp => sp.StoreId)
-                .OnDelete(DeleteBehavior.Cascade);  
+                .OnDelete(DeleteBehavior.Cascade);
+            base.OnModelCreating(builder);
+
+            builder.Entity<CommentLike>()
+                .HasIndex(x => new { x.CommentId, x.UserId })
+                .IsUnique();
+
+            builder.Entity<Comment>()
+    .HasOne(c => c.Store)
+    .WithMany(s => s.Comments)
+    .HasForeignKey(c => c.StoreId)
+    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Comment>()
+                .HasOne(c => c.News)
+                .WithMany()
+                .HasForeignKey(c => c.NewsId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<CommentHelpful>()
+    .HasOne(h => h.Comment)
+    .WithMany()
+    .HasForeignKey(h => h.CommentId)
+    .OnDelete(DeleteBehavior.Cascade);
+
+            // one helpful per visitor per comment
+            builder.Entity<CommentHelpful>()
+                .HasIndex(h => new { h.CommentId, h.VisitorKey })
+                .IsUnique();
         }
     }
 }

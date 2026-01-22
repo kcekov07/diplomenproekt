@@ -1,53 +1,342 @@
-﻿@model EcoLoop.Data.Models.Store
+﻿@using EcoLoop.Data.Models
+@model EcoLoop.Data.Models.Store
+
 @{
     ViewData["Title"] = Model.Name;
+
+    var cover = Model.Images?.OrderBy(i => i.Id).FirstOrDefault()?.Url;
+
+    // Reviews for this store
+    var reviews = Model.Comments?.OrderByDescending(c => c.CreatedAt).ToList() ?? new List<Comment>();
+
+    int reviewsCount = reviews.Count;
+    double? avg = reviewsCount > 0 ? reviews.Average(r => r.Rating) : null;
+
+    // breakdown[1..5]
+    var breakdown = new int[6];
+    foreach (var r in reviews)
+    {
+        if (r.Rating >= 1 && r.Rating <= 5) breakdown[r.Rating]++;
+    }
+
+    var likesDict = ViewBag.CommentLikes as Dictionary<int, int> ?? new Dictionary<int, int>();
+    var likedIds = ViewBag.LikedCommentIds as HashSet<int> ?? new HashSet<int>();
+    var canEditIds = ViewBag.CanEditCommentIds as HashSet<int> ?? new HashSet<int>();
 }
 
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">@TempData["Message"]</div>
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true" />
+
+}
+@section Scripts {
+    <script src="~/js/details.js" asp-append-version="true"></script>
 }
 
-<h1>@Model.Name</h1>
-<p class="small-muted">@Model.Category</p>
-@if (!string.IsNullOrWhiteSpace(Model.ShortDescription))
-{
-    <p>@Model.ShortDescription</p>
-}
-@if (!string.IsNullOrWhiteSpace(Model.Description))
-{
-    <p>@Model.Description</p>
-}
 
-<p><strong>Адрес:</strong> @Model.Address</p>
-
-@if (!string.IsNullOrWhiteSpace(Model.WorkingHours))
-{
-    <p><strong>Работно време:</strong> @Model.WorkingHours</p>
-}
-
-@if (Model.Phones != null && Model.Phones.Any())
-{
-    <p><strong>Телефони:</strong></p>
-    <ul>
-        @foreach (var p in Model.Phones)
-        {
-            <li><a href="tel:@p.PhoneNumber">@p.PhoneNumber</a></li>
-        }
-    </ul>
-}
-
-@if (Model.Images != null && Model.Images.Any())
-{
-    <div class="store-images">
-        @foreach (var img in Model.Images)
-        {
-            <img src="@img.Url" alt="@Model.Name" style="max-width:200px;margin:0.5rem;border-radius:6px;" />
-        }
+<div class="sd-page">
+    <div class="sd-topbar">
+        <button type="button" class="sd-back" onclick="history.back()">← Назад</button>
+        
     </div>
-}
 
-<div style="margin-top:16px;">
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-success">Редактирай</a>
-    <a asp-action="Index" asp-controller="Home" class="btn btn-link">Към началната страница</a>
+    <section class="sd-hero">
+        <div class="sd-hero__bg" style="background-image:url('@(cover ?? "/images/store-cover-placeholder.jpg")')"></div>
+        <div class="sd-hero__overlay"></div>
+
+        <div class="sd-hero__content">
+            <div class="sd-hero__left">
+                <div class="sd-kicker">
+                    @if (!string.IsNullOrWhiteSpace(Model.Category))
+                    {
+                        <span class="sd-pill sd-pill--soft">@Model.Category</span>
+                    }
+                </div>
+
+                <h1 class="sd-title">@Model.Name</h1>
+
+                @if (!string.IsNullOrWhiteSpace(Model.ShortDescription))
+                {
+                    <p class="sd-sub">@Model.ShortDescription</p>
+                }
+
+                <div class="sd-badges">
+                    @if (Model.AcceptsOwnPackaging)
+                    {
+                        <span class="sd-badge sd-badge--green">🫙 Собствени опаковки</span>
+                    }
+                    @if (Model.IsProducer)
+                    {
+                        <span class="sd-badge sd-badge--green">🌿 Производител</span>
+                    }
+                    @if (Model.HasRefillStation)
+                    {
+                        <span class="sd-badge sd-badge--green">♻️ Refill</span>
+                    }
+                    @if (Model.HasDelivery)
+                    {
+                        <span class="sd-badge sd-badge--soft">🚚 Доставка</span>
+                    }
+                </div>
+            </div>
+
+            <div class="sd-hero__right">
+                <div class="sd-facts">
+                    <div class="sd-fact">
+                        <div class="sd-fact__label">Рейтинг</div>
+                        <div class="sd-fact__value">
+                            @if (avg.HasValue)
+                            {
+                                <span class="sd-rating">@avg.Value.ToString("0.0")</span>
+                                <span class="sd-muted">/ 5</span>
+                                <span class="sd-muted">(@reviewsCount)</span>
+                            }
+                            else
+                            {
+                                <span class="sd-muted">Няма оценки</span>
+                            }
+                        </div>
+
+                        <div class="sd-breakdown">
+                            @for (int i = 5; i >= 1; i--)
+                            {
+                                var pct = reviewsCount == 0 ? 0 : (breakdown[i] * 100.0 / reviewsCount);
+                                <div class="sd-break">
+                                    <span class="sd-break__label">@i ★</span>
+                                    <div class="sd-bar"><div style="width:@pct%"></div></div>
+                                    <span class="sd-break__count">@breakdown[i]</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Работно време -->
+                    @if (!string.IsNullOrWhiteSpace(Model.WorkingHours))
+                    {
+                        <div class="sd-fact">
+                            <div class="sd-fact__label">Работно време</div>
+                            <div class="sd-fact__value">
+                                @foreach (var line in Model.WorkingHours.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    <div>@line</div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Address))
+                    {
+                        <div class="sd-fact">
+                            <div class="sd-fact__label">Адрес</div>
+                            <div class="sd-fact__value">@Model.Address</div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sd-container">
+        <div class="sd-grid">
+            <section class="sd-card">
+                <div class="sd-card__head"><h2>За магазина</h2></div>
+                @if (!string.IsNullOrWhiteSpace(Model.Description))
+                {
+                    <p class="sd-text">@Model.Description</p>
+                }
+                else
+                {
+                    <p class="sd-text sd-muted">Няма добавено описание.</p>
+                }
+            </section>
+
+            <section class="sd-card">
+                <div class="sd-card__head"><h2>Контакт</h2></div>
+
+                @if (Model.Phones != null && Model.Phones.Any())
+                {
+                    <div class="sd-block">
+                        <div class="sd-block__label">Телефони</div>
+                        <ul class="sd-links">
+                            @foreach (var p in Model.Phones.Where(x => !string.IsNullOrWhiteSpace(x.PhoneNumber)))
+                            {
+                                <li><a href="tel:@p.PhoneNumber">@p.PhoneNumber</a></li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.Email))
+                {
+                    <div class="sd-block">
+                        <div class="sd-block__label">Имейл</div>
+                        <ul class="sd-links">
+                            <li><a href="mailto:@Model.Email">@Model.Email</a></li>
+                        </ul>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.Website))
+                {
+                    <div class="sd-block">
+                        <div class="sd-block__label">Уебсайт</div>
+                        <ul class="sd-links">
+                            <li><a href="@Model.Website" target="_blank" rel="noopener">Посети сайта →</a></li>
+                        </ul>
+                    </div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(Model.InstagramUrl) || !string.IsNullOrWhiteSpace(Model.FacebookUrl))
+                {
+                    <div class="sd-block">
+                        <div class="sd-block__label">Социални</div>
+                        <div class="sd-social">
+                            @if (!string.IsNullOrWhiteSpace(Model.InstagramUrl))
+                            {
+                                <a class="sd-social__btn" href="@Model.InstagramUrl" target="_blank" rel="noopener">Instagram</a>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(Model.FacebookUrl))
+                            {
+                                <a class="sd-social__btn" href="@Model.FacebookUrl" target="_blank" rel="noopener">Facebook</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </section>
+        </div>
+
+        @if (Model.Images != null && Model.Images.Any())
+        {
+            <section class="sd-section">
+                <div class="sd-section__head">
+                    <h2>Снимки</h2>
+                    <p class="sd-muted">Кликни, за да отвориш снимката.</p>
+                </div>
+
+                <div class="sd-gallery">
+                    @foreach (var img in Model.Images.OrderBy(i => i.Id).Take(10))
+                    {
+                        <a class="sd-photo" href="@img.Url" target="_blank" rel="noopener"
+                           style="background-image:url('@img.Url')">
+                            <span class="sd-photo__shine"></span>
+                        </a>
+                    }
+                </div>
+            </section>
+        }
+
+        <!-- REVIEWS -->
+        <section class="sd-section">
+            <div class="sd-section__head">
+                <h2>Отзиви</h2>
+                <p class="sd-muted">@reviewsCount отзива</p>
+            </div>
+
+            <!-- Review form -->
+            <form asp-controller="Comments" asp-action="CreateStoreReview" method="post" class="sd-reviewForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="storeId" value="@Model.Id" />
+
+                <div class="sd-formRow">
+                    <div class="sd-starsInput">
+                        @for (int i = 5; i >= 1; i--)
+                        {
+                            <input type="radio" id="newStar@i" name="rating" value="@i"  />
+                            <label for="newStar@i">★</label>
+                        }
+                    </div>
+
+                    <input class="sd-nameInput" name="visitorName" maxlength="60" placeholder="Име (по желание)" />
+                </div>
+
+                <textarea name="text" required maxlength="2000" placeholder="Сподели впечатленията си..."></textarea>
+
+                <button type="submit" class="sd-btn sd-btn--primary">Публикувай отзив</button>
+            </form>
+
+            <div class="sd-reviews">
+                @if (!reviews.Any())
+                {
+                    <div class="sd-empty">Все още няма отзиви. Бъди първият 🙂</div>
+                }
+                else
+                {
+                    @foreach (var r in reviews)
+                    {
+                        var likes = likesDict.TryGetValue(r.Id, out var cnt) ? cnt : 0;
+                        var iLiked = likedIds.Contains(r.Id);
+                        var canEdit = canEditIds.Contains(r.Id);
+
+                        <article class="sd-review">
+                            <div class="sd-review__head">
+                                <div class="sd-review__who">
+                                    <strong>@(string.IsNullOrWhiteSpace(r.VisitorName) ? "Анонимен" : r.VisitorName)</strong>
+                                    <span class="sd-muted">@r.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy")</span>
+                                    @if (r.EditedAt.HasValue)
+                                    {
+                                        <span class="sd-muted">• редактирано</span>
+                                    }
+                                </div>
+
+                                <div class="sd-stars">
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        <span class="@(i <= r.Rating ? "on" : "")">★</span>
+                                    }
+                                </div>
+                            </div>
+
+                            <p class="sd-review__text">@r.Text</p>
+
+                            <div class="sd-review__actions">
+                                <form asp-controller="Comments" asp-action="ToggleHelpful" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="commentId" value="@r.Id" />
+                                    <button type="submit" class="sd-helpful @(iLiked ? "is-on" : "")">
+                                        👍 Helpful <span class="sd-helpful__count">@likes</span>
+                                    </button>
+                                </form>
+
+                                @if (canEdit)
+                                {
+                                    <details class="sd-edit">
+                                        <summary class="sd-actionLink">✏️ Редакция</summary>
+
+                                        <form asp-controller="Comments" asp-action="CreateStoreReview" method="post" class="sd-reviewForm">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="storeId" value="@Model.Id" />
+
+                                            <div class="sd-formRow">
+                                                <div class="sd-starsInput">
+                                                    @for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        <input type="radio" id="newStar@i" name="rating" value="@i" required />
+                                                        <label for="newStar@i">★</label>
+                                                    }
+                                                </div>
+
+                                                <input class="sd-nameInput" name="visitorName" maxlength="60" placeholder="Име (по желание)" />
+                                            </div>
+
+                                            <textarea name="text" required maxlength="2000" placeholder="Сподели впечатленията си..."></textarea>
+
+                                            <button type="submit" class="sd-btn sd-btn--primary">Публикувай отзив</button>
+                                        </form>
+
+                                    </details>
+
+                                    <form asp-controller="Comments" asp-action="DeleteStoreReview" method="post"
+                                          onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш отзива?');">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@r.Id" />
+                                        <button type="submit" class="sd-actionDanger">🗑️ Изтрий</button>
+                                    </form>
+                                }
+                            </div>
+                        </article>
+                    }
+                }
+            </div>
+        </section>
+
+    </div>
 </div>

@@ -6,6 +6,11 @@
     <title>EcoFind - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/js/site.js" defer></script>
+    <head>
+        ...
+        @RenderSection("Styles", required: false)
+    </head>
+
 </head>
 <body>
     <header class="site-header navbar-eco">
@@ -19,7 +24,7 @@
 
             <nav class="main-nav" aria-label="Main navigation">
                 <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
-                <a class="nav-link" href="/Store/All"><span class="nav-icon">🗺️</span><span class="nav-text">Map / Stores</span></a>
+                <a class="nav-link" href="/map"><span class="nav-icon">🗺️</span><span class="nav-text">Map / Stores</span></a>
                 <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Events</span></a>
                 <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">News</span></a>
                 <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Add Store</span></a>

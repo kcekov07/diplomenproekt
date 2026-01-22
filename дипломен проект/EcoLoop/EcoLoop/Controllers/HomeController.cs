@@ -18,7 +18,7 @@ namespace EcoLoop.Controllers
         {
             _db = db;
         }
-
+        
         public async Task<IActionResult> Index()
         {
             // Nearby / top stores (4)

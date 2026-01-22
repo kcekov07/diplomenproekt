@@ -1,229 +1,451 @@
-﻿@using System.Collections;
-@model EcoLoop.Models.StoreEditViewModel
+﻿@model EcoLoop.Models.StoreEditViewModel
 @{
     ViewData["Title"] = "Редакция на магазин";
-    var categories = ViewData["Categories"] as string[] ?? new string[0];
-    var allStores = ViewData["AllStores"] as IEnumerable ?? new object[0];
+    var categories = ViewData["Categories"] as string[] ?? Array.Empty<string>();
 }
 
-<h1>Редакция на магазин</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-form.css" asp-append-version="true" />
+}
 
-<form asp-action="Edit" method="post" enctype="multipart/form-data">
-    @Html.AntiForgeryToken()
-    <input type="hidden"
-           name="Id"
-           value="@(Model?.Id ?? 0)" />
-
-    <div>
-        <label>Избери магазин за редакция</label>
-        <select id="storeSelector" class="form-control" onchange="onStoreSelect(this)">
-            <option value="">-- избери магазин --</option>
-            @foreach (var sObj in allStores)
-            {
-                // sObj is anonymous type { Id, Name } from controller; use reflection to avoid dynamic
-                var sidProp = sObj.GetType().GetProperty("Id");
-                var nameProp = sObj.GetType().GetProperty("Name");
-                var sid = sidProp != null ? (int)sidProp.GetValue(sObj) : 0;
-                var sname = nameProp != null ? nameProp.GetValue(sObj)?.ToString() : "";
-                var isSelected = Model?.Id == sid;
-                <option value="@sid" selected="@(isSelected ? "selected" : null)">@sname</option>
-            }
-        </select>
-    </div>
-
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-    <div>
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Category"></label>
-        <select asp-for="Category" class="form-control">
-            <option value="">-- избери --</option>
-            @foreach (var c in categories)
-            {
-                var isSelected = string.Equals(Model?.Category, c, System.StringComparison.Ordinal);
-                <option value="@c" selected="@(isSelected ? "selected" : null)">@c</option>
-            }
-        </select>
-    </div>
-
-    <div>
-        <label asp-for="ShortDescription"></label>
-        <input asp-for="ShortDescription" maxlength="200" class="form-control" />
-        <span asp-validation-for="ShortDescription" class="text-danger"></span>
-    </div>
-
-    <div>
-        <label asp-for="Description"></label>
-        <textarea asp-for="Description" class="form-control"></textarea>
-    </div>
-
-    <div>
-        <label asp-for="Address"></label>
-        <input asp-for="Address" class="form-control" />
-    </div>
-
-    <div>
-        <label asp-for="Latitude"></label>
-        <input asp-for="Latitude" type="number" step="0.000001" class="form-control" />
-        <label asp-for="Longitude"></label>
-        <input asp-for="Longitude" type="number" step="0.000001" class="form-control" />
-    </div>
-
-    <div>
-        <label>Работно време</label>
-        <div>
-            <label>Пон-Пет</label>
-            <input name="MonToFriHours" value="@(Model?.MonToFriHours ?? "")" class="form-control" placeholder="напр. 09:00-18:00" />
+<div class="sf-page">
+    <div class="sf-wrap">
+        <div class="sf-head">
+            <div>
+                <h1 class="sf-title">Редакция на магазин</h1>
+                <p class="sf-subtitle">Обнови информацията, таговете и снимките. Новите снимки ще се добавят към галерията.</p>
+            </div>
         </div>
-        <div>
-            <label>Събота</label>
-            <input name="SatHours" value="@(Model?.SatHours ?? "")" class="form-control" placeholder="напр. 10:00-14:00" />
-        </div>
-        <div>
-            <label>Неделя</label>
-            <input name="SunHours" value="@(Model?.SunHours ?? "")" class="form-control" placeholder="напр. затворено или 11:00-15:00" />
-        </div>
-    </div>
 
-    <div>
-        <label>Съществуващи снимки</label>
-        <div class="existing-images" id="existingImages">
-            @if (Model?.ExistingImages != null && Model.ExistingImages.Any())
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="sf-form">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Id" />
+            <div asp-validation-summary="ModelOnly" class="sf-validation"></div>
+
+            <!-- SECTION: Избор на магазин (ако ползваш dropdown) -->
+            @* Ако твоят Edit view позволява избор на магазин от dropdown, остави това:
+               Ако не ти трябва - махни секцията. *@
+            @if (ViewData["AllStores"] != null)
             {
-                foreach (var img in Model.ExistingImages)
+                var allStores = ViewData["AllStores"] as IEnumerable<dynamic>;
+                if (allStores != null)
                 {
-                    <div class="existing-image" data-id="@img.Id" style="display:inline-block;margin-right:8px;position:relative;">
-                        <img src="@img.Url" alt="img" style="height:72px;border-radius:6px;border:1px solid #e6efe7" />
-                        <button type="button" class="btn small remove-image" data-id="@img.Id" style="position:absolute;top:-6px;right:-6px;">✕</button>
-                    </div>
+                    <section class="sf-card">
+                        <div class="sf-card__head">
+                            <h2>Избор на магазин</h2>
+                            <span class="sf-hint">По избор</span>
+                        </div>
+
+                        <div class="sf-grid sf-grid--2">
+                            <div class="sf-field sf-span-2">
+                                <label>Избери магазин</label>
+                                <select id="storePicker" class="sf-select">
+                                    <option value="">-- избери --</option>
+                                    @foreach (var s in allStores)
+                                    {
+                                        <option value="@s.Id" selected="@(Model.Id == (int)s.Id ? "selected" : null)">@s.Name</option>
+                                    }
+                                </select>
+                                <div class="sf-help">Ако смениш избора, ще те пренасочи към Edit на избрания магазин.</div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <script>
+                        (function () {
+                            const picker = document.getElementById('storePicker');
+                            if (!picker) return;
+                            picker.addEventListener('change', () => {
+                                const id = picker.value;
+                                if (!id) return;
+                                window.location.href = '@Url.Action("Edit", "Store")' + '?id=' + encodeURIComponent(id);
+                            });
+                        })();
+                    </script>
                 }
             }
-            else
-            {
-                <div class="small-muted">Няма качени снимки</div>
-            }
-        </div>
-    </div>
 
-    <div>
-        <label asp-for="Photos">Добави снимки</label>
-        <input asp-for="Photos" type="file" multiple accept="image/*" class="form-control" />
-        <small class="form-text text-muted">Можете да качите допълнителни снимки (jpg, png, webp).</small>
-    </div>
-
-    <div id="phones">
-        <label>Телефони</label>
-        <div id="phoneRows">
-            @if (Model?.Phones != null && Model.Phones.Any())
-            {
-                foreach (var ph in Model.Phones)
-                {
-                    <div class="phone-row" style="margin-bottom:8px;">
-                        <input name="Phones" value="@ph" class="form-control" />
-                        <button type="button" class="btn small remove-phone">Премахни</button>
-                    </div>
-                }
-            }
-            else
-            {
-                <div class="phone-row" style="margin-bottom:8px;">
-                    <input name="Phones" class="form-control" />
-                    <button type="button" class="btn small remove-phone">Премахни</button>
+            <!-- SECTION: Основна информация -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Основна информация</h2>
+                    <span class="sf-hint">Поддържай краткото описание ясно</span>
                 </div>
-            }
-        </div>
 
-        <div style="margin-top:8px;">
-            <button type="button" id="addPhone" class="btn">Добави още телефон</button>
-        </div>
-    </div>
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field">
+                        <label asp-for="Name">Име</label>
+                        <input asp-for="Name" />
+                        <span asp-validation-for="Name" class="sf-error"></span>
+                    </div>
 
-    <div>
-        <label asp-for="Website"></label>
-        <input asp-for="Website" class="form-control" />
-    </div>
+                    <div class="sf-field">
+                        <label asp-for="Category">Категория</label>
+                        <select asp-for="Category">
+                            <option value="">-- избери --</option>
+                            @foreach (var c in categories)
+                            {
+                                <option value="@c">@c</option>
+                            }
+                        </select>
+                        <span asp-validation-for="Category" class="sf-error"></span>
+                    </div>
 
-    <div>
-        <label>
-            <input asp-for="AcceptsOwnPackaging" /> Приема собствени опаковки
-        </label>
-    </div>
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="ShortDescription">Кратко описание</label>
+                        <input asp-for="ShortDescription" maxlength="200" />
+                        <span asp-validation-for="ShortDescription" class="sf-error"></span>
+                    </div>
 
-    <div>
-        <label>
-            <input asp-for="IsProducer" /> Производител
-        </label>
-    </div>
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Description">Описание</label>
+                        <textarea asp-for="Description"></textarea>
+                        <span asp-validation-for="Description" class="sf-error"></span>
+                    </div>
+                </div>
+            </section>
 
-    <div style="margin-top:12px;">
-        <button type="submit" class="btn btn-primary">Запази</button>
-        <a asp-action="Index" asp-controller="Home" class="btn btn-link">Отказ</a>
+            <!-- SECTION: Локация -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Локация</h2>
+                    <span class="sf-hint">За картата и търсенето</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Address">Адрес</label>
+                        <input asp-for="Address" />
+                        <span asp-validation-for="Address" class="sf-error"></span>
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Latitude">Latitude</label>
+                        <input asp-for="Latitude" type="number" step="0.000001" />
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Longitude">Longitude</label>
+                        <input asp-for="Longitude" type="number" step="0.000001" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Работно време -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Работно време</h2>
+                    <span class="sf-hint">По избор</span>
+                </div>
+
+                <div class="sf-grid sf-grid--3">
+                    <div class="sf-field">
+                        <label asp-for="MonToFriHours">Пон–Пет</label>
+                        <input asp-for="MonToFriHours" placeholder="09:00-18:00" />
+                    </div>
+                    <div class="sf-field">
+                        <label asp-for="SatHours">Събота</label>
+                        <input asp-for="SatHours" placeholder="10:00-14:00" />
+                    </div>
+                    <div class="sf-field">
+                        <label asp-for="SunHours">Неделя</label>
+                        <input asp-for="SunHours" placeholder="затворено" />
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: Еко & услуги -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Еко & услуги</h2>
+                    <span class="sf-hint">Показва се като badges</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="EcoTags">Еко тагове</label>
+                        <input asp-for="EcoTags" placeholder="Zero-waste, Bio, Local, Vegan" />
+                    </div>
+
+                    <div class="sf-field sf-span-2">
+                        <label asp-for="Certifications">Сертификати</label>
+                        <input asp-for="Certifications" placeholder="FSC, EU Organic" />
+                    </div>
+                </div>
+
+                <div class="sf-toggles">
+                    <label class="sf-toggle">
+                        <input asp-for="AcceptsOwnPackaging" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Приема собствени опаковки</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="IsProducer" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Производител</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="HasRefillStation" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Refill / наливни</span>
+                    </label>
+
+                    <label class="sf-toggle">
+                        <input asp-for="HasDelivery" />
+                        <span class="sf-toggle__ui"></span>
+                        <span class="sf-toggle__text">Доставка</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- SECTION: Контакти -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Контакти</h2>
+                    <span class="sf-hint">По избор</span>
+                </div>
+
+                <div class="sf-grid sf-grid--2">
+                    <div class="sf-field">
+                        <label asp-for="Website">Уебсайт</label>
+                        <input asp-for="Website" placeholder="https://..." />
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="Email">Имейл</label>
+                        <input asp-for="Email" type="email" placeholder="store@email.com" />
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="InstagramUrl">Instagram</label>
+                        <input asp-for="InstagramUrl" placeholder="https://instagram.com/..." />
+                    </div>
+
+                    <div class="sf-field">
+                        <label asp-for="FacebookUrl">Facebook</label>
+                        <input asp-for="FacebookUrl" placeholder="https://facebook.com/..." />
+                    </div>
+                </div>
+
+                <div class="sf-field sf-mt">
+                    <label>Телефони</label>
+                    <div id="phonesList" class="sf-repeater">
+                        @if (Model.Phones != null && Model.Phones.Any(p => !string.IsNullOrWhiteSpace(p)))
+                        {
+                            foreach (var ph in Model.Phones)
+                            {
+                                <div class="sf-repeater__row">
+                                    <input name="Phones" value="@ph" placeholder="+359 88 123 4567" />
+                                    <button type="button" class="sf-iconbtn sf-remove" title="Премахни">✕</button>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="sf-repeater__row">
+                                <input name="Phones" placeholder="+359 88 123 4567" />
+                                <button type="button" class="sf-iconbtn sf-remove" title="Премахни" style="display:none;">✕</button>
+                            </div>
+                        }
+                    </div>
+                    <button type="button" id="addPhoneBtn" class="sf-secondary">+ Добави още телефон</button>
+                </div>
+            </section>
+
+            <!-- SECTION: Съществуващи снимки -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Текущи снимки</h2>
+                    <span class="sf-hint">Можеш да изтриеш снимка</span>
+                </div>
+
+                @if (Model.ExistingImages != null && Model.ExistingImages.Any())
+                {
+                    <div class="sf-existing">
+                        @foreach (var img in Model.ExistingImages)
+                        {
+                            <div class="sf-existing__item" data-imgid="@img.Id">
+                                <div class="sf-existing__thumb" style="background-image:url('@img.Url')"></div>
+                                <button type="button" class="sf-existing__delete"
+                                        data-imgid="@img.Id">
+                                    Изтрий
+                                </button>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="sf-help">Изтриването става веднага (AJAX) и премахва файла от диска.</div>
+                }
+                else
+                {
+                    <div class="sf-empty">Няма качени снимки.</div>
+                }
+            </section>
+
+            <!-- SECTION: Добавяне на нови снимки -->
+            <section class="sf-card">
+                <div class="sf-card__head">
+                    <h2>Добави нови снимки</h2>
+                    <span class="sf-hint">Preview преди запазване</span>
+                </div>
+
+                <div class="sf-upload">
+                    <input id="photosInput" name="Photos" type="file" multiple accept="image/*" />
+                    <div class="sf-upload__note">Избраните снимки ще се добавят към съществуващите.</div>
+                </div>
+
+                <div id="photoPreviews" class="sf-previews"></div>
+            </section>
+
+            <div class="sf-actions">
+                <button type="submit" class="sf-primary">Запази промените</button>
+                <button type="button" class="sf-link" onclick="history.back()">
+                    ← Назад
+                </button>
+
+            </div>
+        </form>
     </div>
-</form>
+</div>
 
 @section Scripts {
     <script>
-        function onStoreSelect(sel) {
-            var id = sel.value;
-            if (!id) {
-                window.location.href = '@Url.Action("Edit", "Store")';
-            } else {
-                window.location.href = '@Url.Action("Edit", "Store")' + '/' + id;
-            }
-        }
-
         (function () {
-            var addBtn = document.getElementById('addPhone');
-            var phoneRows = document.getElementById('phoneRows');
+            // Anti-forgery token for AJAX
+            const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
+            const token = tokenInput ? tokenInput.value : "";
 
-            function createPhoneRow(value) {
-                var div = document.createElement('div');
-                div.className = 'phone-row';
-                div.style.marginBottom = '8px';
-                var input = document.createElement('input');
-                input.name = 'Phones';
-                input.className = 'form-control';
-                input.placeholder = '+359 ...';
-                if (value) input.value = value;
-                var remove = document.createElement('button');
-                remove.type = 'button';
-                remove.className = 'btn small remove-phone';
-                remove.textContent = 'Премахни';
-                remove.addEventListener('click', function () { div.remove(); });
-                div.appendChild(input);
-                div.appendChild(remove);
-                return div;
+            // Phones repeater
+            const phonesList = document.getElementById('phonesList');
+            const addPhoneBtn = document.getElementById('addPhoneBtn');
+
+            function refreshRemoveButtons() {
+                const rows = phonesList.querySelectorAll('.sf-repeater__row');
+                rows.forEach(row => {
+                    const btn = row.querySelector('.sf-remove');
+                    if (!btn) return;
+                    btn.style.display = rows.length > 1 ? 'inline-flex' : 'none';
+                });
             }
 
-            addBtn?.addEventListener('click', function () { phoneRows.appendChild(createPhoneRow()); });
-
-            document.querySelectorAll('.remove-phone').forEach(function (b) {
-                b.addEventListener('click', function (ev) { ev.preventDefault(); b.parentElement?.remove(); });
+            phonesList?.addEventListener('click', (e) => {
+                const btn = e.target.closest('.sf-remove');
+                if (!btn) return;
+                const row = btn.closest('.sf-repeater__row');
+                if (!row) return;
+                if (phonesList.querySelectorAll('.sf-repeater__row').length <= 1) return;
+                row.remove();
+                refreshRemoveButtons();
             });
 
-            // delete image AJAX with antiforgery token
-            document.querySelectorAll('.remove-image').forEach(function (btn) {
-                btn.addEventListener('click', function (ev) {
-                    ev.preventDefault();
-                    var id = btn.getAttribute('data-id');
-                    if (!id) return;
-                    if (!confirm('Наистина ли искате да изтриете тази снимка?')) return;
-                    var token = document.querySelector('input[name="__RequestVerificationToken"]')?.value;
-                    fetch('@Url.Action("DeleteImage","Store")', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                        body: new URLSearchParams({ imageId: id, __RequestVerificationToken: token })
-                    }).then(r => r.json()).then(j => {
-                        if (j?.ok) { btn.closest('.existing-image')?.remove(); }
-                        else alert('Грешка при изтриване на снимката');
-                    }).catch(() => alert('Грешка при изтриване на снимката'));
+            addPhoneBtn?.addEventListener('click', () => {
+                const row = document.createElement('div');
+                row.className = 'sf-repeater__row';
+                row.innerHTML = `
+                    <input name="Phones" placeholder="+359 88 123 4567" />
+                    <button type="button" class="sf-iconbtn sf-remove" title="Премахни">✕</button>
+                `;
+                phonesList.appendChild(row);
+                refreshRemoveButtons();
+            });
+
+            refreshRemoveButtons();
+
+            // Delete existing image (AJAX -> /Store/DeleteImage)
+            document.querySelectorAll('.sf-existing__delete').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const imgId = btn.getAttribute('data-imgid');
+                    if (!imgId) return;
+
+                    btn.disabled = true;
+                    btn.textContent = "Изтривам...";
+
+                    try {
+                        const resp = await fetch('@Url.Action("DeleteImage", "Store")', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+                            },
+                            body: `__RequestVerificationToken=${encodeURIComponent(token)}&imageId=${encodeURIComponent(imgId)}`
+                        });
+
+                        const data = await resp.json();
+                        if (data && data.ok) {
+                            const card = document.querySelector(`.sf-existing__item[data-imgid="${imgId}"]`);
+                            card?.remove();
+                        } else {
+                            btn.disabled = false;
+                            btn.textContent = "Изтрий";
+                            alert("Неуспешно изтриване. Опитай пак.");
+                        }
+                    } catch (e) {
+                        btn.disabled = false;
+                        btn.textContent = "Изтрий";
+                        alert("Грешка при изтриване. Опитай пак.");
+                    }
                 });
             });
+
+            // New photos preview + remove before submit (DataTransfer)
+            const fileInput = document.getElementById('photosInput');
+            const previews = document.getElementById('photoPreviews');
+            let dt = new DataTransfer();
+
+            function renderPreviews() {
+                previews.innerHTML = '';
+                const files = Array.from(dt.files);
+
+                if (files.length === 0) {
+                    previews.innerHTML = `<div class="sf-empty">Няма избрани нови снимки.</div>`;
+                    return;
+                }
+
+                files.forEach((file, index) => {
+                    const url = URL.createObjectURL(file);
+
+                    const card = document.createElement('div');
+                    card.className = 'sf-preview';
+
+                    const img = document.createElement('img');
+                    img.src = url;
+                    img.alt = file.name;
+
+                    const meta = document.createElement('div');
+                    meta.className = 'sf-preview__meta';
+                    meta.innerHTML = `
+                        <div class="sf-preview__name" title="${file.name}">${file.name}</div>
+                        <div class="sf-preview__sub">${Math.round(file.size / 1024)} KB${index === 0 ? " • първа от новите" : ""}</div>
+                    `;
+
+                    const remove = document.createElement('button');
+                    remove.type = 'button';
+                    remove.className = 'sf-preview__remove';
+                    remove.textContent = 'Премахни';
+                    remove.addEventListener('click', () => {
+                        const newDt = new DataTransfer();
+                        files.forEach((f, i) => { if (i !== index) newDt.items.add(f); });
+                        dt = newDt;
+                        fileInput.files = dt.files;
+                        renderPreviews();
+                    });
+
+                    card.appendChild(img);
+                    card.appendChild(meta);
+                    card.appendChild(remove);
+                    previews.appendChild(card);
+                });
+            }
+
+            fileInput?.addEventListener('change', () => {
+                const incoming = Array.from(fileInput.files || []);
+                incoming.forEach(f => dt.items.add(f));
+                fileInput.files = dt.files;
+                renderPreviews();
+            });
+
+            renderPreviews();
         })();
     </script>
 }

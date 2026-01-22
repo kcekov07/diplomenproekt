@@ -1,16 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using EcoLoop.Data;
+﻿using EcoLoop.Data;
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
+
 
 namespace EcoLoop.Controllers
 {
@@ -43,7 +45,12 @@ namespace EcoLoop.Controllers
                     Latitude = s.Latitude,
                     Longitude = s.Longitude,
                     Rating = s.Rating,
-                    ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
+                    ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault(),
+
+                    // NEW (само ако ги добавиш в StoreViewModel)
+                    HasDelivery = s.HasDelivery,
+                    HasRefillStation = s.HasRefillStation,
+                    EcoTags = s.EcoTags
                 })
                 .ToListAsync();
 
@@ -54,13 +61,54 @@ namespace EcoLoop.Controllers
         public async Task<IActionResult> Details(int id)
         {
             var store = await _db.Stores
-                .Include(s => s.Images)
-                .Include(s => s.Phones)
-                .FirstOrDefaultAsync(s => s.Id == id);
+    .Include(s => s.Images)
+    .Include(s => s.Phones)
+    .Include(s => s.Comments)
+    .FirstOrDefaultAsync(s => s.Id == id);
 
             if (store == null) return NotFound();
 
+            // visitorKey (ако има)
+            var visitorKey = Request.Cookies.TryGetValue("ecoloop_vid", out var vk) ? vk : null;
+
+            // Likes count per comment
+            var commentIds = store.Comments.Select(c => c.Id).ToList();
+
+            var likesDict = await _db.CommentHelpfuls
+                .Where(h => commentIds.Contains(h.CommentId))
+                .GroupBy(h => h.CommentId)
+                .Select(g => new { CommentId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.CommentId, x => x.Count);
+
+            ViewBag.CommentLikes = likesDict;
+
+            // Which comments this visitor liked
+            if (!string.IsNullOrWhiteSpace(visitorKey))
+            {
+                var likedIds = await _db.CommentHelpfuls
+                    .Where(h => commentIds.Contains(h.CommentId) && h.VisitorKey == visitorKey)
+                    .Select(h => h.CommentId)
+                    .ToListAsync();
+
+                ViewBag.LikedCommentIds = likedIds.ToHashSet();
+            }
+            else
+            {
+                ViewBag.LikedCommentIds = new HashSet<int>();
+            }
+
+            // Which comments can be edited by this visitor (by edit-token cookies)
+            var canEdit = new HashSet<int>();
+            foreach (var c in store.Comments)
+            {
+                if (Request.Cookies.TryGetValue($"ecoloop_edit_{c.Id}", out var token) && token == c.EditToken)
+                    canEdit.Add(c.Id);
+            }
+            ViewBag.CanEditCommentIds = canEdit;
+
             return View(store);
+
+
         }
 
         // GET: /Store/Add
@@ -106,6 +154,16 @@ namespace EcoLoop.Controllers
                 Longitude = model.Longitude,
                 AcceptsOwnPackaging = model.AcceptsOwnPackaging,
                 IsProducer = model.IsProducer,
+
+                // NEW
+                EcoTags = string.IsNullOrWhiteSpace(model.EcoTags) ? null : model.EcoTags.Trim(),
+                Certifications = string.IsNullOrWhiteSpace(model.Certifications) ? null : model.Certifications.Trim(),
+                HasDelivery = model.HasDelivery,
+                HasRefillStation = model.HasRefillStation,
+                Email = string.IsNullOrWhiteSpace(model.Email) ? null : model.Email.Trim(),
+                InstagramUrl = string.IsNullOrWhiteSpace(model.InstagramUrl) ? null : model.InstagramUrl.Trim(),
+                FacebookUrl = string.IsNullOrWhiteSpace(model.FacebookUrl) ? null : model.FacebookUrl.Trim(),
+
                 WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours),
                 Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim(),
                 IsApproved = true,
@@ -182,7 +240,11 @@ namespace EcoLoop.Controllers
 
             if (!id.HasValue) return View(new StoreEditViewModel());
 
-            var store = await _db.Stores.Include(s => s.Images).Include(s => s.Phones).FirstOrDefaultAsync(s => s.Id == id.Value);
+            var store = await _db.Stores
+                .Include(s => s.Images)
+                .Include(s => s.Phones)
+                .FirstOrDefaultAsync(s => s.Id == id.Value);
+
             if (store == null) return NotFound();
 
             // try to split working hours
@@ -215,8 +277,19 @@ namespace EcoLoop.Controllers
                 SatHours = sat,
                 SunHours = sun,
                 Website = store.Website,
+
+                // NEW
+                EcoTags = store.EcoTags,
+                Certifications = store.Certifications,
+                HasDelivery = store.HasDelivery,
+                HasRefillStation = store.HasRefillStation,
+                Email = store.Email,
+                InstagramUrl = store.InstagramUrl,
+                FacebookUrl = store.FacebookUrl,
+
                 Phones = store.Phones?.Select(p => p.PhoneNumber).ToList() ?? new List<string>(),
-                ExistingImages = store.Images?.Select(i => new StoreEditViewModel.ExistingImageViewModel { Id = i.Id, Url = i.Url }).ToList() ?? new List<StoreEditViewModel.ExistingImageViewModel>()
+                ExistingImages = store.Images?.Select(i => new StoreEditViewModel.ExistingImageViewModel { Id = i.Id, Url = i.Url })
+                    .ToList() ?? new List<StoreEditViewModel.ExistingImageViewModel>()
             };
 
             return View(vm);
@@ -240,7 +313,11 @@ namespace EcoLoop.Controllers
 
             if (!ModelState.IsValid) return View(model);
 
-            var store = await _db.Stores.Include(s => s.Images).Include(s => s.Phones).FirstOrDefaultAsync(s => s.Id == model.Id);
+            var store = await _db.Stores
+                .Include(s => s.Images)
+                .Include(s => s.Phones)
+                .FirstOrDefaultAsync(s => s.Id == model.Id);
+
             if (store == null) return NotFound();
 
             store.Name = model.Name?.Trim() ?? string.Empty;
@@ -256,6 +333,15 @@ namespace EcoLoop.Controllers
             store.IsProducer = model.IsProducer;
             store.WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours);
             store.Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim();
+
+            // NEW
+            store.EcoTags = string.IsNullOrWhiteSpace(model.EcoTags) ? null : model.EcoTags.Trim();
+            store.Certifications = string.IsNullOrWhiteSpace(model.Certifications) ? null : model.Certifications.Trim();
+            store.HasDelivery = model.HasDelivery;
+            store.HasRefillStation = model.HasRefillStation;
+            store.Email = string.IsNullOrWhiteSpace(model.Email) ? null : model.Email.Trim();
+            store.InstagramUrl = string.IsNullOrWhiteSpace(model.InstagramUrl) ? null : model.InstagramUrl.Trim();
+            store.FacebookUrl = string.IsNullOrWhiteSpace(model.FacebookUrl) ? null : model.FacebookUrl.Trim();
 
             try
             {

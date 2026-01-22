@@ -1,0 +1,231 @@
+﻿/* Popup buttons – ECO design */
+.popup-btn-green {
+    background: #2E7D32;
+    border: 1px solid #256628;
+    color: white !important;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 5px 10px;
+    transition: 0.2s;
+}
+
+    .popup-btn-green:hover {
+        background: #256628;
+    }
+
+/* White button with eco gray text + icon */
+.popup-btn-outline {
+    background: #ffffff;
+    border: 1px solid #8a9a8a;
+    color: #3a4a3a !important;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 5px 10px;
+    transition: 0.2s;
+}
+
+    .popup-btn-outline:hover {
+        background: #f0f5f0;
+        border-color: #6a7a6a;
+        color: #2b3b2b !important;
+    }
+
+/* Icon spacing */
+.btn-icon {
+    margin-right: 6px;
+    opacity: 0.9;
+}
+
+/* MAP PAGE — SIDEBAR + MAP ECO DESIGN */
+.map-wrapper {
+    display: flex;
+    gap: 20px;
+    height: 80vh;
+    align-items: stretch;
+}
+
+.map-sidebar {
+    width: 280px;
+    background: #f7fbf7;
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid #dcebdc;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    height: 100%;
+    overflow-y: auto;
+}
+
+.sidebar-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.sidebar-title {
+    font-weight: 700;
+    font-size: 18px;
+    color: #2E7D32;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.theme-toggle-btn {
+    border-radius: 999px;
+    padding: 4px 10px;
+    font-size: 12px;
+}
+
+/* Accordion */
+.accordion-section {
+    margin-bottom: 12px;
+}
+
+.accordion-btn {
+    width: 100%;
+    text-align: left;
+    background: #e8f5e9;
+    border: none;
+    padding: 8px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2E7D32;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    transition: 0.25s;
+}
+
+    .accordion-btn:hover {
+        background: #d6edd8;
+    }
+
+.accordion-content {
+    display: none;
+    padding: 4px 2px 10px 2px;
+}
+
+/* Dropdowns */
+.form-select {
+    border-radius: 10px;
+    border: 1px solid #c8d8c8;
+    padding: 8px 10px;
+    font-size: 14px;
+}
+
+/* Full-width buttons */
+.sidebar-full-btn {
+    width: 100%;
+    font-weight: 600;
+    padding: 9px 0;
+    border-radius: 10px;
+}
+
+/* Results */
+.sidebar-results {
+    background: #ffffff;
+    border: 1px solid #dcebdc;
+    border-radius: 12px;
+    padding: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.sidebar-result-item {
+    padding: 7px 6px;
+    border-bottom: 1px solid #eeeeee;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    .sidebar-result-item:hover {
+        background: #f1f8f1;
+    }
+
+    .sidebar-result-item:last-child {
+        border-bottom: none;
+    }
+
+/* Map */
+#map {
+    flex: 1;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.10);
+}
+
+/* Popup */
+.store-popup {
+    font-size: 13px;
+    max-width: 280px;
+}
+
+.store-popup-main {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 6px;
+}
+
+.store-popup-text {
+    flex: 1;
+}
+
+.store-popup-title {
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.store-popup-meta {
+    font-size: 12px;
+    color: #555;
+    margin-bottom: 3px;
+}
+
+.store-popup-desc {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+.store-popup-hours,
+.store-popup-address {
+    font-size: 12px;
+    color: #444;
+}
+
+.popup-img-wrap {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.popup-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.store-popup-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 4px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .map-wrapper {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .map-sidebar {
+        width: 100%;
+        height: auto;
+    }
+
+    #map {
+        height: 420px;
+    }
+}

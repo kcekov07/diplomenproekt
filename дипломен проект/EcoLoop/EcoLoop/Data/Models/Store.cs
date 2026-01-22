@@ -26,7 +26,22 @@ namespace EcoLoop.Data.Models
 
         public bool IsProducer { get; set; }
 
+        public string? EcoTags { get; set; }          // "Zero-waste, Bio, Local"
+        public string? Certifications { get; set; }   // "FSC, EU Organic"
+        public bool HasDelivery { get; set; }
+        public bool HasRefillStation { get; set; }
+
+        [MaxLength(150)]
+        public string? Email { get; set; }
+
+        [MaxLength(300)]
+        public string? InstagramUrl { get; set; }
+
+        [MaxLength(300)]
+        public string? FacebookUrl { get; set; }
+
        
+
 
         public string? Website { get; set; }
 
@@ -40,6 +55,9 @@ namespace EcoLoop.Data.Models
         // Navigation
         public List<StoreImage> Images { get; set; } = new();
         public List<StorePhone> Phones { get; set; } = new();
-        
+        public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+
+
+
     }
 }

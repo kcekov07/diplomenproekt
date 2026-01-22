@@ -1,0 +1,31 @@
+﻿@model IEnumerable<EcoLoop.Models.StoreViewModel>
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-list.css" asp-append-version="true" />
+}
+
+<div class="store-list">
+    <div class="store-cards">
+        @foreach (var s in Model)
+        {
+            <a asp-action="Details" asp-route-id="@s.Id" class="store-card">
+                <div class="store-card__img" style="background-image:url('@s.ImageUrl')"></div>
+                <div class="store-card__body">
+                    <h3 class="store-card__title">@s.Name</h3>
+                    <div class="store-card__meta">@s.Category</div>
+
+                    <div class="store-card__badges">
+                        @if (s.HasDelivery)
+                        {
+                            <span class="chip">🚚 Доставка</span>
+                        }
+                        @if (s.HasRefillStation)
+                        {
+                            <span class="chip">♻️ Refill</span>
+                        }
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
