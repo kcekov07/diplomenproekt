@@ -28,9 +28,6 @@
     <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true" />
 
 }
-@section Scripts {
-    <script src="~/js/details.js" asp-append-version="true"></script>
-}
 
 
 <div class="sd-page">
@@ -115,11 +112,12 @@
                         <div class="sd-fact">
                             <div class="sd-fact__label">Работно време</div>
                             <div class="sd-fact__value">
-                                @foreach (var line in Model.WorkingHours.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries))
+                                @foreach (var line in Model.WorkingHours.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
-                                    <div>@line</div>
+                                    <div>@line.Trim()</div>
                                 }
                             </div>
+
                         </div>
                     }
 
@@ -232,26 +230,51 @@
             </div>
 
             <!-- Review form -->
-            <form asp-controller="Comments" asp-action="CreateStoreReview" method="post" class="sd-reviewForm">
-                @Html.AntiForgeryToken()
-                <input type="hidden" name="storeId" value="@Model.Id" />
+           <form asp-controller="Comments"
+      asp-action="CreateStoreReview"
+      method="post"
+      class="sd-reviewForm">
 
-                <div class="sd-formRow">
-                    <div class="sd-starsInput">
-                        @for (int i = 5; i >= 1; i--)
-                        {
-                            <input type="radio" id="newStar@i" name="rating" value="@i"  />
-                            <label for="newStar@i">★</label>
-                        }
-                    </div>
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="storeId" value="@Model.Id" />
 
-                    <input class="sd-nameInput" name="visitorName" maxlength="60" placeholder="Име (по желание)" />
-                </div>
+    <div class="sd-formRow">
 
-                <textarea name="text" required maxlength="2000" placeholder="Сподели впечатленията си..."></textarea>
+        <!-- ⭐ STAR RATING -->
+        <div class="sd-starsInput">
 
-                <button type="submit" class="sd-btn sd-btn--primary">Публикувай отзив</button>
-            </form>
+            <input type="radio" id="star1" name="rating" value="5" required>
+            <label for="star1" title="5 звезди">★</label>
+
+            <input type="radio" id="star2" name="rating" value="4">
+            <label for="star2" title="4 звезди">★</label>
+
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3" title="3 звезди">★</label>
+
+            <input type="radio" id="star4" name="rating" value="2">
+            <label for="star4" title="2 звезди">★</label>
+
+            <input type="radio" id="star5" name="rating" value="1">
+            <label for="star5" title="1 звезда">★</label>
+
+        </div>
+
+        <input class="sd-nameInput"
+               name="visitorName"
+               maxlength="60"
+               placeholder="Име (по желание)" />
+    </div>
+
+    <textarea name="text"
+              required
+              maxlength="2000"
+              placeholder="Напиши отзив..."></textarea>
+
+    <button type="submit" class="sd-btn sd-btn--primary">
+        Публикувай
+    </button>
+</form>
 
             <div class="sd-reviews">
                 @if (!reviews.Any())
@@ -301,28 +324,28 @@
                                     <details class="sd-edit">
                                         <summary class="sd-actionLink">✏️ Редакция</summary>
 
-                                        <form asp-controller="Comments" asp-action="CreateStoreReview" method="post" class="sd-reviewForm">
+                                        <form asp-controller="Comments" asp-action="EditStoreReview" method="post" class="sd-editForm">
                                             @Html.AntiForgeryToken()
-                                            <input type="hidden" name="storeId" value="@Model.Id" />
+                                            <input type="hidden" name="id" value="@r.Id" />
 
-                                            <div class="sd-formRow">
-                                                <div class="sd-starsInput">
-                                                    @for (int i = 1; i <= 5; i++)
-                                                    {
-                                                        <input type="radio" id="newStar@i" name="rating" value="@i" required />
-                                                        <label for="newStar@i">★</label>
-                                                    }
-                                                </div>
-
-                                                <input class="sd-nameInput" name="visitorName" maxlength="60" placeholder="Име (по желание)" />
+                                            <div class="sd-starsInput">
+                                                @for (int i = 5; i >= 1; i--)
+                                                {
+                                                    var checkedAttr = r.Rating == i ? "checked" : null;
+                                                    <input type="radio" id="edit@r.Id-@i" name="rating" value="@i" @checkedAttr required />
+                                                    <label for="edit@r.Id-@i">★</label>
+                                                }
                                             </div>
 
-                                            <textarea name="text" required maxlength="2000" placeholder="Сподели впечатленията си..."></textarea>
+                                            <textarea name="text" required maxlength="2000">@r.Text</textarea>
 
-                                            <button type="submit" class="sd-btn sd-btn--primary">Публикувай отзив</button>
+                                            <div class="sd-editForm__actions">
+                                                <button type="submit" class="sd-btn sd-btn--edit">Запази</button>
+
+                                            </div>
                                         </form>
-
                                     </details>
+
 
                                     <form asp-controller="Comments" asp-action="DeleteStoreReview" method="post"
                                           onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш отзива?');">

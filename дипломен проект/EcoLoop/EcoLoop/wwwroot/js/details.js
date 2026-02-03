@@ -1,29 +1,24 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('reviewForm');
-    const starContainer = form.querySelector('.sd-starsInput');
-    const stars = Array.from(starContainer.querySelectorAll('label'));
-    const inputs = Array.from(starContainer.querySelectorAll('input'));
-    let selectedIndex = -1; // избрана звезда
+﻿<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const stars = document.querySelectorAll('.sd-starsInput label');
 
-    stars.forEach((star, idx) => {
-        star.addEventListener('click', () => {
-            selectedIndex = idx;
-            stars.forEach((s, i) => {
-                if (i <= idx) s.classList.add('on');
-                else s.classList.remove('on');
-            });
-            // синхронизираме checked със сървъра
-            inputs.forEach((input, i) => {
-                input.checked = i === idx;
-            });
+    stars.forEach((star, index) => {
+        star.addEventListener('mouseenter', () => {
+            stars.forEach((s, i) =>
+                s.style.color = i <= index ? '#fbbc04' : '#d1d5db'
+            );
+        });
+
+        star.addEventListener('mouseleave', () => {
+            const checked = document.querySelector('.sd-starsInput input:checked');
+            const checkedIndex = checked
+                ? [...checked.parentElement.querySelectorAll('input')].indexOf(checked)
+                : -1;
+
+            stars.forEach((s, i) =>
+                s.style.color = i <= checkedIndex ? '#fbbc04' : '#d1d5db'
+            );
         });
     });
-
-    // Преди submit – ако няма избрано, prevent
-    form.addEventListener('submit', e => {
-        if (selectedIndex === -1) {
-            alert('Моля, изберете колко звезди искате да дадете.');
-            e.preventDefault();
-        }
-    });
 });
+</script>

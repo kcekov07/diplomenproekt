@@ -1,12 +1,8 @@
 ﻿using EcoLoop.Data;
 using Microsoft.AspNetCore.Mvc;
-
-
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EcoLoop.Data;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EcoLoop.Controllers
 {
@@ -19,20 +15,17 @@ namespace EcoLoop.Controllers
             _db = db;
         }
 
-        // keep existing index (if used)
         public IActionResult Index()
         {
             return View("~/Views/Store/Map.cshtml");
         }
 
-        // New route so the page is reachable at /map/store
         [HttpGet("map/store")]
         public IActionResult Store()
         {
             return View("~/Views/Store/Map.cshtml");
         }
 
-        // JSON endpoint used by the client to load stores.
         [HttpGet("/Store/GetStores")]
         public async Task<IActionResult> GetStores()
         {
@@ -49,6 +42,9 @@ namespace EcoLoop.Controllers
                     s.Longitude,
                     s.Rating,
                     s.AcceptsOwnPackaging,
+                    s.HasDelivery,
+                    s.HasRefillStation,
+                    s.EcoTags, // comma-separated string "Zero-waste,Bio,Local"
                     s.WorkingHours,
                     ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
                 })
