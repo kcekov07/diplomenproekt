@@ -1,4 +1,7 @@
-﻿using EcoLoop.Data;
+﻿
+
+using EcoLoop.Data;
+using EcoLoop.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -8,49 +11,44 @@ namespace EcoLoop.Controllers
 {
     public class MapController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly ApplicationDbContext _context;
 
-        public MapController(ApplicationDbContext db)
+        public MapController(ApplicationDbContext context)
         {
-            _db = db;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View("~/Views/Store/Map.cshtml");
-        }
-
-        [HttpGet("map/store")]
-        public IActionResult Store()
-        {
-            return View("~/Views/Store/Map.cshtml");
-        }
-
-        [HttpGet("/Store/GetStores")]
-        public async Task<IActionResult> GetStores()
-        {
-            var stores = await _db.Stores
-                .Where(s => s.Latitude != null && s.Longitude != null)
-                .Select(s => new
+            var stores = await _context.Stores
+                .Where(s => s.IsApproved && s.Latitude != 0 && s.Longitude != 0)
+                .Select(s => new MapStoreViewModel
                 {
-                    s.Id,
-                    s.Name,
-                    s.Category,
-                    s.ShortDescription,
-                    s.Address,
-                    s.Latitude,
-                    s.Longitude,
-                    s.Rating,
-                    s.AcceptsOwnPackaging,
-                    s.HasDelivery,
-                    s.HasRefillStation,
-                    s.EcoTags, // comma-separated string "Zero-waste,Bio,Local"
-                    s.WorkingHours,
-                    ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
+                    Id = s.Id,
+                    Name = s.Name,
+                    Category = s.Category,
+                    ShortDescription = s.ShortDescription,
+                    Address = s.Address,
+
+                    Latitude = (double)(s.Latitude ?? 0),
+                    Longitude = (double)(s.Longitude ?? 0),
+                    Rating = (double)s.Rating,
+
+                    AcceptsOwnPackaging = s.AcceptsOwnPackaging,
+                    WorkingHours = s.WorkingHours,
+
+                    ImageUrl = s.Images
+        .Select(i => i.Url)
+        .FirstOrDefault()
+
                 })
                 .ToListAsync();
 
-            return Json(stores);
+            return View(new MapPageViewModel
+            {
+                Stores = stores
+            });
         }
+
     }
 }
