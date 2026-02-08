@@ -63,15 +63,70 @@
                 </div>
             </div>
 
-            <!-- Опаковки -->
+
+            <!-- Приема собствени опаковки -->
             <div class="sidebar-section accordion-section">
-                <button class="accordion-btn">♻️ Опаковки</button>
+                <button class="accordion-btn">♻️ Собствени опаковки</button>
                 <div class="accordion-content">
                     <select id="filterPackaging" class="form-select">
                         <option value="">Всички</option>
                         <option value="true">Приема</option>
                         <option value="false">Не приема</option>
                     </select>
+                </div>
+            </div>
+
+            <!-- Refill / наливни продукти -->
+            <div class="sidebar-section accordion-section">
+                <button class="accordion-btn">🧴 Refill / наливни продукти</button>
+                <div class="accordion-content">
+                    <select id="filterRefill" class="form-select">
+                        <option value="">Всички</option>
+                        <option value="true">Има refill</option>
+                        <option value="false">Няма refill</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Производител -->
+            <div class="sidebar-section accordion-section">
+                <button class="accordion-btn">🏭 Производител</button>
+                <div class="accordion-content">
+                    <select id="filterProducer" class="form-select">
+                        <option value="">Всички</option>
+                        <option value="true">Производител</option>
+                        <option value="false">Не е производител</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Доставка -->
+            <div class="sidebar-section accordion-section">
+                <button class="accordion-btn">🚚 Доставка</button>
+                <div class="accordion-content">
+                    <select id="filterDelivery" class="form-select">
+                        <option value="">Всички</option>
+                        <option value="true">Има доставка</option>
+                        <option value="false">Няма доставка</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Еко тагове -->
+            <div class="sidebar-section accordion-section">
+                <button class="accordion-btn">🏷️ Еко тагове</button>
+                <div class="accordion-content">
+                    <input id="filterEcoTags" class="form-control" placeholder="напр. zero-waste, bio" />
+                    <small class="text-muted d-block mt-1">Разделени със запетая.</small>
+                </div>
+            </div>
+
+            <!-- Сертификати -->
+            <div class="sidebar-section accordion-section">
+                <button class="accordion-btn">📜 Сертификати</button>
+                <div class="accordion-content">
+                    <input id="filterCertifications" class="form-control" placeholder="напр. FSC, EU Organic" />
+                    <small class="text-muted d-block mt-1">Разделени със запетая.</small>
                 </div>
             </div>
 
@@ -93,9 +148,11 @@
                 <div class="accordion-content">
                     <select id="filterRating" class="form-select">
                         <option value="">Всички</option>
+                        <option value="5">★ 5</option>
                         <option value="4">★ 4+</option>
                         <option value="3">★ 3+</option>
                         <option value="2">★ 2+</option>
+                        <option value="1">★ 1+</option>
                     </select>
                 </div>
             </div>
@@ -173,15 +230,79 @@
         }
 
         // Работно време
+          function parseTimeToHours(value){
+            if(!value) return null;
+            const match = value.trim().match(/^(\d{1,2})(?:[:.](\d{2}))?$/);
+            if(!match) return null;
+            const hours = Number(match[1]);
+            const minutes = match[2] ? Number(match[2]) : 0;
+            if(Number.isNaN(hours) || Number.isNaN(minutes) || hours > 23 || minutes > 59) return null;
+            return hours + minutes / 60;
+        }
+
+        function parseTimeToHours(value){
+              if(!value) return null;
+              const match = value.trim().match(/^(\d{1,2})(?:[:.](\d{1,2}))?$/);
+              if(!match) return null;
+              const hours = Number(match[1]);
+              const minutes = match[2] ? Number(match[2]) : 0;
+              if(Number.isNaN(hours) || Number.isNaN(minutes) || hours > 23 || minutes > 59) return null;
+              return hours + minutes / 60;
+          }
+
+          function parseHoursRange(value){
+              if(!value) return null;
+              const times = value.match(/\d{1,2}(?:[:.]\d{1,2})?/g);
+              if(!times || times.length < 2) return null;
+              const open = parseTimeToHours(times[0]);
+              const close = parseTimeToHours(times[1]);
+              if(open === null || close === null) return null;
+              return { open, close };
+          }
+
+          function getTodayHours(workingHours){
+              if(!workingHours) return null;
+              const parts = workingHours.split(";").map(p=>p.trim()).filter(Boolean);
+              if(parts.length === 1 && !parts[0].includes(":")) return null;
+              if(parts.length === 1 && !parts[0].toLowerCase().startsWith("пон") && !parts[0].toLowerCase().startsWith("съб") && !parts[0].toLowerCase().startsWith("нед")){
+                  return parts[0];
+              }
+              let monFri = null;
+              let sat = null;
+              let sun = null;
+
+              parts.forEach(p=>{
+                  const normalized = p.toLowerCase().replace(/[–—‑]/g, "-").replace(/\s+/g, " ").trim();
+                  const separatorIndex = p.indexOf(":");
+                  const hoursValue = separatorIndex >= 0 ? p.slice(separatorIndex + 1).trim() : p.replace(/^[^\d]*/, "").trim();
+                  if(/^пон\s*-\s*пет/.test(normalized)) monFri = hoursValue;
+                  else if(/^съб/.test(normalized)) sat = hoursValue;
+                  else if(/^нед/.test(normalized)) sun = hoursValue;
+              });
+
+              const day = new Date().getDay(); // 0 Sun, 6 Sat
+              if(day >= 1 && day <= 5) return monFri;
+              if(day === 6) return sat;
+              return sun;
+          }
+
+        // Работно време
         function isOpenNow(store){
-            if(!store.WorkingHours) return null;
-            let [open, close] = store.WorkingHours.split("-");
-            if(!open || !close) return null;
+           const todayHours = getTodayHours(store.WorkingHours);
+            if(!todayHours) return null;
+            const lower = todayHours.toLowerCase();
+            if(lower.includes("24/7") || lower.includes("24x7") || lower.includes("нон-стоп") || lower.includes("nonstop")) return true;
+            if(lower.includes("затворено") || lower.includes("почивен") || lower.includes("closed")) return false;
+            const range = parseHoursRange(todayHours);
+            if(!range) return null;
+
+
 
             let now = new Date();
             let current = now.getHours() + now.getMinutes()/60;
-            let openH = Number(open.split(":")[0]) + Number(open.split(":")[1])/60;
-            let closeH = Number(close.split(":")[0]) + Number(close.split(":")[1])/60;
+           let openH = range.open;
+            let closeH = range.close;
+
 
             if(closeH < openH) return current >= openH || current <= closeH;
             return current >= openH && current <= closeH;
@@ -198,24 +319,57 @@
             }
         }
 
+        function normalizeCategory(category){
+             if(!category) return "";
+             return category
+                 .replace(/[\u{1F300}-\u{1FAFF}\u{2600}-\u{27BF}]/gu, "")
+                 .trim();
+         }
+
+         function normalizeList(value){
+             if(!value) return [];
+             return value
+                 .split(",")
+                 .map(item=>item.trim().toLowerCase())
+                 .filter(Boolean);
+         }
+
+
         function loadMarkers(applyFilters=false){
             markers.forEach(m=>map.removeLayer(m));
             markers=[];
 
             const cat = applyFilters ? document.getElementById("filterCategory").value : "";
             const pack = applyFilters ? document.getElementById("filterPackaging").value : "";
+            const refill = applyFilters ? document.getElementById("filterRefill").value : "";
+            const producer = applyFilters ? document.getElementById("filterProducer").value : "";
+            const delivery = applyFilters ? document.getElementById("filterDelivery").value : "";
+            const ecoTags = applyFilters ? document.getElementById("filterEcoTags").value : "";
+            const certifications = applyFilters ? document.getElementById("filterCertifications").value : "";
             const rating = applyFilters ? Number(document.getElementById("filterRating").value) : 0;
             const dist = applyFilters ? document.getElementById("filterDistance").value : "";
             const openNow = applyFilters ? document.getElementById("filterOpenNow").value : "";
             const useDistance = dist && userLocation;
+            const distanceNeedsLocation = applyFilters && dist && !userLocation;
+
+            const ecoFilter = normalizeList(ecoTags);
+            const certFilter = normalizeList(certifications);
 
             let filteredStores = [];
 
             stores.forEach(s=>{
                 let ok=true;
+                  const storeCategory = normalizeCategory(s.Category);
+                const storeEcoTags = normalizeList(s.EcoTags);
+                const storeCerts = normalizeList(s.Certifications);
 
-                if(cat && s.Category!==cat) ok=false;
+                if(cat && storeCategory!==cat) ok=false;
                 if(pack && String(!!s.AcceptsOwnPackaging)!==pack) ok=false;
+                 if(refill && String(!!s.HasRefillStation)!==refill) ok=false;
+                if(producer && String(!!s.IsProducer)!==producer) ok=false;
+                if(delivery && String(!!s.HasDelivery)!==delivery) ok=false;
+                if(ecoFilter.length && !ecoFilter.some(tag=>storeEcoTags.includes(tag))) ok=false;
+                if(certFilter.length && !certFilter.some(tag=>storeCerts.includes(tag))) ok=false;
                 if(rating && (Number(s.Rating)||0)<rating) ok=false;
                 if(useDistance){
                     let d = distanceKm(userLocation.lat,userLocation.lng,s.Latitude,s.Longitude);
@@ -223,23 +377,25 @@
                 }
                 if(openNow){
                     let openStatus = isOpenNow(s);
-                    if(openNow==="true" && openStatus!==true) ok=false;
-                    if(openNow==="false" && openStatus!==false) ok=false;
+                   if(openNow==="true" && openStatus===false) ok=false;
+                    if(openNow==="false" && openStatus===true) ok=false;
                 }
 
                 if(!ok) return;
 
                 filteredStores.push(s);
 
-                const icon = L.icon({ iconUrl: categoryIcons[s.Category]||categoryIcons["Еко храни"], iconSize:[30,48] });
+                const iconCategory = storeCategory || "Еко храни";
+                const icon = L.icon({ iconUrl: categoryIcons[iconCategory]||categoryIcons["Еко храни"], iconSize:[30,48] });
                 const shortDesc = s.ShortDescription ? (s.ShortDescription.length>80 ? s.ShortDescription.substring(0,77)+"..." : s.ShortDescription) : "";
                 const imageHtml = s.ImageUrl ? `<div class="popup-img-wrap"><img src="${s.ImageUrl}" class="popup-img"/></div>` : "";
+                const categoryLabel = storeCategory || "Без категория";
                 const popupHtml = `
                     <div class="store-popup">
                         <div class="store-popup-main">
                             <div class="store-popup-text">
-                                <div class="store-popup-title">${emojiForCategory(s.Category)} ${s.Name}</div>
-                                <div class="store-popup-meta">⭐ ${s.Rating} · ${s.Category}</div>
+                               <div class="store-popup-title">${emojiForCategory(storeCategory)} ${s.Name}</div>
+                                <div class="store-popup-meta">⭐ ${s.Rating} · ${categoryLabel}</div>
                                 ${shortDesc? `<div class="store-popup-desc">${shortDesc}</div>` : ""}
                                 ${s.WorkingHours? `<div class="store-popup-hours">🕒 Работно време: ${s.WorkingHours}</div>` : ""}
                                 ${s.Address? `<div class="store-popup-address">📍 ${s.Address}</div>` : ""}
@@ -263,15 +419,21 @@
 
             let resultsBox = document.getElementById("sidebarResults");
             resultsBox.innerHTML="";
+              if(distanceNeedsLocation){
+                resultsBox.innerHTML=`<p class="text-muted">За филтъра по разстояние трябва да разрешите достъп до локация.</p>`;
+                return;
+            }
             if(markers.length===0){
                 resultsBox.innerHTML=`<p class="text-muted">Няма резултати.</p>`;
             }
             filteredStores.forEach(s=>{
+
+                  const storeCategory = normalizeCategory(s.Category) || "Без категория";
                 let marker = markers.find(m=>m.getLatLng().lat===s.Latitude && m.getLatLng().lng===s.Longitude);
                 if(!marker) return;
                 let item = document.createElement("div");
                 item.className="sidebar-result-item";
-                item.innerHTML=`<b>${s.Name}</b><br><small>${s.Category}</small>`;
+               item.innerHTML=`<b>${s.Name}</b><br><small>${storeCategory}</small>`;
                 item.addEventListener("click",()=>{
                     map.setView([s.Latitude,s.Longitude],15,{animate:true,duration:0.6});
                     marker.openPopup();
@@ -293,11 +455,32 @@
         });
 
         // Filters
-        document.getElementById("btnApplyFilters").addEventListener("click",()=>loadMarkers(true));
+        document.getElementById("btnApplyFilters").addEventListener("click",()=>{
+            const dist = document.getElementById("filterDistance").value;
+            if(dist && !userLocation){
+                navigator.geolocation.getCurrentPosition(pos=>{
+                    userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
+                    map.setView([userLocation.lat,userLocation.lng],14);
+                    if(userMarker){map.removeLayer(userMarker);}
+                    userMarker=L.marker([userLocation.lat,userLocation.lng],{icon:personIcon}).addTo(map)
+                        .bindPopup("📍 <b>Вашето местоположение</b>");
+                    loadMarkers(true);
+                },()=>{
+                    loadMarkers(true);
+                });
+                return;
+            }
+            loadMarkers(true);
+        });
         document.getElementById("btnResetFilters").addEventListener("click",()=>{
             document.getElementById("filterCategory").value="";
             document.getElementById("filterDistance").value="";
             document.getElementById("filterPackaging").value="";
+             document.getElementById("filterRefill").value="";
+            document.getElementById("filterProducer").value="";
+            document.getElementById("filterDelivery").value="";
+            document.getElementById("filterEcoTags").value="";
+            document.getElementById("filterCertifications").value="";
             document.getElementById("filterOpenNow").value="";
             document.getElementById("filterRating").value="";
             userLocation=null;

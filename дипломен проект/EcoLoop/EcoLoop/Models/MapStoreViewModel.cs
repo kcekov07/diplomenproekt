@@ -19,8 +19,13 @@ namespace EcoLoop.Models
         public string ImageUrl { get; set; }
 
         public bool AcceptsOwnPackaging { get; set; }
+        public bool IsProducer { get; set; }
+        public bool HasRefillStation { get; set; }
+        public bool HasDelivery { get; set; }
         public double Rating { get; set; }
 
         public string WorkingHours { get; set; }
+        public string EcoTags { get; set; }
+        public string Certifications { get; set; }
     }
 }

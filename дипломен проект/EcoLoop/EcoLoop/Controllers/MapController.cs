@@ -32,10 +32,18 @@ namespace EcoLoop.Controllers
 
                     Latitude = (double)(s.Latitude ?? 0),
                     Longitude = (double)(s.Longitude ?? 0),
-                    Rating = (double)s.Rating,
+                    Rating = s.Comments.Any()
+                        ? s.Comments.Average(c => c.Rating)
+                        : 0,
+
 
                     AcceptsOwnPackaging = s.AcceptsOwnPackaging,
+                    IsProducer = s.IsProducer,
+                    HasRefillStation = s.HasRefillStation,
+                    HasDelivery = s.HasDelivery,
                     WorkingHours = s.WorkingHours,
+                    EcoTags = s.EcoTags,
+                    Certifications = s.Certifications,
 
                     ImageUrl = s.Images
         .Select(i => i.Url)
