@@ -526,6 +526,7 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\tno6vo9qns-{0}-61n19gt1b8-61n19gt1b8.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\s69qjt4z26-{0}-skcb0yiata-skcb0yiata.gz
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mudf53qmuw-{0}-0o2f8mkg51-0o2f8mkg51.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\e2qntxvnpk-{0}-bqjiyaj88i-bqjiyaj88i.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\tfqghflivf-{0}-c2jlpeoesf-c2jlpeoesf.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\55ekg54usm-{0}-erw9l3u2r3-erw9l3u2r3.gz
@@ -599,10 +600,9 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.pdb
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.genruntimeconfig.cache
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\ref\EcoLoop.dll
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-cfvrna02p1-cfvrna02p1.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\w82iazbc2b-{0}-qqee2u0e7e-qqee2u0e7e.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\twwks4b0bg-{0}-ycimfjp3ci-ycimfjp3ci.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\dmlbaq7yzm-{0}-9dh95j23lb-9dh95j23lb.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\ecouxrgi2w-{0}-fujkmlvlrj-fujkmlvlrj.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\uywb1pq1h0-{0}-z9m79028jr-z9m79028jr.gz
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-fc07ebnjy2-fc07ebnjy2.gz
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mudf53qmuw-{0}-ukr1vs1k31-ukr1vs1k31.gz

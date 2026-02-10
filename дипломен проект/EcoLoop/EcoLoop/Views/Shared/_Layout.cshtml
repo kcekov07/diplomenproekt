@@ -2,36 +2,39 @@
 <html lang="bg">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>EcoLoop - @ViewData["Title"]</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EcoFind - @ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
-    @RenderSection("Styles", required: false)
     <script src="~/js/site.js" defer></script>
-   
+    <head>
+        ...
+        @RenderSection("Styles", required: false)
+    </head>
 
 </head>
 <body>
     <header class="site-header navbar-eco">
         <div class="container navbar-inner">
-            <a class="brand" href="/" aria-label="EcoLoop начална страница">
+            <a class="brand" href="/">
                 <img src="~/images/logo-eco.svg" alt="EcoLoop" class="brand-logo" />
                 <span class="brand-title">EcoLoop</span>
             </a>
 
-            <button id="navToggle" class="nav-toggle" aria-label="Отвори меню" aria-expanded="false">☰</button>
+            <button id="navToggle" class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
 
-            <nav class="main-nav" aria-label="Основна навигация">
-                <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Начало</span></a>
-                <a class="nav-link" href="/Map"><span class="nav-icon">🗺️</span><span class="nav-text">Карта</span></a>
-                <a class="nav-link" href="/Store/All"><span class="nav-icon">🏪</span><span class="nav-text">Магазини</span></a>
-                <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Събития</span></a>
-                <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">Новини</span></a>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+                <a class="nav-link" href="/map"><span class="nav-icon">🗺️</span><span class="nav-text">Map / Stores</span></a>
+                <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Events</span></a>
+                <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">News</span></a>
+                <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Add Store</span></a>
+                <a class="nav-link" href="/Admin/Index"><span class="nav-icon">🔧</span><span class="nav-text">Admin</span></a>
             </nav>
 
             <div class="nav-actions">
-                <form class="nav-search" method="get" action="/Store/All" role="search" aria-label="Търсене в сайта">
-                    <button type="submit" class="search-icon" aria-label="Търси">🔍</button>
-                    <input name="q" type="search" class="nav-search-input" placeholder="Търси магазини, новини..." />
+                <form class="nav-search" method="get" action="/Store/All" role="search" aria-label="Site search">
+                    <button type="submit" class="search-icon" aria-hidden="true">🔍</button>
+                    <input name="q" type="search" class="nav-search-input" placeholder="Търси магазини, новини…" />
                 </form>
 
                 <div class="auth-buttons">
@@ -42,22 +45,22 @@
         </div>
 
         <div id="mobileNav" class="mobile-nav" aria-hidden="true">
-            <nav aria-label="Мобилно меню">
-                <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Начало</span></a>
-                <a class="nav-link" href="/Map"><span class="nav-icon">🗺️</span><span class="nav-text">Карта</span></a>
-                <a class="nav-link" href="/Store/All"><span class="nav-icon">🏪</span><span class="nav-text">Магазини</span></a>
-                <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Събития</span></a>
-                <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">Новини</span></a>
-                <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Добави магазин</span></a>
+            <nav>
+                <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Home</span></a>
+                <a class="nav-link" href="/Store/All"><span class="nav-icon">🗺️</span><span class="nav-text">Map / Stores</span></a>
+                <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Events</span></a>
+                <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">News</span></a>
+                <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Add Store</span></a>
+                <a class="nav-link" href="/Admin/Index"><span class="nav-icon">🔧</span><span class="nav-text">Admin</span></a>
             </nav>
         </div>
     </header>
 
-    <main role="main" class="main-content">
+    <main role="main" class="container main-content">
         @RenderBody()
     </main>
 
-   
+    @* centralized footer partial (avoid duplicate links) *@
     @await Html.PartialAsync("_Footer")
 
     @RenderSection("Scripts", required: false)
