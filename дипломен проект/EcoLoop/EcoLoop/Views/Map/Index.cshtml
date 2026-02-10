@@ -171,6 +171,7 @@
 
             <!-- LIVE RESULTS -->
             <div class="sidebar-title mt-4">🏪 Резултати</div>
+            <div id="resultsSummary" class="results-summary">Показани: 0 магазина</div>
             <div id="sidebarResults" class="sidebar-results">
                 <p class="text-muted">Зареждане...</p>
             </div>
@@ -189,12 +190,18 @@
         {
             @foreach (var s in Model.Stores)
             {
-                <a asp-controller="Store" asp-action="Details" asp-route-id="@s.Id" class="store-card">
+                <a asp-controller="Store" asp-action="Details" asp-route-id="@s.Id" class="store-card map-store-card">
                     <div class="store-card__img" style="background-image:url('@s.ImageUrl')"></div>
                     <div class="store-card__body">
-                        <h3 class="store-card__title">@s.Name</h3>
+                        <div class="map-store-card__header">
+                            <h3 class="store-card__title">@s.Name</h3>
+                            <span class="map-store-card__rating">⭐ @s.Rating.ToString("0.0")</span>
+                        </div>
                         <div class="store-card__meta">@s.Category</div>
-
+                        @if (!string.IsNullOrWhiteSpace(s.Address))
+                        {
+                            <div class="map-store-card__address">📍 @s.Address</div>
+                        }
                         <div class="store-card__badges">
                             @if (s.HasDelivery)
                             {
@@ -203,6 +210,10 @@
                             @if (s.HasRefillStation)
                             {
                                 <span class="chip">♻️ Refill</span>
+                            }
+                            @if (s.AcceptsOwnPackaging)
+                            {
+                                <span class="chip">🧺 Собствени опаковки</span>
                             }
                         </div>
                     </div>
@@ -262,6 +273,10 @@
             const dLon = (lon2-lon1)*Math.PI/180;
             const a = Math.sin(dLat/2)**2 + Math.cos(lat1*Math.PI/180)*Math.cos(lat2*Math.PI/180)*Math.sin(dLon/2)**2;
             return R*2*Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        }
+         function formatDistance(km){
+            if(km == null || Number.isNaN(km)) return "";
+            return km < 1 ? `${Math.round(km * 1000)} м` : `${km.toFixed(1)} км`;
         }
 
         // Работно време
@@ -454,22 +469,45 @@
             }
 
             let resultsBox = document.getElementById("sidebarResults");
+            let summaryBox = document.getElementById("resultsSummary");
             resultsBox.innerHTML="";
-              if(distanceNeedsLocation){
+               if(distanceNeedsLocation){
+                summaryBox.textContent = "Показани: 0 магазина";
                 resultsBox.innerHTML=`<p class="text-muted">За филтъра по разстояние трябва да разрешите достъп до локация.</p>`;
                 return;
             }
             if(markers.length===0){
+                 summaryBox.textContent = "Показани: 0 магазина";
                 resultsBox.innerHTML=`<p class="text-muted">Няма резултати.</p>`;
+                   return;
             }
+
+            summaryBox.textContent = `Показани: ${filteredStores.length} магазина`;
             filteredStores.forEach(s=>{
 
-                  const storeCategory = normalizeCategory(s.Category) || "Без категория";
+                 const storeCategory = normalizeCategory(s.Category) || "Без категория";
+                const ratingLabel = Number(s.Rating || 0).toFixed(1);
+                const distanceValue = userLocation ? distanceKm(userLocation.lat, userLocation.lng, s.Latitude, s.Longitude) : null;
+                const distanceBadge = userLocation ? `<span class="result-chip">📍 ${formatDistance(distanceValue)}</span>` : "";
+                const benefitBadges = [
+                    s.HasDelivery ? "<span class='result-chip'>🚚 Доставка</span>" : "",
+                    s.HasRefillStation ? "<span class='result-chip'>♻️ Refill</span>" : "",
+                    s.AcceptsOwnPackaging ? "<span class='result-chip'>🧺 Собствени опаковки</span>" : ""
+                ].filter(Boolean).join("");
+
+                  
                 let marker = markers.find(m=>m.getLatLng().lat===s.Latitude && m.getLatLng().lng===s.Longitude);
                 if(!marker) return;
                 let item = document.createElement("div");
                 item.className="sidebar-result-item";
-               item.innerHTML=`<b>${s.Name}</b><br><small>${storeCategory}</small>`;
+                item.innerHTML=`
+                    <div class="sidebar-result-item__header">
+                        <strong class="sidebar-result-item__name">${emojiForCategory(storeCategory)} ${s.Name}</strong>
+                        <span class="sidebar-result-item__rating">⭐ ${ratingLabel}</span>
+                    </div>
+                    <div class="sidebar-result-item__category">${storeCategory}</div>
+                    <div class="sidebar-result-item__chips">${distanceBadge}${benefitBadges}</div>
+                `;
                 item.addEventListener("click",()=>{
                     map.setView([s.Latitude,s.Longitude],15,{animate:true,duration:0.6});
                     marker.openPopup();
