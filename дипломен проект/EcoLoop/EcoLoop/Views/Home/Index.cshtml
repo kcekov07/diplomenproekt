@@ -1,30 +1,53 @@
 ﻿@model EcoLoop.Models.HomeViewModel
 
-<div class="main-content container">
-
-    <!-- HERO HEADER -->
-    <div style="margin-bottom:1.25rem;">
-        <h1 class="hero-title">Открий устойчивото около теб</h1>
-        <p class="lead">Намери еко магазини, събития и новини във вашия град</p>
+<section class="home-hero">
+    <div class="hero-copy">
+        <span class="hero-badge">Устойчива общност</span>
+        <h1 class="hero-title">Открий зеления живот около теб</h1>
+        <p class="lead">EcoLoop ти помага да намериш еко магазини, събития и новини в твоя град.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="/Map">Разгледай картата</a>
+            <a class="btn btn-secondary" href="/Store/Add">Добави нов обект</a>
+        </div>
     </div>
-
-    <!-- NEARBY STORES -->
+    <div class="hero-stats">
+        <div class="hero-stat-card">
+            <strong>@Model.StoresCount+</strong>
+            <span>Еко магазина</span>
+        </div>
+        <div class="hero-stat-card">
+            <strong>@Model.EventsCount+</strong>
+            <span>Събития</span>
+        </div>
+        <div class="hero-stat-card">
+            <strong>@Model.ReviewsCount+</strong>
+            <span>Мнения от общността</span>
+        </div>
+    </div>
+</section>
+<section>
     <h3 class="section-title">🏪 Близо до теб</h3>
-
-    <div class="cards" aria-live="polite">
+        <div class="cards" aria-live="polite">
         @if (Model.NearbyStores.Any())
         {
             foreach (var s in Model.NearbyStores)
             {
-                <div>
-                    <div class="store-card" role="article">
-                        @if (!string.IsNullOrEmpty(s.ImageUrl))
+                <article class="store-card" role="article">
+                    @if (!string.IsNullOrEmpty(s.ImageUrl))
+                    {
+                        <img src="@s.ImageUrl" alt="@s.Name" />
+                    }
+                    else
+                    {
+                        <div class="card-image-placeholder">Няма изображение</div>
+                    }
+
+                    <div class="card-body">
+                        <h5 class="card-title">@s.Name</h5>
+                        <p class="small-muted">@s.Category</p>
+                        @if (!string.IsNullOrWhiteSpace(s.ShortDescription))
                         {
-                            <img src="@s.ImageUrl" alt="@s.Name" />
-                        }
-                        else
-                        {
-                            <div style="height:160px;background:#f0f4f0;display:flex;align-items:center;justify-content:center;color:#8fa98b">No image</div>
+                            <p class="small-muted">@s.ShortDescription</p>
                         }
 
                         <div class="card-body">
@@ -34,12 +57,9 @@
                             {
                                 <p class="small-muted" style="margin-top:8px;">@s.ShortDescription</p>
                             }
-                            <div style="margin-top:10px;">
-                                <a class="btn-outline-success" href="/Store/Details/@s.Id">Виж детайли</a>
-                            </div>
-                        </div>
+                            <a class="btn-outline-success" href="/Store/Details/@s.Id">Виж детайли</a>
                     </div>
-                </div>
+                </article>
             }
         }
         else
@@ -47,41 +67,42 @@
             <div class="card-plain">Няма добавени обекти.</div>
         }
     </div>
+</section>
 
-    <!-- TOP NEWS -->
+<section>
     <h3 class="section-title">📰 Топ новини</h3>
     <div class="news-grid">
         @if (Model.TopNews.Any())
         {
             foreach (var n in Model.TopNews)
             {
-                <div class="card-plain">
+                 <article class="card-plain">
                     <h5>@n.Title</h5>
                     <p class="small-muted">@n.Category</p>
                     <p>@n.ShortContent</p>
                     <a class="btn-link" href="/News/Details/@n.Id">Чети повече</a>
-                </div>
+                </article>
             }
         }
         else
         {
             <div class="card-plain">Няма новини.</div>
         }
-    </div>
+</section>
 
-    <!-- EVENTS -->
+<section>
     <h3 class="section-title">📅 Предстоящи събития</h3>
     <div class="events-grid">
         @if (Model.UpcomingEvents.Any())
         {
             foreach (var e in Model.UpcomingEvents)
             {
-                <div class="card-plain">
+               <article class="card-plain">
                     <h5>@e.Title</h5>
                     <p class="small-muted">@e.Date.ToLocalTime().ToString("dd MMM yyyy") — @e.City</p>
                     <p>@e.ShortDescription</p>
                     <a class="btn-link" href="/Events/Details/@e.Id">Виж</a>
-                </div>
+                </article>
             }
         }
         else
@@ -90,21 +111,4 @@
         }
     </div>
 
-    <!-- STATISTICS -->
-    <h3 class="section-title">📊 Статистика на общността</h3>
-    <div class="stats-grid" role="region" aria-label="Statistics">
-        <div class="stat-box">
-            <h2>@Model.StoresCount</h2>
-            <p class="small-muted">Еко магазини</p>
-        </div>
-        <div class="stat-box">
-            <h2>@Model.ReviewsCount</h2>
-            <p class="small-muted">Коментари</p>
-        </div>
-        <div class="stat-box">
-            <h2>@Model.EventsCount</h2>
-            <p class="small-muted">Събития</p>
-        </div>
-    </div>
-
-</div>
+</section>
