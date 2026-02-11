@@ -1,16 +1,23 @@
-﻿﻿<footer class="site-footer">
+﻿﻿<footer class="site-footer" role="contentinfo">
     <div class="container footer-top">
         <div class="footer-brand">
             <a href="/" class="brand-footer" aria-label="EcoLoop начало">
                 <img src="~/images/logo-eco.svg" alt="EcoLoop" class="footer-logo" />
                 <span class="footer-brand-title">EcoLoop</span>
             </a>
+
             <p class="footer-desc">Открий и подкрепи местните устойчиви бизнеси. Намери магазини, събития и новини близо до теб.</p>
+
+            <ul class="footer-highlights" aria-label="Предимства">
+                <li>🌱 Устойчиви решения</li>
+                <li>📍 Локални бизнеси</li>
+                <li>♻️ По-малко отпадък</li>
+            </ul>
 
             <form class="newsletter-form" method="post" action="/Home/Subscribe">
                 <label for="newsletterEmail" class="visually-hidden">Абонирай се за бюлетин</label>
                 <div class="newsletter-row">
-                    <input id="newsletterEmail" name="email" type="email" placeholder="Имейл за бюлетин" required />
+                    <input id="newsletterEmail" name="email" type="email" placeholder="Имейл за бюлетин" autocomplete="email" required />
                     <button type="submit" class="btn btn-primary">Абонирай се</button>
                 </div>
             </form>
@@ -28,17 +35,25 @@
         <div class="footer-col">
             <h4>Полезни линкове</h4>
             <ul class="footer-list">
-                <li><a href="/Home/Privacy">Политика за поверителност</a></li>
                 <li><a href="/Store/All">Магазини</a></li>
                 <li><a href="/Events/All">Събития</a></li>
+                <li><a href="/News/All">Новини</a></li>
+                <li><a href="/Home/Privacy">Политика за поверителност</a></li>
             </ul>
         </div>
 
         <div class="footer-col footer-social-col">
             <h4>Социални мрежи</h4>
             <div class="social-row">
-                <a class="social-btn" href="https://facebook.com" target="_blank" rel="noopener">📘 Facebook</a>
-                <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
+                <a class="social-btn" href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+                    <span aria-hidden="true">📘</span> <span>Facebook</span>
+                </a>
+                <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+                    <span aria-hidden="true">📸</span> <span>Instagram</span>
+                </a>
+                <a class="social-btn" href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <span aria-hidden="true">💼</span> <span>LinkedIn</span>
+                </a>
                 
             </div>
         </div>
@@ -46,6 +61,6 @@
 
     <div class="container footer-bottom">
         <small>© @DateTime.UtcNow.Year EcoLoop — Всички права запазени.</small>
-        
+        <a href="#" class="footer-back-to-top" aria-label="Към началото">⬆ Нагоре</a>
     </div>
 </footer>

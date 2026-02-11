@@ -1,5 +1,5 @@
-wwwroot\css\footer.css
 wwwroot\css\map.css
+wwwroot\css\site.css
 wwwroot\css\store-details.css
 wwwroot\css\store-form.css
 wwwroot\css\store-list.css
@@ -74,9 +74,9 @@ wwwroot\uploads\stores\7\29544a8f-6e2e-46d6-ab13-4d270c2d4607.png
 wwwroot\uploads\stores\7\bffe569d-fa9d-46d0-bef7-b6f7b2af42c7.png
 wwwroot\uploads\stores\8\1d2b3fb9-32c1-4c4a-9131-971580d54ef6.png
 wwwroot\uploads\stores\8\2c113bce-a839-495b-8e0c-20997cf7b074.png
-wwwroot\css\site.css
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\footer.css
+wwwroot\css\footer.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\map.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\site.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-details.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-form.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-list.css
@@ -143,4 +143,4 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jque
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.js
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\site.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\footer.css
