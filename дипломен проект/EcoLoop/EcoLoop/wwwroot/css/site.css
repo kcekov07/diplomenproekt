@@ -1,71 +1,6 @@
-/* Map / Store map tweaks — ensure map is visible and responsive */
-
-/* Map panel styling */
-.map-panel {
-    background: var(--eco-surface, #ffffff);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 18px rgba(23,40,27,0.04);
-    display: flex;
-    flex-direction: column;
-}
-
-/* Ensure the Leaflet container has an explicit height */
-#map {
-    width: 100%;
-    height: 72vh; /* explicit viewport-based height */
-    min-height: 420px; /* reasonable minimum for small screens */
-    display: block;
-    border-radius: 12px;
-    background: linear-gradient(180deg, #f6fbf7, #ffffff);
-}
-
-/* Leaflet rendering improvements */
-.leaflet-container {
-    background: transparent;
-    -webkit-backface-visibility: hidden; /* improves tile rendering on some browsers */
-    backface-visibility: hidden;
-}
-
-/* Make the controls column fully height-limited and scrollable */
-.controls {
-    max-height: 72vh;
-    overflow: auto;
-    padding-right: 8px;
-}
-
-/* Small responsive tweaks */
-@media (max-width: 992px) {
-    .map-page {
-        flex-direction: column;
-    }
-
-    .map-panel {
-        order: 2;
-        width: 100%;
-    }
-
-    .controls {
-        order: 1;
-        width: 100%;
-        max-height: none;
-    }
-
-    #map {
-        height: 56vh;
-        min-height: 320px;
-    }
-}
-
-@media (max-width: 576px) {
-    #map {
-        height: 50vh;
-        min-height: 280px;
-    }
-}
-
-
-/* Palette */
+/* =========================
+   Design tokens / palette
+   ========================= */
 :root {
     --eco-green: #25985a;
     --eco-green-dark: #176843;
@@ -78,7 +13,9 @@
     --shadow-2: 0 18px 36px rgba(23,40,27,0.08);
 }
 
-/* Reset / Base */
+/* =========================
+   Reset / base
+   ========================= */
 * {
     box-sizing: border-box;
 }
@@ -103,7 +40,9 @@ body {
     padding: 0 1rem;
 }
 
-/* === NAVBAR === */
+/* =========================
+   Header / navbar
+   ========================= */
 .site-header {
     position: sticky;
     top: 0;
@@ -172,11 +111,13 @@ body {
             line-height: 1;
         }
 
+
         .main-nav .nav-link:hover {
             background: var(--eco-gray);
             color: var(--eco-green-dark);
             transform: translateY(-2px);
         }
+
 
 /* Right area: search + auth */
 .nav-actions {
@@ -287,7 +228,9 @@ body {
         align-items: center;
     }
 
-/* === MAIN / HERO === */
+/* =========================
+   Main content / typography
+   ========================= */
 .main-content {
     max-width: 1200px;
     margin: 1.25rem auto;
@@ -298,7 +241,7 @@ body {
         margin-top: 0;
     }
 
-/* HERO */
+
 .hero-title {
     font-size: 2.4rem;
     font-weight: 900;
@@ -313,7 +256,6 @@ body {
     font-size: 1.05rem;
 }
 
-/* Section title */
 .section-title {
     border-left: 6px solid var(--eco-green);
     padding-left: 12px;
@@ -322,8 +264,9 @@ body {
     margin: 1.5rem 0 0.75rem;
 }
 
-/* === GRIDS & CARDS === */
-/* Stores: side-by-side cards */
+/* =========================
+   Grids / cards / stats
+   ========================= */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -332,20 +275,21 @@ body {
 }
 
 /* News and events */
-.news-grid, .events-grid {
+.news-grid,
+.events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
 }
 
-/* Stats grid */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
 }
 
-/* Store card */
+
 .store-card {
     border-radius: 12px;
     background: var(--eco-surface);
@@ -453,7 +397,48 @@ a:focus, button:focus, input:focus {
     font-size: 0.95rem;
 }
 
-/* Responsive */
+.pipe {
+    margin: 0 0.5rem;
+    color: var(--eco-muted);
+}
+
+/* =========================
+   Map / store map tweaks
+   Ensure map is visible and responsive
+   ========================= */
+.map-panel {
+    background: var(--eco-surface, #ffffff);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(23,40,27,0.04);
+    display: flex;
+    flex-direction: column;
+}
+
+#map {
+    width: 100%;
+    height: 72vh; /* explicit viewport-based height */
+    min-height: 420px; /* reasonable minimum for small screens */
+    display: block;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #f6fbf7, #ffffff);
+}
+
+.leaflet-container {
+    background: transparent;
+    -webkit-backface-visibility: hidden; /* improves tile rendering on some browsers */
+    backface-visibility: hidden;
+}
+
+.controls {
+    max-height: 72vh;
+    overflow: auto;
+    padding-right: 8px;
+}
+
+/* =========================
+   Responsive
+   ========================= */
 @media (max-width: 992px) {
     .main-nav {
         display: none;
@@ -470,6 +455,26 @@ a:focus, button:focus, input:focus {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+}
+
+.map-page {
+    flex-direction: column;
+}
+
+.map-panel {
+    order: 2;
+    width: 100%;
+}
+
+.controls {
+    order: 1;
+    width: 100%;
+    max-height: none;
+}
+
+#map {
+    height: 56vh;
+    min-height: 320px;
 }
 
 @media (max-width: 576px) {
@@ -498,8 +503,7 @@ a:focus, button:focus, input:focus {
     }
 }
 
-/* small visual polish */
-.pipe {
-    margin: 0 0.5rem;
-    color: var(--eco-muted);
+#map {
+    height: 50vh;
+    min-height: 280px;
 }

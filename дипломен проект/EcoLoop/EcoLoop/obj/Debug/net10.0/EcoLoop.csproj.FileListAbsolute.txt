@@ -606,4 +606,4 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\hag1ltjjqu-{0}-jjsuc0puko-jjsuc0puko.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\7nk9iaifhi-{0}-9vr69e8ynj-9vr69e8ynj.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\cluqh2uef3-{0}-1ms1ji3fyu-1ms1ji3fyu.gz
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-zvsnrnlu94-zvsnrnlu94.gz
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-z0fyas0av9-z0fyas0av9.gz
