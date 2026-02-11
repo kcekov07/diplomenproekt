@@ -1,87 +1,113 @@
 ﻿@model EcoLoop.Models.HomeViewModel
 
-<div class="main-content container">
-
-    <!-- HERO HEADER -->
-    <div style="margin-bottom:1.25rem;">
-        <h1 class="hero-title">Открий устойчивото около теб</h1>
-        <p class="lead">Намери еко магазини, събития и новини във вашия град</p>
+<div class="home-page">
+<section class="hero-panel">
+    <div>
+        <span class="hero-kicker">Еко платформа за твоя град</span>
+        <h1 class="hero-title">Открий устойчивия начин на живот около теб</h1>
+        <p class="lead">Намери проверени еко магазини, включи се в събития и следи последните зелени новини на едно място.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="/Store/All">Разгледай обекти</a>
+            <a class="btn btn-outline-success" href="/Map">Отвори картата</a>
+        </div>
     </div>
+    <div class="hero-highlights">
+        <article class="highlight-item">
+            <strong>@Model.StoresCount+</strong>
+            <span>Еко магазина в платформата</span>
+        </article>
+        <article class="highlight-item">
+            <strong>@Model.EventsCount+</strong>
+            <span>Събития за общността</span>
+        </article>
+        <article class="highlight-item">
+            <strong>@Model.ReviewsCount+</strong>
+            <span>Отзива и коментара</span>
+        </article>
+    </div>
+</section>
 
-    <!-- NEARBY STORES -->
-    <h3 class="section-title">🏪 Близо до теб</h3>
-
+<section class="content-section">
+    <div class="section-head">
+        <h3 class="section-title">🏪 Близо до теб</h3>
+        <a class="section-link" href="/Store/All">Виж всички</a>
+    </div>
     <div class="cards" aria-live="polite">
         @if (Model.NearbyStores.Any())
         {
             foreach (var s in Model.NearbyStores)
             {
-                <div>
-                    <div class="store-card" role="article">
-                        @if (!string.IsNullOrEmpty(s.ImageUrl))
-                        {
-                            <img src="@s.ImageUrl" alt="@s.Name" />
-                        }
-                        else
-                        {
-                            <div style="height:160px;background:#f0f4f0;display:flex;align-items:center;justify-content:center;color:#8fa98b">No image</div>
-                        }
+                <article class="store-card" role="article">
+                    @if (!string.IsNullOrEmpty(s.ImageUrl))
+                    {
+                        <img src="@s.ImageUrl" alt="@s.Name" />
+                    }
+                    else
+                    {
+                        <div class="store-card-placeholder">Няма снимка</div>
+                    }
 
-                        <div class="card-body">
-                            <h5 class="card-title">@s.Name</h5>
-                            <p class="small-muted">@s.Category</p>
-                            @if (!string.IsNullOrWhiteSpace(s.ShortDescription))
-                            {
-                                <p class="small-muted" style="margin-top:8px;">@s.ShortDescription</p>
-                            }
-                            <div style="margin-top:10px;">
-                                <a class="btn-outline-success" href="/Store/Details/@s.Id">Виж детайли</a>
-                            </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@s.Name</h5>
+                        <p class="small-muted">@s.Category</p>
+                        @if (!string.IsNullOrWhiteSpace(s.ShortDescription))
+                        {
+                            <p class="small-muted" style="margin-top:8px;">@s.ShortDescription</p>
+                        }
+                        <div style="margin-top:10px;">
+                            <a class="btn-outline-success" href="/Store/Details/@s.Id">Виж детайли</a>
                         </div>
                     </div>
-                </div>
+
+                </article>
             }
         }
+            
+        
+
         else
         {
             <div class="card-plain">Няма добавени обекти.</div>
         }
     </div>
+</section>
 
-    <!-- TOP NEWS -->
+<section class="content-section">
     <h3 class="section-title">📰 Топ новини</h3>
     <div class="news-grid">
         @if (Model.TopNews.Any())
         {
             foreach (var n in Model.TopNews)
             {
-                <div class="card-plain">
+                <article class="card-plain">
                     <h5>@n.Title</h5>
                     <p class="small-muted">@n.Category</p>
                     <p>@n.ShortContent</p>
                     <a class="btn-link" href="/News/Details/@n.Id">Чети повече</a>
-                </div>
+                </article>
             }
         }
         else
         {
             <div class="card-plain">Няма новини.</div>
         }
+   
     </div>
+</section>
 
-    <!-- EVENTS -->
+<section class="content-section">
     <h3 class="section-title">📅 Предстоящи събития</h3>
     <div class="events-grid">
         @if (Model.UpcomingEvents.Any())
         {
             foreach (var e in Model.UpcomingEvents)
             {
-                <div class="card-plain">
+                <article class="card-plain">
                     <h5>@e.Title</h5>
                     <p class="small-muted">@e.Date.ToLocalTime().ToString("dd MMM yyyy") — @e.City</p>
                     <p>@e.ShortDescription</p>
                     <a class="btn-link" href="/Events/Details/@e.Id">Виж</a>
-                </div>
+                </article>
             }
         }
         else
@@ -89,8 +115,9 @@
             <div class="card-plain">Няма предстоящи събития.</div>
         }
     </div>
+</section>
 
-    <!-- STATISTICS -->
+<section class="content-section">
     <h3 class="section-title">📊 Статистика на общността</h3>
     <div class="stats-grid" role="region" aria-label="Statistics">
         <div class="stat-box">
@@ -106,5 +133,5 @@
             <p class="small-muted">Събития</p>
         </div>
     </div>
-
+</section>
 </div>

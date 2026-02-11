@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\footer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\footer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
@@ -19,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\map.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\map.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -31,8 +23,16 @@
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\map\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\footer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\footer.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\shared\\_footer.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\map.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\map.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\controllers\\mapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -206,15 +206,23 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "footer.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\footer.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\footer.css",
@@ -224,43 +232,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-02-11T14:22:11.091Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAEQAAAAAAAAAAAAAAG0AAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-10T18:32:53.444Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "_Footer.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAABVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-14T14:05:23.067Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "map.css",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
-              "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\map.css",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
-              "RelativeToolTip": "EcoLoop\\wwwroot\\css\\map.css",
-              "ViewState": "AgIAAEYBAAAAAAAAAAAAAFcBAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-19T16:59:13.74Z"
             },
             {
               "$type": "Document",
@@ -276,52 +247,92 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "site.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\js\\site.js",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeToolTip": "EcoLoop\\wwwroot\\js\\site.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAADAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-12-10T18:35:20.279Z"
+              "WhenOpened": "2025-12-10T18:35:20.279Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "site.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\site.css",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\site.css",
               "RelativeToolTip": "EcoLoop\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAKsBAAAAAAAAAAAQwMUBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAANEBAAAAAAAAAAAQwOsBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-02-10T15:24:05.282Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-12-10T18:32:21.712Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Map\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Map\\Index.cshtml",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Map\\Index.cshtml",
               "RelativeToolTip": "EcoLoop\\Views\\Map\\Index.cshtml",
-              "ViewState": "AgIAANsBAAAAAAAAAAAowP0BAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAEUBAAAAAAAAAAAowP0BAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-01T13:10:41.253Z"
+              "WhenOpened": "2026-02-01T13:10:41.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAAABYAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-10T18:32:53.444Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAADMAAAB/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-10T18:32:21.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "map.css",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
+              "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\map.css",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
+              "RelativeToolTip": "EcoLoop\\wwwroot\\css\\map.css",
+              "ViewState": "AgIAAEYBAAAAAAAAAAAAAFcBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-19T16:59:13.74Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Footer.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-14T14:05:23.067Z"
             },
             {
               "$type": "Document",
