@@ -1,8 +1,7 @@
-﻿@* Modern footer partial for EcoLoop *@
-<footer class="site-footer">
+﻿﻿<footer class="site-footer">
     <div class="container footer-top">
         <div class="footer-brand">
-            <a href="/" class="brand-footer">
+            <a href="/" class="brand-footer" aria-label="EcoLoop начало">
                 <img src="~/images/logo-eco.svg" alt="EcoLoop" class="footer-logo" />
                 <span class="footer-brand-title">EcoLoop</span>
             </a>
@@ -14,10 +13,10 @@
                     <input id="newsletterEmail" name="email" type="email" placeholder="Имейл за бюлетин" required />
                     <button type="submit" class="btn btn-primary">Абонирай се</button>
                 </div>
-            </form  >
+            </form>
         </div>
 
-        <div class="footer-col footer-contacts">
+        <div class="footer-col">
             <h4>Контакти</h4>
             <ul class="footer-list">
                 <li>Адрес: ул. Пример 10, София</li>
@@ -26,19 +25,20 @@
             </ul>
         </div>
 
-        <div class="footer-col footer-privacy">
-            <h4>Политика</h4>
+        <div class="footer-col">
+            <h4>Полезни линкове</h4>
             <ul class="footer-list">
                 <li><a href="/Home/Privacy">Политика за поверителност</a></li>
-                <li><a href="/Home/Contact">Контакти</a></li>
+                <li><a href="/Store/All">Магазини</a></li>
+                <li><a href="/Events/All">Събития</a></li>
             </ul>
         </div>
 
-        <div class="footer-col footer-social">
+        <div class="footer-col footer-social-col">
             <h4>Социални мрежи</h4>
-            <div class="social-row" aria-hidden="false">
-                <a class="social-link" href="https://facebook.com" target="_blank" rel="noopener">📘 Facebook</a>
-                <a class="social-link" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
+            <div class="social-row">
+                <a class="social-btn" href="https://facebook.com" target="_blank" rel="noopener">📘 Facebook</a>
+                <a class="social-btn" href="https://instagram.com" target="_blank" rel="noopener">📸 Instagram</a>
                 
             </div>
         </div>
