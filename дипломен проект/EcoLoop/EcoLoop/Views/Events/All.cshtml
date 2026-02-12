@@ -1,0 +1,106 @@
+﻿@model EventsIndexViewModel
+
+@{
+    ViewData["Title"] = "Събития";
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/events.css" />
+}
+<section class="events-page">
+    <header class="events-hero">
+        <div>
+            <span class="hero-kicker">Общност</span>
+            <h1 class="events-title">Еко събития</h1>
+            <p class="lead mb-0">Включи се в активности като Zero Waste Market, Swap Party, фестивали и работилници.</p>
+        </div>
+        <div class="events-hero-actions">
+            <a asp-action="Create" class="btn btn-primary">+ Създай събитие</a>
+        </div>
+    </header>
+
+    <section class="events-filters-panel">
+        <form method="get" asp-action="All" class="events-filters-grid">
+            <label class="events-filter-field">
+                <span>По дата</span>
+                <input type="date" name="date" value="@(Model.DateFilter?.ToString("yyyy-MM-dd"))" class="form-control" />
+            </label>
+
+            <label class="events-filter-field">
+                <span>По тип</span>
+                <select name="type" class="form-select">
+                    <option value="">Всички</option>
+                    @foreach (var eventType in Model.AvailableTypes)
+                    {
+                        if (eventType == Model.TypeFilter)
+                        {
+                            <option value="@eventType" selected>@eventType</option>
+                        }
+                        else
+                        {
+                            <option value="@eventType">@eventType</option>
+                        }
+                    }
+                </select>
+            </label>
+
+            <label class="events-filter-field">
+                <span>По град</span>
+                <select name="city" class="form-select">
+                    <option value="">Всички</option>
+                    @foreach (var eventCity in Model.AvailableCities)
+                    {
+                        if (eventCity == Model.CityFilter)
+                        {
+                            <option value="@eventCity" selected>@eventCity</option>
+                        }
+                        else
+                        {
+                            <option value="@eventCity">@eventCity</option>
+                        }
+                    }
+                </select>
+            </label>
+
+            <div class="events-filter-actions">
+                <button class="btn btn-primary" type="submit">Филтрирай</button>
+                <a asp-action="All" class="btn btn-ghost">Изчисти</a>
+            </div>
+        </form>
+    </section>
+
+    @if (!Model.Events.Any())
+    {
+        <div class="events-empty">Няма събития по избраните филтри. Пробвай с по-широки критерии.</div>
+    }
+    else
+    {
+        <section class="events-listing-grid" aria-label="Списък със събития">
+            @foreach (var item in Model.Events)
+            {
+                <article class="event-card">
+                    <img src="@(string.IsNullOrWhiteSpace(item.ImageUrl) ? "https://images.unsplash.com/photo-1536856136534-bb679c52a9aa?auto=format&fit=crop&w=900&q=60" : item.ImageUrl)"
+                         alt="Снимка за @item.Title"
+                         class="event-card-image" />
+
+                    <div class="event-card-body">
+                        <div class="event-card-meta">
+                            <span>📅 @item.Date.ToString("dd.MM.yyyy")</span>
+                            <span>📍 @item.City</span>
+                        </div>
+
+                        <h2 class="event-card-title">@item.Title</h2>
+                        <span class="event-chip">@item.Type</span>
+                        <p class="event-card-description">@item.ShortDescription</p>
+
+                        <div class="event-card-actions">
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Виж детайли</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-ghost">Редактирай</a>
+                        </div>
+                    </div>
+                </article>
+            }
+        </section>
+    }
+</section>

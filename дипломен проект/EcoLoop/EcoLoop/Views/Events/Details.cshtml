@@ -1,0 +1,37 @@
+﻿@model EcoLoop.Data.Models.Event
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/events.css" />
+}
+<section class="event-details-page">
+    <a asp-action="All" class="btn-link">← Назад към всички събития</a>
+
+    <article class="event-details-card">
+        <img src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "https://images.unsplash.com/photo-1536856136534-bb679c52a9aa?auto=format&fit=crop&w=1200&q=60" : Model.ImageUrl)"
+             alt="Снимка за @Model.Title"
+             class="event-details-image" />
+
+        <div class="event-details-content">
+            <span class="event-chip">@Model.Type</span>
+            <h1>@Model.Title</h1>
+
+            <div class="event-details-meta">
+                <span>📅 @Model.Date.ToString("dd.MM.yyyy")</span>
+                <span>📍 @Model.City</span>
+            </div>
+
+            <h2>Описание</h2>
+            <p>@Model.ShortDescription</p>
+
+            <div class="event-details-actions">
+                <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактирай</a>
+                <a asp-action="All" class="btn btn-ghost">Към списъка</a>
+            </div>
+        </div>
+    </article>
+</section>

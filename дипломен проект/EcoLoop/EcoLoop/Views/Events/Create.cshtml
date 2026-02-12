@@ -1,0 +1,29 @@
+﻿@model EventFormViewModel
+
+@{
+    ViewData["Title"] = "Добавяне на събитие";
+}
+
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/events.css" />
+}
+<section class="events-form-page">
+    <header class="events-form-header">
+        <h1>Добави ново събитие</h1>
+        <p class="small-muted mb-0">Попълни данните и публикувай събитието за общността.</p>
+    </header>
+
+    <form asp-action="Create" method="post" class="events-form-shell">
+        @Html.Partial("_EventForm", Model)
+
+        <div class="events-form-actions">
+            <button type="submit" class="btn btn-primary">Запази</button>
+            <a asp-action="All" class="btn btn-ghost">Отказ</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
