@@ -23,8 +23,19 @@
 
     <label class="events-filter-field">
         <span>Тип</span>
-        <input asp-for="Type" class="form-control" placeholder="Напр. Swap Party" />
+        <div class="event-type-row">
+            <select asp-for="Type" class="form-select">
+                <option value="">Избери тип</option>
+                @foreach (var eventType in Model.AvailableTypes)
+                {
+                    <option value="@eventType">@eventType</option>
+                }
+            </select>
+            <input asp-for="CustomType" class="form-control" placeholder="Или нов тип" />
+        </div>
+        <small class="small-muted">Можеш да избереш готов тип или да въведеш нов.</small>
         <span asp-validation-for="Type" class="text-danger"></span>
+        <span asp-validation-for="CustomType" class="text-danger"></span>
     </label>
 
     <label class="events-filter-field">

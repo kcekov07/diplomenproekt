@@ -37,9 +37,14 @@ namespace EcoLoop.Models
         [StringLength(100)]
         public string City { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Типът е задължителен")]
+        
         [StringLength(100)]
         public string Type { get; set; } = string.Empty;
+
+        [StringLength(100)]
+        public string? CustomType { get; set; }
+
+        public List<string> AvailableTypes { get; set; } = new();
 
         [Required(ErrorMessage = "Краткото описание е задължително")]
         [StringLength(400)]

@@ -30,6 +30,10 @@
 
             <div class="event-details-actions">
                 <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Редактирай</a>
+                <form asp-action="Delete" asp-route-id="@Model.Id" method="post" class="inline-delete-form">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger" onclick="return confirm('Сигурни ли сте, че искате да изтриете това събитие?');">Изтрий</button>
+                </form>
                 <a asp-action="All" class="btn btn-ghost">Към списъка</a>
             </div>
         </div>

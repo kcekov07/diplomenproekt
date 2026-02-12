@@ -80,17 +80,27 @@ namespace EcoLoop.Controllers
             return View(item);
         }
         [HttpGet]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View(new EventFormViewModel());
+            return View(new EventFormViewModel
+            {
+                AvailableTypes = await GetAvailableEventTypesAsync()
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(EventFormViewModel model)
         {
+            model.Type = NormalizeEventType(model.Type, model.CustomType);
+            ModelState.Remove(nameof(model.Type));
+            if (string.IsNullOrWhiteSpace(model.Type))
+            {
+                ModelState.AddModelError(nameof(model.Type), "Типът е задължителен");
+            }
             if (!ModelState.IsValid)
             {
+                model.AvailableTypes = await GetAvailableEventTypesAsync();
                 return View(model);
             }
 
@@ -116,6 +126,10 @@ namespace EcoLoop.Controllers
             var item = await _db.Events.FindAsync(id);
             if (item == null) return NotFound();
 
+            var availableTypes = await GetAvailableEventTypesAsync();
+            var existingType = item.Type ?? string.Empty;
+            var hasExistingType = availableTypes.Contains(existingType);
+
             var model = new EventFormViewModel
             {
                 Id = item.Id,
@@ -123,8 +137,10 @@ namespace EcoLoop.Controllers
                 ImageUrl = item.ImageUrl,
                 Date = item.Date,
                 City = item.City ?? string.Empty,
-                Type = item.Type ?? string.Empty,
-                ShortDescription = item.ShortDescription ?? string.Empty
+                Type = existingType,
+                CustomType = hasExistingType ? null : existingType,
+                ShortDescription = item.ShortDescription ?? string.Empty,
+                AvailableTypes = availableTypes
             };
 
             return View(model);
@@ -134,8 +150,16 @@ namespace EcoLoop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(EventFormViewModel model)
         {
+            model.Type = NormalizeEventType(model.Type, model.CustomType);
+            ModelState.Remove(nameof(model.Type));
+            if (string.IsNullOrWhiteSpace(model.Type))
+            {
+                ModelState.AddModelError(nameof(model.Type), "Типът е задължителен");
+            }
+
             if (!ModelState.IsValid)
             {
+                model.AvailableTypes = await GetAvailableEventTypesAsync();
                 return View(model);
             }
 
@@ -152,6 +176,39 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = item.Id });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var item = await _db.Events.FindAsync(id);
+            if (item == null)
+            {
+                return NotFound();
+            }
+
+            _db.Events.Remove(item);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(All));
+        }
+
+        private async Task<List<string>> GetAvailableEventTypesAsync()
+        {
+            return await _db.Events
+                .AsNoTracking()
+                .Where(e => e.Type != null && e.Type != string.Empty)
+                .Select(e => e.Type!)
+                .Distinct()
+                .OrderBy(t => t)
+                .ToListAsync();
+        }
+
+        private static string NormalizeEventType(string currentType, string? customType)
+        {
+            return !string.IsNullOrWhiteSpace(customType)
+                ? customType.Trim()
+                : (currentType ?? string.Empty).Trim();
         }
     }
 }
