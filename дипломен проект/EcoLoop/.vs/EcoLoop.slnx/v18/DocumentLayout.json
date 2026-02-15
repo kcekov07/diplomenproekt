@@ -3,28 +3,96 @@
   "WorkspaceRootPath": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260215200904_News.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:EcoLoop\\Migrations\\20260215200904_News.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\migrations\\applicationdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\news\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\news\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\news\\_newsform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\news\\_newsform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\news.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\news.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\models\\newslike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\models\\newslike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\news\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\news\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\news\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\news\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\news\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\news\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\models\\eventsindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\models\\eventsindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\models\\newsindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\models\\newsindexviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\models\\newsformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\models\\newsformviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\models\\newsdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\models\\newsdetailsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\_eventform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\_eventform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\all.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\controllers\\eventscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -41,14 +109,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\events.css||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\events.css||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\views\\events\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\models\\eventviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -159,10 +219,6 @@
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\controllers\\commentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\models\\commentlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\models\\commentlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -185,14 +241,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\migrations\\20251211182148_addstoreimagesphones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\migrations\\20251211182148_addstoreimagesphones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\models\\news.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\images\\stores\\9\\f43118bc-b723-4a7a-b00a-df9d8e6a084c.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
@@ -255,32 +303,279 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "20260215200904_News.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260215200904_News.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20260215200904_News.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260215200904_News.cs",
+              "RelativeToolTip": "EcoLoop\\Migrations\\20260215200904_News.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T20:09:05.203Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ApplicationDbContextModelSnapshot.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "RelativeToolTip": "EcoLoop\\Migrations\\ApplicationDbContextModelSnapshot.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T20:08:08.915Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Controllers\\NewsController.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "EcoLoop\\Controllers\\NewsController.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAowCcAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T18:30:12.174Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsLike.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\NewsLike.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\NewsLike.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\NewsLike.cs",
+              "RelativeToolTip": "EcoLoop\\Data\\Models\\NewsLike.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T14:17:59.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "news.css",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\news.css",
+              "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\news.css",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\news.css",
+              "RelativeToolTip": "EcoLoop\\wwwroot\\css\\news.css",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAmwLQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-02-15T14:24:17.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_NewsForm.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\_NewsForm.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\_NewsForm.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\_NewsForm.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\News\\_NewsForm.cshtml",
+              "ViewState": "AgIAABcAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-15T14:23:44.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Create.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Create.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Create.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\News\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-15T14:21:55.792Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "NewsIndexViewModel.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsIndexViewModel.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsIndexViewModel.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsIndexViewModel.cs",
+              "RelativeToolTip": "EcoLoop\\Models\\NewsIndexViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T14:20:12.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "All.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\All.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\All.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\All.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\News\\All.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-15T14:21:30.266Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Details.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Details.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Details.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\News\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-15T14:22:34.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Edit.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Edit.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Edit.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\News\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-15T14:23:04.318Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "NewsFormViewModel.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsFormViewModel.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsFormViewModel.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsFormViewModel.cs",
+              "RelativeToolTip": "EcoLoop\\Models\\NewsFormViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T14:19:31.325Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NewsDetailsViewModel.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsDetailsViewModel.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsDetailsViewModel.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsDetailsViewModel.cs",
+              "RelativeToolTip": "EcoLoop\\Models\\NewsDetailsViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-15T14:19:03.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "EventsIndexViewModel.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventsIndexViewModel.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Models\\EventsIndexViewModel.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventsIndexViewModel.cs",
+              "RelativeToolTip": "EcoLoop\\Models\\EventsIndexViewModel.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAcwDYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T15:54:33.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "events.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\events.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\events.css",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\events.css",
               "RelativeToolTip": "EcoLoop\\wwwroot\\css\\events.css",
-              "ViewState": "AgIAAN4AAAAAAAAAAAAmwOwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAALkAAAAAAAAAAAAQwMoAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-02-12T16:32:25.485Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 19,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Create.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Create.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Create.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Events\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-12T15:59:54.693Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Edit.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Edit.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Edit.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Events\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-12T16:00:56.383Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "EcoLoop\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAEYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T18:22:47.07Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "News.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\News.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\News.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\News.cs",
+              "RelativeToolTip": "EcoLoop\\Data\\Models\\News.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwBUAAABQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-10T18:25:19.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "All.cshtml",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\All.cshtml",
+              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\All.cshtml",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\All.cshtml",
+              "RelativeToolTip": "EcoLoop\\Views\\Events\\All.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAEYAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-02-12T15:58:50.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
               "Title": "_EventForm.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\_EventForm.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\_EventForm.cshtml",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\_EventForm.cshtml",
               "RelativeToolTip": "EcoLoop\\Views\\Events\\_EventForm.cshtml",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAAwCUAAABJAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADAAAACWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-02-12T16:01:47.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 22,
               "Title": "EventsController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\EventsController.cs",
@@ -288,38 +583,11 @@
               "RelativeToolTip": "EcoLoop\\Controllers\\EventsController.cs",
               "ViewState": "AgIAADAAAAAAAAAAAAAIwNMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T18:31:12.445Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-10T18:31:12.445Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "EventsIndexViewModel.cs",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventsIndexViewModel.cs",
-              "RelativeDocumentMoniker": "EcoLoop\\Models\\EventsIndexViewModel.cs",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventsIndexViewModel.cs",
-              "RelativeToolTip": "EcoLoop\\Models\\EventsIndexViewModel.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAcwC4AAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-02-12T15:54:33.618Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "All.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\All.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\All.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\All.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Events\\All.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T15:58:50.57Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 21,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Details.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Details.cshtml",
@@ -327,12 +595,11 @@
               "RelativeToolTip": "EcoLoop\\Views\\Events\\Details.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAwCMAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T16:00:32.066Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T16:00:32.066Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 23,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\appsettings.json",
               "RelativeDocumentMoniker": "EcoLoop\\appsettings.json",
@@ -344,7 +611,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 24,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Program.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Program.cs",
@@ -356,7 +623,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 25,
               "Title": "store-list.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-list.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-list.css",
@@ -368,19 +635,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Edit.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Edit.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Edit.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Edit.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Events\\Edit.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T16:00:56.383Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 26,
               "Title": "events.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\events.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\events.css",
@@ -388,24 +643,11 @@
               "RelativeToolTip": "EcoLoop\\wwwroot\\css\\events.css",
               "ViewState": "AgIAALEAAAAAAAAAAAAmwL4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-12T16:02:15.251Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-02-12T16:02:15.251Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Create.cshtml",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Create.cshtml",
-              "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Create.cshtml",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Create.cshtml",
-              "RelativeToolTip": "EcoLoop\\Views\\Events\\Create.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-02-12T15:59:54.693Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 28,
               "Title": "site.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\site.css",
@@ -417,7 +659,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 27,
               "Title": "EventViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\EventViewModel.cs",
@@ -429,7 +671,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 29,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
@@ -441,7 +683,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 31,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Home\\Index.cshtml",
@@ -453,7 +695,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 32,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Map\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Map\\Index.cshtml",
@@ -465,7 +707,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 30,
               "Title": "site.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\js\\site.js",
@@ -477,7 +719,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 36,
               "Title": "MapController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\MapController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\MapController.cs",
@@ -489,7 +731,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 33,
               "Title": "footer.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\footer.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\footer.css",
@@ -501,7 +743,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 35,
               "Title": "map.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\map.css",
@@ -513,7 +755,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 34,
               "Title": "_Footer.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
@@ -525,7 +767,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 37,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\HomeController.cs",
@@ -537,7 +779,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 38,
               "Title": "details.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\details.js",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\js\\details.js",
@@ -549,7 +791,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 41,
               "Title": "MapPageViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\MapPageViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\MapPageViewModel.cs",
@@ -561,7 +803,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 39,
               "Title": "MapStoreViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\MapStoreViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\MapStoreViewModel.cs",
@@ -573,7 +815,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 42,
               "Title": "StoreImage.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\StoreImage.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\StoreImage.cs",
@@ -585,7 +827,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 43,
               "Title": "StoreAddViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreAddViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreAddViewModel.cs",
@@ -597,7 +839,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 40,
               "Title": "Store.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\Store.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\Store.cs",
@@ -609,7 +851,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 44,
               "Title": "StoreEditViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreEditViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreEditViewModel.cs",
@@ -621,7 +863,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 45,
               "Title": "StoreController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\StoreController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\StoreController.cs",
@@ -633,7 +875,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 47,
               "Title": "All.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\All.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\All.cshtml",
@@ -645,7 +887,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 50,
               "Title": "store-form.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-form.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-form.css",
@@ -657,7 +899,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 46,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Add.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Add.cshtml",
@@ -669,7 +911,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 48,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Details.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Details.cshtml",
@@ -681,7 +923,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 52,
               "Title": "CommentViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\CommentViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\CommentViewModel.cs",
@@ -693,19 +935,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "EcoLoop\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "EcoLoop\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAuwEUAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T18:22:47.07Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 49,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Edit.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Edit.cshtml",
@@ -717,7 +947,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 51,
               "Title": "store-details.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-details.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-details.css",
@@ -729,7 +959,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 53,
               "Title": "CommentsController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\CommentsController.cs",
@@ -741,7 +971,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 54,
               "Title": "CommentLike.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\CommentLike.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\CommentLike.cs",
@@ -753,7 +983,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 55,
               "Title": "CommentHelpful.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\CommentHelpful.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\CommentHelpful.cs",
@@ -765,7 +995,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 68,
               "Title": "20260121162201_StoreComments.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260121162201_StoreComments.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20260121162201_StoreComments.cs",
@@ -777,7 +1007,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 56,
               "Title": "StoreViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreViewModel.cs",
@@ -789,7 +1019,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 67,
               "Title": "20260120101009_AddStoreEcoFields.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260120101009_AddStoreEcoFields.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20260120101009_AddStoreEcoFields.cs",
@@ -801,7 +1031,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 57,
               "Title": "_LoginPartial.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_LoginPartial.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_LoginPartial.cshtml",
@@ -813,7 +1043,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 58,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\AdminController.cs",
@@ -825,7 +1055,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 59,
               "Title": "20251211182148_AddStoreImagesPhones.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20251211182148_AddStoreImagesPhones.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20251211182148_AddStoreImagesPhones.cs",
@@ -837,31 +1067,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "NewsController.cs",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\NewsController.cs",
-              "RelativeDocumentMoniker": "EcoLoop\\Controllers\\NewsController.cs",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\NewsController.cs",
-              "RelativeToolTip": "EcoLoop\\Controllers\\NewsController.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwBkAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T18:30:12.174Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "News.cs",
-              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\News.cs",
-              "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\News.cs",
-              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\News.cs",
-              "RelativeToolTip": "EcoLoop\\Data\\Models\\News.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAA1wAYAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T18:25:19.092Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 61,
               "Title": "StorePhone.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\StorePhone.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\StorePhone.cs",
@@ -873,7 +1079,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 60,
               "Title": "f43118bc-b723-4a7a-b00a-df9d8e6a084c.png - PNG [700x298, 32 bit, PNG]",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\images\\stores\\9\\f43118bc-b723-4a7a-b00a-df9d8e6a084c.png",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\images\\stores\\9\\f43118bc-b723-4a7a-b00a-df9d8e6a084c.png",
@@ -885,7 +1091,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 62,
               "Title": "logo-eco.svg",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\images\\logo-eco.svg",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\images\\logo-eco.svg",
@@ -897,7 +1103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 63,
               "Title": "site.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -909,7 +1115,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 64,
               "Title": "NewsViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsViewModel.cs",
@@ -921,7 +1127,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 65,
               "Title": "EcoPoints.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\EcoPoints.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\EcoPoints.cs",
@@ -933,7 +1139,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 66,
               "Title": "Event.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\Event.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\Event.cs",

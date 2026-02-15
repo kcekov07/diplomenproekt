@@ -1,7 +1,7 @@
 ﻿/* Events page */
 .events-page {
     display: grid;
-    gap: 1rem;
+    gap: 1.15rem;
 }
 
 .events-hero {
@@ -9,11 +9,11 @@
     justify-content: space-between;
     align-items: flex-end;
     gap: 1rem;
-    background: linear-gradient(145deg, #ffffff 0%, #f0faf4 100%);
-    border: 1px solid var(--eco-gray);
-    border-radius: 20px;
-    padding: 1.2rem;
-    box-shadow: var(--shadow-1);
+    background: linear-gradient(130deg, #ffffff 0%, #eefcf3 45%, #e4f8ed 100%);
+    border: 1px solid rgba(37, 87, 51, 0.16);
+    border-radius: 24px;
+    padding: 1.25rem;
+    box-shadow: 0 14px 30px rgba(16, 47, 30, 0.1);
 }
 
 .events-title {
@@ -24,15 +24,15 @@
 }
 
 .events-filters-panel {
-    background: linear-gradient(180deg, #ffffff 0%, #f8fdf9 100%);
-    border: 1px solid var(--eco-gray);
-    border-radius: 18px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, #f2fcf6 100%);
+    border: 1px solid rgba(37, 87, 51, 0.14);
+    border-radius: 20px;
     padding: 1rem;
-    box-shadow: 0 8px 22px rgba(16, 47, 30, 0.08);
+    box-shadow: 0 10px 26px rgba(16, 47, 30, 0.1);
 }
 
 .events-filter-header {
-    margin-bottom: .75rem;
+    margin-bottom: .8rem;
 }
 
     .events-filter-header h2 {
@@ -56,13 +56,34 @@
 
 .events-filter-field {
     display: grid;
-    gap: .35rem;
+    gap: .4rem;
 }
 
-    .events-filter-field > span {
-        font-size: .86rem;
-        font-weight: 700;
-        color: var(--eco-muted);
+.events-filter-card {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(37, 87, 51, 0.14);
+    border-radius: 14px;
+    padding: .7rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 6px 16px rgba(16, 47, 30, 0.05);
+}
+
+.events-filter-field > span {
+    font-size: .82rem;
+    font-weight: 800;
+    color: var(--eco-muted);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.events-input {
+    border-radius: 10px;
+    border: 1px solid rgba(37, 87, 51, 0.2);
+    background-color: #ffffff;
+}
+
+    .events-input:focus {
+        border-color: rgba(30, 115, 57, 0.55);
+        box-shadow: 0 0 0 .2rem rgba(30, 115, 57, 0.14);
     }
 
 .events-filter-field--full {
@@ -73,6 +94,7 @@
     display: flex;
     gap: .55rem;
     align-items: end;
+    justify-content: center;
 }
 
 .events-listing-grid {
@@ -83,8 +105,8 @@
 
 .event-card {
     background: #fff;
-    border: 1px solid var(--eco-gray);
-    border-radius: 16px;
+    border: 1px solid rgba(37, 87, 51, 0.15);
+    border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 10px 26px rgba(16, 47, 30, 0.08);
     display: flex;
@@ -98,7 +120,7 @@
     }
 
 .event-card-image {
-    height: 180px;
+    height: 190px;
     width: 100%;
     object-fit: cover;
 }
@@ -127,8 +149,8 @@
 
 .event-chip {
     width: fit-content;
-    border: 1px solid var(--eco-gray);
-    background: var(--eco-green-soft);
+    border: 1px solid rgba(30, 115, 57, 0.2);
+    background: linear-gradient(140deg, #e8f9ef 0%, #dbf6e8 100%);
     color: var(--eco-green-dark);
     border-radius: 999px;
     padding: .2rem .65rem;
@@ -149,7 +171,7 @@
 
 .events-empty {
     background: #fff;
-    border: 1px dashed var(--eco-gray);
+    border: 1px dashed rgba(37, 87, 51, 0.28);
     border-radius: 16px;
     padding: 1rem;
     color: var(--eco-muted);
@@ -161,13 +183,25 @@
     gap: 1rem;
 }
 
+.events-form-intro {
+    background: linear-gradient(120deg, #f4fff8 0%, #eafaf1 100%);
+    border: 1px solid rgba(37, 87, 51, 0.14);
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+
 .events-form-shell,
 .event-details-card {
     background: #fff;
-    border: 1px solid var(--eco-gray);
-    border-radius: 18px;
+    border: 1px solid rgba(37, 87, 51, 0.14);
+    border-radius: 20px;
     padding: 1rem;
-    box-shadow: var(--shadow-1);
+    box-shadow: 0 12px 26px rgba(16, 47, 30, 0.08);
+}
+
+.events-form-shell--modern {
+    background: linear-gradient(160deg, #ffffff 0%, #f7fdf9 100%);
 }
 
 .events-form-header h1 {
@@ -175,6 +209,7 @@
     color: var(--eco-green-dark);
     font-size: clamp(1.4rem, 2.2vw, 1.9rem);
 }
+
 .event-type-row {
     display: grid;
     grid-template-columns: 1fr 1fr;

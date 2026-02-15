@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="~/css/events.css" />
 }
 <section class="events-form-page">
-    <header class="events-form-header">
+    <header class="events-form-header events-form-intro">
         <h1>Редактирай събитие</h1>
         <p class="small-muted mb-0">Обнови информацията и запази промените.</p>
     </header>
 
-    <form asp-action="Edit" method="post" class="events-form-shell">
+    <form asp-action="Edit" method="post" class="events-form-shell events-form-shell--modern">
         <input asp-for="Id" type="hidden" />
         @Html.Partial("_EventForm", Model)
 

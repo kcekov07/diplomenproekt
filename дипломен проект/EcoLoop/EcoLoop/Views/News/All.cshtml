@@ -1,0 +1,70 @@
+﻿@model EcoLoop.Models.NewsIndexViewModel
+@{
+    ViewData["Title"] = "Последни еко новини";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/news.css" asp-append-version="true" />
+}
+
+<section class="news-page">
+    <header class="news-header">
+        <h1>Последни еко новини</h1>
+        <a class="news-add-btn" asp-action="Create">➕ Добави новина</a>
+    </header>
+
+    <section class="news-top-grid">
+        @foreach (var top in Model.TopNews)
+        {
+            <article class="news-top-card" style="background-image:url('@(top.ImageUrl ?? "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80")')">
+                <div class="news-top-overlay">
+                    <span class="news-category">@top.Category</span>
+                    <h3>@top.Title</h3>
+                    <p>@top.PreviewText</p>
+                    <a asp-action="Details" asp-route-id="@top.Id" class="read-more-btn">Чети повече</a>
+                </div>
+            </article>
+        }
+    </section>
+
+    <form class="news-filters" method="get" asp-action="All">
+        <input type="search" name="search" value="@Model.Search" placeholder="Търсачка за новини..." />
+
+        <div class="category-pills">
+            <a asp-action="All" class="pill @(string.IsNullOrWhiteSpace(Model.Category) ? "active" : string.Empty)">Всички</a>
+            @foreach (var category in Model.Categories)
+            {
+                <a asp-action="All" asp-route-category="@category" asp-route-search="@Model.Search" class="pill @(Model.Category == category ? "active" : string.Empty)">@category</a>
+            }
+        </div>
+
+        <button type="submit" class="apply-filter">Филтрирай</button>
+    </form>
+
+    <section class="news-grid">
+        @if (!Model.News.Any())
+        {
+            <p class="news-empty">Няма резултати по зададените критерии.</p>
+        }
+        else
+        {
+            @foreach (var item in Model.News)
+            {
+                <article class="news-card">
+                    <img src="@(item.ImageUrl ?? "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80")" alt="@item.Title" />
+                    <div class="news-card-content">
+                        <span class="news-category">@item.Category</span>
+                        <h3>@item.Title</h3>
+                        <p>@item.PreviewText</p>
+                        <div class="news-meta">
+                            <span>❤️ @item.LikesCount</span>
+                            <span>💬 @item.CommentsCount</span>
+                            <span>@item.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy")</span>
+                        </div>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="read-more-btn">Чети повече</a>
+                    </div>
+                </article>
+            }
+        }
+    </section>
+</section>

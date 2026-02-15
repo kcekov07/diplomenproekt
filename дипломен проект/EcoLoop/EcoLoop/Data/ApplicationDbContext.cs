@@ -20,7 +20,9 @@ namespace EcoLoop.Data
         public DbSet<News> News { get; set; } = null!;
         public DbSet<Comment> Comments { get; set; } = null!;
         public DbSet<EcoPoints> EcoPoints { get; set; } = null!;
-       
+
+        public DbSet<NewsLike> NewsLikes { get; set; } = null!;
+
         public DbSet<CommentLike> CommentLikes { get; set; } = null!;
         
         public DbSet<CommentHelpful> CommentHelpfuls { get; set; } = null!;
@@ -57,6 +59,15 @@ namespace EcoLoop.Data
                 .HasOne(c => c.News)
                 .WithMany()
                 .HasForeignKey(c => c.NewsId)
+                .OnDelete(DeleteBehavior.Cascade);
+            builder.Entity<NewsLike>()
+               .HasIndex(nl => new { nl.NewsId, nl.VisitorKey })
+               .IsUnique();
+
+            builder.Entity<NewsLike>()
+                .HasOne(nl => nl.News)
+                .WithMany(n => n.Likes)
+                .HasForeignKey(nl => nl.NewsId)
                 .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<CommentHelpful>()
     .HasOne(h => h.Comment)

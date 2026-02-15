@@ -18,5 +18,7 @@ namespace EcoLoop.Data.Models
         public string? Author { get; set; }
 
         public string? Category { get; set; }
+
+        public ICollection<NewsLike> Likes { get; set; } = new List<NewsLike>();
     }
 }

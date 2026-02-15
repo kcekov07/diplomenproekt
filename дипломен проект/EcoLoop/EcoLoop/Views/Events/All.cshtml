@@ -27,14 +27,14 @@
         </div>
 
         <form method="get" asp-action="All" class="events-filters-grid">
-            <label class="events-filter-field">
+            <label class="events-filter-field events-filter-card">
                 <span>По дата</span>
-                <input type="date" name="date" value="@(Model.DateFilter?.ToString("yyyy-MM-dd"))" class="form-control" />
+                <input type="date" name="date" value="@(Model.DateFilter?.ToString("yyyy-MM-dd"))" class="form-control events-input" />
             </label>
 
-            <label class="events-filter-field">
+            <label class="events-filter-field events-filter-card">
                 <span>По тип</span>
-                <select name="type" class="form-select">
+                <select name="type" class="form-select events-input">
                     <option value="">Всички</option>
                     @foreach (var eventType in Model.AvailableTypes)
                     {
@@ -50,9 +50,9 @@
                 </select>
             </label>
 
-            <label class="events-filter-field">
+            <label class="events-filter-field events-filter-card">
                 <span>По град</span>
-                <select name="city" class="form-select">
+                <select name="city" class="form-select events-input">
                     <option value="">Всички</option>
                     @foreach (var eventCity in Model.AvailableCities)
                     {
@@ -68,7 +68,7 @@
                 </select>
             </label>
 
-            <div class="events-filter-actions">
+            <div class="events-filter-actions events-filter-card">
                 <button class="btn btn-primary" type="submit">Филтрирай</button>
                 <a asp-action="All" class="btn btn-ghost">Изчисти</a>
             </div>

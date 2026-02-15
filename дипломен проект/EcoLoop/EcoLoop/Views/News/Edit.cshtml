@@ -1,0 +1,26 @@
+﻿@model EcoLoop.Models.NewsFormViewModel
+@{
+    ViewData["Title"] = "Редактирай новина";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/news.css" asp-append-version="true" />
+}
+
+<section class="news-form-wrap">
+    <h1>Редактирай новина</h1>
+    <form asp-action="Edit" method="post" class="news-form-card">
+        @Html.AntiForgeryToken()
+        <input asp-for="Id" type="hidden" />
+        <partial name="_NewsForm" model="Model" />
+
+        <div class="news-form-actions">
+            <a class="btn btn-outline-secondary" asp-action="Details" asp-route-id="@Model.Id">Отказ</a>
+            <button class="btn btn-success" type="submit">Запази</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

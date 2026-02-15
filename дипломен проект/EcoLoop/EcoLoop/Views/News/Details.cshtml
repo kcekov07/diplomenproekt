@@ -1,0 +1,86 @@
+﻿@model EcoLoop.Models.NewsDetailsViewModel
+@{
+    ViewData["Title"] = Model.Article.Title;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/news.css" asp-append-version="true" />
+}
+
+<article class="news-article-page">
+    <header class="article-header">
+        <span class="news-category">@Model.Article.Category</span>
+        <h1>@Model.Article.Title</h1>
+        <div class="article-meta">
+            <span>📅 @Model.Article.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy")</span>
+            <span>✍️ @(string.IsNullOrWhiteSpace(Model.Article.Author) ? "EcoLoop Екип" : Model.Article.Author)</span>
+        </div>
+    </header>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Article.ImageUrl))
+    {
+        <img class="article-main-image" src="@Model.Article.ImageUrl" alt="@Model.Article.Title" />
+    }
+
+    <section class="article-content">
+        @Model.Article.Content
+    </section>
+
+    <section class="article-actions">
+        <form asp-action="ToggleLike" asp-route-id="@Model.Article.Id" method="post">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="like-btn @(Model.IsLikedByVisitor ? "active" : string.Empty)">❤️ Like (@Model.LikesCount)</button>
+        </form>
+
+        <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path)" target="_blank" rel="noopener">🔄 Споделяне</a>
+        <a class="share-btn" asp-action="Edit" asp-route-id="@Model.Article.Id">✏️ Редактирай</a>
+        <form asp-action="Delete" asp-route-id="@Model.Article.Id" method="post" onsubmit="return confirm('Сигурни ли сте?');">
+            @Html.AntiForgeryToken()
+            <button type="submit" class="delete-btn">🗑️ Изтрий</button>
+        </form>
+    </section>
+
+    <section class="article-comments">
+        <h2>💬 Коментари (@Model.Comments.Count)</h2>
+        <form asp-action="AddComment" asp-route-id="@Model.Article.Id" method="post" class="comment-form">
+            @Html.AntiForgeryToken()
+            <input type="text" name="visitorName" placeholder="Име (по желание)" maxlength="60" />
+            <textarea name="text" required maxlength="2000" placeholder="Напиши коментар..."></textarea>
+            <button type="submit">Изпрати</button>
+        </form>
+
+        <div class="comment-list">
+            @if (!Model.Comments.Any())
+            {
+                <p>Все още няма коментари.</p>
+            }
+            else
+            {
+                @foreach (var c in Model.Comments)
+                {
+                    <article class="comment-item">
+                        <strong>@(string.IsNullOrWhiteSpace(c.VisitorName) ? "Анонимен" : c.VisitorName)</strong>
+                        <span>@c.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                        <p>@c.Text</p>
+                    </article>
+                }
+            }
+        </div>
+    </section>
+
+    <section class="recommended-news">
+        <h2>Препоръчани новини</h2>
+        <div class="recommended-grid">
+            @foreach (var item in Model.RecommendedNews)
+            {
+                <article class="news-card compact">
+                    <img src="@(item.ImageUrl ?? "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80")" alt="@item.Title" />
+                    <div class="news-card-content">
+                        <h3>@item.Title</h3>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="read-more-btn">Чети повече</a>
+                    </div>
+                </article>
+            }
+        </div>
+    </section>
+</article>

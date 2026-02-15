@@ -3,50 +3,50 @@
 <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
 <div class="events-form-grid">
-    <label class="events-filter-field">
+    <label class="events-filter-field events-filter-card">
         <span>Заглавие</span>
-        <input asp-for="Title" class="form-control" />
+        <input asp-for="Title" class="form-control events-input" placeholder="Напр. Градско почистване" />
         <span asp-validation-for="Title" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field">
+    <label class="events-filter-field events-filter-card">
         <span>Снимка (URL)</span>
-        <input asp-for="ImageUrl" class="form-control" />
+        <input asp-for="ImageUrl" class="form-control events-input" placeholder="https://..." />
         <span asp-validation-for="ImageUrl" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field">
+    <label class="events-filter-field events-filter-card">
         <span>Дата</span>
-        <input asp-for="Date" class="form-control" />
+        <input asp-for="Date" class="form-control events-input" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field">
+    <label class="events-filter-field events-filter-card">
         <span>Тип</span>
         <div class="event-type-row">
-            <select asp-for="Type" class="form-select">
+            <select asp-for="Type" class="form-select events-input">
                 <option value="">Избери тип</option>
                 @foreach (var eventType in Model.AvailableTypes)
                 {
                     <option value="@eventType">@eventType</option>
                 }
             </select>
-            <input asp-for="CustomType" class="form-control" placeholder="Или нов тип" />
+            <input asp-for="CustomType" class="form-control events-input" placeholder="Или нов тип" />
         </div>
         <small class="small-muted">Можеш да избереш готов тип или да въведеш нов.</small>
         <span asp-validation-for="Type" class="text-danger"></span>
         <span asp-validation-for="CustomType" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field">
+    <label class="events-filter-field events-filter-card">
         <span>Град</span>
-        <input asp-for="City" class="form-control" placeholder="София" />
+        <input asp-for="City" class="form-control events-input" placeholder="София" />
         <span asp-validation-for="City" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field events-filter-field--full">
+    <label class="events-filter-field events-filter-field--full events-filter-card">
         <span>Кратко описание</span>
-        <textarea asp-for="ShortDescription" class="form-control" rows="4"></textarea>
+        <textarea asp-for="ShortDescription" class="form-control events-input" rows="4" placeholder="Добави важни детайли за събитието..."></textarea>
         <span asp-validation-for="ShortDescription" class="text-danger"></span>
     </label>
 </div>

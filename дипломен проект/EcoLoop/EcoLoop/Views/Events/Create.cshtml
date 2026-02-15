@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="~/css/events.css" />
 }
 <section class="events-form-page">
-    <header class="events-form-header">
+    <header class="events-form-header events-form-intro">
         <h1>Добави ново събитие</h1>
         <p class="small-muted mb-0">Попълни данните и публикувай събитието за общността.</p>
     </header>
 
-    <form asp-action="Create" method="post" class="events-form-shell">
+    <form asp-action="Create" method="post" class="events-form-shell events-form-shell--modern">
         @Html.Partial("_EventForm", Model)
 
         <div class="events-form-actions">
