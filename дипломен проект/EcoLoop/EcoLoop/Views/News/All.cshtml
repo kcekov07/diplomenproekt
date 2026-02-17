@@ -9,7 +9,11 @@
 
 <section class="news-page">
     <header class="news-header">
-        <h1>Последни еко новини</h1>
+        <div>
+            <span class="news-kicker">Еко медия</span>
+            <h1>Последни еко новини</h1>
+            <p>Истории за устойчив живот, зелени иновации и събития от общността на EcoLoop.</p>
+        </div>
         <a class="news-add-btn" asp-action="Create">➕ Добави новина</a>
     </header>
 
@@ -28,7 +32,10 @@
     </section>
 
     <form class="news-filters" method="get" asp-action="All">
-        <input type="search" name="search" value="@Model.Search" placeholder="Търсачка за новини..." />
+        <label class="news-filter-search">
+            <span>Търсене</span>
+            <input type="search" name="search" value="@Model.Search" placeholder="Търсачка за новини..." />
+        </label>
 
         <div class="category-pills">
             <a asp-action="All" class="pill @(string.IsNullOrWhiteSpace(Model.Category) ? "active" : string.Empty)">Всички</a>

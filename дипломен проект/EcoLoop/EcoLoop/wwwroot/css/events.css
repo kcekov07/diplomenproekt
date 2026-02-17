@@ -9,12 +9,29 @@
     justify-content: space-between;
     align-items: flex-end;
     gap: 1rem;
-    background: linear-gradient(130deg, #ffffff 0%, #eefcf3 45%, #e4f8ed 100%);
+    background: radial-gradient(circle at 88% 16%, rgba(44, 155, 96, 0.25) 0%, rgba(44, 155, 96, 0) 45%), linear-gradient(130deg, #ffffff 0%, #eefcf3 45%, #e4f8ed 100%);
     border: 1px solid rgba(37, 87, 51, 0.16);
     border-radius: 24px;
     padding: 1.25rem;
     box-shadow: 0 14px 30px rgba(16, 47, 30, 0.1);
 }
+
+.events-hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .45rem;
+    margin-top: .8rem;
+}
+
+    .events-hero-badges span {
+        border: 1px solid rgba(37, 87, 51, 0.16);
+        background: rgba(255, 255, 255, 0.82);
+        border-radius: 999px;
+        padding: .25rem .65rem;
+        font-size: .8rem;
+        color: var(--eco-green-dark);
+        font-weight: 700;
+    }
 
 .events-title {
     margin: 0 0 .35rem;
@@ -29,10 +46,26 @@
     border-radius: 20px;
     padding: 1rem;
     box-shadow: 0 10px 26px rgba(16, 47, 30, 0.1);
+    position: relative;
+    overflow: hidden;
 }
+
+    .events-filters-panel::after {
+        content: "";
+        position: absolute;
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(44, 155, 96, 0.2) 0%, rgba(44, 155, 96, 0) 70%);
+        right: -120px;
+        top: -120px;
+        pointer-events: none;
+    }
 
 .events-filter-header {
     margin-bottom: .8rem;
+    position: relative;
+    z-index: 1;
 }
 
     .events-filter-header h2 {
@@ -52,6 +85,8 @@
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: .8rem;
+    position: relative;
+    z-index: 1;
 }
 
 .events-filter-field {
@@ -104,7 +139,7 @@
 }
 
 .event-card {
-    background: #fff;
+    background: linear-gradient(165deg, #ffffff 0%, #f9fefb 100%);
     border: 1px solid rgba(37, 87, 51, 0.15);
     border-radius: 18px;
     overflow: hidden;
@@ -142,7 +177,7 @@
 
 .event-card-title {
     margin: 0;
-    font-size: 1.08rem;
+    font-size: 1.1rem;
     color: var(--eco-green-dark);
     font-weight: 800;
 }
@@ -161,6 +196,7 @@
 .event-card-description {
     color: var(--eco-muted);
     margin: 0;
+    line-height: 1.55;
 }
 
 .event-card-actions {
