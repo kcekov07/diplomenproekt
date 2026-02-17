@@ -253,7 +253,46 @@
     padding: 1rem;
     background: rgba(255, 255, 255, 0.9);
 }
+.news-filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .6rem;
+}
 
+.clear-filter {
+    border: 1px solid rgba(37, 87, 51, 0.22);
+    border-radius: 999px;
+    padding: .52rem .95rem;
+    text-decoration: none;
+    color: #0f5132;
+    font-weight: 700;
+    background: #fff;
+}
+
+.news-result-info {
+    margin: 0;
+    color: #475569;
+}
+
+.news-article-page {
+    background: linear-gradient(160deg, #ffffff 0%, #f6fcf8 100%);
+    border: 1px solid var(--eco-border);
+    border-radius: 24px;
+    padding: 1.3rem;
+    box-shadow: var(--shadow-1);
+}
+
+.article-header,
+.article-content,
+.article-actions,
+.article-comments,
+.recommended-news {
+    padding: 1rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(37, 87, 51, 0.12);
+}
 
 .article-header h1 {
     margin: .2rem 0;
@@ -342,7 +381,39 @@
     width: 100%;
 }
 
+.comment-form input,
+.comment-form textarea {
+    border: 1px solid #cbd5e1;
+    border-radius: .72rem;
+    padding: .62rem .74rem;
+    font-size: .96rem;
+}
 
+    .comment-form input:focus,
+    .comment-form textarea:focus {
+        border-color: rgba(30, 115, 57, 0.55);
+        box-shadow: 0 0 0 .2rem rgba(30, 115, 57, 0.14);
+        outline: none;
+    }
+
+.comment-form textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.comment-submit-btn {
+    border: 0;
+    border-radius: .7rem;
+    background: linear-gradient(135deg, #2c9b60, #1f7f4f);
+    color: #fff;
+    font-weight: 700;
+    padding: .62rem .9rem;
+}
+
+.comment-list {
+    display: grid;
+    gap: .5rem;
+}
 .comment-item {
     border-bottom: 1px solid #e2e8f0;
     padding: .7rem 0;
@@ -369,7 +440,14 @@
         grid-template-columns: 1fr;
     }
 
-    .news-form-actions {
+    .news-form-actions,
+    .news-filter-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .news-article-page {
+        padding: .8rem;
         flex-direction: column;
     }
 }

@@ -23,12 +23,17 @@ namespace EcoLoop.Controllers
 
         public async Task<IActionResult> All(string? search, string? category)
         {
+            var normalizedSearch = string.IsNullOrWhiteSpace(search) ? null : search.Trim();
             var query = _db.News.AsNoTracking().AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search))
+            if (!string.IsNullOrWhiteSpace(normalizedSearch))
             {
-                var term = search.Trim();
-                query = query.Where(n => n.Title.Contains(term) || (n.Content ?? string.Empty).Contains(term));
+                var pattern = $"%{normalizedSearch}%";
+                query = query.Where(n =>
+                    EF.Functions.Like(n.Title, pattern) ||
+                    EF.Functions.Like(n.Content ?? string.Empty, pattern) ||
+                    EF.Functions.Like(n.Author ?? string.Empty, pattern) ||
+                    EF.Functions.Like(n.Category ?? string.Empty, pattern));
             }
 
             if (!string.IsNullOrWhiteSpace(category))
@@ -70,7 +75,7 @@ namespace EcoLoop.Controllers
 
             var model = new NewsIndexViewModel
             {
-                Search = search,
+                Search = normalizedSearch,
                 Category = category,
                 Categories = FixedCategories.ToList(),
                 TopNews = topNews,
@@ -118,6 +123,27 @@ namespace EcoLoop.Controllers
                     })
                     .ToListAsync()
             };
+            if (!model.RecommendedNews.Any())
+            {
+                model.RecommendedNews = await _db.News
+                    .AsNoTracking()
+                    .Where(n => n.Id != id)
+                    .OrderByDescending(n => n.PublishedAt)
+                    .Take(3)
+                    .Select(n => new NewsListItemViewModel
+                    {
+                        Id = n.Id,
+                        Title = n.Title,
+                        Category = n.Category ?? "Общо",
+                        ImageUrl = n.ImageUrl,
+                        PublishedAt = n.PublishedAt,
+                        PreviewText = (n.Content ?? string.Empty).Length > 130 ? (n.Content ?? string.Empty).Substring(0, 130) + "..." : (n.Content ?? string.Empty),
+                        LikesCount = _db.NewsLikes.Count(l => l.NewsId == n.Id),
+                        CommentsCount = _db.Comments.Count(c => c.NewsId == n.Id)
+                    })
+                    .ToListAsync();
+            }
+
 
             return View(model);
         }

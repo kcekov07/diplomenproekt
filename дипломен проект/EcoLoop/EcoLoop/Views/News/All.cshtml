@@ -17,24 +17,27 @@
         <a class="news-add-btn" asp-action="Create">➕ Добави новина</a>
     </header>
 
-    <section class="news-top-grid">
-        @foreach (var top in Model.TopNews)
-        {
-            <article class="news-top-card" style="background-image:url('@(top.ImageUrl ?? "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80")')">
-                <div class="news-top-overlay">
-                    <span class="news-category">@top.Category</span>
-                    <h3>@top.Title</h3>
-                    <p>@top.PreviewText</p>
-                    <a asp-action="Details" asp-route-id="@top.Id" class="read-more-btn">Чети повече</a>
-                </div>
-            </article>
-        }
-    </section>
+    @if (Model.TopNews.Any())
+    {
+        <section class="news-top-grid">
+            @foreach (var top in Model.TopNews)
+            {
+                <article class="news-top-card" style="background-image:url('@(top.ImageUrl ?? "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80")')">
+                    <div class="news-top-overlay">
+                        <span class="news-category">@top.Category</span>
+                        <h3>@top.Title</h3>
+                        <p>@top.PreviewText</p>
+                        <a asp-action="Details" asp-route-id="@top.Id" class="read-more-btn">Чети повече</a>
+                    </div>
+                </article>
+            }
+        </section>
+    }
 
     <form class="news-filters" method="get" asp-action="All">
         <label class="news-filter-search">
             <span>Търсене</span>
-            <input type="search" name="search" value="@Model.Search" placeholder="Търсачка за новини..." />
+            <input type="search" name="search" value="@Model.Search" placeholder="Заглавие, съдържание, автор или категория..." />
         </label>
 
         <div class="category-pills">
@@ -45,8 +48,17 @@
             }
         </div>
 
-        <button type="submit" class="apply-filter">Филтрирай</button>
+        <div class="news-filter-actions">
+            <button type="submit" class="apply-filter">Филтрирай</button>
+            @if (!string.IsNullOrWhiteSpace(Model.Search) || !string.IsNullOrWhiteSpace(Model.Category))
+            {
+                <a asp-action="All" class="clear-filter">Изчисти</a>
+            }
+        </div>
     </form>
+
+    <p class="news-result-info">Показани новини: <strong>@Model.News.Count</strong></p>
+
 
     <section class="news-grid">
         @if (!Model.News.Any())
