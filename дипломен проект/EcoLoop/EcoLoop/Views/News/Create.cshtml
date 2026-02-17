@@ -8,14 +8,18 @@
 }
 
 <section class="news-form-wrap">
-    <h1>Добави новина</h1>
+    <header class="news-form-intro">
+        <span class="news-kicker">Редактор</span>
+        <h1>Добави новина</h1>
+        <p>Създай модерно представена публикация с ясна структура и полезно съдържание.</p>
+    </header>
     <form asp-action="Create" method="post" class="news-form-card">
         @Html.AntiForgeryToken()
         <partial name="_NewsForm" model="Model" />
 
         <div class="news-form-actions">
-            <a class="btn btn-outline-secondary" asp-action="All">Отказ</a>
-            <button class="btn btn-success" type="submit">Публикувай</button>
+            <a class="btn btn-ghost" asp-action="All">Отказ</a>
+            <button class="btn btn-primary" type="submit">Публикувай</button>
         </div>
     </form>
 </section>

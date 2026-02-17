@@ -1,38 +1,41 @@
 ﻿@model EcoLoop.Models.NewsFormViewModel
 
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div asp-validation-summary="ModelOnly" class="news-validation"></div>
 
-<div class="mb-3">
-    <label asp-for="Title" class="form-label"></label>
-    <input asp-for="Title" class="form-control" />
-    <span asp-validation-for="Title" class="text-danger"></span>
-</div>
+<div class="news-form-grid">
+    <label class="news-form-field">
+        <span>Заглавие</span>
+        <input asp-for="Title" class="news-input" placeholder="Например: Нови правила за разделно събиране" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </label>
 
-<div class="mb-3">
-    <label asp-for="Category" class="form-label">Категория</label>
-    <select asp-for="Category" class="form-select">
-        <option value="">Избери категория</option>
-        <option>Еко бизнес</option>
-        <option>Общество</option>
-        <option>Съвети</option>
-        <option>Законодателство</option>
-        <option>Локални</option>
-    </select>
-    <span asp-validation-for="Category" class="text-danger"></span>
-</div>
+    <label class="news-form-field">
+        <span>Категория</span>
+        <select asp-for="Category" class="news-input">
+            <option value="">Избери категория</option>
+            <option>Еко бизнес</option>
+            <option>Общество</option>
+            <option>Съвети</option>
+            <option>Законодателство</option>
+            <option>Локални</option>
+        </select>
+        <span asp-validation-for="Category" class="text-danger"></span>
+    </label>
 
-<div class="mb-3">
-    <label asp-for="Author" class="form-label">Автор</label>
-    <input asp-for="Author" class="form-control" placeholder="Пример: Иван Петров" />
-</div>
 
-<div class="mb-3">
-    <label asp-for="ImageUrl" class="form-label"></label>
-    <input asp-for="ImageUrl" class="form-control" placeholder="https://..." />
-</div>
+    <label class="news-form-field">
+        <span>Автор</span>
+        <input asp-for="Author" class="news-input" placeholder="Пример: Иван Петров" />
+    </label>
 
-<div class="mb-3">
-    <label asp-for="Content" class="form-label">Пълен текст</label>
-    <textarea asp-for="Content" rows="10" class="form-control"></textarea>
-    <span asp-validation-for="Content" class="text-danger"></span>
+    <label class="news-form-field">
+        <span>Основно изображение (URL)</span>
+        <input asp-for="ImageUrl" class="news-input" placeholder="https://..." />
+    </label>
+
+    <label class="news-form-field news-form-field--full">
+        <span>Пълен текст</span>
+        <textarea asp-for="Content" rows="10" class="news-input" placeholder="Напиши стойностна и полезна новина за общността..."></textarea>
+        <span asp-validation-for="Content" class="text-danger"></span>
+    </label>
 </div>

@@ -97,11 +97,11 @@ body {
         white-space: nowrap;
         transition: all 0.2s ease;
     }
-main-nav .nav-link:hover {
-    background: var(--eco-green-soft);
-    color: var(--eco-green-dark);
-    transform: translateY(-1px);
-}
+        .main-nav .nav-link:hover {
+            background: var(--eco-green-soft);
+            color: var(--eco-green-dark);
+            transform: translateY(-1px);
+        }
 .main-nav .nav-icon {
     font-size: 1rem;
     line-height: 1;
