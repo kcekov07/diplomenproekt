@@ -26,6 +26,10 @@ namespace EcoLoop.Data
         public DbSet<CommentLike> CommentLikes { get; set; } = null!;
         
         public DbSet<CommentHelpful> CommentHelpfuls { get; set; } = null!;
+        public DbSet<UserProfile> UserProfiles { get; set; } = null!;
+        public DbSet<UserFavoriteStore> UserFavoriteStores { get; set; } = null!;
+        public DbSet<UserVisitedStore> UserVisitedStores { get; set; } = null!;
+        public DbSet<UserEventParticipation> UserEventParticipations { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -43,8 +47,6 @@ namespace EcoLoop.Data
                 .WithMany(s => s.Phones)
                 .HasForeignKey(sp => sp.StoreId)
                 .OnDelete(DeleteBehavior.Cascade);
-            base.OnModelCreating(builder);
-
             builder.Entity<CommentLike>()
                 .HasIndex(x => new { x.CommentId, x.UserId })
                 .IsUnique();
@@ -78,6 +80,21 @@ namespace EcoLoop.Data
             // one helpful per visitor per comment
             builder.Entity<CommentHelpful>()
                 .HasIndex(h => new { h.CommentId, h.VisitorKey })
+                .IsUnique();
+            builder.Entity<UserProfile>()
+                .HasIndex(x => x.UserId)
+                .IsUnique();
+
+            builder.Entity<UserFavoriteStore>()
+                .HasIndex(x => new { x.UserId, x.StoreId })
+                .IsUnique();
+
+            builder.Entity<UserVisitedStore>()
+                .HasIndex(x => new { x.UserId, x.StoreId })
+                .IsUnique();
+
+            builder.Entity<UserEventParticipation>()
+                .HasIndex(x => new { x.UserId, x.EventId })
                 .IsUnique();
         }
     }

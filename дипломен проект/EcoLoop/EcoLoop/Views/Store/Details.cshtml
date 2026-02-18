@@ -33,7 +33,13 @@
 <div class="sd-page">
     <div class="sd-topbar">
         <button type="button" class="sd-back" onclick="history.back()">← Назад</button>
-        
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <form asp-controller="Store" asp-action="ToggleFavorite" asp-route-id="@Model.Id" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">@((ViewBag.IsFavorite ?? false) ? "Премахни от любими" : "Добави в любими")</button>
+            </form>
+        }
     </div>
 
     <section class="sd-hero">

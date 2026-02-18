@@ -1,6 +1,7 @@
 ﻿using EcoLoop.Data;
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -106,12 +107,29 @@ namespace EcoLoop.Controllers
             }
             ViewBag.CanEditCommentIds = canEdit;
 
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (!string.IsNullOrWhiteSpace(userId))
+                {
+                    var visitedExists = await _db.UserVisitedStores.AnyAsync(x => x.UserId == userId && x.StoreId == id);
+                    if (!visitedExists)
+                    {
+                        _db.UserVisitedStores.Add(new UserVisitedStore { UserId = userId, StoreId = id });
+                        await _db.SaveChangesAsync();
+                    }
+
+                    ViewBag.IsFavorite = await _db.UserFavoriteStores.AnyAsync(x => x.UserId == userId && x.StoreId == id);
+                }
+            }
             return View(store);
 
 
         }
 
         // GET: /Store/Add
+
+        [Authorize(Roles = "Producer,Moderator,Admin")]
         public IActionResult Add()
         {
             ViewData["Categories"] = new[] {
@@ -126,6 +144,7 @@ namespace EcoLoop.Controllers
         }
 
         // POST: /Store/Add
+        [Authorize(Roles = "Producer,Moderator,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Add(StoreAddViewModel model)
@@ -154,6 +173,8 @@ namespace EcoLoop.Controllers
                 Longitude = model.Longitude,
                 AcceptsOwnPackaging = model.AcceptsOwnPackaging,
                 IsProducer = model.IsProducer,
+                CreatorId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                IsApproved = User.IsInRole("Admin") || User.IsInRole("Moderator"),
 
                 // NEW
                 EcoTags = string.IsNullOrWhiteSpace(model.EcoTags) ? null : model.EcoTags.Trim(),
@@ -320,6 +341,10 @@ namespace EcoLoop.Controllers
 
             if (store == null) return NotFound();
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var isElevated = User.IsInRole("Admin") || User.IsInRole("Moderator");
+            if (!isElevated && store.CreatorId != userId) return Forbid();
+
             store.Name = model.Name?.Trim() ?? string.Empty;
             store.Category = string.IsNullOrWhiteSpace(model.Category) ? null : model.Category;
             store.ShortDescription = !string.IsNullOrWhiteSpace(model.ShortDescription)
@@ -395,12 +420,18 @@ namespace EcoLoop.Controllers
         }
 
         // POST: delete image (AJAX)
+        [Authorize(Roles = "Producer,Moderator,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteImage(int imageId)
         {
             var img = await _db.StoreImages.FindAsync(imageId);
             if (img == null) return Json(new { ok = false, error = "not_found" });
+
+            var store = await _db.Stores.FindAsync(img.StoreId);
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var isElevated = User.IsInRole("Admin") || User.IsInRole("Moderator");
+            if (store == null || (!isElevated && store.CreatorId != userId)) return Forbid();
 
             try
             {
@@ -429,6 +460,47 @@ namespace EcoLoop.Controllers
             }
         }
 
+        [Authorize(Roles = "Producer,Moderator,Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var store = await _db.Stores.FindAsync(id);
+            if (store == null) return NotFound();
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var isElevated = User.IsInRole("Admin") || User.IsInRole("Moderator");
+            if (!isElevated && store.CreatorId != userId)
+            {
+                return Forbid();
+            }
+
+            _db.Stores.Remove(store);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(All));
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ToggleFavorite(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var fav = await _db.UserFavoriteStores.FirstOrDefaultAsync(x => x.UserId == userId && x.StoreId == id);
+            if (fav == null)
+            {
+                _db.UserFavoriteStores.Add(new UserFavoriteStore { UserId = userId, StoreId = id });
+            }
+            else
+            {
+                _db.UserFavoriteStores.Remove(fav);
+            }
+
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id });
+        }
         private static string? BuildWorkingHours(string? monToFri, string? sat, string? sun)
         {
             var parts = new List<string>();

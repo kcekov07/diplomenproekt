@@ -33,14 +33,17 @@
         </form>
 
         <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path)" target="_blank" rel="noopener">🔄 Споделяне</a>
-        <a class="share-btn" asp-action="Edit" asp-route-id="@Model.Article.Id">✏️ Редактирай</a>
-        <form asp-action="Delete" asp-route-id="@Model.Article.Id" method="post" onsubmit="return confirm('Сигурни ли сте?');">
-            @Html.AntiForgeryToken()
-            <button type="submit" class="delete-btn">🗑️ Изтрий</button>
-        </form>
-    </section>
+         @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <a class="share-btn" asp-action="Edit" asp-route-id="@Model.Article.Id">✏️ Редактирай</a>
+            <form asp-action="Delete" asp-route-id="@Model.Article.Id" method="post" onsubmit="return confirm('Сигурни ли сте?');">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="delete-btn">🗑️ Изтрий</button>
+            </form>
+        }
+   </section>
 
-    <section class="article-comments">
+  <section class="article-comments">
         <h2>💬 Коментари (@Model.Comments.Count)</h2>
         <form asp-action="AddComment" asp-route-id="@Model.Article.Id" method="post" class="comment-form">
             @Html.AntiForgeryToken()

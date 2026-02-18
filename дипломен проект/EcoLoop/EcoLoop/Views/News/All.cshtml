@@ -14,7 +14,10 @@
             <h1>Последни еко новини</h1>
             <p>Истории за устойчив живот, зелени иновации и събития от общността на EcoLoop.</p>
         </div>
-        <a class="news-add-btn" asp-action="Create">➕ Добави новина</a>
+        @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+        {
+            <a class="news-add-btn" asp-action="Create">➕ Добави новина</a>
+        }
     </header>
 
     

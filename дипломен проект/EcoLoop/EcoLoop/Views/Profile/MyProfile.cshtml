@@ -1,0 +1,25 @@
+﻿@model EcoLoop.Models.Profile.ProfileIndexViewModel
+@{
+    ViewData["Title"] = "Моят профил";
+}
+
+<section class="profile-card">
+    <div class="profile-avatar-wrap">
+        @if (!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+        {
+            <img src="@Model.ProfileImageUrl" alt="@Model.Username" class="profile-avatar" />
+        }
+        else
+        {
+            <div class="profile-avatar profile-avatar-placeholder">@Model.Username[..1]</div>
+        }
+    </div>
+
+    <div class="profile-content">
+        <h1>@Model.Username</h1>
+        <p><strong>Имейл:</strong> @Model.Email</p>
+        <p><strong>Роля:</strong> @Model.Role</p>
+        <p><strong>Ниво:</strong> @Model.Level</p>
+        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Manage/Index">Редакция на профила</a>
+    </div>
+</section>

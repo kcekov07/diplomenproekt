@@ -1,0 +1,32 @@
+﻿@model EcoLoop.Models.Profile.ProfileStatsViewModel
+@{
+    ViewData["Title"] = "Статистики";
+}
+
+<h1>Статистики на профила</h1>
+<div class="stats-grid">
+    <article class="stat-item"><h3>🌍 Посетени магазини</h3><p>@Model.VisitedStores</p></article>
+
+    @if (Model.Role == "Producer" || Model.Role == "Moderator")
+    {
+        <article class="stat-item"><h3>♻️ Добавени обекти</h3><p>@Model.AddedObjects</p></article>
+    }
+
+    <article class="stat-item"><h3>💚 Спестени опаковки</h3><p>@Model.SavedPackages</p></article>
+    <article class="stat-item"><h3>⭐ Значки</h3><p>@Model.AchievementsCount</p></article>
+</div>
+
+<h2>Ниво: @Model.Level</h2>
+@if (Model.Badges.Any())
+{
+    <ul>
+        @foreach (var badge in Model.Badges)
+        {
+            <li>@badge</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Все още няма спечелени значки.</p>
+}

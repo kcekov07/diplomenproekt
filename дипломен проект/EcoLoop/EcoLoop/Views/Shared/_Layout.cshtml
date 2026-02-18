@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using EcoLoop.Data.Models
+<!DOCTYPE html>
 <html lang="bg">
 <head>
     <meta charset="utf-8" />
@@ -8,7 +9,6 @@
     <link rel="stylesheet" href="~/css/footer.css" />
     <script src="~/js/site.js" defer></script>
     @RenderSection("Styles", required: false)
-
 </head>
 <body>
     <header class="site-header navbar-eco">
@@ -25,8 +25,14 @@
                 <a class="nav-link" href="/map"><span class="nav-icon">🗺️</span><span class="nav-text">Карта</span></a>
                 <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Събития</span></a>
                 <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">Новини</span></a>
-                <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Добави обект</span></a>
-                <a class="nav-link" href="/Admin/Index"><span class="nav-icon">🔧</span><span class="nav-text">Админ</span></a>
+                @if (User.IsInRole(UserRoleType.Producer) || User.IsInRole(UserRoleType.Moderator) || User.IsInRole(UserRoleType.Admin))
+                {
+                    <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Добави обект</span></a>
+                }
+                @if (User.IsInRole(UserRoleType.Admin) || User.IsInRole(UserRoleType.Moderator))
+                {
+                    <a class="nav-link" href="/Admin/Index"><span class="nav-icon">🔧</span><span class="nav-text">Админ</span></a>
+                }
             </nav>
 
             <div class="nav-actions">
@@ -35,30 +41,43 @@
                     <input name="q" type="search" class="nav-search-input" placeholder="Търси обекти, събития, новини…" />
                 </form>
 
-                <div class="auth-buttons">
-                    <a class="btn btn-link btn-ghost" href="/Identity/Account/Login">Вход</a>
-                    <a class="btn btn-primary" href="/Identity/Account/Register">Регистрация</a>
-                </div>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <details class="profile-dropdown">
+                        <summary class="btn btn-primary">Профил ▾</summary>
+                        <div class="dropdown-menu">
+                            <a href="/Profile/MyProfile">Моят профил</a>
+                            @if (!User.IsInRole(UserRoleType.Admin))
+                            {
+                                <a href="/Profile/Statistics">Статистики</a>
+                            }
+                            @if (User.IsInRole(UserRoleType.Producer) || User.IsInRole(UserRoleType.Moderator) || User.IsInRole(UserRoleType.Admin))
+                            {
+                                <a href="/Profile/MyStores">Моите магазини</a>
+                            }
+                            <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home")" method="post">
+                                <button type="submit" class="btn btn-link">Изход</button>
+                            </form>
+                        </div>
+                    </details>
+                }
+                else
+                {
+                    <div class="auth-buttons">
+                        <a class="btn btn-link btn-ghost" href="/Identity/Account/Login">Вход</a>
+                        <a class="btn btn-primary" href="/Identity/Account/Register">Регистрация</a>
+                    </div>
+                }
             </div>
         </div>
 
-        <div id="mobileNav" class="mobile-nav" aria-hidden="true">
-            <nav>
-                <a class="nav-link" href="/"><span class="nav-icon">🏠</span><span class="nav-text">Начало</span></a>
-                <a class="nav-link" href="/Store/All"><span class="nav-icon">🗺️</span><span class="nav-text">Карта</span></a>
-                <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Събития</span></a>
-                <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">Новини</span></a>
-                <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Добави обект</span></a>
-                <a class="nav-link" href="/Admin/Index"><span class="nav-icon">🔧</span><span class="nav-text">Админ</span></a>
-            </nav>
-        </div>
+        
     </header>
 
     <main role="main" class="container main-content">
         @RenderBody()
     </main>
 
-    @* centralized footer partial (avoid duplicate links) *@
     @await Html.PartialAsync("_Footer")
 
     @RenderSection("Scripts", required: false)

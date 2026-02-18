@@ -1,0 +1,39 @@
+﻿@using EcoLoop.Data.Models
+@{
+    ViewData["Title"] = "Админ панел";
+    var pendingStores = (IEnumerable<Store>)(ViewData["PendingStores"] ?? Enumerable.Empty<Store>());
+    var profiles = (IEnumerable<UserProfile>)(ViewData["Profiles"] ?? Enumerable.Empty<UserProfile>());
+}
+
+<h1>Админ панел</h1>
+
+<h2>Чакащи магазини за одобрение</h2>
+@if (!pendingStores.Any())
+{
+    <p>Няма чакащи магазини.</p>
+}
+else
+{
+    @foreach (var store in pendingStores)
+    {
+        <div class="admin-card">
+            <strong>@store.Name</strong>
+            <form asp-action="ApproveStore" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-primary">Одобри</button></form>
+            <form asp-action="DeleteStore" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-danger">Изтрий</button></form>
+        </div>
+    }
+}
+
+<h2>Потребители</h2>
+@foreach (var profile in profiles)
+{
+    <div class="admin-card">
+        <strong>@profile.Username</strong> - @profile.Role - @profile.Level
+
+        @if (User.IsInRole("Admin") && profile.Role != "Admin")
+        {
+            <form asp-action="PromoteToModerator" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-secondary">Повиши в модератор</button></form>
+            <form asp-action="DeleteUser" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-danger">Изтрий профил</button></form>
+        }
+    </div>
+}

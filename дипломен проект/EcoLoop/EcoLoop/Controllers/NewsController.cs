@@ -1,6 +1,7 @@
 ﻿using EcoLoop.Data;
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -149,10 +150,12 @@ namespace EcoLoop.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Moderator")]
         public IActionResult Create() => View(new NewsFormViewModel());
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Create(NewsFormViewModel model)
         {
             if (!ModelState.IsValid)
@@ -177,6 +180,7 @@ namespace EcoLoop.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Edit(int id)
         {
             var entity = await _db.News.FindAsync(id);
@@ -200,6 +204,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Edit(NewsFormViewModel model)
         {
             if (!ModelState.IsValid)
@@ -225,6 +230,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Delete(int id)
         {
             var entity = await _db.News.FindAsync(id);

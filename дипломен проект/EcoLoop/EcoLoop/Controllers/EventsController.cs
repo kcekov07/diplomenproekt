@@ -1,8 +1,10 @@
 ﻿using EcoLoop.Data;
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace EcoLoop.Controllers
 {
@@ -80,6 +82,7 @@ namespace EcoLoop.Controllers
             return View(item);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Create()
         {
             return View(new EventFormViewModel
@@ -90,6 +93,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Create(EventFormViewModel model)
         {
             model.Type = NormalizeEventType(model.Type, model.CustomType);
@@ -121,6 +125,7 @@ namespace EcoLoop.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Edit(int id)
         {
             var item = await _db.Events.FindAsync(id);
@@ -148,6 +153,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Edit(EventFormViewModel model)
         {
             model.Type = NormalizeEventType(model.Type, model.CustomType);
@@ -179,6 +185,7 @@ namespace EcoLoop.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin,Moderator")]
         public async Task<IActionResult> Delete(int id)
         {
             var item = await _db.Events.FindAsync(id);
@@ -191,6 +198,41 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(All));
+        }
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Join(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var exists = await _db.UserEventParticipations.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == id);
+            if (exists == null)
+            {
+                _db.UserEventParticipations.Add(new Data.Models.UserEventParticipation { UserId = userId, EventId = id });
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Leave(int id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var exists = await _db.UserEventParticipations.FirstOrDefaultAsync(x => x.UserId == userId && x.EventId == id);
+            if (exists != null)
+            {
+                _db.UserEventParticipations.Remove(exists);
+                await _db.SaveChangesAsync();
+            }
+
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         private async Task<List<string>> GetAvailableEventTypesAsync()

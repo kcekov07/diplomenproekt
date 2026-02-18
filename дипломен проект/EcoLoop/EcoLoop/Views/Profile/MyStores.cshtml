@@ -1,0 +1,28 @@
+﻿@model IEnumerable<EcoLoop.Models.StoreViewModel>
+@{
+    ViewData["Title"] = "Моите магазини";
+}
+
+<h1>Моите магазини</h1>
+
+@if (!Model.Any())
+{
+    <p>Все още нямате добавени магазини.</p>
+}
+else
+{
+    <div class="store-grid">
+        @foreach (var store in Model)
+        {
+            <article class="store-card">
+                <h3>@store.Name</h3>
+                <p>@store.ShortDescription</p>
+                <a asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id" class="btn btn-primary">Редакция</a>
+                <form asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id" method="post" style="display:inline-block;">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger">Изтрий</button>
+                </form>
+            </article>
+        }
+    </div>
+}

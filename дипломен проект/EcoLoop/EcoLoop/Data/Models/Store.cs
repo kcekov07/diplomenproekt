@@ -49,6 +49,10 @@ namespace EcoLoop.Data.Models
 
         public bool IsApproved { get; set; } = false;
 
+        [MaxLength(450)]
+        public string? CreatorId { get; set; }
+
+
         // New
         public string? WorkingHours { get; set; }
 
