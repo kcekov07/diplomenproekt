@@ -66,36 +66,36 @@ static async Task SeedEventsAsync(ApplicationDbContext db)
         {
             Title = "Zero Waste Market",
             Date = now.AddDays(7),
-            City = "София",
-            Type = "Пазар",
-            ShortDescription = "Пазар с локални производители и идеи за живот без отпадък.",
+            City = "пїЅпїЅпїЅпїЅпїЅ",
+            Type = "пїЅпїЅпїЅпїЅпїЅ",
+            ShortDescription = "пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.",
             ImageUrl = "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=60"
         },
         new Event
         {
-            Title = "Фестивал на рециклирането",
+            Title = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
             Date = now.AddDays(14),
-            City = "Пловдив",
-            Type = "Фестивал",
-            ShortDescription = "Ден с демонстрации, игри и работилници за разделно събиране.",
+            City = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+            Type = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+            ShortDescription = "пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.",
             ImageUrl = "https://images.unsplash.com/photo-1604187351574-c75ca79f5807?auto=format&fit=crop&w=1200&q=60"
         },
         new Event
         {
             Title = "Swap Party",
             Date = now.AddDays(10),
-            City = "Варна",
-            Type = "Обмен",
-            ShortDescription = "Размяна на дрехи и аксесоари вместо нови покупки.",
+            City = "пїЅпїЅпїЅпїЅпїЅ",
+            Type = "пїЅпїЅпїЅпїЅпїЅ",
+            ShortDescription = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.",
             ImageUrl = "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1200&q=60"
         },
         new Event
         {
-            Title = "Еко работилници",
+            Title = "пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
             Date = now.AddDays(21),
-            City = "Бургас",
-            Type = "Обучение",
-            ShortDescription = "Практични сесии за компостиране, upcycling и устойчив дом.",
+            City = "пїЅпїЅпїЅпїЅпїЅпїЅ",
+            Type = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ",
+            ShortDescription = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, upcycling пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ.",
             ImageUrl = "https://images.unsplash.com/photo-1461532257246-777de18cd58b?auto=format&fit=crop&w=1200&q=60"
         });
 

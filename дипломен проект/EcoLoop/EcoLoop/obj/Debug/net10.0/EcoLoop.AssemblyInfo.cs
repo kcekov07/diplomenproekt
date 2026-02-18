@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcoLoop")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b854ac880813bb0ef8c6930f1d72f9e29c46a61")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81f38262cfaa8dc52b330c6fbd6c75b720674d0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcoLoop")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcoLoop")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
