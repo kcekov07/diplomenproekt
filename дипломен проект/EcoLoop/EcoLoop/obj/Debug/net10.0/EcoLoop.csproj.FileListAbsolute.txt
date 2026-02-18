@@ -599,7 +599,6 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\7nk9iaifhi-{0}-9vr69e8ynj-9vr69e8ynj.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\cluqh2uef3-{0}-s0ym3shh1m-s0ym3shh1m.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mudf53qmuw-{0}-p57s6cp4k5-p57s6cp4k5.gz
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-5at6zga9ei-5at6zga9ei.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\yqvlg0v1e6-{0}-ybf0kpe95i-ybf0kpe95i.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mzhewhjjzr-{0}-pcsj7pdg4x-pcsj7pdg4x.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -743,3 +742,4 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\runtimes\win-arm64\native\e_sqlite3.dll
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-jrk3d0wwjf-jrk3d0wwjf.gz

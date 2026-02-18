@@ -187,7 +187,7 @@ namespace EcoLoop.Controllers
 
                 WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours),
                 Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim(),
-                IsApproved = true,
+                
                 Rating = 0m
             };
 
