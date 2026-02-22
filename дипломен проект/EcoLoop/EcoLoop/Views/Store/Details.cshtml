@@ -229,58 +229,58 @@
         }
 
         <!-- REVIEWS -->
-        <section class="sd-section">
-            <div class="sd-section__head">
-                <h2>Отзиви</h2>
-                <p class="sd-muted">@reviewsCount отзива</p>
-            </div>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <form asp-controller="Comments"
+                  asp-action="CreateStoreReview"
+                  method="post"
+                  class="sd-reviewForm">
 
-            <!-- Review form -->
-           <form asp-controller="Comments"
-      asp-action="CreateStoreReview"
-      method="post"
-      class="sd-reviewForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="storeId" value="@Model.Id" />
 
-    @Html.AntiForgeryToken()
-    <input type="hidden" name="storeId" value="@Model.Id" />
+                <div class="sd-formRow">
 
-    <div class="sd-formRow">
+                    <!-- ⭐ STAR RATING -->
+                    <div class="sd-starsInput">
 
-        <!-- ⭐ STAR RATING -->
-        <div class="sd-starsInput">
+                        <input type="radio" id="star1" name="rating" value="5" required>
+                        <label for="star1" title="5 звезди">★</label>
 
-            <input type="radio" id="star1" name="rating" value="5" required>
-            <label for="star1" title="5 звезди">★</label>
+                        <input type="radio" id="star2" name="rating" value="4">
+                        <label for="star2" title="4 звезди">★</label>
 
-            <input type="radio" id="star2" name="rating" value="4">
-            <label for="star2" title="4 звезди">★</label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3" title="3 звезди">★</label>
 
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3" title="3 звезди">★</label>
+                        <input type="radio" id="star4" name="rating" value="2">
+                        <label for="star4" title="2 звезди">★</label>
 
-            <input type="radio" id="star4" name="rating" value="2">
-            <label for="star4" title="2 звезди">★</label>
+                        <input type="radio" id="star5" name="rating" value="1">
+                        <label for="star5" title="1 звезда">★</label>
 
-            <input type="radio" id="star5" name="rating" value="1">
-            <label for="star5" title="1 звезда">★</label>
+                    </div>
 
-        </div>
+                    <input class="sd-nameInput"
+                           name="visitorName"
+                           maxlength="60"
+                           placeholder="Име (по желание)" />
+                </div>
 
-        <input class="sd-nameInput"
-               name="visitorName"
-               maxlength="60"
-               placeholder="Име (по желание)" />
-    </div>
+                <textarea name="text"
+                      required
+                      maxlength="2000"
+                      placeholder="Напиши отзив..."></textarea>
 
-    <textarea name="text"
-              required
-              maxlength="2000"
-              placeholder="Напиши отзив..."></textarea>
-
-    <button type="submit" class="sd-btn sd-btn--primary">
-        Публикувай
-    </button>
-</form>
+                <button type="submit" class="sd-btn sd-btn--primary">
+                    Публикувай
+                </button>
+            </form>
+        }
+        else
+        {
+            <div class="sd-empty">За да оставиш отзив и оценка, влез в профила си. <a href="/Identity/Account/Login">Вход</a></div>
+        }
 
             <div class="sd-reviews">
                 @if (!reviews.Any())
@@ -317,6 +317,8 @@
                             <p class="sd-review__text">@r.Text</p>
 
                             <div class="sd-review__actions">
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
                                 <form asp-controller="Comments" asp-action="ToggleHelpful" method="post">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="commentId" value="@r.Id" />
@@ -324,6 +326,11 @@
                                         👍 Helpful <span class="sd-helpful__count">@likes</span>
                                     </button>
                                 </form>
+                            }
+                            else
+                            {
+                                <a class="sd-actionLink" href="/Identity/Account/Login">Влез, за да отбележиш Helpful (@likes)</a>
+                            }
 
                                 @if (canEdit)
                                 {

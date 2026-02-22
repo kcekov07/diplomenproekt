@@ -566,7 +566,6 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\twwks4b0bg-{0}-ycimfjp3ci-ycimfjp3ci.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\dmlbaq7yzm-{0}-9dh95j23lb-9dh95j23lb.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\ecouxrgi2w-{0}-fujkmlvlrj-fujkmlvlrj.gz
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\uywb1pq1h0-{0}-z9m79028jr-z9m79028jr.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\e2qntxvnpk-{0}-t1cqhe9u97-t1cqhe9u97.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\55ekg54usm-{0}-sejl45xvog-sejl45xvog.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\qr0e0wkuwu-{0}-xvp3kq03qx-xvp3kq03qx.gz
@@ -743,3 +742,4 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\runtimes\win-x64\native\e_sqlite3.dll
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\bin\Debug\net10.0\runtimes\win-x86\native\e_sqlite3.dll
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-jrk3d0wwjf-jrk3d0wwjf.gz
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\uywb1pq1h0-{0}-ibo8ryzaz8-ibo8ryzaz8.gz

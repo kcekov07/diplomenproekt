@@ -1,5 +1,6 @@
 ﻿using EcoLoop.Data;
 using EcoLoop.Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -43,6 +44,7 @@ namespace EcoLoop.Controllers
         // ===== Create store review =====
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> CreateStoreReview(int storeId, string? visitorName, string text, int rating)
         {
             if (storeId <= 0) return BadRequest();
@@ -86,6 +88,7 @@ namespace EcoLoop.Controllers
         // ===== Edit store review =====
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> EditStoreReview(int id, string text, int rating)
         {
             var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == id && c.StoreId != null);
@@ -111,6 +114,7 @@ namespace EcoLoop.Controllers
         // ===== Delete store review =====
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> DeleteStoreReview(int id)
         {
             var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == id && c.StoreId != null);
@@ -133,6 +137,7 @@ namespace EcoLoop.Controllers
         // ===== Helpful toggle =====
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> ToggleHelpful(int commentId)
         {
             var visitorKey = GetOrCreateVisitorKey();

@@ -27,10 +27,17 @@
     </section>
 
     <section class="article-actions">
-        <form asp-action="ToggleLike" asp-route-id="@Model.Article.Id" method="post">
-            @Html.AntiForgeryToken()
-            <button type="submit" class="like-btn @(Model.IsLikedByVisitor ? "active" : string.Empty)">❤️ Харесай (@Model.LikesCount)</button>
-        </form>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <form asp-action="ToggleLike" asp-route-id="@Model.Article.Id" method="post">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="like-btn @(Model.IsLikedByVisitor ? "active" : string.Empty)">❤️ Харесай (@Model.LikesCount)</button>
+            </form>
+        }
+        else
+        {
+            <a class="like-btn" href="/Identity/Account/Login">Влез, за да харесаш (@Model.LikesCount)</a>
+        }
 
         <a class="share-btn" href="https://www.facebook.com/sharer/sharer.php?u=@Uri.EscapeDataString(Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path)" target="_blank" rel="noopener">🔄 Споделяне</a>
          @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
@@ -45,12 +52,19 @@
 
   <section class="article-comments">
         <h2>💬 Коментари (@Model.Comments.Count)</h2>
-        <form asp-action="AddComment" asp-route-id="@Model.Article.Id" method="post" class="comment-form">
-            @Html.AntiForgeryToken()
-            <input type="text" name="visitorName" placeholder="Име (по желание)" maxlength="60" />
-            <textarea name="text" required maxlength="2000" placeholder="Напиши коментар..."></textarea>
-            <button type="submit" class="comment-submit-btn">Изпрати</button>
-        </form>
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <form asp-action="AddComment" asp-route-id="@Model.Article.Id" method="post" class="comment-form">
+                @Html.AntiForgeryToken()
+                <input type="text" name="visitorName" placeholder="Име (по желание)" maxlength="60" />
+                <textarea name="text" required maxlength="2000" placeholder="Напиши коментар..."></textarea>
+                <button type="submit" class="comment-submit-btn">Изпрати</button>
+            </form>
+        }
+        else
+        {
+            <p>За да коментираш новини, трябва да си <a href="/Identity/Account/Login">влязъл в профила си</a>.</p>
+        }
 
         <div class="comment-list">
             @if (!Model.Comments.Any())

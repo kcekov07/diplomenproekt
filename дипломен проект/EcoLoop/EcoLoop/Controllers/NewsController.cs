@@ -246,6 +246,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> ToggleLike(int id)
         {
             var visitorKey = GetOrCreateVisitorKey();
@@ -266,6 +267,7 @@ namespace EcoLoop.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize]
         public async Task<IActionResult> AddComment(int id, string? visitorName, string text)
         {
             if (string.IsNullOrWhiteSpace(text))

@@ -1,12 +1,7 @@
 using EcoLoop.Data;
 using EcoLoop.Models;
 using Microsoft.AspNetCore.Mvc;
-
-
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using EcoLoop.Data;
-using EcoLoop.Models;
 
 namespace EcoLoop.Controllers
 {
@@ -21,21 +16,28 @@ namespace EcoLoop.Controllers
         
         public async Task<IActionResult> Index()
         {
-            // Nearby / top stores (4)
+            // Top stores by average review rating (4)
             var topStores = await _db.Stores
                 .Where(s => s.IsApproved)
-                .OrderByDescending(s => s.Rating)
-                .Take(8)
+                .Select(s => new
+                {
+                    Store = s,
+                    AverageRating = s.Comments.Any()
+                        ? s.Comments.Average(c => (decimal)c.Rating)
+                        : s.Rating
+                })
+                .OrderByDescending(x => x.AverageRating)
+                .Take(4)
                 .Select(s => new StoreViewModel
                 {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Category = s.Category,
-                    ShortDescription = s.ShortDescription,
-                    Latitude = s.Latitude,
-                    Longitude = s.Longitude,
-                    Rating = s.Rating,
-                    ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
+                    Id = s.Store.Id,
+                    Name = s.Store.Name,
+                    Category = s.Store.Category,
+                    ShortDescription = s.Store.ShortDescription,
+                    Latitude = s.Store.Latitude,
+                    Longitude = s.Store.Longitude,
+                    Rating = s.AverageRating,
+                    ImageUrl = s.Store.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
                 })
                 .ToListAsync();
 

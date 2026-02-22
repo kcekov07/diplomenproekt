@@ -252,9 +252,24 @@
     border-radius: 18px;
     overflow: hidden;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-}      
+}
 
-    
+.map-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+#map {
+    position: relative;
+    z-index: 1;
+}
+
+    #map .leaflet-pane,
+    #map .leaflet-top,
+    #map .leaflet-bottom {
+        z-index: 1 !important;
+    }
+
 
 /* Popup */
 .store-popup {
