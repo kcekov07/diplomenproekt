@@ -1,22 +1,17 @@
-﻿using Azure.Core;
-using EcoLoop.Data;
+﻿using EcoLoop.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
-using Newtonsoft.Json.Linq;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
 using System.IO;
 using System.Text;
 using System.Text.Encodings.Web;
-using static Microsoft.CodeAnalysis.CSharp.SyntaxTokenParser;
-using static System.Net.Mime.MediaTypeNames;
 using EcoLoop.Data.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+
 
 namespace EcoLoop.Areas.Identity.Pages.Account
 {
@@ -107,7 +102,7 @@ namespace EcoLoop.Areas.Identity.Pages.Account
             {
                 var user = CreateUser();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
+                await _userStore.SetUserNameAsync(user, Input.Username.Trim(), CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
@@ -132,20 +127,21 @@ namespace EcoLoop.Areas.Identity.Pages.Account
 
                     _logger.LogInformation("User created a new account with password.");
 
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-        values: new { area = "Identity", userId, code, returnUrl },
-                                 protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
+                        var userId = await _userManager.GetUserIdAsync(user);
+                        var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+                        var callbackUrl = Url.Page(
+                            "/Account/ConfirmEmail",
+                            pageHandler: null,
+                            values: new { area = "Identity", userId, code, returnUrl },
+                            protocol: Request.Scheme);
+
+                        await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
+                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+
                         return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                     }
 
@@ -166,7 +162,7 @@ namespace EcoLoop.Areas.Identity.Pages.Account
         {
             if (file == null || file.Length == 0)
             {
-                return null;
+                return "/images/default-avatar.svg";
             }
 
             var uploads = Path.Combine(_env.WebRootPath, "uploads", "profiles", userId);
