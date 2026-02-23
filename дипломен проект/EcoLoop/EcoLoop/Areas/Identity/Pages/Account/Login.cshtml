@@ -14,19 +14,22 @@
         <div class="auth-grid">
             <aside class="auth-hero">
                 <div>
-                    <h1>Добре дошъл обратно 👋</h1>
-                    <p>Влез в профила си и продължи със своите зелени цели.</p>
+                    <span class="auth-kicker">EcoLoop Access</span>
+                    <h1>Влез и продължи своето зелено пътешествие</h1>
+                    <p>Всеки вход е стъпка към по-чиста градска среда и по-активна еко общност.</p>
                 </div>
                 <ul>
-                    <li>Бърз достъп до профила</li>
-                    <li>История на активността</li>
-                    <li>Любими обекти и събития</li>
+                    <li>Персонални еко цели и активност</li>
+                    <li>Любими обекти, събития и новини</li>
+                    <li>Модерен dashboard за твоето въздействие</li>
                 </ul>
             </aside>
 
             <section class="auth-content">
-                <h2>Вход в акаунт</h2>
-                <form id="account" method="post">
+                <h2>Вход в акаунта</h2>
+                <p class="auth-subtitle">Радваме се да те видим отново 👋</p>
+
+                <form id="account" method="post" class="auth-form-surface">
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                     <div class="form-floating mb-3">
                         <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -38,18 +41,20 @@
                         <label asp-for="Input.Password" class="form-label">Парола</label>
                         <span asp-validation-for="Input.Password" class="text-danger"></span>
                     </div>
-                    <div class="checkbox mb-3">
-                        <label asp-for="Input.RememberMe" class="form-label">
-                            <input class="form-check-input" asp-for="Input.RememberMe" />
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" asp-for="Input.RememberMe" />
+                        <label asp-for="Input.RememberMe" class="form-check-label">
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
                     </div>
-                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary auth-btn">Вход</button>
+                    <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary auth-btn">Вход в EcoLoop</button>
 
-                    <div class="mt-3 auth-links">
-                        <p><a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a></p>
-                        <p><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Нямаш профил? Регистрирай се</a></p>
-                        <p><a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати отново email за потвърждение</a></p>
+                    <div class="auth-divider">нужна помощ?</div>
+
+                    <div class="auth-links">
+                        <p class="mb-1"><a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a></p>
+                        <p class="mb-1"><a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Нямаш профил? Създай нов</a></p>
+                        <p class="mb-0"><a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Изпрати отново email за потвърждение</a></p>
                     </div>
                 </form>
             </section>

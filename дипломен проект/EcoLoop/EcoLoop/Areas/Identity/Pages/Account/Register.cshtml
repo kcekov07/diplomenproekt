@@ -13,19 +13,22 @@
         <div class="auth-grid">
             <aside class="auth-hero">
                 <div>
-                    <h1>Създай нов EcoLoop профил 🌿</h1>
-                    <p>Влез в общност, която мисли устойчиво. Регистрацията отнема по-малко от минута.</p>
+                    <span class="auth-kicker">Join EcoLoop</span>
+                    <h1>Създай профил и стани част от зелената промяна</h1>
+                    <p>Превърни ежедневните си избори в реален позитивен ефект за природата и града.</p>
                 </div>
                 <ul>
-                    <li>Откривай обекти и еко събития</li>
-                    <li>Следи статистиките си</li>
-                    <li>Участвай активно в зелени инициативи</li>
+                    <li>Откривай устойчиви обекти около теб</li>
+                    <li>Участвай в еко събития и инициативи</li>
+                    <li>Следи своя прогрес и еко влияние</li>
                 </ul>
             </aside>
 
             <section class="auth-content">
-                <h2>Регистрация</h2>
-                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+                <h2>Нова регистрация</h2>
+                <p class="auth-subtitle">Създай своя модерен EcoLoop профил за по-малко от минута.</p>
+
+                <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data" class="auth-form-surface">
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
 
                     <div class="form-floating mb-3">
@@ -67,7 +70,7 @@
                         <span asp-validation-for="Input.ProfileImage" class="text-danger"></span>
                         <div class="avatar-preview-wrap">
                             <img id="profilePreview" class="avatar-preview" src="~/images/default-avatar.svg" alt="Преглед на профилна снимка" />
-                            <small class="text-muted">Ако не избереш снимка, ще използваме стилен аватар по подразбиране.</small>
+                            <small class="text-muted">Добави личен акцент към профила си или използвай EcoLoop аватара по подразбиране.</small>
                         </div>
                     </div>
 

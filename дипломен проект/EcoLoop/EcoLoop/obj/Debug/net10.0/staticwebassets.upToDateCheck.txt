@@ -7,6 +7,7 @@ wwwroot\css\store-details.css
 wwwroot\css\store-form.css
 wwwroot\css\store-list.css
 wwwroot\favicon.ico
+wwwroot\images\default-avatar.svg
 wwwroot\images\logo-eco.svg
 wwwroot\images\stores\10\bb9e50ab-7360-4f8e-ab6f-cf31f5376886.jpg
 wwwroot\images\stores\10\eb543369-1eca-4af4-969f-80ae4cae892c.png
@@ -84,7 +85,6 @@ wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\uploads\profiles\60bea353-6de0-479f-ba3a-8679d4e844c3\f884024fbf0e4cc5895cba32814d9ea1.png
 wwwroot\css\auth-pages.css
-wwwroot\images\default-avatar.svg
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\events.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\footer.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\map.css
@@ -94,6 +94,7 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\stor
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-form.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-list.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\favicon.ico
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\images\default-avatar.svg
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\images\logo-eco.svg
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\js\details.js
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\js\site.js
@@ -157,4 +158,3 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jque
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\auth-pages.css
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\images\default-avatar.svg
