@@ -7,7 +7,11 @@
         public int VisitedStores { get; set; }
         public int AddedObjects { get; set; }
         public int SavedPackages { get; set; }
+        public int JoinedEventsCount { get; set; }
+        public int ProducerBonusPoints { get; set; }
         public int TotalPoints { get; set; }
+        public int NextLevelPoints { get; set; }
+        public int ProgressToNextLevelPercent { get; set; }
         public int AchievementsCount { get; set; }
         public int FavoriteStoresCount { get; set; }
         public List<string> Badges { get; set; } = [];

@@ -3,7 +3,6 @@ wwwroot\css\events.css
 wwwroot\css\footer.css
 wwwroot\css\map.css
 wwwroot\css\news.css
-wwwroot\css\site.css
 wwwroot\css\store-details.css
 wwwroot\css\store-form.css
 wwwroot\css\store-list.css
@@ -85,6 +84,7 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\uploads\profiles\60bea353-6de0-479f-ba3a-8679d4e844c3\f884024fbf0e4cc5895cba32814d9ea1.png
+wwwroot\css\site.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\auth-pages.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\events.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\footer.css

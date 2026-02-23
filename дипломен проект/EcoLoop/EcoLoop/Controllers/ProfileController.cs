@@ -156,7 +156,8 @@ namespace EcoLoop.Controllers
 
             profile.StoresVisited = visitedStores;
             profile.AddedObjects = addedObjects;
-            profile.Level = CalculateLevel(visitedStores, savedPackages, addedObjects);
+            var joinedEventsCount = await _db.UserEventParticipations.CountAsync(x => x.UserId == user.Id);
+            profile.Level = CalculateLevel(profile.Role, visitedStores, savedPackages, addedObjects, joinedEventsCount);
             await _db.SaveChangesAsync();
 
             var badges = BuildBadges(profile.Role, visitedStores, savedPackages, addedObjects);
@@ -176,6 +177,9 @@ namespace EcoLoop.Controllers
                 .ToListAsync();
 
             var favoriteStoresCount = await _db.UserFavoriteStores.CountAsync(x => x.UserId == user.Id);
+            joinedEventsCount = joinedEvents.Count;
+            var producerBonusPoints = CalculateProducerBonus(profile.Role, addedObjects);
+            var totalPoints = CalculatePoints(profile.Role, visitedStores, savedPackages, addedObjects, joinedEventsCount);
 
             return View(new ProfileStatsViewModel
             {
@@ -184,11 +188,15 @@ namespace EcoLoop.Controllers
                 VisitedStores = visitedStores,
                 AddedObjects = addedObjects,
                 SavedPackages = savedPackages,
+                JoinedEventsCount = joinedEventsCount,
+                ProducerBonusPoints = producerBonusPoints,
                 Badges = badges,
                 AchievementsCount = badges.Count,
                 FavoriteStoresCount = favoriteStoresCount,
                 JoinedEvents = joinedEvents,
-                TotalPoints = CalculatePoints(visitedStores, savedPackages, addedObjects)
+                TotalPoints = totalPoints,
+                NextLevelPoints = CalculateNextLevelPoints(totalPoints),
+                ProgressToNextLevelPercent = CalculateProgressToNextLevelPercent(totalPoints)
             });
         }
 
@@ -249,16 +257,41 @@ namespace EcoLoop.Controllers
             return View(stores);
         }
 
-        private static int CalculatePoints(int visitedStores, int savedPackages, int addedObjects)
-            => visitedStores + savedPackages + (addedObjects * 2);
+        private static int CalculatePoints(string role, int visitedStores, int savedPackages, int addedObjects, int joinedEvents)
+           => visitedStores + savedPackages + (addedObjects * 3) + (joinedEvents * 2) + CalculateProducerBonus(role, addedObjects);
 
-        private static string CalculateLevel(int visitedStores, int savedPackages, int addedObjects)
+        private static int CalculateProducerBonus(string role, int addedObjects)
+            => role == UserRoleType.Producer && addedObjects >= 3 ? 5 : 0;
+
+        private static string CalculateLevel(string role, int visitedStores, int savedPackages, int addedObjects, int joinedEvents)
         {
-            var score = CalculatePoints(visitedStores, savedPackages, addedObjects);
-            if (score >= 30) return "Earth Guardian";
-            if (score >= 12) return "Green Hero";
+            var score = CalculatePoints(role, visitedStores, savedPackages, addedObjects, joinedEvents);
+            if (score >= 60) return "Earth Guardian";
+            if (score >= 25) return "Green Hero";
             return "Eco Explorer";
         }
+        private static int CalculateNextLevelPoints(int score)
+        {
+            if (score < 25) return 25;
+            if (score < 60) return 60;
+            return score;
+        }
+
+        private static int CalculateProgressToNextLevelPercent(int score)
+        {
+            if (score < 25)
+            {
+                return (int)Math.Clamp(Math.Round((score / 25.0) * 100), 0, 100);
+            }
+
+            if (score < 60)
+            {
+                return (int)Math.Clamp(Math.Round(((score - 25) / 35.0) * 100), 0, 100);
+            }
+
+            return 100;
+        }
+
 
         private static List<string> BuildBadges(string role, int visitedStores, int savedPackages, int addedObjects)
         {

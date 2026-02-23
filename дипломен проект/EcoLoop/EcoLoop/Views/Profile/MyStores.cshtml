@@ -1,28 +1,86 @@
 ﻿@model IEnumerable<EcoLoop.Models.StoreViewModel>
 @{
     ViewData["Title"] = "Моите магазини";
+    var stores = Model.ToList();
+    var withDelivery = stores.Count(s => s.HasDelivery);
+    var withRefill = stores.Count(s => s.HasRefillStation);
+    var avgRating = stores.Any() ? stores.Average(s => s.Rating) : 0;
 }
 
-<h1>Моите магазини</h1>
+<section class="producer-stores-shell">
+    <header class="producer-stores-hero">
+        <div>
+            <p class="profile-label">Producer dashboard</p>
+            <h1>Моите магазини</h1>
+            <p class="profile-meta">Управлявай твоите обекти с по-модерен изглед, бързи действия и ясни метрики.</p>
+        </div>
+        <a asp-controller="Store" asp-action="Add" class="btn btn-primary">+ Добави нов магазин</a>
+    </header>
 
-@if (!Model.Any())
-{
-    <p>Все още нямате добавени магазини.</p>
-}
-else
-{
-    <div class="store-grid">
-        @foreach (var store in Model)
-        {
-            <article class="store-card">
-                <h3>@store.Name</h3>
-                <p>@store.ShortDescription</p>
-                <a asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id" class="btn btn-primary">Редакция</a>
-                <form asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id" method="post" style="display:inline-block;">
-                    @Html.AntiForgeryToken()
-                    <button type="submit" class="btn btn-danger">Изтрий</button>
-                </form>
-            </article>
-        }
+    <div class="producer-stats-row">
+        <article class="producer-mini-card"><span>Общо магазини</span><strong>@stores.Count</strong></article>
+        <article class="producer-mini-card"><span>С доставка</span><strong>@withDelivery</strong></article>
+        <article class="producer-mini-card"><span>С refill station</span><strong>@withRefill</strong></article>
+        <article class="producer-mini-card"><span>Среден рейтинг</span><strong>@avgRating.ToString("0.0")</strong></article>
     </div>
-}
+
+    @if (!stores.Any())
+    {
+        <article class="producer-empty-state">
+            <h2>Все още нямате добавени магазини.</h2>
+            <p>Добавете първия си магазин и започнете да изграждате вашето зелено присъствие в EcoLoop.</p>
+            <a asp-controller="Store" asp-action="Add" class="btn btn-primary">Създай магазин</a>
+        </article>
+    }
+    else
+    {
+        <div class="producer-store-grid">
+            @foreach (var store in stores)
+            {
+                <article class="producer-store-card">
+                    @if (!string.IsNullOrWhiteSpace(store.ImageUrl))
+                    {
+                        <img src="@store.ImageUrl" alt="@store.Name" class="producer-store-image" />
+                    }
+                    else
+                    {
+                        <div class="producer-store-image producer-store-image--placeholder">🌿</div>
+                    }
+
+                    <div class="producer-store-content">
+                        <div class="producer-store-top">
+                            <h3>@store.Name</h3>
+                            <span class="producer-rating">⭐ @store.Rating.ToString("0.0")</span>
+                        </div>
+                        <p class="producer-category">@store.Category</p>
+                        <p>@store.ShortDescription</p>
+
+                        <div class="producer-tags">
+                            @if (store.HasDelivery)
+                            {
+                                <span>🚚 Доставка</span>
+                            }
+                            @if (store.HasRefillStation)
+                            {
+                                <span>♻️ Refill Station</span>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(store.EcoTags))
+                            {
+                                <span>🏷️ @store.EcoTags</span>
+                            }
+                        </div>
+
+                        <div class="producer-card-actions">
+                            <a asp-controller="Store" asp-action="Details" asp-route-id="@store.Id" class="btn btn-link">Детайли</a>
+                            <a asp-controller="Store" asp-action="Edit" asp-route-id="@store.Id" class="btn btn-primary">Редакция</a>
+                            <form asp-controller="Store" asp-action="Delete" asp-route-id="@store.Id" method="post">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Сигурни ли сте, че искате да изтриете този магазин?');">Изтрий</button>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</section>

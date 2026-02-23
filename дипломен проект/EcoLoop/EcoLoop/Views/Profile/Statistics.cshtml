@@ -13,9 +13,40 @@
         </div>
     </div>
 
+    <article class="stats-section-card points-overview-card">
+        <div>
+            <h2>Ниво: @Model.Level</h2>
+            <p class="profile-meta">Точки: <strong>@Model.TotalPoints</strong></p>
+        </div>
+        @if (Model.NextLevelPoints > Model.TotalPoints)
+        {
+            <p class="profile-meta">Остават още <strong>@(Model.NextLevelPoints - Model.TotalPoints)</strong> точки до следващото ниво.</p>
+        }
+        else
+        {
+            <p class="profile-meta">Поздравления! Достигна най-високото ниво в системата.</p>
+        }
+
+        <div class="points-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@Model.ProgressToNextLevelPercent">
+            <span style="width:@Model.ProgressToNextLevelPercent%"></span>
+        </div>
+
+        <div class="points-breakdown">
+            <span>🌍 Магазини: +@Model.VisitedStores</span>
+            <span>💚 Опаковки: +@Model.SavedPackages</span>
+            <span>🎉 Събития: +@(Model.JoinedEventsCount * 2)</span>
+            <span>♻️ Еко обекти: +@(Model.AddedObjects * 3)</span>
+            @if (Model.ProducerBonusPoints > 0)
+            {
+                <span>👑 Producer бонус: +@Model.ProducerBonusPoints</span>
+            }
+        </div>
+    </article>
+
     <div class="stats-grid modern-grid">
         <article class="stat-item"><h3>🌍 Посетени магазини</h3><p>@Model.VisitedStores</p></article>
         <article class="stat-item"><h3>💚 Спестени опаковки</h3><p>@Model.SavedPackages</p></article>
+        <article class="stat-item"><h3>🎉 Участия в събития</h3><p>@Model.JoinedEventsCount</p></article>
         <article class="stat-item"><h3>⭐ Значки</h3><p>@Model.AchievementsCount</p></article>
         <article class="stat-item"><h3>🎯 Точки</h3><p>@Model.TotalPoints</p></article>
         <article class="stat-item"><h3>❤️ Любими магазини</h3><p>@Model.FavoriteStoresCount</p></article>
@@ -27,7 +58,7 @@
     </div>
 
     <article class="stats-section-card">
-        <h2>Ниво: @Model.Level</h2>
+        <h2>Ниво и значки</h2>
         @if (Model.Badges.Any())
         {
             <ul class="badge-list">
