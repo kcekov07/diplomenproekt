@@ -4,6 +4,7 @@ using EcoLoop.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Security.Cryptography;
 namespace EcoLoop.Controllers
 {
@@ -96,6 +97,9 @@ namespace EcoLoop.Controllers
 
             var visitorKey = GetOrCreateVisitorKey();
 
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
             var model = new NewsDetailsViewModel
             {
                 Article = item,
@@ -124,6 +128,10 @@ namespace EcoLoop.Controllers
                     })
                     .ToListAsync()
             };
+            ViewBag.EditableNewsCommentIds = string.IsNullOrWhiteSpace(currentUserId)
+                ? new HashSet<int>()
+                : model.Comments.Where(c => c.UserId == currentUserId).Select(c => c.Id).ToHashSet();
+
             if (!model.RecommendedNews.Any())
             {
                 model.RecommendedNews = await _db.News
@@ -270,6 +278,11 @@ namespace EcoLoop.Controllers
         [Authorize]
         public async Task<IActionResult> AddComment(int id, string? visitorName, string text)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Unauthorized();
+            }
             if (string.IsNullOrWhiteSpace(text))
             {
                 return RedirectToAction(nameof(Details), new { id });
@@ -281,10 +294,12 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
+
             _db.Comments.Add(new Comment
             {
                 NewsId = id,
                 VisitorName = string.IsNullOrWhiteSpace(visitorName) ? null : visitorName.Trim(),
+                UserId = userId,
                 VisitorKey = GetOrCreateVisitorKey(),
                 EditToken = Convert.ToHexString(RandomNumberGenerator.GetBytes(24)),
                 Text = text.Trim(),
@@ -295,6 +310,69 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id });
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> EditComment(int commentId, string text)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Unauthorized();
+            }
+
+            var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == commentId && c.NewsId != null);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            if (comment.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return RedirectToAction(nameof(Details), new { id = comment.NewsId!.Value });
+            }
+
+            comment.Text = text.Trim();
+            comment.EditedAt = DateTime.UtcNow;
+
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Details), new { id = comment.NewsId!.Value });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> DeleteComment(int commentId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Unauthorized();
+            }
+
+            var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == commentId && c.NewsId != null);
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            if (comment.UserId != userId)
+            {
+                return Unauthorized();
+            }
+
+            var newsId = comment.NewsId!.Value;
+            _db.Comments.Remove(comment);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Details), new { id = newsId });
+        }
+
 
         private string GetOrCreateVisitorKey()
         {

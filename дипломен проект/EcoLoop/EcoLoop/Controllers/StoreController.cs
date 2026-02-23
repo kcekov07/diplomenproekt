@@ -97,13 +97,16 @@ namespace EcoLoop.Controllers
             {
                 ViewBag.LikedCommentIds = new HashSet<int>();
             }
-
-            // Which comments can be edited by this visitor (by edit-token cookies)
+            // Which comments can be edited by current user
             var canEdit = new HashSet<int>();
-            foreach (var c in store.Comments)
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!string.IsNullOrWhiteSpace(currentUserId))
             {
-                if (Request.Cookies.TryGetValue($"ecoloop_edit_{c.Id}", out var token) && token == c.EditToken)
-                    canEdit.Add(c.Id);
+                foreach (var c in store.Comments)
+                {
+                    if (c.UserId == currentUserId)
+                        canEdit.Add(c.Id);
+                }
             }
             ViewBag.CanEditCommentIds = canEdit;
 

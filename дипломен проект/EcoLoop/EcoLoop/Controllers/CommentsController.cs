@@ -3,6 +3,7 @@ using EcoLoop.Data.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using System.Security.Cryptography;
 
 namespace EcoLoop.Controllers
@@ -56,12 +57,15 @@ namespace EcoLoop.Controllers
             var storeExists = await _db.Stores.AnyAsync(s => s.Id == storeId);
             if (!storeExists) return NotFound();
 
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Unauthorized();
             var visitorKey = GetOrCreateVisitorKey();
 
             var comment = new Comment
             {
                 StoreId = storeId,
                 VisitorName = string.IsNullOrWhiteSpace(visitorName) ? null : visitorName.Trim(),
+                UserId = userId,
                 VisitorKey = visitorKey,
                 EditToken = NewToken(),
                 Text = text.Trim(),
@@ -72,16 +76,7 @@ namespace EcoLoop.Controllers
             _db.Comments.Add(comment);
             await _db.SaveChangesAsync();
 
-            // save edit token in cookie specific for that comment
-            Response.Cookies.Append($"ecoloop_edit_{comment.Id}", comment.EditToken, new CookieOptions
-            {
-                HttpOnly = true,
-                IsEssential = true,
-                SameSite = SameSiteMode.Lax,
-                Secure = Request.IsHttps,
-                Expires = DateTimeOffset.UtcNow.AddDays(CookieDays)
-            });
-
+            
             return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
@@ -94,8 +89,8 @@ namespace EcoLoop.Controllers
             var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == id && c.StoreId != null);
             if (comment == null) return NotFound();
 
-            // check ownership by edit token cookie
-            if (!Request.Cookies.TryGetValue($"ecoloop_edit_{comment.Id}", out var token) || token != comment.EditToken)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId) || comment.UserId != userId)
                 return Unauthorized();
 
             if (string.IsNullOrWhiteSpace(text)) return RedirectToAction("Details", "Store", new { id = comment.StoreId });
@@ -120,7 +115,8 @@ namespace EcoLoop.Controllers
             var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == id && c.StoreId != null);
             if (comment == null) return NotFound();
 
-            if (!Request.Cookies.TryGetValue($"ecoloop_edit_{comment.Id}", out var token) || token != comment.EditToken)
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId) || comment.UserId != userId)
                 return Unauthorized();
 
             var storeId = comment.StoreId!.Value;
@@ -128,10 +124,7 @@ namespace EcoLoop.Controllers
             _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
 
-            // best-effort remove cookie
-            Response.Cookies.Delete($"ecoloop_edit_{comment.Id}");
-
-            return RedirectToAction("Details", "Store", new { id = storeId });
+             return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
         // ===== Helpful toggle =====

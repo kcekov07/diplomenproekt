@@ -1,6 +1,7 @@
 ﻿@model EcoLoop.Models.NewsDetailsViewModel
 @{
     ViewData["Title"] = Model.Article.Title;
+    var editableCommentIds = ViewBag.EditableNewsCommentIds as HashSet<int> ?? new HashSet<int>();
 }
 
 @section Styles {
@@ -75,10 +76,33 @@
             {
                 @foreach (var c in Model.Comments)
                 {
+                    var canEdit = editableCommentIds.Contains(c.Id);
                     <article class="comment-item">
                         <strong>@(string.IsNullOrWhiteSpace(c.VisitorName) ? "Анонимен" : c.VisitorName)</strong>
                         <span>@c.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</span>
+                        @if (c.EditedAt.HasValue)
+                        {
+                            <span> • редактирано</span>
+                        }
                         <p>@c.Text</p>
+                        @if (canEdit)
+                        {
+                            <details>
+                                <summary>✏️ Редакция</summary>
+                                <form asp-action="EditComment" method="post" class="comment-form">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="commentId" value="@c.Id" />
+                                    <textarea name="text" required maxlength="2000">@c.Text</textarea>
+                                    <button type="submit" class="comment-submit-btn">Запази</button>
+                                </form>
+                            </details>
+
+                            <form asp-action="DeleteComment" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш коментара?');">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="commentId" value="@c.Id" />
+                                <button type="submit" class="delete-btn">🗑️ Изтрий</button>
+                            </form>
+                        }
                     </article>
                 }
             }

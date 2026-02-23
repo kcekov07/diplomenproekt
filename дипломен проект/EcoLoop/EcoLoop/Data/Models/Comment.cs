@@ -18,6 +18,10 @@ namespace EcoLoop.Data.Models
         [MaxLength(60)]
         public string? VisitorName { get; set; }
 
+        [MaxLength(450)]
+        public string? UserId { get; set; }
+
+
         // Internal key for “ownership” without profiles
         [Required, MaxLength(64)]
         public string VisitorKey { get; set; } = null!;
