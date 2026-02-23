@@ -7,7 +7,10 @@
         public int VisitedStores { get; set; }
         public int AddedObjects { get; set; }
         public int SavedPackages { get; set; }
+        public int TotalPoints { get; set; }
         public int AchievementsCount { get; set; }
+        public int FavoriteStoresCount { get; set; }
         public List<string> Badges { get; set; } = [];
+        public List<ProfileEventViewModel> JoinedEvents { get; set; } = [];
     }
 }

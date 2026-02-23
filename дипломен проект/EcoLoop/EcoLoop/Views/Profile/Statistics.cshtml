@@ -3,30 +3,64 @@
     ViewData["Title"] = "Статистики";
 }
 
-<h1>Статистики на профила</h1>
-<div class="stats-grid">
-    <article class="stat-item"><h3>🌍 Посетени магазини</h3><p>@Model.VisitedStores</p></article>
+<section class="stats-shell">
+    <div class="stats-header">
+        <h1>Статистики на профила</h1>
+        <p>Проследи своя еко напредък, постижения и събития, в които участваш.</p>
+        <div class="stats-header-actions">
+            <a class="btn btn-primary" asp-controller="Profile" asp-action="MyFavoriteStores">Моите любими магазини</a>
+            <a class="btn btn-link" asp-controller="Profile" asp-action="LevelGuide">Нива и точки</a>
+        </div>
+    </div>
 
-    @if (Model.Role == "Producer" || Model.Role == "Moderator")
-    {
-        <article class="stat-item"><h3>♻️ Добавени обекти</h3><p>@Model.AddedObjects</p></article>
-    }
+    <div class="stats-grid modern-grid">
+        <article class="stat-item"><h3>🌍 Посетени магазини</h3><p>@Model.VisitedStores</p></article>
+        <article class="stat-item"><h3>💚 Спестени опаковки</h3><p>@Model.SavedPackages</p></article>
+        <article class="stat-item"><h3>⭐ Значки</h3><p>@Model.AchievementsCount</p></article>
+        <article class="stat-item"><h3>🎯 Точки</h3><p>@Model.TotalPoints</p></article>
+        <article class="stat-item"><h3>❤️ Любими магазини</h3><p>@Model.FavoriteStoresCount</p></article>
 
-    <article class="stat-item"><h3>💚 Спестени опаковки</h3><p>@Model.SavedPackages</p></article>
-    <article class="stat-item"><h3>⭐ Значки</h3><p>@Model.AchievementsCount</p></article>
-</div>
-
-<h2>Ниво: @Model.Level</h2>
-@if (Model.Badges.Any())
-{
-    <ul>
-        @foreach (var badge in Model.Badges)
+        @if (Model.Role == "Producer" || Model.Role == "Moderator")
         {
-            <li>@badge</li>
+            <article class="stat-item"><h3>♻️ Добавени обекти</h3><p>@Model.AddedObjects</p></article>
         }
-    </ul>
-}
-else
-{
-    <p>Все още няма спечелени значки.</p>
-}
+    </div>
+
+    <article class="stats-section-card">
+        <h2>Ниво: @Model.Level</h2>
+        @if (Model.Badges.Any())
+        {
+            <ul class="badge-list">
+                @foreach (var badge in Model.Badges)
+                {
+                    <li>@badge</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Все още няма спечелени значки.</p>
+        }
+    </article>
+
+    <article class="stats-section-card">
+        <h2>Събития, в които участваш</h2>
+        @if (!Model.JoinedEvents.Any())
+        {
+            <p>Все още не си се записал/а за събитие.</p>
+        }
+        else
+        {
+            <div class="joined-events-list">
+                @foreach (var ev in Model.JoinedEvents)
+                {
+                    <a class="joined-event-item" asp-controller="Events" asp-action="Details" asp-route-id="@ev.EventId">
+                        <strong>@ev.Title</strong>
+                        <span>@ev.Date.ToString("dd.MM.yyyy HH:mm")</span>
+                        <span>@ev.City @(!string.IsNullOrWhiteSpace(ev.Type) ? $"• {ev.Type}" : "")</span>
+                    </a>
+                }
+            </div>
+        }
+    </article>
+</section>

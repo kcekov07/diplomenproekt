@@ -1,0 +1,46 @@
+﻿@model EcoLoop.Models.Profile.ProfileEditViewModel
+@{
+    
+    ViewData["Title"] = "Редакция на профила";
+}
+
+<section class="profile-shell">
+    <article class="profile-edit-card">
+        <h1>Редакция на профила</h1>
+        <p>Обнови своите данни и качи нова профилна снимка.</p>
+
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="profile-edit-form">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <label asp-for="Username"></label>
+            <input asp-for="Username" class="form-control" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+
+            <label asp-for="ProfileImage">Профилна снимка</label>
+            <input asp-for="ProfileImage" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
+            <span asp-validation-for="ProfileImage" class="text-danger"></span>
+
+            @if (!string.IsNullOrWhiteSpace(Model.CurrentProfileImageUrl))
+            {
+                <div class="profile-current-image">
+                    <p>Текуща снимка:</p>
+                    <img src="@Model.CurrentProfileImageUrl" alt="Текуща профилна снимка" class="profile-avatar" />
+                </div>
+            }
+
+            <div class="profile-actions">
+                <button type="submit" class="btn btn-primary">Запази промените</button>
+                <a asp-action="MyProfile" class="btn btn-link">Отказ</a>
+            </div>
+        </form>
+    </article>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

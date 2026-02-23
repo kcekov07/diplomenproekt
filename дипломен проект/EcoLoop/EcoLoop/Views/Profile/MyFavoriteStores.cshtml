@@ -1,0 +1,36 @@
+﻿@model IEnumerable<EcoLoop.Models.StoreViewModel>
+@{
+    ViewData["Title"] = "Моите любими магазини";
+}
+
+<section class="stats-shell">
+    <div class="stats-header">
+        <h1>Моите любими магазини</h1>
+        <p>Всички магазини, които си добавил/а в любими на едно място.</p>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <article class="stats-section-card">
+            <p>Все още нямаш добавени любими магазини.</p>
+            <a asp-controller="Store" asp-action="All" class="btn btn-primary">Разгледай магазини</a>
+        </article>
+    }
+    else
+    {
+        <div class="store-grid">
+            @foreach (var store in Model)
+            {
+                <article class="store-card">
+                    @if (!string.IsNullOrWhiteSpace(store.ImageUrl))
+                    {
+                        <img src="@store.ImageUrl" alt="@store.Name" class="store-card-image" />
+                    }
+                    <h3>@store.Name</h3>
+                    <p>@store.ShortDescription</p>
+                    <a asp-controller="Store" asp-action="Details" asp-route-id="@store.Id" class="btn btn-primary">Към магазина</a>
+                </article>
+            }
+        </div>
+    }
+</section>

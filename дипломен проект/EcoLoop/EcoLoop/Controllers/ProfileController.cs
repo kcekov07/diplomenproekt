@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
+using System.Security.Claims;
 
 namespace EcoLoop.Controllers
 {
@@ -14,11 +16,13 @@ namespace EcoLoop.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IWebHostEnvironment _environment;
 
-        public ProfileController(ApplicationDbContext db, UserManager<IdentityUser> userManager)
+        public ProfileController(ApplicationDbContext db, UserManager<IdentityUser> userManager, IWebHostEnvironment environment)
         {
             _db = db;
             _userManager = userManager;
+            _environment = environment;
         }
 
         public async Task<IActionResult> MyProfile()
@@ -37,6 +41,105 @@ namespace EcoLoop.Controllers
                 Level = profile.Level,
                 ProfileImageUrl = profile.ProfileImageUrl
             });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
+            var profile = await _db.UserProfiles.FirstOrDefaultAsync(x => x.UserId == user.Id);
+            if (profile == null) return NotFound();
+
+            return View(new ProfileEditViewModel
+            {
+                Username = profile.Username,
+                Email = user.Email ?? string.Empty,
+                CurrentProfileImageUrl = profile.ProfileImageUrl
+            });
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProfileEditViewModel model)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return Challenge();
+
+            var profile = await _db.UserProfiles.FirstOrDefaultAsync(x => x.UserId == user.Id);
+            if (profile == null) return NotFound();
+
+            if (!ModelState.IsValid)
+            {
+                model.CurrentProfileImageUrl = profile.ProfileImageUrl;
+                return View(model);
+            }
+
+            if (!string.Equals(user.Email, model.Email, StringComparison.OrdinalIgnoreCase))
+            {
+                user.Email = model.Email.Trim();
+                user.UserName = model.Email.Trim();
+                var identityResult = await _userManager.UpdateAsync(user);
+                if (!identityResult.Succeeded)
+                {
+                    foreach (var error in identityResult.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+
+                    model.CurrentProfileImageUrl = profile.ProfileImageUrl;
+                    return View(model);
+                }
+            }
+
+            profile.Username = model.Username.Trim();
+
+            if (model.ProfileImage != null && model.ProfileImage.Length > 0)
+            {
+                if (model.ProfileImage.Length > 5 * 1024 * 1024)
+                {
+                    ModelState.AddModelError(nameof(model.ProfileImage), "Снимката трябва да е до 5MB.");
+                    model.CurrentProfileImageUrl = profile.ProfileImageUrl;
+                    return View(model);
+                }
+
+                var extension = Path.GetExtension(model.ProfileImage.FileName).ToLowerInvariant();
+                var allowedExtensions = new HashSet<string> { ".jpg", ".jpeg", ".png", ".webp" };
+                if (!allowedExtensions.Contains(extension))
+                {
+                    ModelState.AddModelError(nameof(model.ProfileImage), "Разрешени са само: .jpg, .jpeg, .png, .webp.");
+                    model.CurrentProfileImageUrl = profile.ProfileImageUrl;
+                    return View(model);
+                }
+
+                var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "profiles");
+                Directory.CreateDirectory(uploadsFolder);
+
+                var fileName = $"{user.Id}_{Guid.NewGuid():N}{extension}";
+                var filePath = Path.Combine(uploadsFolder, fileName);
+
+                await using (var stream = System.IO.File.Create(filePath))
+                {
+                    await model.ProfileImage.CopyToAsync(stream);
+                }
+
+                if (!string.IsNullOrWhiteSpace(profile.ProfileImageUrl))
+                {
+                    var oldPath = Path.Combine(_environment.WebRootPath, profile.ProfileImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                    if (System.IO.File.Exists(oldPath))
+                    {
+                        System.IO.File.Delete(oldPath);
+                    }
+                }
+
+                profile.ProfileImageUrl = $"/uploads/profiles/{fileName}";
+            }
+
+            await _db.SaveChangesAsync();
+            TempData["ProfileSuccess"] = "Профилът е обновен успешно.";
+
+            return RedirectToAction(nameof(MyProfile));
         }
 
         public async Task<IActionResult> Statistics()
@@ -58,6 +161,22 @@ namespace EcoLoop.Controllers
 
             var badges = BuildBadges(profile.Role, visitedStores, savedPackages, addedObjects);
 
+            var joinedEvents = await _db.UserEventParticipations
+                .AsNoTracking()
+                .Where(x => x.UserId == user.Id)
+                .OrderByDescending(x => x.CreatedOnUtc)
+                .Select(x => new ProfileEventViewModel
+                {
+                    EventId = x.EventId,
+                    Title = x.Event.Title,
+                    Date = x.Event.Date,
+                    City = x.Event.City,
+                    Type = x.Event.Type
+                })
+                .ToListAsync();
+
+            var favoriteStoresCount = await _db.UserFavoriteStores.CountAsync(x => x.UserId == user.Id);
+
             return View(new ProfileStatsViewModel
             {
                 Role = profile.Role,
@@ -66,8 +185,42 @@ namespace EcoLoop.Controllers
                 AddedObjects = addedObjects,
                 SavedPackages = savedPackages,
                 Badges = badges,
-                AchievementsCount = badges.Count
+                AchievementsCount = badges.Count,
+                FavoriteStoresCount = favoriteStoresCount,
+                JoinedEvents = joinedEvents,
+                TotalPoints = CalculatePoints(visitedStores, savedPackages, addedObjects)
             });
+        }
+
+        public async Task<IActionResult> MyFavoriteStores()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var stores = await _db.UserFavoriteStores
+                .AsNoTracking()
+                .Where(x => x.UserId == userId)
+                .OrderByDescending(x => x.CreatedOnUtc)
+                .Select(x => new StoreViewModel
+                {
+                    Id = x.Store.Id,
+                    Name = x.Store.Name,
+                    Category = x.Store.Category,
+                    ShortDescription = x.Store.ShortDescription,
+                    Rating = x.Store.Rating,
+                    HasDelivery = x.Store.HasDelivery,
+                    HasRefillStation = x.Store.HasRefillStation,
+                    EcoTags = x.Store.EcoTags,
+                    ImageUrl = x.Store.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault()
+                })
+                .ToListAsync();
+
+            return View(stores);
+        }
+
+        public IActionResult LevelGuide()
+        {
+            return View();
         }
 
         [Authorize(Roles = "Producer,Moderator,Admin")]
@@ -96,9 +249,12 @@ namespace EcoLoop.Controllers
             return View(stores);
         }
 
+        private static int CalculatePoints(int visitedStores, int savedPackages, int addedObjects)
+            => visitedStores + savedPackages + (addedObjects * 2);
+
         private static string CalculateLevel(int visitedStores, int savedPackages, int addedObjects)
         {
-            var score = visitedStores + savedPackages + (addedObjects * 2);
+            var score = CalculatePoints(visitedStores, savedPackages, addedObjects);
             if (score >= 30) return "Earth Guardian";
             if (score >= 12) return "Green Hero";
             return "Eco Explorer";

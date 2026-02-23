@@ -47,9 +47,11 @@
                         <summary class="btn btn-primary">Профил ▾</summary>
                         <div class="dropdown-menu">
                             <a href="/Profile/MyProfile">Моят профил</a>
+                            <a href="/Profile/Edit">Редакция на профила</a>
                             @if (!User.IsInRole(UserRoleType.Admin))
                             {
                                 <a href="/Profile/Statistics">Статистики</a>
+                                <a href="/Profile/LevelGuide">Нива и точки</a>
                             }
                             @if (User.IsInRole(UserRoleType.Producer) || User.IsInRole(UserRoleType.Moderator) || User.IsInRole(UserRoleType.Admin))
                             {

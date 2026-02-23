@@ -3,23 +3,38 @@
     ViewData["Title"] = "Моят профил";
 }
 
-<section class="profile-card">
-    <div class="profile-avatar-wrap">
-        @if (!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
-        {
-            <img src="@Model.ProfileImageUrl" alt="@Model.Username" class="profile-avatar" />
-        }
-        else
-        {
-            <div class="profile-avatar profile-avatar-placeholder">@Model.Username[..1]</div>
-        }
-    </div>
+<section class="profile-shell">
+    <article class="profile-hero-card">
+        <div class="profile-avatar-wrap">
+            @if (!string.IsNullOrWhiteSpace(Model.ProfileImageUrl))
+            {
+                <img src="@Model.ProfileImageUrl" alt="@Model.Username" class="profile-avatar" />
+            }
+            else
+            {
+                <div class="profile-avatar profile-avatar-placeholder">@Model.Username[..1]</div>
+            }
+        </div>
 
-    <div class="profile-content">
-        <h1>@Model.Username</h1>
-        <p><strong>Имейл:</strong> @Model.Email</p>
-        <p><strong>Роля:</strong> @Model.Role</p>
-        <p><strong>Ниво:</strong> @Model.Level</p>
-        <a class="btn btn-primary" asp-area="Identity" asp-page="/Account/Manage/Index">Редакция на профила</a>
-    </div>
+        <div class="profile-content">
+            <p class="profile-label">Профил</p>
+            <h1>@Model.Username</h1>
+            <p class="profile-meta">@Model.Email</p>
+
+            <div class="profile-pill-list">
+                <span class="profile-pill">Роля: @Model.Role</span>
+                <span class="profile-pill">Ниво: @Model.Level</span>
+            </div>
+
+            <div class="profile-actions">
+                <a class="btn btn-primary" asp-controller="Profile" asp-action="Edit">Редактирай профила</a>
+                <a class="btn btn-link" asp-controller="Profile" asp-action="Statistics">Виж статистики</a>
+            </div>
+
+            @if (TempData["ProfileSuccess"] is string successMessage)
+            {
+                <p class="profile-success">✅ @successMessage</p>
+            }
+        </div>
+    </article>
 </section>
