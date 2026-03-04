@@ -28,8 +28,15 @@
 
             <div class="profile-actions">
                 <a class="btn btn-primary" asp-controller="Profile" asp-action="Edit">Редактирай профила</a>
-                <a class="btn btn-link" asp-controller="Profile" asp-action="Statistics">Виж статистики</a>
-            </div>
+                @if (User.IsInRole("User") || User.IsInRole("Moderator") || User.IsInRole("Producer"))
+                {
+                    <a class="btn btn-outline-primary" asp-controller="Profile" asp-action="Statistics">Виж статистики</a>
+                }
+              
+                @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                {
+                    <a class="btn btn-dark" asp-controller="Admin" asp-action="Index">Отвори админ панел</a>
+                }
 
             @if (TempData["ProfileSuccess"] is string successMessage)
             {

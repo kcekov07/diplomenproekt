@@ -90,7 +90,7 @@ namespace EcoLoop.Controllers
             if (comment == null) return NotFound();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrWhiteSpace(userId) || comment.UserId != userId)
+            if (string.IsNullOrWhiteSpace(userId) || (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin)))
                 return Unauthorized();
 
             if (string.IsNullOrWhiteSpace(text)) return RedirectToAction("Details", "Store", new { id = comment.StoreId });
@@ -116,7 +116,7 @@ namespace EcoLoop.Controllers
             if (comment == null) return NotFound();
 
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrWhiteSpace(userId) || comment.UserId != userId)
+            if (string.IsNullOrWhiteSpace(userId) || (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin)))
                 return Unauthorized();
 
             var storeId = comment.StoreId!.Value;

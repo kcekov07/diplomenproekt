@@ -1,0 +1,162 @@
+wwwroot\css\adminpanel.css
+wwwroot\css\auth-pages.css
+wwwroot\css\events.css
+wwwroot\css\footer.css
+wwwroot\css\map.css
+wwwroot\css\news.css
+wwwroot\css\site.css
+wwwroot\css\store-details.css
+wwwroot\css\store-form.css
+wwwroot\css\store-list.css
+wwwroot\favicon.ico
+wwwroot\images\default-avatar.svg
+wwwroot\images\logo-eco.svg
+wwwroot\images\stores\10\bb9e50ab-7360-4f8e-ab6f-cf31f5376886.jpg
+wwwroot\images\stores\10\eb543369-1eca-4af4-969f-80ae4cae892c.png
+wwwroot\images\stores\1\c50ef079-8be6-42ad-bf26-bb396d7241e1.webp
+wwwroot\images\stores\2\1e965c79-ae74-433e-b8e3-013ce225838e.jpg
+wwwroot\images\stores\2\c17ff82d-c933-4431-b7b0-0e3b35ae2b0b.jpg
+wwwroot\images\stores\3\598ea0a3-03ad-4a9f-be89-fafe59aef5f0.jpg
+wwwroot\images\stores\4\b80d4583-da47-4f27-bab8-e9958349360b.jpeg
+wwwroot\images\stores\5\d6fbf403-5dec-4b33-abca-5f4b9a5fc4fa.webp
+wwwroot\images\stores\6\7a8f1ec8-7e61-4f18-9cd5-1f1783581d3c.webp
+wwwroot\images\stores\7\b2f04199-6ffd-4116-9bda-5a850bc942e2.jpg
+wwwroot\images\stores\8\d335bc1f-9ad7-48bf-b1fe-86b31aafad7d.webp
+wwwroot\images\stores\9\f43118bc-b723-4a7a-b00a-df9d8e6a084c.png
+wwwroot\js\details.js
+wwwroot\js\site.js
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+wwwroot\lib\bootstrap\LICENSE
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+wwwroot\lib\jquery-validation\dist\additional-methods.js
+wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.js
+wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+wwwroot\lib\jquery-validation\LICENSE.md
+wwwroot\lib\jquery\dist\jquery.js
+wwwroot\lib\jquery\dist\jquery.min.js
+wwwroot\lib\jquery\dist\jquery.min.map
+wwwroot\lib\jquery\dist\jquery.slim.js
+wwwroot\lib\jquery\dist\jquery.slim.min.js
+wwwroot\lib\jquery\dist\jquery.slim.min.map
+wwwroot\lib\jquery\LICENSE.txt
+wwwroot\uploads\profiles\60bea353-6de0-479f-ba3a-8679d4e844c3\f884024fbf0e4cc5895cba32814d9ea1.png
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\auth-pages.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\events.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\footer.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\map.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\news.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\site.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-details.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-form.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-list.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\favicon.ico
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\images\default-avatar.svg
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\images\logo-eco.svg
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\js\details.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\js\site.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation\dist\additional-methods.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery-validation\LICENSE.md
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.min.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.js
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\adminpanel.css

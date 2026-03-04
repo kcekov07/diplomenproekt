@@ -327,7 +327,7 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
-            if (comment.UserId != userId)
+            if (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin))
             {
                 return Unauthorized();
             }
@@ -361,7 +361,7 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
-            if (comment.UserId != userId)
+            if (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin))
             {
                 return Unauthorized();
             }

@@ -1,39 +1,116 @@
-﻿@using EcoLoop.Data.Models
+﻿@model EcoLoop.Models.AdminDashboardViewModel
+@using EcoLoop.Data.Models
 @{
     ViewData["Title"] = "Админ панел";
-    var pendingStores = (IEnumerable<Store>)(ViewData["PendingStores"] ?? Enumerable.Empty<Store>());
-    var profiles = (IEnumerable<UserProfile>)(ViewData["Profiles"] ?? Enumerable.Empty<UserProfile>());
 }
-
-<h1>Админ панел</h1>
-
-<h2>Чакащи магазини за одобрение</h2>
-@if (!pendingStores.Any())
-{
-    <p>Няма чакащи магазини.</p>
+@section Styles {
+    <link rel="stylesheet" href="~/css/adminpanel.css" asp-append-version="true" />
 }
-else
-{
-    @foreach (var store in pendingStores)
-    {
-        <div class="admin-card">
-            <strong>@store.Name</strong>
-            <form asp-action="ApproveStore" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-primary">Одобри</button></form>
-            <form asp-action="DeleteStore" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-danger">Изтрий</button></form>
+<section class="admin-dashboard">
+    <header class="admin-header">
+        <div>
+            <p class="admin-kicker">Control center</p>
+            <h1>Админ панел</h1>
+            <p class="admin-subtitle">Управлявай потребители, магазини и коментари на едно място.</p>
         </div>
-    }
-}
+        <div class="admin-stats">
+            <div><strong>@Model.PendingStores.Count</strong><span>Чакащи магазини</span></div>
+            <div><strong>@Model.Users.Count</strong><span>Потребители</span></div>
+            <div><strong>@Model.AllStores.Count</strong><span>Всички магазини</span></div>
+            <div><strong>@Model.RecentComments.Count</strong><span>Последни коментари</span></div>
+        </div>
+    </header>
 
-<h2>Потребители</h2>
-@foreach (var profile in profiles)
-{
-    <div class="admin-card">
-        <strong>@profile.Username</strong> - @profile.Role - @profile.Level
+    <div class="admin-grid">
+        <article class="admin-panel">
+            <h2>1) Чакащи за одобрение магазини</h2>
+            @if (!Model.PendingStores.Any())
+            {
+                <p class="admin-empty">Няма чакащи магазини.</p>
+            }
+            else
+            {
+                foreach (var store in Model.PendingStores)
+                {
+                    <div class="admin-row">
+                        <div>
+                            <strong>@store.Name</strong>
+                            <p>@store.Category</p>
+                        </div>
+                        <div class="admin-actions">
+                            <form asp-action="ApproveStore" method="post">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-primary">Одобри</button></form>
+                            <form asp-action="DeleteStore" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш магазина?');">@Html.AntiForgeryToken()<input type="hidden" name="id" value="@store.Id" /><button class="btn btn-danger">Изтрий</button></form>
+                        </div>
+                    </div>
+                }
+            }
+        </article>
 
-        @if (User.IsInRole("Admin") && profile.Role != "Admin")
-        {
-            <form asp-action="PromoteToModerator" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-secondary">Повиши в модератор</button></form>
-            <form asp-action="DeleteUser" method="post" style="display:inline-block;">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-danger">Изтрий профил</button></form>
-        }
+        <article class="admin-panel">
+            <h2>2) Всички потребители</h2>
+            @foreach (var item in Model.Users)
+            {
+                var profile = item.Profile;
+                <div class="admin-row">
+                    <div>
+                        <strong>@profile.Username</strong>
+                        <p>@profile.Role • @profile.Level @(item.IsLocked ? "• Блокиран" : "")</p>
+                    </div>
+                    @if (User.IsInRole("Admin") && profile.Role != UserRoleType.Admin)
+                    {
+                        <div class="admin-actions admin-actions-wrap">
+                            <form asp-action="PromoteToModerator" method="post">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-secondary">Повиши</button></form>
+                            <form asp-action="ToggleUserBlock" method="post">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-warning">@(item.IsLocked ? "Отблокирай" : "Блокирай")</button></form>
+                            <form asp-action="DeleteUser" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш потребителя?');">@Html.AntiForgeryToken()<input type="hidden" name="profileId" value="@profile.Id" /><button class="btn btn-danger">Изтрий профил</button></form>
+                        </div>
+                    }
+                </div>
+            }
+        </article>
+
+        <article class="admin-panel">
+            <h2>3) Всички магазини в платформата</h2>
+            @foreach (var store in Model.AllStores)
+            {
+                <div class="admin-row">
+                    <div>
+                        <strong>@store.Name</strong>
+                        <p>@store.Category • @(store.IsApproved ? "Одобрен" : "Чака одобрение")</p>
+                    </div>
+                    <form asp-action="DeleteStore" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш магазина?');">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@store.Id" />
+                        <button class="btn btn-danger">Изтрий</button>
+                    </form>
+                </div>
+            }
+        </article>
+
+        <article class="admin-panel">
+            <h2>Модериране на коментари</h2>
+            @if (!Model.RecentComments.Any())
+            {
+                <p class="admin-empty">Няма коментари за модериране.</p>
+            }
+            else
+            {
+                foreach (var item in Model.RecentComments)
+                {
+                    <div class="admin-row">
+                        <div>
+                            <strong>@item.TargetTitle</strong>
+                            <p>@item.Comment.Text</p>
+                        </div>
+                        <form asp-action="DeleteComment" method="post" onsubmit="return confirm('Изтриване на коментара?');">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="id" value="@item.Comment.Id" />
+                            <button class="btn btn-danger">Изтрий коментар</button>
+                        </form>
+                    </div>
+                }
+            }
+        </article>
     </div>
-}
+</section>
+
+
