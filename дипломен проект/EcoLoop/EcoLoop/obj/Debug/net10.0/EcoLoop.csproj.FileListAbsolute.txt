@@ -803,7 +803,6 @@ C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoo
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\nezrqnk58p-{0}-muycvpuwrr-muycvpuwrr.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\v0zgfp0y55-{0}-87fc7y1x7t-87fc7y1x7t.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\yfc7ypekbg-{0}-mlv21k5csn-mlv21k5csn.gz
-C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0k1iy24u41-{0}-kb9a1d51lt-kb9a1d51lt.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\clwv1merdv-{0}-z15ej4nacs-z15ej4nacs.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\cluqh2uef3-{0}-s0ym3shh1m-s0ym3shh1m.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\uywb1pq1h0-{0}-ibo8ryzaz8-ibo8ryzaz8.gz
@@ -890,4 +889,5 @@ C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoo
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.pdb
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.genruntimeconfig.cache
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\ref\EcoLoop.dll
-C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mzhewhjjzr-{0}-u1zbka8oun-u1zbka8oun.gz
+C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0k1iy24u41-{0}-7maxifif90-7maxifif90.gz
+C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mzhewhjjzr-{0}-tliuupy0oo-tliuupy0oo.gz

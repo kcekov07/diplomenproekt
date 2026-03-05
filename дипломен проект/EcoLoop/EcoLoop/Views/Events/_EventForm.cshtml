@@ -9,16 +9,26 @@
         <span asp-validation-for="Title" class="text-danger"></span>
     </label>
 
-    <div class="events-filter-field events-filter-card">
+    <div class="events-filter-field events-filter-card event-image-card">
         <span>Снимка</span>
-        <input asp-for="ImageFile" type="file" class="form-control events-input" accept="image/png,image/jpeg,image/gif,image/webp" />
-        <span asp-validation-for="ImageFile" class="text-danger"></span>
+        <label class="event-upload-shell" for="ImageFile">
+            <span class="event-upload-icon">🖼️</span>
+            <span>
+                <strong>Качи снимка</strong>
+                <small>PNG, JPG, GIF или WEBP</small>
+            </span>
+            <span class="event-upload-cta">Избор на файл</span>
+        </label>
+        <input asp-for="ImageFile" type="file" class="form-control events-input event-file-input" accept="image/png,image/jpeg,image/gif,image/webp" />        <span asp-validation-for="ImageFile" class="text-danger"></span>
         <input asp-for="RemoveImage" type="hidden" />
         <input asp-for="ExistingImageUrl" type="hidden" />
 
-        <div id="event-image-preview" class="mt-2 @(string.IsNullOrWhiteSpace(Model.ExistingImageUrl) ? "d-none" : string.Empty)">
-            <img id="event-image-preview-img" src="@(Model.ExistingImageUrl ?? "")" alt="Преглед на снимката" />   
-            <button id="event-image-remove-btn" type="button" class="btn btn-sm btn-outline-danger mt-2">Премахни снимката</button>
+        <div id="event-image-preview" class="event-image-preview mt-2 @(string.IsNullOrWhiteSpace(Model.ExistingImageUrl) ? "d-none" : string.Empty)">
+            <img id="event-image-preview-img" src="@(Model.ExistingImageUrl ?? "")" alt="Преглед на снимката" />
+            <div class="event-image-preview-meta">
+                <p class="mb-2">Преглед на снимката</p>
+                <button id="event-image-remove-btn" type="button" class="btn btn-sm btn-outline-danger">Премахни снимката</button>
+            </div>
         </div>
         <small class="small-muted">Качи снимка от устройството. Можеш да смениш или премахнеш преди запис.</small>
     </div>

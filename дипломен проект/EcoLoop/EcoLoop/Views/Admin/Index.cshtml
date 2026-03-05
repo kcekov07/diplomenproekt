@@ -22,8 +22,11 @@
     </header>
 
     <div class="admin-grid">
-        <article class="admin-panel">
-            <h2>1) Чакащи за одобрение магазини</h2>
+        <article class="admin-panel admin-panel-highlight">
+            <div class="admin-panel-header">
+                <h2>1) Чакащи за одобрение магазини</h2>
+                <span class="admin-pill">@Model.PendingStores.Count чакащи</span>
+            </div>
             @if (!Model.PendingStores.Any())
             {
                 <p class="admin-empty">Няма чакащи магазини.</p>
@@ -47,14 +50,21 @@
         </article>
 
         <article class="admin-panel">
-            <h2>2) Всички потребители</h2>
+            <div class="admin-panel-header">
+                <h2>2) Всички потребители</h2>
+                <span class="admin-pill">@Model.Users.Count потребители</span>
+            </div>
             @foreach (var item in Model.Users)
             {
                 var profile = item.Profile;
                 <div class="admin-row">
                     <div>
                         <strong>@profile.Username</strong>
-                        <p>@profile.Role • @profile.Level @(item.IsLocked ? "• Блокиран" : "")</p>
+                        <p>@profile.Role • @profile.Level</p>
+                        @if (item.IsLocked)
+                        {
+                            <span class="admin-status admin-status-danger">Блокиран</span>
+                        }
                     </div>
                     @if (User.IsInRole("Admin") && profile.Role != UserRoleType.Admin)
                     {
@@ -69,13 +79,17 @@
         </article>
 
         <article class="admin-panel">
-            <h2>3) Всички магазини в платформата</h2>
+            <div class="admin-panel-header">
+                <h2>3) Всички магазини в платформата</h2>
+                <span class="admin-pill">@Model.AllStores.Count магазина</span>
+            </div>
             @foreach (var store in Model.AllStores)
             {
                 <div class="admin-row">
                     <div>
                         <strong>@store.Name</strong>
-                        <p>@store.Category • @(store.IsApproved ? "Одобрен" : "Чака одобрение")</p>
+                        <p>@store.Category</p>
+                        <span class="admin-status @(store.IsApproved ? "admin-status-success" : "admin-status-pending")">@(store.IsApproved ? "Одобрен" : "Чака одобрение")</span>
                     </div>
                     <form asp-action="DeleteStore" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш магазина?');">
                         @Html.AntiForgeryToken()
@@ -87,7 +101,10 @@
         </article>
 
         <article class="admin-panel">
-            <h2>Модериране на коментари</h2>
+            <div class="admin-panel-header">
+                <h2>4) Модериране на коментари</h2>
+                <span class="admin-pill">@Model.RecentComments.Count коментара</span>
+            </div>
             @if (!Model.RecentComments.Any())
             {
                 <p class="admin-empty">Няма коментари за модериране.</p>
@@ -112,5 +129,3 @@
         </article>
     </div>
 </section>
-
-
