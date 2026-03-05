@@ -17,7 +17,7 @@
         <input asp-for="ExistingImageUrl" type="hidden" />
 
         <div id="event-image-preview" class="mt-2 @(string.IsNullOrWhiteSpace(Model.ExistingImageUrl) ? "d-none" : string.Empty)">
-            <img id="event-image-preview-img" src="@(Model.ExistingImageUrl ?? "")" alt="Преглед на снимката" style="max-width:220px;border-radius:12px;display:block;" />
+            <img id="event-image-preview-img" src="@(Model.ExistingImageUrl ?? "")" alt="Преглед на снимката" />   
             <button id="event-image-remove-btn" type="button" class="btn btn-sm btn-outline-danger mt-2">Премахни снимката</button>
         </div>
         <small class="small-muted">Качи снимка от устройството. Можеш да смениш или премахнеш преди запис.</small>

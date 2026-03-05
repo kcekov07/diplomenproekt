@@ -87,6 +87,7 @@ wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
 wwwroot\uploads\profiles\60bea353-6de0-479f-ba3a-8679d4e844c3\f884024fbf0e4cc5895cba32814d9ea1.png
+wwwroot\uploads\profiles\e56a56fa-1944-4d5a-8640-c7c52329d3fa\58b0c416575f40caac57d0cdad6dc7e1.png
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.js
