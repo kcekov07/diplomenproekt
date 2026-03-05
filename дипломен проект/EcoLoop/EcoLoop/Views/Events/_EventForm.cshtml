@@ -28,6 +28,18 @@
         <input asp-for="Date" class="form-control events-input" />
         <span asp-validation-for="Date" class="text-danger"></span>
     </label>
+    <label class="events-filter-field events-filter-card">
+        <span>Град</span>
+        <input asp-for="City" class="form-control events-input" placeholder="София" />
+        <span asp-validation-for="City" class="text-danger"></span>
+    </label>
+
+    <label class="events-filter-field events-filter-card events-filter-field--full">
+        <span>Адрес</span>
+        <input asp-for="Address" class="form-control events-input" placeholder="ул. Пример 10, София" />
+        <small class="small-muted">Добави пълен адрес, за да могат участниците лесно да намерят събитието.</small>
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </label>
 
     <label class="events-filter-field events-filter-card">
         <span>Тип</span>
@@ -46,11 +58,6 @@
         <span asp-validation-for="CustomType" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field events-filter-card">
-        <span>Град</span>
-        <input asp-for="City" class="form-control events-input" placeholder="София" />
-        <span asp-validation-for="City" class="text-danger"></span>
-    </label>
 
     <label class="events-filter-field events-filter-field--full events-filter-card">
         <span>Кратко описание</span>

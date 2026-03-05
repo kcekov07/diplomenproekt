@@ -42,6 +42,9 @@ namespace EcoLoop.Models
         [StringLength(100)]
         public string City { get; set; } = string.Empty;
 
+        [Required(ErrorMessage = "Адресът е задължителен")]
+        [StringLength(200)]
+        public string Address { get; set; } = string.Empty;
 
         [StringLength(100)]
         public string Type { get; set; } = string.Empty;

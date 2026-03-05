@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/css/events.css" />
 }
 <section class="events-page">
-    <header class="events-hero">
+    <header class="events-hero glass-card">
         <div>
             <span class="hero-kicker">Общност</span>
             <h1 class="events-title">Еко събития</h1>
@@ -28,7 +28,7 @@
         </div>
     </header>
 
-    <section class="events-filters-panel">
+    <section class="events-filters-panel glass-card">
         <div class="events-filter-header">
             <h2>Филтри</h2>
             <span>Прегледай само събитията, които те интересуват</span>
@@ -100,8 +100,13 @@
                     <div class="event-card-body">
                         <div class="event-card-meta">
                             <span>📅 @item.Date.ToString("dd.MM.yyyy")</span>
-                            <span>📍 @item.City</span>
+                            <span>🏙️ @item.City</span>
                         </div>
+
+                        @if (!string.IsNullOrWhiteSpace(item.Address))
+                        {
+                            <div class="event-card-address">📌 @item.Address</div>
+                        }
 
                         <h2 class="event-card-title">@item.Title</h2>
                         <span class="event-chip">@item.Type</span>

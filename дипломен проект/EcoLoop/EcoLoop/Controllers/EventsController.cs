@@ -72,6 +72,7 @@ namespace EcoLoop.Controllers
                         Title = e.Title,
                         Date = e.Date,
                         City = e.City,
+                        Address = e.Address,
                         Type = e.Type,
                         ImageUrl = e.ImageUrl,
                         ShortDescription = e.ShortDescription
@@ -122,6 +123,7 @@ namespace EcoLoop.Controllers
                 Title = model.Title,
                 Date = model.Date,
                 City = model.City,
+                Address = model.Address,
                 Type = model.Type,
                 ShortDescription = model.ShortDescription
             };
@@ -153,6 +155,7 @@ namespace EcoLoop.Controllers
                 ExistingImageUrl = item.ImageUrl,
                 Date = item.Date,
                 City = item.City ?? string.Empty,
+                Address = item.Address ?? string.Empty,
                 Type = existingType,
                 CustomType = hasExistingType ? null : existingType,
                 ShortDescription = item.ShortDescription ?? string.Empty,
@@ -197,6 +200,7 @@ namespace EcoLoop.Controllers
             item.Title = model.Title;
             item.Date = model.Date;
             item.City = model.City;
+            item.Address = model.Address;
             item.Type = model.Type;
             item.ShortDescription = model.ShortDescription;
 

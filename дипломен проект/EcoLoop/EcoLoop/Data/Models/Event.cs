@@ -16,6 +16,9 @@ namespace EcoLoop.Data.Models
         public DateTime Date { get; set; }
 
         public string? City { get; set; }
+        [StringLength(200)]
+        public string? Address { get; set; }
+
 
         public string? Type { get; set; }
     }

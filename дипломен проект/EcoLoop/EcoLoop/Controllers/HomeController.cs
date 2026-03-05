@@ -66,6 +66,7 @@ namespace EcoLoop.Controllers
                     Title = e.Title,
                     Date = e.Date,
                     City = e.City,
+                    Address = e.Address,
                     ShortDescription = e.ShortDescription
                 })
                 .ToListAsync();

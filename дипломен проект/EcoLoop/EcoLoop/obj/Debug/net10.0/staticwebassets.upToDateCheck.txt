@@ -10,6 +10,7 @@ wwwroot\css\store-form.css
 wwwroot\css\store-list.css
 wwwroot\favicon.ico
 wwwroot\images\default-avatar.svg
+wwwroot\images\events\5\c342aebe-7c45-44ea-a898-1442d49209fa.png
 wwwroot\images\logo-eco.svg
 wwwroot\images\stores\10\bb9e50ab-7360-4f8e-ab6f-cf31f5376886.jpg
 wwwroot\images\stores\10\eb543369-1eca-4af4-969f-80ae4cae892c.png
