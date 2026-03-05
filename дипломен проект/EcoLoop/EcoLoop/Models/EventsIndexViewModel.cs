@@ -25,9 +25,14 @@ namespace EcoLoop.Models
         [StringLength(200)]
         public string Title { get; set; } = string.Empty;
 
-        [Display(Name = "Снимка (URL)")]
-        [Url(ErrorMessage = "Въведете валиден URL")]
         public string? ImageUrl { get; set; }
+
+        [Display(Name = "Снимка")]
+        public IFormFile? ImageFile { get; set; }
+
+        public bool RemoveImage { get; set; }
+
+        public string? ExistingImageUrl { get; set; }
 
         [Required(ErrorMessage = "Датата е задължителна")]
         [DataType(DataType.Date)]
@@ -37,7 +42,7 @@ namespace EcoLoop.Models
         [StringLength(100)]
         public string City { get; set; } = string.Empty;
 
-        
+
         [StringLength(100)]
         public string Type { get; set; } = string.Empty;
 

@@ -9,11 +9,19 @@
         <span asp-validation-for="Title" class="text-danger"></span>
     </label>
 
-    <label class="events-filter-field events-filter-card">
-        <span>Снимка (URL)</span>
-        <input asp-for="ImageUrl" class="form-control events-input" placeholder="https://..." />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
-    </label>
+    <div class="events-filter-field events-filter-card">
+        <span>Снимка</span>
+        <input asp-for="ImageFile" type="file" class="form-control events-input" accept="image/png,image/jpeg,image/gif,image/webp" />
+        <span asp-validation-for="ImageFile" class="text-danger"></span>
+        <input asp-for="RemoveImage" type="hidden" />
+        <input asp-for="ExistingImageUrl" type="hidden" />
+
+        <div id="event-image-preview" class="mt-2 @(string.IsNullOrWhiteSpace(Model.ExistingImageUrl) ? "d-none" : string.Empty)">
+            <img id="event-image-preview-img" src="@(Model.ExistingImageUrl ?? "")" alt="Преглед на снимката" style="max-width:220px;border-radius:12px;display:block;" />
+            <button id="event-image-remove-btn" type="button" class="btn btn-sm btn-outline-danger mt-2">Премахни снимката</button>
+        </div>
+        <small class="small-muted">Качи снимка от устройството. Можеш да смениш или премахнеш преди запис.</small>
+    </div>
 
     <label class="events-filter-field events-filter-card">
         <span>Дата</span>
@@ -50,3 +58,35 @@
         <span asp-validation-for="ShortDescription" class="text-danger"></span>
     </label>
 </div>
+
+<script>
+    (() => {
+        const imageInput = document.getElementById('ImageFile');
+        const previewWrap = document.getElementById('event-image-preview');
+        const previewImg = document.getElementById('event-image-preview-img');
+        const removeBtn = document.getElementById('event-image-remove-btn');
+        const removeFlag = document.getElementById('RemoveImage');
+
+        if (!imageInput || !previewWrap || !previewImg || !removeBtn || !removeFlag) return;
+
+        imageInput.addEventListener('change', () => {
+            const file = imageInput.files && imageInput.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImg.src = e.target?.result;
+                previewWrap.classList.remove('d-none');
+                removeFlag.value = 'false';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        removeBtn.addEventListener('click', () => {
+            imageInput.value = '';
+            previewImg.src = '';
+            previewWrap.classList.add('d-none');
+            removeFlag.value = 'true';
+        });
+    })();
+</script>

@@ -14,7 +14,7 @@
         <p class="small-muted mb-0">Обнови информацията и запази промените.</p>
     </header>
 
-    <form asp-action="Edit" method="post" class="events-form-shell events-form-shell--modern">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="events-form-shell events-form-shell--modern">
         <input asp-for="Id" type="hidden" />
         @Html.Partial("_EventForm", Model)
 

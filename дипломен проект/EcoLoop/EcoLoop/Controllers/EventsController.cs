@@ -2,8 +2,11 @@
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 
 namespace EcoLoop.Controllers
@@ -11,12 +14,17 @@ namespace EcoLoop.Controllers
     public class EventsController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment _env;
+        private readonly ILogger<EventsController> _logger;
+        private const long MaxFileBytes = 5 * 1024 * 1024;
+        private static readonly string[] PermittedImageContentTypes = ["image/jpeg", "image/png", "image/gif", "image/webp"];
 
-        public EventsController(ApplicationDbContext db)
+        public EventsController(ApplicationDbContext db, IWebHostEnvironment env, ILogger<EventsController> logger)
         {
             _db = db;
+            _env = env;
+            _logger = logger;
         }
-
         public async Task<IActionResult> All(DateTime? date, string? type, string? city)
         {
             var query = _db.Events.AsNoTracking().AsQueryable();
@@ -98,6 +106,7 @@ namespace EcoLoop.Controllers
         {
             model.Type = NormalizeEventType(model.Type, model.CustomType);
             ModelState.Remove(nameof(model.Type));
+            ValidateEventImage(model.ImageFile);
             if (string.IsNullOrWhiteSpace(model.Type))
             {
                 ModelState.AddModelError(nameof(model.Type), "Типът е задължителен");
@@ -111,7 +120,6 @@ namespace EcoLoop.Controllers
             var entity = new Event
             {
                 Title = model.Title,
-                ImageUrl = model.ImageUrl,
                 Date = model.Date,
                 City = model.City,
                 Type = model.Type,
@@ -119,6 +127,8 @@ namespace EcoLoop.Controllers
             };
 
             _db.Events.Add(entity);
+            await _db.SaveChangesAsync();
+            entity.ImageUrl = await SaveEventImageAsync(entity.Id, model.ImageFile);
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(All));
@@ -140,6 +150,7 @@ namespace EcoLoop.Controllers
                 Id = item.Id,
                 Title = item.Title,
                 ImageUrl = item.ImageUrl,
+                ExistingImageUrl = item.ImageUrl,
                 Date = item.Date,
                 City = item.City ?? string.Empty,
                 Type = existingType,
@@ -158,6 +169,7 @@ namespace EcoLoop.Controllers
         {
             model.Type = NormalizeEventType(model.Type, model.CustomType);
             ModelState.Remove(nameof(model.Type));
+            ValidateEventImage(model.ImageFile);
             if (string.IsNullOrWhiteSpace(model.Type))
             {
                 ModelState.AddModelError(nameof(model.Type), "Типът е задължителен");
@@ -166,6 +178,16 @@ namespace EcoLoop.Controllers
             if (!ModelState.IsValid)
             {
                 model.AvailableTypes = await GetAvailableEventTypesAsync();
+
+                if (string.IsNullOrWhiteSpace(model.ExistingImageUrl))
+                {
+                    model.ExistingImageUrl = await _db.Events
+                        .AsNoTracking()
+                        .Where(e => e.Id == model.Id)
+                        .Select(e => e.ImageUrl)
+                        .FirstOrDefaultAsync();
+                }
+
                 return View(model);
             }
 
@@ -173,11 +195,23 @@ namespace EcoLoop.Controllers
             if (item == null) return NotFound();
 
             item.Title = model.Title;
-            item.ImageUrl = model.ImageUrl;
             item.Date = model.Date;
             item.City = model.City;
             item.Type = model.Type;
             item.ShortDescription = model.ShortDescription;
+
+            if (model.RemoveImage)
+            {
+                DeleteEventImageFile(item.ImageUrl);
+                item.ImageUrl = null;
+            }
+
+            var uploadedImageUrl = await SaveEventImageAsync(item.Id, model.ImageFile);
+            if (!string.IsNullOrWhiteSpace(uploadedImageUrl))
+            {
+                DeleteEventImageFile(item.ImageUrl);
+                item.ImageUrl = uploadedImageUrl;
+            }
 
             await _db.SaveChangesAsync();
 
@@ -197,7 +231,52 @@ namespace EcoLoop.Controllers
             _db.Events.Remove(item);
             await _db.SaveChangesAsync();
 
+            DeleteEventImageFile(item.ImageUrl);
+
             return RedirectToAction(nameof(All));
+        }
+
+        private async Task<string?> SaveEventImageAsync(int eventId, IFormFile? file)
+        {
+            if (file == null || file.Length == 0) return null;
+            if (file.Length > MaxFileBytes) return null;
+            if (!PermittedImageContentTypes.Contains(file.ContentType)) return null;
+
+            var webRoot = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var uploadsRoot = Path.Combine(webRoot, "images", "events", eventId.ToString());
+            Directory.CreateDirectory(uploadsRoot);
+
+            var ext = Path.GetExtension(file.FileName);
+            var fileName = $"{Guid.NewGuid()}{ext}";
+            var filePath = Path.Combine(uploadsRoot, fileName);
+
+            await using var stream = System.IO.File.Create(filePath);
+            await file.CopyToAsync(stream);
+
+            return $"/images/events/{eventId}/{fileName}";
+        }
+
+        private void DeleteEventImageFile(string? imageUrl)
+        {
+            if (string.IsNullOrWhiteSpace(imageUrl) || !imageUrl.StartsWith("/images/events/", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            try
+            {
+                var webRoot = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var relative = imageUrl.TrimStart('/');
+                var filePath = Path.Combine(webRoot, relative.Replace('/', Path.DirectorySeparatorChar));
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogWarning(ex, "Failed to delete event image file: {ImageUrl}", imageUrl);
+            }
         }
         [Authorize]
         [HttpPost]
@@ -233,6 +312,24 @@ namespace EcoLoop.Controllers
             }
 
             return RedirectToAction(nameof(Details), new { id });
+        }
+
+        private void ValidateEventImage(IFormFile? imageFile)
+        {
+            if (imageFile == null || imageFile.Length == 0)
+            {
+                return;
+            }
+
+            if (imageFile.Length > MaxFileBytes)
+            {
+                ModelState.AddModelError(nameof(EventFormViewModel.ImageFile), "Снимката трябва да е до 5 MB.");
+            }
+
+            if (!PermittedImageContentTypes.Contains(imageFile.ContentType))
+            {
+                ModelState.AddModelError(nameof(EventFormViewModel.ImageFile), "Позволени формати: JPG, PNG, GIF, WEBP.");
+            }
         }
 
         private async Task<List<string>> GetAvailableEventTypesAsync()

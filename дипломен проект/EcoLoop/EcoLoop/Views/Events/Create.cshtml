@@ -14,7 +14,7 @@
         <p class="small-muted mb-0">Попълни данните и публикувай събитието за общността.</p>
     </header>
 
-    <form asp-action="Create" method="post" class="events-form-shell events-form-shell--modern">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="events-form-shell events-form-shell--modern">
         @Html.Partial("_EventForm", Model)
 
         <div class="events-form-actions">
