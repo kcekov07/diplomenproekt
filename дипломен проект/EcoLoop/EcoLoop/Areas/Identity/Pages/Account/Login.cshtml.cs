@@ -20,11 +20,16 @@ namespace EcoLoop.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(
+            SignInManager<IdentityUser> signInManager,
+            UserManager<IdentityUser> userManager,
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
             _logger = logger;
         }
 
@@ -111,8 +116,14 @@ namespace EcoLoop.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var loginIdentifier = Input.Email;
+                var userByEmail = await _userManager.FindByEmailAsync(Input.Email);
+                if (userByEmail != null)
+                {
+                    loginIdentifier = userByEmail.UserName;
+                }
+
+                var result = await _signInManager.PasswordSignInAsync(loginIdentifier, Input.Password, Input.RememberMe, lockoutOnFailure: false); if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);

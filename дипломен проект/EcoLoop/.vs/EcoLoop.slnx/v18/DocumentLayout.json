@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\adminpanel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\adminpanel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\areas\\identity\\pages\\account\\login.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\data\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\data\\models\\store.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -21,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\events.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\wwwroot\\css\\adminpanel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|solutionrelative:ecoloop\\wwwroot\\css\\adminpanel.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9A4CFBDF-FFC5-C246-F5A6-058D0708941D}|EcoLoop\\EcoLoop.csproj|d:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\ecoloop\\ecoloop\\views\\events\\_eventform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -410,7 +414,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -422,7 +426,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
+              "Title": "Login.cshtml.cs",
+              "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "RelativeToolTip": "EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAkwH0AAACSAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-06T11:01:23.483Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "events.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\events.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\events.css",
@@ -434,7 +450,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Admin\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Admin\\Index.cshtml",
@@ -446,7 +462,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\appsettings.json",
               "RelativeDocumentMoniker": "EcoLoop\\appsettings.json",
@@ -458,7 +474,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "All.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\All.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\All.cshtml",
@@ -470,19 +486,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "adminpanel.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\adminpanel.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\adminpanel.css",
               "ToolTip": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\adminpanel.css",
               "RelativeToolTip": "EcoLoop\\wwwroot\\css\\adminpanel.css",
-              "ViewState": "AgIAAK8AAAAAAAAAAAAmwL4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-03-04T16:07:25.789Z"
+              "WhenOpened": "2026-03-04T16:07:25.789Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "20260305072100_Event.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260305072100_Event.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20260305072100_Event.cs",
@@ -494,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "Store.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\Store.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\Store.cs",
@@ -502,12 +519,11 @@
               "RelativeToolTip": "EcoLoop\\Data\\Models\\Store.cs",
               "ViewState": "AgIAABsAAAAAAAAAAAAkwBEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-10T18:24:04.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-10T18:24:04.883Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "_EventForm.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\_EventForm.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\_EventForm.cshtml",
@@ -519,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Create.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Create.cshtml",
@@ -531,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "_NewsForm.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\_NewsForm.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\_NewsForm.cshtml",
@@ -543,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Edit.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Edit.cshtml",
@@ -555,7 +571,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Create.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Create.cshtml",
@@ -567,7 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Events\\Details.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Events\\Details.cshtml",
@@ -579,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "EventsIndexViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventsIndexViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\EventsIndexViewModel.cs",
@@ -591,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "EventViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\EventViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\EventViewModel.cs",
@@ -603,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Event.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\Event.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\Event.cs",
@@ -615,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\HomeController.cs",
@@ -627,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "EventsController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\EventsController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\EventsController.cs",
@@ -639,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "20260305064029_Create.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Migrations\\20260305064029_Create.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Migrations\\20260305064029_Create.cs",
@@ -651,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Program.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Program.cs",
@@ -663,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "MyProfile.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\MyProfile.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\MyProfile.cshtml",
@@ -675,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "CommentsController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\CommentsController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\CommentsController.cs",
@@ -687,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\AdminController.cs",
@@ -699,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "AdminDashboardViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\AdminDashboardViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\AdminDashboardViewModel.cs",
@@ -711,7 +727,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "adminpanel.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\adminpanel.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\adminpanel.css",
@@ -723,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "All.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\All.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\All.cshtml",
@@ -735,7 +751,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\_ViewImports.cshtml",
@@ -747,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "UserVisitedStore.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\UserVisitedStore.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\UserVisitedStore.cs",
@@ -759,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "NewsController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\NewsController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\NewsController.cs",
@@ -771,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "ProfileController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\ProfileController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\ProfileController.cs",
@@ -783,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "default-avatar.svg",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\images\\default-avatar.svg",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\images\\default-avatar.svg",
@@ -795,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\UserProfile.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\UserProfile.cs",
@@ -807,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "site.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\site.css",
@@ -819,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 34,
               "Title": "Statistics.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\Statistics.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\Statistics.cshtml",
@@ -831,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 35,
               "Title": "MyStores.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\MyStores.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\MyStores.cshtml",
@@ -843,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 36,
               "Title": "LevelGuide.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\LevelGuide.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\LevelGuide.cshtml",
@@ -855,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 37,
               "Title": "ProfileStatsViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\Profile\\ProfileStatsViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\Profile\\ProfileStatsViewModel.cs",
@@ -867,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 38,
               "Title": "MyFavoriteStores.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\MyFavoriteStores.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\MyFavoriteStores.cshtml",
@@ -879,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 39,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Profile\\Edit.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Profile\\Edit.cshtml",
@@ -891,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 40,
               "Title": "ProfileEditViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\Profile\\ProfileEditViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\Profile\\ProfileEditViewModel.cs",
@@ -903,7 +919,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 41,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Layout.cshtml",
@@ -915,7 +931,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 42,
               "Title": "ProfileEventViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\Profile\\ProfileEventViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\Profile\\ProfileEventViewModel.cs",
@@ -927,7 +943,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 43,
               "Title": "ProfileIndexViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\Profile\\ProfileIndexViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\Profile\\ProfileIndexViewModel.cs",
@@ -939,7 +955,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 45,
               "Title": "Comment.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\Comment.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\Comment.cs",
@@ -951,7 +967,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 47,
               "Title": "auth-pages.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\auth-pages.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\auth-pages.css",
@@ -963,7 +979,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 44,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Details.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Details.cshtml",
@@ -975,7 +991,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 49,
               "Title": "Register.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
@@ -987,7 +1003,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 46,
               "Title": "StoreController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\StoreController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\StoreController.cs",
@@ -999,7 +1015,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 51,
               "Title": "ForgotPassword.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
@@ -1011,7 +1027,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 50,
               "Title": "Login.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
@@ -1023,7 +1039,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 48,
               "Title": "ResendEmailConfirmation.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
@@ -1035,7 +1051,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 52,
               "Title": "default-avatar.svg",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\images\\default-avatar.svg",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\images\\default-avatar.svg",
@@ -1047,7 +1063,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 53,
               "Title": "Register.cshtml.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
@@ -1059,7 +1075,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 56,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Home\\Index.cshtml",
@@ -1071,7 +1087,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 55,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Details.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Details.cshtml",
@@ -1083,7 +1099,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 54,
               "Title": "map.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\map.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\map.css",
@@ -1095,7 +1111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 57,
               "Title": "News.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\News.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\News.cs",
@@ -1107,7 +1123,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 58,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Add.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Add.cshtml",
@@ -1119,7 +1135,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 59,
               "Title": "UserRoleType.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\UserRoleType.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\UserRoleType.cs",
@@ -1131,7 +1147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 60,
               "Title": "UserFavoriteStore.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\UserFavoriteStore.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\UserFavoriteStore.cs",
@@ -1143,7 +1159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "UserEventParticipation.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\UserEventParticipation.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\UserEventParticipation.cs",
@@ -1155,7 +1171,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "ApplicationDbContext.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\ApplicationDbContext.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\ApplicationDbContext.cs",
@@ -1167,7 +1183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 63,
               "Title": "AccessDenied.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\AccessDenied.cshtml",
@@ -1179,7 +1195,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 65,
               "Title": "_StatusMessage.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\_StatusMessage.cshtml",
@@ -1191,7 +1207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 64,
               "Title": "_ViewImports.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Areas\\Identity\\Pages\\Account\\_ViewImports.cshtml",
@@ -1203,7 +1219,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 66,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "EcoLoop\\ScaffoldingReadMe.txt",
@@ -1215,7 +1231,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 67,
               "Title": "EcoLoop.csproj",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\EcoLoop.csproj",
               "RelativeDocumentMoniker": "EcoLoop\\EcoLoop.csproj",
@@ -1227,7 +1243,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 68,
               "Title": "news.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\news.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\news.css",
@@ -1239,7 +1255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 69,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\News\\Edit.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\News\\Edit.cshtml",
@@ -1251,7 +1267,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 70,
               "Title": "NewsLike.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\NewsLike.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\NewsLike.cs",
@@ -1263,7 +1279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 71,
               "Title": "NewsIndexViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsIndexViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsIndexViewModel.cs",
@@ -1275,7 +1291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 72,
               "Title": "NewsFormViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsFormViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsFormViewModel.cs",
@@ -1287,7 +1303,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 73,
               "Title": "NewsDetailsViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsDetailsViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsDetailsViewModel.cs",
@@ -1299,7 +1315,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 74,
               "Title": "store-list.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-list.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-list.css",
@@ -1311,7 +1327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 75,
               "Title": "events.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\events.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\events.css",
@@ -1323,7 +1339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 77,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Map\\Index.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Map\\Index.cshtml",
@@ -1335,7 +1351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 76,
               "Title": "site.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\js\\site.js",
@@ -1347,7 +1363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 79,
+              "DocumentIndex": 80,
               "Title": "MapController.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Controllers\\MapController.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Controllers\\MapController.cs",
@@ -1359,7 +1375,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 77,
+              "DocumentIndex": 78,
               "Title": "footer.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\footer.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\footer.css",
@@ -1371,7 +1387,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 78,
+              "DocumentIndex": 79,
               "Title": "_Footer.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_Footer.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_Footer.cshtml",
@@ -1383,7 +1399,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 80,
+              "DocumentIndex": 81,
               "Title": "details.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\js\\details.js",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\js\\details.js",
@@ -1395,7 +1411,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 82,
+              "DocumentIndex": 83,
               "Title": "MapPageViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\MapPageViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\MapPageViewModel.cs",
@@ -1407,7 +1423,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 81,
+              "DocumentIndex": 82,
               "Title": "MapStoreViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\MapStoreViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\MapStoreViewModel.cs",
@@ -1419,7 +1435,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 83,
+              "DocumentIndex": 84,
               "Title": "StoreImage.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\StoreImage.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\StoreImage.cs",
@@ -1431,7 +1447,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 84,
+              "DocumentIndex": 85,
               "Title": "StoreAddViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreAddViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreAddViewModel.cs",
@@ -1443,7 +1459,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 85,
+              "DocumentIndex": 86,
               "Title": "StoreEditViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreEditViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreEditViewModel.cs",
@@ -1455,7 +1471,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 86,
+              "DocumentIndex": 87,
               "Title": "All.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\All.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\All.cshtml",
@@ -1467,7 +1483,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 88,
+              "DocumentIndex": 89,
               "Title": "store-form.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-form.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-form.css",
@@ -1479,7 +1495,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 90,
+              "DocumentIndex": 91,
               "Title": "CommentViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\CommentViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\CommentViewModel.cs",
@@ -1491,7 +1507,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 87,
+              "DocumentIndex": 88,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Store\\Edit.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Store\\Edit.cshtml",
@@ -1503,7 +1519,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 89,
+              "DocumentIndex": 90,
               "Title": "store-details.css",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\css\\store-details.css",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\css\\store-details.css",
@@ -1515,7 +1531,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 91,
+              "DocumentIndex": 92,
               "Title": "CommentLike.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\CommentLike.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\CommentLike.cs",
@@ -1527,7 +1543,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 92,
+              "DocumentIndex": 93,
               "Title": "CommentHelpful.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\CommentHelpful.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\CommentHelpful.cs",
@@ -1539,7 +1555,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 93,
+              "DocumentIndex": 94,
               "Title": "StoreViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\StoreViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\StoreViewModel.cs",
@@ -1551,7 +1567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 94,
+              "DocumentIndex": 95,
               "Title": "_LoginPartial.cshtml",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Views\\Shared\\_LoginPartial.cshtml",
               "RelativeDocumentMoniker": "EcoLoop\\Views\\Shared\\_LoginPartial.cshtml",
@@ -1563,7 +1579,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 95,
+              "DocumentIndex": 96,
               "Title": "StorePhone.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\StorePhone.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\StorePhone.cs",
@@ -1575,7 +1591,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 96,
+              "DocumentIndex": 97,
               "Title": "logo-eco.svg",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\wwwroot\\images\\logo-eco.svg",
               "RelativeDocumentMoniker": "EcoLoop\\wwwroot\\images\\logo-eco.svg",
@@ -1587,7 +1603,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 97,
+              "DocumentIndex": 98,
               "Title": "site.js",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\wwwroot\\js\\site.js",
               "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
@@ -1599,7 +1615,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 98,
+              "DocumentIndex": 99,
               "Title": "NewsViewModel.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Models\\NewsViewModel.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Models\\NewsViewModel.cs",
@@ -1611,7 +1627,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 99,
+              "DocumentIndex": 100,
               "Title": "EcoPoints.cs",
               "DocumentMoniker": "D:\\diplomenproekt\\\u0434\u0438\u043F\u043B\u043E\u043C\u0435\u043D \u043F\u0440\u043E\u0435\u043A\u0442\\EcoLoop\\EcoLoop\\Data\\Models\\EcoPoints.cs",
               "RelativeDocumentMoniker": "EcoLoop\\Data\\Models\\EcoPoints.cs",
