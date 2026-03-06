@@ -19,297 +19,297 @@ build_property.TargetFrameworkIdentifier = .NETCoreApp
 build_property.TargetFrameworkVersion = v10.0
 build_property.RootNamespace = EcoLoop
 build_property.RootNamespace = EcoLoop
-build_property.ProjectDir = C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\
+build_property.ProjectDir = D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop
+build_property.MSBuildProjectDirectory = D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ConfirmEmail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ConfirmEmailChange.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb25maXJtRW1haWxDaGFuZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ExternalLogin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxFeHRlcm5hbExvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ForgotPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ForgotPasswordConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxGb3Jnb3RQYXNzd29yZENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Lockout.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Lockout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2Nrb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Login.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/LoginWith2fa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGgyZmEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/LoginWithRecoveryCode.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbldpdGhSZWNvdmVyeUNvZGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Logout.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ChangePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcQ2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/DeletePersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGVsZXRlUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Disable2fa.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRGlzYWJsZTJmYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/DownloadPersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRG93bmxvYWRQZXJzb25hbERhdGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Email.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Email.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW1haWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRW5hYmxlQXV0aGVudGljYXRvci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ExternalLogins.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcRXh0ZXJuYWxMb2dpbnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/GenerateRecoveryCodes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcR2VuZXJhdGVSZWNvdmVyeUNvZGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Index.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/PersonalData.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUGVyc29uYWxEYXRhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ResetAuthenticator.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcUmVzZXRBdXRoZW50aWNhdG9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/SetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2V0UGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/ShowRecoveryCodes.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcU2hvd1JlY292ZXJ5Q29kZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/TwoFactorAuthentication.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcVHdvRmFjdG9yQXV0aGVudGljYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_ManageNav.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX01hbmFnZU5hdi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1N0YXR1c01lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Manage/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxNYW5hZ2VcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Register.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/RegisterConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3RlckNvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResendEmailConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNlbmRFbWFpbENvbmZpcm1hdGlvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResetPassword.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResetPassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/ResetPasswordConfirmation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZXNldFBhc3N3b3JkQ29uZmlybWF0aW9uLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/_StatusMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfU3RhdHVzTWVzc2FnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Account/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Error.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ViewImports.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ViewStart.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Admin/Index.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/All.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEFsbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Create.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Details.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Edit.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/_EventForm.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Events/_EventForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXZlbnRzXF9FdmVudEZvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Home/Index.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Home/Privacy.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Map/Index.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Map/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFwXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/All.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xBbGwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Create.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Details.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Edit.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/_NewsForm.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/News/_NewsForm.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xfTmV3c0Zvcm0uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/Edit.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/LevelGuide.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/LevelGuide.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxMZXZlbEd1aWRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyFavoriteStores.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyFavoriteStores.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxNeUZhdm9yaXRlU3RvcmVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyProfile.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyProfile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxNeVByb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyStores.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/MyStores.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxNeVN0b3Jlcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/Statistics.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Profile/Statistics.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZmlsZVxTdGF0aXN0aWNzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/Error.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_Footer.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_Footer.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_LoginPartial.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Add.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/All.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/All.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcQWxsLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Details.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Edit.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Store/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RvcmVcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/_ViewImports.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/_ViewStart.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/XII class/Documents/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_Layout.cshtml]
+[D:/diplomenproekt/дипломен проект/EcoLoop/EcoLoop/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zmi3weoliy
