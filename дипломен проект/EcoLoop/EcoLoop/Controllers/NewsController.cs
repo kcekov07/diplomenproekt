@@ -2,27 +2,32 @@
 using EcoLoop.Data.Models;
 using EcoLoop.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Security.Cryptography;
+
 namespace EcoLoop.Controllers
 {
     public class NewsController : Controller
     {
         private readonly ApplicationDbContext _db;
+        private readonly IWebHostEnvironment _env;
         private const string VisitorCookie = "ecoloop_news_vid";
+        private const long MaxFileBytes = 5 * 1024 * 1024;
 
         private static readonly string[] FixedCategories =
         {
             "Еко бизнес", "Общество", "Съвети", "Законодателство", "Локални"
         };
 
-        public NewsController(ApplicationDbContext db)
+        public NewsController(ApplicationDbContext db, IWebHostEnvironment env)
         {
             _db = db;
+            _env = env;
         }
-
         public async Task<IActionResult> All(string? search, string? category)
         {
             var normalizedSearch = string.IsNullOrWhiteSpace(search) ? null : search.Trim();
@@ -177,12 +182,14 @@ namespace EcoLoop.Controllers
                 Content = model.Content.Trim(),
                 Category = model.Category.Trim(),
                 Author = string.IsNullOrWhiteSpace(model.Author) ? "EcoLoop Екип" : model.Author.Trim(),
-                ImageUrl = model.ImageUrl,
                 PublishedAt = DateTime.UtcNow
             };
 
             _db.News.Add(entity);
             await _db.SaveChangesAsync();
+            entity.ImageUrl = await SaveNewsImageAsync(entity.Id, model.UploadedImage);
+            await _db.SaveChangesAsync();
+
 
             return RedirectToAction(nameof(Details), new { id = entity.Id });
         }
@@ -230,7 +237,17 @@ namespace EcoLoop.Controllers
             entity.Content = model.Content.Trim();
             entity.Category = model.Category.Trim();
             entity.Author = string.IsNullOrWhiteSpace(model.Author) ? "EcoLoop Екип" : model.Author.Trim();
-            entity.ImageUrl = model.ImageUrl;
+            if (model.RemoveCurrentImage)
+            {
+                DeleteNewsImage(entity.ImageUrl);
+                entity.ImageUrl = null;
+            }
+
+            if (model.UploadedImage != null)
+            {
+                DeleteNewsImage(entity.ImageUrl);
+                entity.ImageUrl = await SaveNewsImageAsync(entity.Id, model.UploadedImage);
+            }
 
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id = entity.Id });
@@ -246,7 +263,7 @@ namespace EcoLoop.Controllers
             {
                 return NotFound();
             }
-
+            DeleteNewsImage(entity.ImageUrl);
             _db.News.Remove(entity);
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(All));
@@ -298,12 +315,9 @@ namespace EcoLoop.Controllers
             _db.Comments.Add(new Comment
             {
                 NewsId = id,
-                VisitorName = string.IsNullOrWhiteSpace(visitorName) ? null : visitorName.Trim(),
                 UserId = userId,
-                VisitorKey = GetOrCreateVisitorKey(),
-                EditToken = Convert.ToHexString(RandomNumberGenerator.GetBytes(24)),
+                VisitorName = string.IsNullOrWhiteSpace(visitorName) ? User.Identity?.Name : visitorName.Trim(),
                 Text = text.Trim(),
-                Rating = 5,
                 CreatedAt = DateTime.UtcNow
             });
 
@@ -315,10 +329,15 @@ namespace EcoLoop.Controllers
         [Authorize]
         public async Task<IActionResult> EditComment(int commentId, string text)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrWhiteSpace(userId))
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(currentUserId))
             {
                 return Unauthorized();
+            }
+
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return RedirectToAction(nameof(All));
             }
 
             var comment = await _db.Comments.FirstOrDefaultAsync(c => c.Id == commentId && c.NewsId != null);
@@ -327,21 +346,16 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
-            if (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin))
+            if (comment.UserId != currentUserId)
             {
-                return Unauthorized();
-            }
-
-            if (string.IsNullOrWhiteSpace(text))
-            {
-                return RedirectToAction(nameof(Details), new { id = comment.NewsId!.Value });
+                return Forbid();
             }
 
             comment.Text = text.Trim();
             comment.EditedAt = DateTime.UtcNow;
-
             await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Details), new { id = comment.NewsId!.Value });
+
+            return RedirectToAction(nameof(Details), new { id = comment.NewsId });
         }
 
         [HttpPost]
@@ -349,8 +363,8 @@ namespace EcoLoop.Controllers
         [Authorize]
         public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (string.IsNullOrWhiteSpace(userId))
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(currentUserId))
             {
                 return Unauthorized();
             }
@@ -361,37 +375,83 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
-            if (comment.UserId != userId && !User.IsInRole(UserRoleType.Admin))
+            if (comment.UserId != currentUserId)
             {
-                return Unauthorized();
+                return Forbid();
             }
 
-            var newsId = comment.NewsId!.Value;
+            var newsId = comment.NewsId;
             _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = newsId });
         }
 
-
         private string GetOrCreateVisitorKey()
         {
-            if (Request.Cookies.TryGetValue(VisitorCookie, out var key) && !string.IsNullOrWhiteSpace(key))
+            if (Request.Cookies.TryGetValue(VisitorCookie, out var existing) && !string.IsNullOrWhiteSpace(existing))
             {
-                return key;
+                return existing;
             }
 
-            var newKey = Convert.ToHexString(RandomNumberGenerator.GetBytes(16));
-            Response.Cookies.Append(VisitorCookie, newKey, new CookieOptions
+            Span<byte> bytes = stackalloc byte[16];
+            RandomNumberGenerator.Fill(bytes);
+            var value = Convert.ToHexString(bytes).ToLowerInvariant();
+
+            Response.Cookies.Append(VisitorCookie, value, new CookieOptions
             {
                 HttpOnly = true,
                 IsEssential = true,
                 SameSite = SameSiteMode.Lax,
                 Secure = Request.IsHttps,
-                Expires = DateTimeOffset.UtcNow.AddDays(365)
+                Expires = DateTimeOffset.UtcNow.AddYears(1)
             });
 
-            return newKey;
+            return value;
+        }
+
+        private async Task<string?> SaveNewsImageAsync(int newsId, IFormFile? uploadedImage)
+        {
+            if (uploadedImage == null || uploadedImage.Length == 0 || uploadedImage.Length > MaxFileBytes)
+            {
+                return null;
+            }
+
+            var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+            if (!permitted.Contains(uploadedImage.ContentType))
+            {
+                return null;
+            }
+
+            var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var uploadsRoot = Path.Combine(webRoot, "images", "news", newsId.ToString());
+            Directory.CreateDirectory(uploadsRoot);
+
+            var ext = Path.GetExtension(uploadedImage.FileName);
+            var fileName = $"{Guid.NewGuid()}{ext}";
+            var filePath = Path.Combine(uploadsRoot, fileName);
+
+            await using var stream = System.IO.File.Create(filePath);
+            await uploadedImage.CopyToAsync(stream);
+
+            return $"/images/news/{newsId}/{fileName}";
+        }
+
+        private void DeleteNewsImage(string? imageUrl)
+        {
+            if (string.IsNullOrWhiteSpace(imageUrl) || !imageUrl.StartsWith("/images/news/", StringComparison.OrdinalIgnoreCase))
+            {
+                return;
+            }
+
+            var relative = imageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar);
+            var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var filePath = Path.Combine(webRoot, relative);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
         }
     }
 }

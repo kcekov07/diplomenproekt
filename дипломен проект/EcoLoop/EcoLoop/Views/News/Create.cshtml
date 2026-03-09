@@ -13,7 +13,7 @@
         <h1>Добави новина</h1>
         <p>Създай модерно представена публикация с ясна структура и полезно съдържание.</p>
     </header>
-    <form asp-action="Create" method="post" class="news-form-card">
+    <form asp-action="Create" method="post" enctype="multipart/form-data" class="news-form-card">
         @Html.AntiForgeryToken()
         <partial name="_NewsForm" model="Model" />
 

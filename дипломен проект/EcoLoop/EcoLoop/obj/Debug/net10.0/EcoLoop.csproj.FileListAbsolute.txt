@@ -887,7 +887,7 @@ C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoo
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.pdb
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.genruntimeconfig.cache
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\ref\EcoLoop.dll
-C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0k1iy24u41-{0}-7maxifif90-7maxifif90.gz
 C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mzhewhjjzr-{0}-tliuupy0oo-tliuupy0oo.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0k1iy24u41-{0}-7maxifif90-7maxifif90.gz
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mzhewhjjzr-{0}-tliuupy0oo-tliuupy0oo.gz
+C:\Users\XII class\Documents\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0k1iy24u41-{0}-44cp20gnr3-44cp20gnr3.gz

@@ -13,7 +13,7 @@
         <h1>Редактирай новина</h1>
         <p>Обнови текста, категорията и визията, за да остане публикацията актуална и четима.</p>
     </header>
-    <form asp-action="Edit" method="post" class="news-form-card">
+    <form asp-action="Edit" method="post" enctype="multipart/form-data" class="news-form-card">
         @Html.AntiForgeryToken()
         <input asp-for="Id" type="hidden" />
         <partial name="_NewsForm" model="Model" />

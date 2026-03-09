@@ -9,6 +9,9 @@
 }
 
 <article class="news-article-page">
+    <div style="margin-bottom: 16px;">
+        <button type="button" class="btn btn-ghost" onclick="history.back()">← Назад</button>
+    </div>
     <header class="article-header">
         <span class="news-category">@(string.IsNullOrWhiteSpace(Model.Article.Category) ? "Общо" : Model.Article.Category)</span>
         <h1>@Model.Article.Title</h1>

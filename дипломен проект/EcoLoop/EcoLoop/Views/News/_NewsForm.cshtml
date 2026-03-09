@@ -23,14 +23,24 @@
     </label>
 
 
-    <label class="news-form-field">
-        <span>Автор</span>
-        <input asp-for="Author" class="news-input" placeholder="Пример: Иван Петров" />
-    </label>
+    <label class="news-form-field news-form-field--full">
+        <span>Основно изображение</span>
+        <input asp-for="UploadedImage" type="file" accept="image/*" class="news-input" id="news-image-input" />
 
-    <label class="news-form-field">
-        <span>Основно изображение (URL)</span>
-        <input asp-for="ImageUrl" class="news-input" placeholder="https://..." />
+        <div id="news-image-preview-wrap" style="margin-top:10px;">
+            <img id="news-image-preview"
+                 src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "" : Model.ImageUrl)"
+                 alt="Преглед на изображение"
+                 style="max-width: 280px; border-radius: 12px; display:@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "none" : "block");" />
+        </div>
+
+        @if (!string.IsNullOrWhiteSpace(Model.ImageUrl))
+        {
+            <label style="display:flex; gap:8px; align-items:center; margin-top:10px;">
+                <input asp-for="RemoveCurrentImage" type="checkbox" id="news-remove-image" />
+                <span>Премахни текущото изображение</span>
+            </label>
+        }
     </label>
 
     <label class="news-form-field news-form-field--full">
@@ -39,3 +49,35 @@
         <span asp-validation-for="Content" class="text-danger"></span>
     </label>
 </div>
+
+<script>
+    (() => {
+        const input = document.getElementById('news-image-input');
+        const preview = document.getElementById('news-image-preview');
+        const removeBox = document.getElementById('news-remove-image');
+
+        if (!input || !preview) return;
+
+        input.addEventListener('change', (e) => {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                preview.src = ev.target?.result;
+                preview.style.display = 'block';
+                if (removeBox) removeBox.checked = false;
+            };
+            reader.readAsDataURL(file);
+        });
+
+        if (removeBox) {
+            removeBox.addEventListener('change', () => {
+                if (removeBox.checked && !input.files?.length) {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                }
+            });
+        }
+    })();
+</script>

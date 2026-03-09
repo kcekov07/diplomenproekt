@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace EcoLoop.Models
 {
@@ -15,8 +16,14 @@ namespace EcoLoop.Models
         public string Content { get; set; } = string.Empty;
 
         [MaxLength(500)]
-        [Display(Name = "Основно изображение (URL)")]
+        [Display(Name = "Основно изображение")]
         public string? ImageUrl { get; set; }
+
+        [Display(Name = "Качи изображение")]
+        public IFormFile? UploadedImage { get; set; }
+
+        [Display(Name = "Премахни текущото изображение")]
+        public bool RemoveCurrentImage { get; set; }
 
         [Required(ErrorMessage = "Категорията е задължителна")]
         [MaxLength(100)]
