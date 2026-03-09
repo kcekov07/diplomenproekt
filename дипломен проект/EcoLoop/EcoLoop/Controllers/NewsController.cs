@@ -3,11 +3,9 @@ using EcoLoop.Data.Models;
 using EcoLoop.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-using System.Security.Cryptography;
 
 namespace EcoLoop.Controllers
 {
@@ -15,7 +13,6 @@ namespace EcoLoop.Controllers
     {
         private readonly ApplicationDbContext _db;
         private readonly IWebHostEnvironment _env;
-        private const string VisitorCookie = "ecoloop_news_vid";
         private const long MaxFileBytes = 5 * 1024 * 1024;
 
         private static readonly string[] FixedCategories =
@@ -100,8 +97,6 @@ namespace EcoLoop.Controllers
                 return NotFound();
             }
 
-            var visitorKey = GetOrCreateVisitorKey();
-
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
 
@@ -109,7 +104,7 @@ namespace EcoLoop.Controllers
             {
                 Article = item,
                 LikesCount = await _db.NewsLikes.CountAsync(l => l.NewsId == id),
-                IsLikedByVisitor = await _db.NewsLikes.AnyAsync(l => l.NewsId == id && l.VisitorKey == visitorKey),
+                IsLikedByUser = !string.IsNullOrWhiteSpace(currentUserId) && await _db.NewsLikes.AnyAsync(l => l.NewsId == id && l.UserId == currentUserId),
                 Comments = await _db.Comments
                     .AsNoTracking()
                     .Where(c => c.NewsId == id)
@@ -132,8 +127,7 @@ namespace EcoLoop.Controllers
                         CommentsCount = _db.Comments.Count(c => c.NewsId == n.Id)
                     })
                     .ToListAsync()
-            };
-            ViewBag.EditableNewsCommentIds = string.IsNullOrWhiteSpace(currentUserId)
+            }; ViewBag.EditableNewsCommentIds = string.IsNullOrWhiteSpace(currentUserId)
                 ? new HashSet<int>()
                 : model.Comments.Where(c => c.UserId == currentUserId).Select(c => c.Id).ToHashSet();
 
@@ -274,12 +268,17 @@ namespace EcoLoop.Controllers
         [Authorize]
         public async Task<IActionResult> ToggleLike(int id)
         {
-            var visitorKey = GetOrCreateVisitorKey();
-            var existing = await _db.NewsLikes.FirstOrDefaultAsync(l => l.NewsId == id && l.VisitorKey == visitorKey);
+            var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(currentUserId))
+            {
+                return Unauthorized();
+            }
+
+            var existing = await _db.NewsLikes.FirstOrDefaultAsync(l => l.NewsId == id && l.UserId == currentUserId);
 
             if (existing == null)
             {
-                _db.NewsLikes.Add(new NewsLike { NewsId = id, VisitorKey = visitorKey });
+                _db.NewsLikes.Add(new NewsLike { NewsId = id, UserId = currentUserId });
             }
             else
             {
@@ -289,7 +288,6 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id });
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -385,29 +383,6 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Details), new { id = newsId });
-        }
-
-        private string GetOrCreateVisitorKey()
-        {
-            if (Request.Cookies.TryGetValue(VisitorCookie, out var existing) && !string.IsNullOrWhiteSpace(existing))
-            {
-                return existing;
-            }
-
-            Span<byte> bytes = stackalloc byte[16];
-            RandomNumberGenerator.Fill(bytes);
-            var value = Convert.ToHexString(bytes).ToLowerInvariant();
-
-            Response.Cookies.Append(VisitorCookie, value, new CookieOptions
-            {
-                HttpOnly = true,
-                IsEssential = true,
-                SameSite = SameSiteMode.Lax,
-                Secure = Request.IsHttps,
-                Expires = DateTimeOffset.UtcNow.AddYears(1)
-            });
-
-            return value;
         }
 
         private async Task<string?> SaveNewsImageAsync(int newsId, IFormFile? uploadedImage)

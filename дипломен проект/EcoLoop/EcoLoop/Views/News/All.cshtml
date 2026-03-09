@@ -20,7 +20,29 @@
         }
     </header>
 
-    
+    @if (Model.TopNews.Any())
+    {
+        <section class="featured-news-grid">
+            @foreach (var item in Model.TopNews)
+            {
+                <article class="news-card featured">
+                    <img src="@(item.ImageUrl ?? "https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80")" alt="@item.Title" />
+                    <div class="news-card-content">
+                        <span class="news-category">@item.Category</span>
+                        <h3>@item.Title</h3>
+                        <p>@item.PreviewText</p>
+                        <div class="news-meta">
+                            <span>❤️ @item.LikesCount</span>
+                            <span>💬 @item.CommentsCount</span>
+                            <span>@item.PublishedAt.ToLocalTime().ToString("dd.MM.yyyy")</span>
+                        </div>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="read-more-btn">Чети повече</a>
+                    </div>
+                </article>
+            }
+        </section>
+    }
+
     <form class="news-filters" method="get" asp-action="All">
         <label class="news-filter-search">
             <span>Търсене</span>
@@ -51,7 +73,6 @@
             <span class="news-active-filter">Категория: @Model.Category</span>
         }
     </p>
-
 
     <section class="news-grid">
         @if (!Model.News.Any())

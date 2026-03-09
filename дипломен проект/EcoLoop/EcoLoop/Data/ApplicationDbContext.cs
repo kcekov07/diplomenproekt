@@ -63,7 +63,7 @@ namespace EcoLoop.Data
                 .HasForeignKey(c => c.NewsId)
                 .OnDelete(DeleteBehavior.Cascade);
             builder.Entity<NewsLike>()
-               .HasIndex(nl => new { nl.NewsId, nl.VisitorKey })
+               .HasIndex(nl => new { nl.NewsId, nl.UserId })
                .IsUnique();
 
             builder.Entity<NewsLike>()

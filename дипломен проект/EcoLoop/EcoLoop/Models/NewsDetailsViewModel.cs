@@ -12,6 +12,6 @@ namespace EcoLoop.Models
 
         public int LikesCount { get; set; }
 
-        public bool IsLikedByVisitor { get; set; }
+        public bool IsLikedByUser { get; set; }
     }
 }

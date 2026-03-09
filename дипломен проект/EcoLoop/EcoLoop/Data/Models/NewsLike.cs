@@ -9,8 +9,8 @@ namespace EcoLoop.Data.Models
         public int NewsId { get; set; }
         public News News { get; set; } = null!;
 
-        [Required, MaxLength(64)]
-        public string VisitorKey { get; set; } = null!;
+        [Required, MaxLength(450)]
+        public string UserId { get; set; } = null!;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
     }
