@@ -113,8 +113,8 @@ namespace EcoLoop.Controllers
                     return View(model);
                 }
 
-                var uploadsFolder = Path.Combine(_environment.WebRootPath, "uploads", "profiles");
-                Directory.CreateDirectory(uploadsFolder);
+                var webRoot = _environment.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var uploadsFolder = Path.Combine(webRoot, "images", "profiles", user.Id); Directory.CreateDirectory(uploadsFolder);
 
                 var fileName = $"{user.Id}_{Guid.NewGuid():N}{extension}";
                 var filePath = Path.Combine(uploadsFolder, fileName);
@@ -126,14 +126,13 @@ namespace EcoLoop.Controllers
 
                 if (!string.IsNullOrWhiteSpace(profile.ProfileImageUrl))
                 {
-                    var oldPath = Path.Combine(_environment.WebRootPath, profile.ProfileImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
-                    if (System.IO.File.Exists(oldPath))
+                    var oldPath = Path.Combine(webRoot, profile.ProfileImageUrl.TrimStart('/').Replace('/', Path.DirectorySeparatorChar)); if (System.IO.File.Exists(oldPath))
                     {
                         System.IO.File.Delete(oldPath);
                     }
                 }
 
-                profile.ProfileImageUrl = $"/uploads/profiles/{fileName}";
+                profile.ProfileImageUrl = $"/images/profiles/{user.Id}/{fileName}";
             }
 
             await _db.SaveChangesAsync();

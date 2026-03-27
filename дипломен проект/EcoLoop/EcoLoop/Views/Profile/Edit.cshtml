@@ -1,37 +1,54 @@
 ﻿@model EcoLoop.Models.Profile.ProfileEditViewModel
 @{
-    
     ViewData["Title"] = "Редакция на профила";
 }
 
-<section class="profile-shell">
-    <article class="profile-edit-card">
-        <h1>Редакция на профила</h1>
-        <p>Обнови своите данни и качи нова профилна снимка.</p>
+<section class="profile-shell profile-edit-shell">
+    <article class="profile-edit-card profile-edit-card-modern">
+        <div class="profile-edit-head">
+            <p class="profile-label">Профил</p>
+            <h1>Редакция на профила</h1>
+            <p class="profile-meta">Обнови данните си и качи нова снимка с модерен преглед в реално време.</p>
+        </div>
 
-        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="profile-edit-form">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data" class="profile-edit-form profile-edit-form-modern">
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <label asp-for="Username"></label>
-            <input asp-for="Username" class="form-control" />
-            <span asp-validation-for="Username" class="text-danger"></span>
+            <div class="profile-edit-grid">
+                <div class="profile-edit-fields">
+                    <div class="profile-input-group">
+                        <label asp-for="Username"></label>
+                        <input asp-for="Username" class="form-control profile-input-modern" />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
 
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+                    <div class="profile-input-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control profile-input-modern" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
 
-            <label asp-for="ProfileImage">Профилна снимка</label>
-            <input asp-for="ProfileImage" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" />
-            <span asp-validation-for="ProfileImage" class="text-danger"></span>
-
-            @if (!string.IsNullOrWhiteSpace(Model.CurrentProfileImageUrl))
-            {
-                <div class="profile-current-image">
-                    <p>Текуща снимка:</p>
-                    <img src="@Model.CurrentProfileImageUrl" alt="Текуща профилна снимка" class="profile-avatar" />
+                    <div class="profile-input-group">
+                        <label asp-for="ProfileImage">Профилна снимка</label>
+                        <input asp-for="ProfileImage" id="profileImageInput" type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control profile-input-modern" />
+                        <small class="profile-upload-hint">Формати: JPG, PNG, WEBP • Максимум 5MB</small>
+                        <span asp-validation-for="ProfileImage" class="text-danger"></span>
+                    </div>
                 </div>
-            }
+
+                <aside class="profile-image-preview-card">
+                    <p class="profile-image-preview-label">Преглед</p>
+                    @if (!string.IsNullOrWhiteSpace(Model.CurrentProfileImageUrl))
+                    {
+                        <img id="profilePreview" src="@Model.CurrentProfileImageUrl" alt="Текуща профилна снимка" class="profile-avatar profile-avatar-large" />
+                    }
+                    else
+                    {
+                        <img id="profilePreview" src="~/images/default-avatar.svg" alt="Профилна снимка по подразбиране" class="profile-avatar profile-avatar-large" />
+                    }
+                </aside>
+            </div>
 
             <div class="profile-actions">
                 <button type="submit" class="btn btn-primary">Запази промените</button>
@@ -43,4 +60,23 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
+    <script>
+        (() => {
+            const input = document.getElementById('profileImageInput');
+            const preview = document.getElementById('profilePreview');
+
+            if (!input || !preview) return;
+
+            const defaultPreview = preview.getAttribute('src');
+            input.addEventListener('change', () => {
+                const file = input.files && input.files[0];
+                if (!file) {
+                    preview.src = defaultPreview;
+                    return;
+                }
+
+                preview.src = URL.createObjectURL(file);
+            });
+        })();
+    </script>
 }

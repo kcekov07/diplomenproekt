@@ -165,8 +165,8 @@ namespace EcoLoop.Areas.Identity.Pages.Account
                 return "/images/default-avatar.svg";
             }
 
-            var uploads = Path.Combine(_env.WebRootPath, "uploads", "profiles", userId);
-            Directory.CreateDirectory(uploads);
+            var webRoot = _env.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var uploads = Path.Combine(webRoot, "images", "profiles", userId); Directory.CreateDirectory(uploads);
             var ext = Path.GetExtension(file.FileName);
             var fileName = $"{Guid.NewGuid():N}{ext}";
             var path = Path.Combine(uploads, fileName);
@@ -174,7 +174,7 @@ namespace EcoLoop.Areas.Identity.Pages.Account
             await using var stream = System.IO.File.Create(path);
             await file.CopyToAsync(stream);
 
-            return $"/uploads/profiles/{userId}/{fileName}";
+            return $"/images/profiles/{userId}/{fileName}";
         }
 
         private IdentityUser CreateUser()
