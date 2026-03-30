@@ -1,4 +1,5 @@
 ﻿@using EcoLoop.Data.Models
+@using EcoLoop.Models
 @model EcoLoop.Data.Models.Store
 
 @{
@@ -22,10 +23,14 @@
     var likesDict = ViewBag.CommentLikes as Dictionary<int, int> ?? new Dictionary<int, int>();
     var likedIds = ViewBag.LikedCommentIds as HashSet<int> ?? new HashSet<int>();
     var canEditIds = ViewBag.CanEditCommentIds as HashSet<int> ?? new HashSet<int>();
+    var products = Model.Products?.OrderByDescending(p => p.CreatedOn).ToList() ?? new List<StoreProduct>();
+    var canManageProducts = (bool?)(ViewBag.CanManageProducts) ?? false;
+    var cartCount = (int?)(ViewBag.CartCount) ?? 0;
 }
 
 @section Styles {
     <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/store-catalog.css" asp-append-version="true" />
 
 }
 
@@ -35,6 +40,7 @@
         <button type="button" class="sd-back" onclick="history.back()">← Назад</button>
         @if (User.Identity?.IsAuthenticated == true)
         {
+            <a class="sd-cartLink" href="/Store/Cart">🛒 Количка (@cartCount)</a>
             <form asp-controller="Store" asp-action="ToggleFavorite" asp-route-id="@Model.Id" method="post">
                 @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-primary">@((ViewBag.IsFavorite ?? false) ? "Премахни от любими" : "Добави в любими")</button>
@@ -227,6 +233,110 @@
                 </div>
             </section>
         }
+        <section class="catalog-section">
+            <div class="catalog-head">
+                <div>
+                    <h2>Каталог продукти</h2>
+                    <p class="sd-muted">Избери продукти и ги добави в количката си.</p>
+                </div>
+            </div>
+
+            @if (TempData["CatalogError"] != null)
+            {
+                <div class="catalog-alert">@TempData["CatalogError"]</div>
+            }
+
+            @if (canManageProducts)
+            {
+                <details class="catalog-manage" open>
+                    <summary>➕ Добави нов продукт</summary>
+                    <form asp-controller="Store" asp-action="AddProduct" method="post" class="catalog-form">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="StoreId" value="@Model.Id" />
+                        <input name="Name" placeholder="Име на продукта" maxlength="160" required />
+                        <textarea name="Description" placeholder="Кратко описание" maxlength="600"></textarea>
+                        <div class="catalog-form__row">
+                            <input name="Price" type="number" step="0.01" min="0.01" placeholder="Цена" required />
+                            <input name="Unit" maxlength="100" placeholder="Единица (бр., кг, мл)" />
+                        </div>
+                        <input name="ImageUrl" type="url" maxlength="300" placeholder="URL към изображение (по избор)" />
+                        <input name="Labels" maxlength="200" placeholder="Етикети: био, локално, vegan" />
+                        <label><input type="checkbox" name="IsAvailable" value="true" checked /> Налично</label>
+                        <button type="submit" class="sd-btn sd-btn--primary">Публикувай продукт</button>
+                    </form>
+                </details>
+            }
+
+            @if (!products.Any())
+            {
+                <div class="sd-empty">Този магазин още няма добавени продукти.</div>
+            }
+            else
+            {
+                <div class="catalog-grid">
+                    @foreach (var product in products)
+                    {
+                        var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
+                            ? "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=70"
+                            : product.ImageUrl;
+
+                        <article class="catalog-card @(product.IsAvailable ? string.Empty : "is-unavailable")">
+                            <div class="catalog-card__image" style="background-image:url('@imageUrl')"></div>
+                            <div class="catalog-card__content">
+                                <h3>@product.Name</h3>
+                                @if (!string.IsNullOrWhiteSpace(product.Description))
+                                {
+                                    <p>@product.Description</p>
+                                }
+                                <div class="catalog-meta">
+                                    <strong>@product.Price.ToString("0.00") лв.</strong>
+                                    @if (!string.IsNullOrWhiteSpace(product.Unit))
+                                    {
+                                        <span>/ @product.Unit</span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(product.Labels))
+                                {
+                                    <small>@product.Labels</small>
+                                }
+                                @if (product.IsAvailable)
+                                {
+                                    @if (User.Identity?.IsAuthenticated == true)
+                                    {
+                                        <form asp-controller="Store" asp-action="AddToCart" method="post" class="catalog-buyForm">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="productId" value="@product.Id" />
+                                            <input type="number" name="quantity" min="1" max="20" value="1" />
+                                            <button type="submit" class="sd-btn sd-btn--primary">Добави в количка</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <a class="sd-actionLink" href="/Identity/Account/Login">Влез, за да поръчаш</a>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="catalog-unavailable">Изчерпан продукт</span>
+                                }
+
+                                @if (canManageProducts)
+                                {
+                                    <form asp-controller="Store" asp-action="DeleteProduct" method="post" class="catalog-delete"
+                                          onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@product.Id" />
+                                        <input type="hidden" name="storeId" value="@Model.Id" />
+                                        <button type="submit" class="sd-actionDanger">Изтрий продукт</button>
+                                    </form>
+                                }
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+        </section>
+
 
         <!-- REVIEWS -->
         @if (User.Identity?.IsAuthenticated == true)

@@ -5,6 +5,7 @@ wwwroot\css\footer.css
 wwwroot\css\map.css
 wwwroot\css\news.css
 wwwroot\css\site.css
+wwwroot\css\store-catalog.css
 wwwroot\css\store-details.css
 wwwroot\css\store-form.css
 wwwroot\css\store-list.css
@@ -18,6 +19,8 @@ wwwroot\images\events\8\09358368-dca5-4789-bfec-7b22bf578f7d.jpg
 wwwroot\images\logo-eco.svg
 wwwroot\images\news\1\0a41e6aa-ad9d-4d3d-bad8-4c2a24227ee3.png
 wwwroot\images\news\2\4dde548f-ca5d-46dd-89af-1b89c4228370.png
+wwwroot\images\profiles\40e9620e-5f41-46f7-b9e4-b9ea7ca40ad6\40e9620e-5f41-46f7-b9e4-b9ea7ca40ad6_2a98cea025464cf189850dd740b876a3.jpeg
+wwwroot\images\profiles\beb2b2cf-4073-4486-aed8-c9470f2f3e61\beb2b2cf-4073-4486-aed8-c9470f2f3e61_3d7c717a9cca430f980ac18b1a7872a7.jpg
 wwwroot\images\stores\10\bb9e50ab-7360-4f8e-ab6f-cf31f5376886.jpg
 wwwroot\images\stores\10\eb543369-1eca-4af4-969f-80ae4cae892c.png
 wwwroot\images\stores\1\249d470b-a944-49d3-a263-afcfc5d446ad.jpg
@@ -117,7 +120,6 @@ wwwroot\uploads\profiles\15879be7-583f-4188-bfca-b1c4c309c0aa\9374d08e3e804e77a3
 wwwroot\uploads\profiles\330cb2e5-cc3d-455a-9ec8-64633649e9e2\178a7e3aaec34071b9c9907d72b644c5.avif
 wwwroot\uploads\profiles\36ca1c09-733a-443b-8d80-e5ce90fb12ce\db90648b44fa45b1b10925eae727d72a.jpg
 wwwroot\uploads\profiles\3f3a022c-c65c-48d9-b55e-b12ac9dcd47a\703e7e897adb47a99d2ad62516f23a3d.png
-wwwroot\uploads\profiles\40e9620e-5f41-46f7-b9e4-b9ea7ca40ad6\2fc1976dbf7d477abc8a3607f645f80c.jpg
 wwwroot\uploads\profiles\60bea353-6de0-479f-ba3a-8679d4e844c3\f884024fbf0e4cc5895cba32814d9ea1.png
 wwwroot\uploads\profiles\e56a56fa-1944-4d5a-8640-c7c52329d3fa\58b0c416575f40caac57d0cdad6dc7e1.png
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\adminpanel.css
@@ -194,3 +196,4 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jque
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.js
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-catalog.css

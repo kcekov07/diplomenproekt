@@ -25,6 +25,10 @@
                 <a class="nav-link" href="/map"><span class="nav-icon">🗺️</span><span class="nav-text">Карта</span></a>
                 <a class="nav-link" href="/Events/All"><span class="nav-icon">📅</span><span class="nav-text">Събития</span></a>
                 <a class="nav-link" href="/News/All"><span class="nav-icon">📰</span><span class="nav-text">Новини</span></a>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a class="nav-link" href="/Store/Cart"><span class="nav-icon">🛒</span><span class="nav-text">Количка</span></a>
+                }
                 @if (User.IsInRole(UserRoleType.Producer) || User.IsInRole(UserRoleType.Moderator) || User.IsInRole(UserRoleType.Admin))
                 {
                     <a class="nav-link" href="/Store/Add"><span class="nav-icon">➕</span><span class="nav-text">Добави обект</span></a>

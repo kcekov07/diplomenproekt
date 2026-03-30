@@ -65,6 +65,7 @@ namespace EcoLoop.Controllers
     .Include(s => s.Images)
     .Include(s => s.Phones)
     .Include(s => s.Comments)
+    .Include(s => s.Products)
     .FirstOrDefaultAsync(s => s.Id == id);
 
             if (store == null) return NotFound();
@@ -123,8 +124,11 @@ namespace EcoLoop.Controllers
                     }
 
                     ViewBag.IsFavorite = await _db.UserFavoriteStores.AnyAsync(x => x.UserId == userId && x.StoreId == id);
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (int?)x.Quantity) ?? 0;
                 }
             }
+            ViewBag.CanManageProducts = await CanManageStoreAsync(store);
+            ViewBag.ProductForm = new StoreProductInputModel { StoreId = store.Id };
             return View(store);
 
 
@@ -503,6 +507,191 @@ namespace EcoLoop.Controllers
 
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id });
+        }
+        [Authorize(Roles = "Producer,Moderator,Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddProduct(StoreProductInputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["CatalogError"] = "Попълни валидно всички задължителни полета за продукта.";
+                return RedirectToAction(nameof(Details), new { id = model.StoreId });
+            }
+
+            var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == model.StoreId);
+            if (store == null) return NotFound();
+            if (!await CanManageStoreAsync(store)) return Forbid();
+
+            var product = new StoreProduct
+            {
+                StoreId = store.Id,
+                Name = model.Name.Trim(),
+                Description = string.IsNullOrWhiteSpace(model.Description) ? null : model.Description.Trim(),
+                Price = model.Price,
+                ImageUrl = string.IsNullOrWhiteSpace(model.ImageUrl) ? null : model.ImageUrl.Trim(),
+                Unit = string.IsNullOrWhiteSpace(model.Unit) ? null : model.Unit.Trim(),
+                Labels = string.IsNullOrWhiteSpace(model.Labels) ? null : model.Labels.Trim(),
+                IsAvailable = model.IsAvailable
+            };
+
+            _db.StoreProducts.Add(product);
+            await _db.SaveChangesAsync();
+            TempData["Message"] = "Продуктът е добавен в каталога.";
+            return RedirectToAction(nameof(Details), new { id = model.StoreId });
+        }
+
+        [Authorize(Roles = "Producer,Moderator,Admin")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteProduct(int id, int storeId)
+        {
+            var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == storeId);
+            if (store == null) return NotFound();
+            if (!await CanManageStoreAsync(store)) return Forbid();
+
+            var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == id && x.StoreId == storeId);
+            if (product == null) return NotFound();
+
+            _db.StoreProducts.Remove(product);
+            await _db.SaveChangesAsync();
+            TempData["Message"] = "Продуктът е премахнат от каталога.";
+            return RedirectToAction(nameof(Details), new { id = storeId });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            quantity = Math.Clamp(quantity, 1, 20);
+
+            var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == productId && x.IsAvailable);
+            if (product == null) return NotFound();
+
+            var existing = await _db.CartItems.FirstOrDefaultAsync(x => x.UserId == userId && x.StoreProductId == productId);
+            if (existing == null)
+            {
+                _db.CartItems.Add(new CartItem { UserId = userId, StoreProductId = productId, Quantity = quantity });
+            }
+            else
+            {
+                existing.Quantity = Math.Clamp(existing.Quantity + quantity, 1, 99);
+            }
+
+            await _db.SaveChangesAsync();
+            TempData["Message"] = "Продуктът е добавен в количката.";
+            return RedirectToAction(nameof(Details), new { id = product.StoreId });
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Cart()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var items = await _db.CartItems
+                .Where(x => x.UserId == userId)
+                .Include(x => x.StoreProduct)
+                .ThenInclude(p => p.Store)
+                .OrderByDescending(x => x.AddedOn)
+                .ToListAsync();
+
+            var vm = new CartViewModel
+            {
+                Items = items.Select(x => new CartLineViewModel
+                {
+                    CartItemId = x.Id,
+                    ProductId = x.StoreProductId,
+                    StoreId = x.StoreProduct.StoreId,
+                    StoreName = x.StoreProduct.Store.Name,
+                    ProductName = x.StoreProduct.Name,
+                    ProductImageUrl = x.StoreProduct.ImageUrl,
+                    UnitPrice = x.StoreProduct.Price,
+                    Quantity = x.Quantity,
+                    Unit = x.StoreProduct.Unit
+                }).ToList()
+            };
+
+            return View(vm);
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateCartItem(int cartItemId, int quantity)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var item = await _db.CartItems
+                .Include(x => x.StoreProduct)
+                .FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId);
+
+            if (item == null) return NotFound();
+
+            item.Quantity = Math.Clamp(quantity, 1, 99);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveCartItem(int cartItemId)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var item = await _db.CartItems.FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId);
+            if (item == null) return NotFound();
+
+            _db.CartItems.Remove(item);
+            await _db.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Cart));
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId)) return Challenge();
+
+            var items = await _db.CartItems.Where(x => x.UserId == userId).ToListAsync();
+            if (!items.Any())
+            {
+                TempData["CartMessage"] = "Количката е празна.";
+                return RedirectToAction(nameof(Cart));
+            }
+
+            _db.CartItems.RemoveRange(items);
+            await _db.SaveChangesAsync();
+
+            TempData["CartMessage"] = "Поръчката е изпратена успешно. Магазините ще се свържат с теб за потвърждение.";
+            return RedirectToAction(nameof(Cart));
+        }
+
+        private async Task<bool> CanManageStoreAsync(Store store)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return false;
+            }
+
+            if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                return true;
+            }
+
+            return store.CreatorId == userId;
         }
         private static string? BuildWorkingHours(string? monToFri, string? sat, string? sun)
         {

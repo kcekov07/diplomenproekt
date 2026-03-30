@@ -60,6 +60,7 @@ namespace EcoLoop.Data.Models
         public List<StoreImage> Images { get; set; } = new();
         public List<StorePhone> Phones { get; set; } = new();
         public ICollection<Comment> Comments { get; set; } = new List<Comment>();
+        public ICollection<StoreProduct> Products { get; set; } = new List<StoreProduct>();
 
 
 

@@ -30,6 +30,8 @@ namespace EcoLoop.Data
         public DbSet<UserFavoriteStore> UserFavoriteStores { get; set; } = null!;
         public DbSet<UserVisitedStore> UserVisitedStores { get; set; } = null!;
         public DbSet<UserEventParticipation> UserEventParticipations { get; set; } = null!;
+        public DbSet<StoreProduct> StoreProducts { get; set; } = null!;
+        public DbSet<CartItem> CartItems { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -95,6 +97,21 @@ namespace EcoLoop.Data
 
             builder.Entity<UserEventParticipation>()
                 .HasIndex(x => new { x.UserId, x.EventId })
+                .IsUnique();
+            builder.Entity<StoreProduct>()
+               .HasOne(p => p.Store)
+               .WithMany(s => s.Products)
+               .HasForeignKey(p => p.StoreId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasOne(ci => ci.StoreProduct)
+                .WithMany()
+                .HasForeignKey(ci => ci.StoreProductId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<CartItem>()
+                .HasIndex(ci => new { ci.UserId, ci.StoreProductId })
                 .IsUnique();
         }
     }
