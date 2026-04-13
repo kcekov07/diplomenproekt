@@ -1,7 +1,8 @@
 ﻿@model EcoLoop.Models.StoreProductInputModel
 
+
 @{
-    ViewData["Title"] = "Добавяне на продукт";
+    ViewData["Title"] = "Редакция на продукт";
 }
 
 @section Styles {
@@ -12,7 +13,7 @@
 <section class="product-form-page">
     <div class="catalog-page__head">
         <div>
-            <h1>Добави продукт</h1>
+            <h1>Редактирай продукт</h1>
             <p class="sd-muted">Магазин: <strong>@ViewBag.StoreName</strong></p>
         </div>
         <a class="sd-btn" asp-controller="Store" asp-action="Catalog" asp-route-id="@Model.StoreId">Към каталога</a>
@@ -24,29 +25,21 @@
     }
 
     <div class="catalog-form-card">
-        <p class="catalog-form-card__helper">
-            Добави продукт с ясно описание, независимо дали е храна, напитка, козметика, грижа за дома,
-            дрехи или друг еко артикул.
-        </p>
-        <div class="catalog-chip-list">
-            <span class="catalog-chip">🥗 Храни и напитки</span>
-            <span class="catalog-chip">🧴 Козметика и грижа</span>
-            <span class="catalog-chip">🧺 Дом и ежедневие</span>
-            <span class="catalog-chip">👕 Мода и аксесоари</span>
-        </div>
+        <p class="catalog-form-card__helper">Обнови информацията, за да е ясна за всички типове продукти — хранителни и нехранителни.</p>
 
-        <form asp-controller="Store" asp-action="AddProduct" method="post" enctype="multipart/form-data" class="catalog-manage catalog-form">
+        <form asp-controller="Store" asp-action="EditProduct" method="post" enctype="multipart/form-data" class="catalog-manage catalog-form">
             @Html.AntiForgeryToken()
             <input type="hidden" asp-for="StoreId" />
+            <input type="hidden" name="id" value="@ViewBag.ProductId" />
 
             <label>
                 Име на продукта
-                <input asp-for="Name" maxlength="160" required placeholder="Напр. Био овесени ядки / Еко препарат" />
+                <input asp-for="Name" maxlength="160" required />
             </label>
 
             <label>
                 Описание
-                <textarea asp-for="Description" maxlength="600" placeholder="Състав, произход, предназначение, устойчиви предимства..."></textarea>
+                <textarea asp-for="Description" maxlength="600"></textarea>
             </label>
 
             <div class="catalog-form__row">
@@ -61,20 +54,20 @@
             </div>
 
             <label>
-                Изображение на продукта
+                Нова снимка (по желание)
                 <input asp-for="ProductImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
             </label>
 
             <label>
                 Етикети
-                <input asp-for="Labels" maxlength="200" placeholder="био, локално, refill, zero waste" />
+                <input asp-for="Labels" maxlength="200" />
             </label>
 
             <label class="catalog-form__switch">
                 <input asp-for="IsAvailable" /> Налично в момента
             </label>
 
-            <button type="submit" class="sd-btn sd-btn--primary">Публикувай продукт</button>
+            <button type="submit" class="sd-btn sd-btn--primary">Запази промените</button>
         </form>
     </div>
 </section>

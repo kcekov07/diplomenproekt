@@ -5,6 +5,7 @@
 }
 
 @section Styles {
+    <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/store-catalog.css" asp-append-version="true" />
 }
 
@@ -25,46 +26,51 @@
     }
     else
     {
-        <div class="cart-grid">
-            @foreach (var item in Model.Items)
-            {
-                <article class="cart-item">
-                    <div class="cart-item__img" style="background-image:url('@(item.ProductImageUrl ?? "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=70")')"></div>
-                    <div class="cart-item__content">
-                        <a href="/Store/Details/@item.StoreId" class="sd-actionLink">@item.StoreName</a>
-                        <h3>@item.ProductName</h3>
-                        <p><strong>@item.UnitPrice.ToString("0.00") лв.</strong> @if (!string.IsNullOrWhiteSpace(item.Unit)) {
-                            <span>/ @item.Unit</span>
-                        }
-                    </p>
+        <div class="cart-layout">
+            <div class="cart-grid">
+                @foreach (var item in Model.Items)
+                {
+                    <article class="cart-item">
+                        <div class="cart-item__img" style="background-image:url('@(item.ProductImageUrl ?? "https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=1200&q=70")')"></div>
+                        <div class="cart-item__content">
+                            <a href="/Store/Details/@item.StoreId" class="sd-actionLink">@item.StoreName</a>
+                            <h3>@item.ProductName</h3>
+                            <p>
+                                <strong>@item.UnitPrice.ToString("0.00") лв.</strong>
+                                @if (!string.IsNullOrWhiteSpace(item.Unit))
+                                {
+                                    <span>/ @item.Unit</span>
+                                }
+                            </p>
 
-                    <div class="cart-item__actions">
-                        <form asp-controller="Store" asp-action="UpdateCartItem" method="post">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                            <input type="number" name="quantity" min="1" max="99" value="@item.Quantity" />
-                            <button type="submit" class="sd-btn">Обнови</button>
-                        </form>
+                            <div class="cart-item__actions">
+                                <form asp-controller="Store" asp-action="UpdateCartItem" method="post" class="catalog-buyForm">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                                    <input type="number" name="quantity" min="1" max="99" value="@item.Quantity" />
+                                    <button type="submit" class="sd-btn">Обнови</button>
+                                </form>
 
-                        <form asp-controller="Store" asp-action="RemoveCartItem" method="post">
-                            @Html.AntiForgeryToken()
-                            <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                            <button type="submit" class="sd-actionDanger">Премахни</button>
-                        </form>
-                    </div>
-                </div>
-                <div class="cart-item__line">@item.LineTotal.ToString("0.00") лв.</div>
-            </article>
-        }
-    </div>
+                                <form asp-controller="Store" asp-action="RemoveCartItem" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="cartItemId" value="@item.CartItemId" />
+                                    <button type="submit" class="sd-actionDanger">Премахни</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="cart-item__line">@item.LineTotal.ToString("0.00") лв.</div>
+                    </article>
+                }
+            </div>
 
-    <aside class="cart-summary">
-        <div><span>Брой артикули</span><strong>@Model.TotalItems</strong></div>
-        <div><span>Обща сума</span><strong>@Model.Subtotal.ToString("0.00") лв.</strong></div>
-        <form asp-controller="Store" asp-action="Checkout" method="post">
-            @Html.AntiForgeryToken()
-            <button type="submit" class="sd-btn sd-btn--primary">Изпрати поръчка</button>
-        </form>
-    </aside>
-}
+            <aside class="cart-summary">
+                <div><span>Брой артикули</span><strong>@Model.TotalItems</strong></div>
+                <div><span>Обща сума</span><strong>@Model.Subtotal.ToString("0.00") лв.</strong></div>
+                <form asp-controller="Store" asp-action="Checkout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="sd-btn sd-btn--primary">Изпрати поръчка</button>
+                </form>
+            </aside>
+        </div>
+    }
 </section>

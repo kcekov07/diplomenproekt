@@ -602,6 +602,107 @@ namespace EcoLoop.Controllers
             TempData["Message"] = "Продуктът е добавен в каталога.";
             return RedirectToAction(nameof(Catalog), new { id = model.StoreId });
         }
+        [Authorize]
+        public async Task<IActionResult> EditProduct(int id, int storeId)
+        {
+            var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == storeId);
+            if (store == null) return NotFound();
+            if (!await CanManageProductsAsync(store)) return Forbid();
+
+            var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == id && x.StoreId == storeId);
+            if (product == null) return NotFound();
+
+            ViewBag.StoreName = store.Name;
+            ViewBag.ProductId = product.Id;
+
+            return View(new StoreProductInputModel
+            {
+                StoreId = product.StoreId,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Unit = product.Unit,
+                Labels = product.Labels,
+                IsAvailable = product.IsAvailable
+            });
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditProduct(int id, StoreProductInputModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["CatalogError"] = "Попълни валидно всички задължителни полета за продукта.";
+                return RedirectToAction(nameof(EditProduct), new { id, storeId = model.StoreId });
+            }
+
+            var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == model.StoreId);
+            if (store == null) return NotFound();
+            if (!await CanManageProductsAsync(store)) return Forbid();
+
+            var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == id && x.StoreId == model.StoreId);
+            if (product == null) return NotFound();
+
+            var file = model.ProductImage;
+            if (file is { Length: > 0 })
+            {
+                if (file.Length > MaxFileBytes)
+                {
+                    TempData["CatalogError"] = "Изображението е твърде голямо (макс 5MB).";
+                    return RedirectToAction(nameof(EditProduct), new { id, storeId = model.StoreId });
+                }
+
+                var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+                if (!permitted.Contains(file.ContentType))
+                {
+                    TempData["CatalogError"] = "Позволени са само изображения JPG, PNG, GIF или WEBP.";
+                    return RedirectToAction(nameof(EditProduct), new { id, storeId = model.StoreId });
+                }
+
+                var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var uploadsRoot = Path.Combine(webRoot, "images", "products", store.Id.ToString());
+                Directory.CreateDirectory(uploadsRoot);
+
+                var ext = Path.GetExtension(file.FileName);
+                var fileName = $"{Guid.NewGuid()}{ext}";
+                var filePath = Path.Combine(uploadsRoot, fileName);
+
+                await using var stream = System.IO.File.Create(filePath);
+                await file.CopyToAsync(stream);
+
+                if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+                {
+                    try
+                    {
+                        var oldRelative = product.ImageUrl.TrimStart('/');
+                        var oldPath = Path.Combine(webRoot, oldRelative.Replace('/', Path.DirectorySeparatorChar));
+                        if (System.IO.File.Exists(oldPath))
+                        {
+                            System.IO.File.Delete(oldPath);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogWarning(ex, "Could not delete old image for product {ProductId}", id);
+                    }
+                }
+
+                product.ImageUrl = $"/images/products/{store.Id}/{fileName}";
+            }
+
+            product.Name = model.Name.Trim();
+            product.Description = string.IsNullOrWhiteSpace(model.Description) ? null : model.Description.Trim();
+            product.Price = model.Price;
+            product.Unit = string.IsNullOrWhiteSpace(model.Unit) ? null : model.Unit.Trim();
+            product.Labels = string.IsNullOrWhiteSpace(model.Labels) ? null : model.Labels.Trim();
+            product.IsAvailable = model.IsAvailable;
+
+            await _db.SaveChangesAsync();
+            TempData["Message"] = "Продуктът е редактиран успешно.";
+            return RedirectToAction(nameof(Catalog), new { id = model.StoreId });
+        }
 
         [Authorize]
         [HttpPost]

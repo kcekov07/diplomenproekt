@@ -8,6 +8,7 @@
 }
 
 @section Styles {
+    <link rel="stylesheet" href="~/css/store-details.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/store-catalog.css" asp-append-version="true" />
 }
 
@@ -43,6 +44,9 @@
                 var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
                     ? "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=70"
                     : product.ImageUrl;
+                var tags = string.IsNullOrWhiteSpace(product.Labels)
+                    ? new List<string>()
+                    : product.Labels.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries).Take(4).ToList();
 
                 <article class="catalog-card @(product.IsAvailable ? string.Empty : "is-unavailable")">
                     <div class="catalog-card__image" style="background-image:url('@imageUrl')"></div>
@@ -59,9 +63,14 @@
                                 <span>/ @product.Unit</span>
                             }
                         </div>
-                        @if (!string.IsNullOrWhiteSpace(product.Labels))
+                        @if (tags.Any())
                         {
-                            <small>@product.Labels</small>
+                            <div class="catalog-tags">
+                                @foreach (var tag in tags)
+                                {
+                                    <span>@tag</span>
+                                }
+                            </div>
                         }
 
                         @if (product.IsAvailable)
@@ -87,13 +96,16 @@
 
                         @if (canManageProducts)
                         {
-                            <form asp-controller="Store" asp-action="DeleteProduct" method="post" class="catalog-delete"
-                                  onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');">
-                                @Html.AntiForgeryToken()
-                                <input type="hidden" name="id" value="@product.Id" />
-                                <input type="hidden" name="storeId" value="@Model.Id" />
-                                <button type="submit" class="sd-actionDanger">Изтрий продукт</button>
-                            </form>
+                            <div class="catalog-card__manage">
+                                <a class="sd-btn" asp-controller="Store" asp-action="EditProduct" asp-route-id="@product.Id" asp-route-storeId="@Model.Id">Редактирай</a>
+                                <form asp-controller="Store" asp-action="DeleteProduct" method="post" class="catalog-delete"
+                                      onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@product.Id" />
+                                    <input type="hidden" name="storeId" value="@Model.Id" />
+                                    <button type="submit" class="sd-actionDanger">Изтрий</button>
+                                </form>
+                            </div>
                         }
                     </div>
                 </article>
