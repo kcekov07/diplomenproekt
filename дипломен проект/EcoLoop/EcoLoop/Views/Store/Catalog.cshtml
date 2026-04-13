@@ -1,0 +1,103 @@
+﻿@using EcoLoop.Data.Models
+@model EcoLoop.Data.Models.Store
+
+@{
+    ViewData["Title"] = $"Каталог - {Model.Name}";
+    var products = Model.Products?.OrderByDescending(p => p.CreatedOn).ToList() ?? new List<StoreProduct>();
+    var canManageProducts = (bool?)(ViewBag.CanManageProducts) ?? false;
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-catalog.css" asp-append-version="true" />
+}
+
+<section class="catalog-page">
+    <div class="catalog-page__head">
+        <div>
+            <h1>Каталог на @Model.Name</h1>
+            <p class="sd-muted">Разгледай всички налични продукти на магазина.</p>
+        </div>
+        <div class="catalog-page__actions">
+            <a class="sd-btn" asp-controller="Store" asp-action="Details" asp-route-id="@Model.Id">Обратно към магазина</a>
+            @if (canManageProducts)
+            {
+                <a class="sd-btn sd-btn--primary" asp-controller="Store" asp-action="AddProduct" asp-route-storeId="@Model.Id">Добави продукт</a>
+            }
+        </div>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="catalog-alert">@TempData["Message"]</div>
+    }
+
+    @if (!products.Any())
+    {
+        <div class="sd-empty">Все още няма добавени продукти.</div>
+    }
+    else
+    {
+        <div class="catalog-grid">
+            @foreach (var product in products)
+            {
+                var imageUrl = string.IsNullOrWhiteSpace(product.ImageUrl)
+                    ? "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=70"
+                    : product.ImageUrl;
+
+                <article class="catalog-card @(product.IsAvailable ? string.Empty : "is-unavailable")">
+                    <div class="catalog-card__image" style="background-image:url('@imageUrl')"></div>
+                    <div class="catalog-card__content">
+                        <h3>@product.Name</h3>
+                        @if (!string.IsNullOrWhiteSpace(product.Description))
+                        {
+                            <p>@product.Description</p>
+                        }
+                        <div class="catalog-meta">
+                            <strong>@product.Price.ToString("0.00") лв.</strong>
+                            @if (!string.IsNullOrWhiteSpace(product.Unit))
+                            {
+                                <span>/ @product.Unit</span>
+                            }
+                        </div>
+                        @if (!string.IsNullOrWhiteSpace(product.Labels))
+                        {
+                            <small>@product.Labels</small>
+                        }
+
+                        @if (product.IsAvailable)
+                        {
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <form asp-controller="Store" asp-action="AddToCart" method="post" class="catalog-buyForm">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productId" value="@product.Id" />
+                                    <input type="number" name="quantity" min="1" max="20" value="1" />
+                                    <button type="submit" class="sd-btn sd-btn--primary">Добави в количка</button>
+                                </form>
+                            }
+                            else
+                            {
+                                <a class="sd-actionLink" href="/Identity/Account/Login">Влез, за да поръчаш</a>
+                            }
+                        }
+                        else
+                        {
+                            <span class="catalog-unavailable">Изчерпан продукт</span>
+                        }
+
+                        @if (canManageProducts)
+                        {
+                            <form asp-controller="Store" asp-action="DeleteProduct" method="post" class="catalog-delete"
+                                  onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@product.Id" />
+                                <input type="hidden" name="storeId" value="@Model.Id" />
+                                <button type="submit" class="sd-actionDanger">Изтрий продукт</button>
+                            </form>
+                        }
+                    </div>
+                </article>
+            }
+        </div>
+    }
+</section>

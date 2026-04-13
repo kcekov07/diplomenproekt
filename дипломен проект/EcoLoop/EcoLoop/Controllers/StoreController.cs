@@ -127,8 +127,7 @@ namespace EcoLoop.Controllers
                     ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (int?)x.Quantity) ?? 0;
                 }
             }
-            ViewBag.CanManageProducts = await CanManageStoreAsync(store);
-            ViewBag.ProductForm = new StoreProductInputModel { StoreId = store.Id };
+            ViewBag.CanManageProducts = await CanManageProductsAsync(store);
             return View(store);
 
 
@@ -508,7 +507,41 @@ namespace EcoLoop.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction(nameof(Details), new { id });
         }
-        [Authorize(Roles = "Producer,Moderator,Admin")]
+        [Authorize]
+        public async Task<IActionResult> Catalog(int id)
+        {
+            var store = await _db.Stores
+                .Include(s => s.Products)
+                .FirstOrDefaultAsync(s => s.Id == id);
+
+            if (store == null) return NotFound();
+
+            ViewBag.CanManageProducts = await CanManageProductsAsync(store);
+            ViewBag.CartCount = 0;
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (!string.IsNullOrWhiteSpace(userId))
+                {
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (int?)x.Quantity) ?? 0;
+                }
+            }
+
+            return View(store);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> AddProduct(int storeId)
+        {
+            var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == storeId);
+            if (store == null) return NotFound();
+            if (!await CanManageProductsAsync(store)) return Forbid();
+
+            ViewBag.StoreName = store.Name;
+            return View(new StoreProductInputModel { StoreId = storeId });
+        }
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddProduct(StoreProductInputModel model)
@@ -516,20 +549,49 @@ namespace EcoLoop.Controllers
             if (!ModelState.IsValid)
             {
                 TempData["CatalogError"] = "Попълни валидно всички задължителни полета за продукта.";
-                return RedirectToAction(nameof(Details), new { id = model.StoreId });
+                return RedirectToAction(nameof(AddProduct), new { storeId = model.StoreId });
             }
 
             var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == model.StoreId);
             if (store == null) return NotFound();
-            if (!await CanManageStoreAsync(store)) return Forbid();
+            if (!await CanManageProductsAsync(store)) return Forbid();
 
+            string? imageUrl = null;
+            var file = model.ProductImage;
+            if (file is { Length: > 0 })
+            {
+                if (file.Length > MaxFileBytes)
+                {
+                    TempData["CatalogError"] = "Изображението е твърде голямо (макс 5MB).";
+                    return RedirectToAction(nameof(AddProduct), new { storeId = model.StoreId });
+                }
+
+                var permitted = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+                if (!permitted.Contains(file.ContentType))
+                {
+                    TempData["CatalogError"] = "Позволени са само изображения JPG, PNG, GIF или WEBP.";
+                    return RedirectToAction(nameof(AddProduct), new { storeId = model.StoreId });
+                }
+
+                var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                var uploadsRoot = Path.Combine(webRoot, "images", "products", store.Id.ToString());
+                Directory.CreateDirectory(uploadsRoot);
+
+                var ext = Path.GetExtension(file.FileName);
+                var fileName = $"{Guid.NewGuid()}{ext}";
+                var filePath = Path.Combine(uploadsRoot, fileName);
+
+                await using var stream = System.IO.File.Create(filePath);
+                await file.CopyToAsync(stream);
+                imageUrl = $"/images/products/{store.Id}/{fileName}";
+            }
             var product = new StoreProduct
             {
                 StoreId = store.Id,
                 Name = model.Name.Trim(),
                 Description = string.IsNullOrWhiteSpace(model.Description) ? null : model.Description.Trim(),
                 Price = model.Price,
-                ImageUrl = string.IsNullOrWhiteSpace(model.ImageUrl) ? null : model.ImageUrl.Trim(),
+                ImageUrl = imageUrl,
                 Unit = string.IsNullOrWhiteSpace(model.Unit) ? null : model.Unit.Trim(),
                 Labels = string.IsNullOrWhiteSpace(model.Labels) ? null : model.Labels.Trim(),
                 IsAvailable = model.IsAvailable
@@ -538,25 +600,43 @@ namespace EcoLoop.Controllers
             _db.StoreProducts.Add(product);
             await _db.SaveChangesAsync();
             TempData["Message"] = "Продуктът е добавен в каталога.";
-            return RedirectToAction(nameof(Details), new { id = model.StoreId });
+            return RedirectToAction(nameof(Catalog), new { id = model.StoreId });
         }
 
-        [Authorize(Roles = "Producer,Moderator,Admin")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteProduct(int id, int storeId)
         {
             var store = await _db.Stores.FirstOrDefaultAsync(x => x.Id == storeId);
             if (store == null) return NotFound();
-            if (!await CanManageStoreAsync(store)) return Forbid();
+            if (!await CanManageProductsAsync(store)) return Forbid();
 
             var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == id && x.StoreId == storeId);
             if (product == null) return NotFound();
 
             _db.StoreProducts.Remove(product);
             await _db.SaveChangesAsync();
+            if (!string.IsNullOrWhiteSpace(product.ImageUrl))
+            {
+                try
+                {
+                    var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+                    var relative = product.ImageUrl.TrimStart('/');
+                    var filePath = Path.Combine(webRoot, relative.Replace('/', Path.DirectorySeparatorChar));
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogWarning(ex, "Could not delete image for product {ProductId}", id);
+                }
+            }
+
             TempData["Message"] = "Продуктът е премахнат от каталога.";
-            return RedirectToAction(nameof(Details), new { id = storeId });
+            return RedirectToAction(nameof(Catalog), new { id = storeId });
         }
 
         [Authorize]
@@ -678,20 +758,31 @@ namespace EcoLoop.Controllers
             return RedirectToAction(nameof(Cart));
         }
 
-        private async Task<bool> CanManageStoreAsync(Store store)
+        private Task<bool> CanManageStoreAsync(Store store)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrWhiteSpace(userId))
             {
-                return false;
+                return Task.FromResult(false);
             }
 
             if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
             {
-                return true;
+                return Task.FromResult(true);
             }
 
-            return store.CreatorId == userId;
+            return Task.FromResult(store.CreatorId == userId);
+        }
+
+        private Task<bool> CanManageProductsAsync(Store store)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return Task.FromResult(false);
+            }
+
+            return Task.FromResult(store.CreatorId == userId);
         }
         private static string? BuildWorkingHours(string? monToFri, string? sat, string? sun)
         {

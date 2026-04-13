@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
 
 namespace EcoLoop.Models
 {
@@ -17,9 +18,7 @@ namespace EcoLoop.Models
         [Range(0.01, 99999, ErrorMessage = "Цената трябва да е над 0.")]
         public decimal Price { get; set; }
 
-        [StringLength(300)]
-        [Url(ErrorMessage = "Добави валиден URL за изображение.")]
-        public string? ImageUrl { get; set; }
+        public IFormFile? ProductImage { get; set; }
 
         [StringLength(100)]
         public string? Unit { get; set; }

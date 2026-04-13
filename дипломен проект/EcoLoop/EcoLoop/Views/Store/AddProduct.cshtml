@@ -1,0 +1,66 @@
+﻿@model EcoLoop.Models.StoreProductInputModel
+
+@{
+    ViewData["Title"] = "Добавяне на продукт";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/store-catalog.css" asp-append-version="true" />
+}
+
+<section class="product-form-page">
+    <div class="catalog-page__head">
+        <div>
+            <h1>Добави продукт</h1>
+            <p class="sd-muted">Магазин: <strong>@ViewBag.StoreName</strong></p>
+        </div>
+        <a class="sd-btn" asp-controller="Store" asp-action="Catalog" asp-route-id="@Model.StoreId">Към каталога</a>
+    </div>
+
+    @if (TempData["CatalogError"] != null)
+    {
+        <div class="catalog-alert">@TempData["CatalogError"]</div>
+    }
+
+    <form asp-controller="Store" asp-action="AddProduct" method="post" enctype="multipart/form-data" class="catalog-manage catalog-form">
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="StoreId" />
+
+        <label>
+            Име на продукта
+            <input asp-for="Name" maxlength="160" required />
+        </label>
+
+        <label>
+            Описание
+            <textarea asp-for="Description" maxlength="600"></textarea>
+        </label>
+
+        <div class="catalog-form__row">
+            <label>
+                Цена
+                <input asp-for="Price" type="number" step="0.01" min="0.01" required />
+            </label>
+            <label>
+                Единица
+                <input asp-for="Unit" maxlength="100" placeholder="бр., кг, мл" />
+            </label>
+        </div>
+
+        <label>
+            Изображение на продукта
+            <input asp-for="ProductImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+        </label>
+
+        <label>
+            Етикети
+            <input asp-for="Labels" maxlength="200" placeholder="био, локално, vegan" />
+        </label>
+
+        <label>
+            <input asp-for="IsAvailable" /> Налично в момента
+        </label>
+
+        <button type="submit" class="sd-btn sd-btn--primary">Публикувай продукт</button>
+    </form>
+</section>

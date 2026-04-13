@@ -23,9 +23,8 @@
     var likesDict = ViewBag.CommentLikes as Dictionary<int, int> ?? new Dictionary<int, int>();
     var likedIds = ViewBag.LikedCommentIds as HashSet<int> ?? new HashSet<int>();
     var canEditIds = ViewBag.CanEditCommentIds as HashSet<int> ?? new HashSet<int>();
-    var products = Model.Products?.OrderByDescending(p => p.CreatedOn).ToList() ?? new List<StoreProduct>();
+    var products = Model.Products?.OrderByDescending(p => p.CreatedOn).Take(6).ToList() ?? new List<StoreProduct>();
     var canManageProducts = (bool?)(ViewBag.CanManageProducts) ?? false;
-    var cartCount = (int?)(ViewBag.CartCount) ?? 0;
 }
 
 @section Styles {
@@ -35,12 +34,12 @@
 }
 
 
+
 <div class="sd-page">
     <div class="sd-topbar">
         <button type="button" class="sd-back" onclick="history.back()">← Назад</button>
         @if (User.Identity?.IsAuthenticated == true)
         {
-            <a class="sd-cartLink" href="/Store/Cart">🛒 Количка (@cartCount)</a>
             <form asp-controller="Store" asp-action="ToggleFavorite" asp-route-id="@Model.Id" method="post">
                 @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-primary">@((ViewBag.IsFavorite ?? false) ? "Премахни от любими" : "Добави в любими")</button>
@@ -236,9 +235,10 @@
         <section class="catalog-section">
             <div class="catalog-head">
                 <div>
-                    <h2>Каталог продукти</h2>
-                    <p class="sd-muted">Избери продукти и ги добави в количката си.</p>
+                    <h2>Най-нови продукти</h2>
+                    <p class="sd-muted">Последно добавените предложения от магазина.</p>
                 </div>
+                <a class="sd-btn" asp-controller="Store" asp-action="Catalog" asp-route-id="@Model.Id">Виж пълен каталог</a>
             </div>
 
             @if (TempData["CatalogError"] != null)
@@ -248,23 +248,9 @@
 
             @if (canManageProducts)
             {
-                <details class="catalog-manage" open>
-                    <summary>➕ Добави нов продукт</summary>
-                    <form asp-controller="Store" asp-action="AddProduct" method="post" class="catalog-form">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="StoreId" value="@Model.Id" />
-                        <input name="Name" placeholder="Име на продукта" maxlength="160" required />
-                        <textarea name="Description" placeholder="Кратко описание" maxlength="600"></textarea>
-                        <div class="catalog-form__row">
-                            <input name="Price" type="number" step="0.01" min="0.01" placeholder="Цена" required />
-                            <input name="Unit" maxlength="100" placeholder="Единица (бр., кг, мл)" />
-                        </div>
-                        <input name="ImageUrl" type="url" maxlength="300" placeholder="URL към изображение (по избор)" />
-                        <input name="Labels" maxlength="200" placeholder="Етикети: био, локално, vegan" />
-                        <label><input type="checkbox" name="IsAvailable" value="true" checked /> Налично</label>
-                        <button type="submit" class="sd-btn sd-btn--primary">Публикувай продукт</button>
-                    </form>
-                </details>
+                <div class="catalog-manageLink">
+                    <a class="sd-btn sd-btn--primary" asp-controller="Store" asp-action="AddProduct" asp-route-storeId="@Model.Id">➕ Добави продукт</a>
+                </div>
             }
 
             @if (!products.Any())
@@ -320,16 +306,6 @@
                                     <span class="catalog-unavailable">Изчерпан продукт</span>
                                 }
 
-                                @if (canManageProducts)
-                                {
-                                    <form asp-controller="Store" asp-action="DeleteProduct" method="post" class="catalog-delete"
-                                          onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш този продукт?');">
-                                        @Html.AntiForgeryToken()
-                                        <input type="hidden" name="id" value="@product.Id" />
-                                        <input type="hidden" name="storeId" value="@Model.Id" />
-                                        <button type="submit" class="sd-actionDanger">Изтрий продукт</button>
-                                    </form>
-                                }
                             </div>
                         </article>
                     }

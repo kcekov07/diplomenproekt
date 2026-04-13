@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\events\" />
+    <Folder Include="wwwroot\images\products\" />
     <Folder Include="wwwroot\images\profiles\" />
     <Folder Include="wwwroot\images\news\" />
   </ItemGroup>

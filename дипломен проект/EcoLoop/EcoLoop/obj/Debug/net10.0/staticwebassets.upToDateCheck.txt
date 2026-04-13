@@ -129,6 +129,7 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\foot
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\map.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\news.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\site.css
+D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-catalog.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-details.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-form.css
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-list.css
@@ -196,4 +197,3 @@ D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jque
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.js
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\dist\jquery.slim.min.map
 D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\lib\jquery\LICENSE.txt
-D:\diplomenproekt\дипломен проект\EcoLoop\EcoLoop\wwwroot\css\store-catalog.css
