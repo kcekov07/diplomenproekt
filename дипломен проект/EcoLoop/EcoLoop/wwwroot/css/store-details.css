@@ -69,10 +69,12 @@
 
 /* ===== Buttons ===== */
 .sd-btn {
-    height: 44px;
-    padding: 0 16px;
-    border-radius: 14px;
-    border: 1px solid transparent;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 12px;
+    border: 1px solid var(--brandBorder);
+    background: rgba(255,255,255,.78);
+    color: var(--brand);
     font-weight: 900;
     letter-spacing: .01em;
     text-decoration: none;
@@ -81,13 +83,23 @@
     justify-content: center;
     gap: 8px;
     cursor: pointer;
-    transition: transform .12s ease, box-shadow .12s ease, background .15s ease, border-color .15s ease;
+    transition: transform .14s ease, box-shadow .14s ease, background .15s ease, border-color .15s ease, color .15s ease;
+    box-shadow: 0 8px 20px rgba(31,90,61,.10);
 }
+
+    .sd-btn:hover {
+        transform: translateY(-1px);
+        border-color: rgba(31,90,61,.38);
+        background: rgba(31,90,61,.10);
+        color: var(--brandHover);
+        box-shadow: 0 14px 30px rgba(31,90,61,.18);
+    }
 
 .sd-btn--primary {
     background: var(--brand);
+    border-color: rgba(31,90,61,.45);
     color: #fff;
-    box-shadow: 0 14px 30px rgba(31,90,61,.28);
+    box-shadow: 0 14px 30px rgba(31,90,61,.30);
 }
 
     .sd-btn--primary:hover {
@@ -825,19 +837,36 @@
     font-size: 13px;
     font-weight: 900;
     color: var(--brand);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(31,90,61,.45);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     cursor: pointer;
 }
+    .sd-actionLink:hover {
+        color: var(--brandHover);
+        border-bottom-color: rgba(23,69,50,.7);
+    }
+
 
 .sd-actionDanger {
-    height: 34px;
+    min-height: 36px;
     padding: 0 14px;
-    border-radius: 999px;
+    border-radius: 12px;
     border: 1px solid rgba(185,28,28,.30);
-    background: rgba(185,28,28,.06);
+    background: rgba(185,28,28,.08);
     color: rgba(185,28,28,.95);
     font-weight: 900;
     cursor: pointer;
+    transition: transform .14s ease, box-shadow .14s ease, background .15s ease;
 }
+
+    .sd-actionDanger:hover {
+        transform: translateY(-1px);
+        background: rgba(185,28,28,.14);
+        box-shadow: 0 10px 20px rgba(127,29,29,.20);
+    }
 
 /* =========================================================
    EDIT FORM

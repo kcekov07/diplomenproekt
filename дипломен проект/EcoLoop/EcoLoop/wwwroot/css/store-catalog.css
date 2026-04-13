@@ -52,6 +52,8 @@
     align-items: end;
     gap: 1rem;
     margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid rgba(15,118,110,.12);
 }
 
 .catalog-alert {
@@ -122,8 +124,9 @@
         border: 1px solid #cbd5e1;
         border-radius: 12px;
         padding: .68rem .78rem;
-        background: #fff;
+        background: #fcfffd;
         color: var(--catalog-text);
+        transition: border-color .15s ease, box-shadow .15s ease, background .15s ease;
     }
 
         .catalog-form input:focus,
@@ -228,13 +231,15 @@
     display: flex;
     gap: .45rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 
     .catalog-buyForm input {
         width: 66px;
         border: 1px solid #d1d5db;
         border-radius: 10px;
-        padding: .35rem .5rem;
+        padding: .42rem .5rem;
+        min-height: 42px;
     }
 
 .catalog-unavailable {
@@ -255,6 +260,8 @@
 
 .catalog-manageLink {
     margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .sd-cartLink {
@@ -324,6 +331,7 @@
     display: flex;
     gap: .5rem;
     flex-wrap: wrap;
+    margin-top: .35rem;
 }
 
     .cart-item__actions input {

@@ -42,7 +42,7 @@
         {
             <form asp-controller="Store" asp-action="ToggleFavorite" asp-route-id="@Model.Id" method="post">
                 @Html.AntiForgeryToken()
-                <button type="submit" class="btn btn-primary">@((ViewBag.IsFavorite ?? false) ? "Премахни от любими" : "Добави в любими")</button>
+                <button type="submit" class="sd-btn sd-btn--primary">@((ViewBag.IsFavorite ?? false) ? "Премахни от любими" : "Добави в любими")</button>
             </form>
         }
     </div>
