@@ -61,6 +61,103 @@
         opacity: .92;
     }
 
+.admin-section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+}
+
+    .admin-section-nav a {
+        text-decoration: none;
+        background: #eef9f5;
+        color: #0f766e;
+        border: 1px solid #bfe6d8;
+        border-radius: 999px;
+        font-size: .85rem;
+        font-weight: 700;
+        padding: .4rem .75rem;
+        transition: all .2s ease;
+    }
+
+        .admin-section-nav a:hover {
+            background: #def5eb;
+            transform: translateY(-1px);
+        }
+
+.analytics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: .75rem;
+}
+
+.analytics-card {
+    border: 1px solid #d7eee5;
+    border-radius: 14px;
+    padding: .8rem;
+    background: linear-gradient(165deg, #ffffff 0%, #f7fdf9 100%);
+}
+
+.analytics-label {
+    margin: 0;
+    color: #0f4f4c;
+    font-size: .82rem;
+    font-weight: 700;
+}
+
+.analytics-card strong {
+    display: block;
+    margin-top: .35rem;
+    font-size: 1.3rem;
+    color: #064e3b;
+}
+
+.analytics-hint {
+    margin: .3rem 0 0;
+    font-size: .82rem;
+    color: #4b5563;
+}
+
+.admin-subpanel {
+    border-top: 1px solid #e7f1f1;
+    margin-top: 1rem;
+    padding-top: 1rem;
+}
+
+    .admin-subpanel h3 {
+        margin: 0 0 .7rem;
+        font-size: 1rem;
+        color: #0f4f4c;
+    }
+
+.analytics-table-wrap {
+    overflow-x: auto;
+}
+
+.analytics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .9rem;
+}
+
+    .analytics-table th,
+    .analytics-table td {
+        border-bottom: 1px solid #e7f1f1;
+        padding: .55rem .45rem;
+        text-align: left;
+    }
+
+    .analytics-table th {
+        font-size: .78rem;
+        text-transform: uppercase;
+        letter-spacing: .06em;
+        color: #0f766e;
+    }
+
+.analytics-muted {
+    color: #6b7280;
+    font-size: .8rem;
+}
+
 .admin-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));

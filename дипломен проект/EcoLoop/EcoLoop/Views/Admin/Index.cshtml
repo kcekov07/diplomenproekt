@@ -11,7 +11,7 @@
         <div>
             <p class="admin-kicker">Control center</p>
             <h1>Админ панел</h1>
-            <p class="admin-subtitle">Управлявай потребители, магазини и коментари на едно място.</p>
+            <p class="admin-subtitle">Управлявай модерирането и следи продажби, прегледи и интерес по магазини от едно място.</p>
         </div>
         <div class="admin-stats">
             <div><strong>@Model.PendingStores.Count</strong><span>Чакащи магазини</span></div>
@@ -21,10 +21,96 @@
         </div>
     </header>
 
-    <div class="admin-grid">
+    <nav class="admin-section-nav" aria-label="Секции в админ панела">
+        <a href="#analytics">📊 Анализ и статистики</a>
+        <a href="#stores">🏬 Управление на магазини</a>
+        <a href="#users">👥 Потребители</a>
+        <a href="#comments">💬 Коментари</a>
+    </nav>
+
+    <section class="admin-panel" id="analytics">
+        <div class="admin-panel-header">
+            <h2>1) Анализ и статистики</h2>
+            <span class="admin-pill">Последни 30 дни + общо</span>
+        </div>
+
+        <div class="analytics-grid">
+            <article class="analytics-card">
+                <p class="analytics-label">Потенциални продажби</p>
+                <strong>@Model.Analytics.PotentialRevenue.ToString("N2") лв.</strong>
+                <p class="analytics-hint">30 дни: @Model.Analytics.PotentialRevenueLast30Days.ToString("N2") лв.</p>
+            </article>
+            <article class="analytics-card">
+                <p class="analytics-label">Прегледи на магазини</p>
+                <strong>@Model.Analytics.StoreViews</strong>
+                <p class="analytics-hint">30 дни: @Model.Analytics.StoreViewsLast30Days</p>
+            </article>
+            <article class="analytics-card">
+                <p class="analytics-label">Добавяния в любими</p>
+                <strong>@Model.Analytics.FavoriteActions</strong>
+                <p class="analytics-hint">30 дни: @Model.Analytics.FavoriteActionsLast30Days</p>
+            </article>
+            <article class="analytics-card">
+                <p class="analytics-label">Добавяния в количка</p>
+                <strong>@Model.Analytics.CartActions</strong>
+                <p class="analytics-hint">30 дни: @Model.Analytics.CartActionsLast30Days</p>
+            </article>
+            <article class="analytics-card">
+                <p class="analytics-label">Конверсия преглед → любими</p>
+                <strong>@Model.Analytics.ViewToFavoriteRate.ToString("P1")</strong>
+                <p class="analytics-hint">Колко от прегледите водят до интерес.</p>
+            </article>
+            <article class="analytics-card">
+                <p class="analytics-label">Конверсия преглед → количка</p>
+                <strong>@Model.Analytics.ViewToCartRate.ToString("P1")</strong>
+                <p class="analytics-hint">Колко от прегледите водят до намерение за покупка.</p>
+            </article>
+        </div>
+
+        <div class="admin-subpanel">
+            <h3>Най-силни магазини по интерес и потенциални продажби</h3>
+            @if (!Model.Analytics.TopStorePerformance.Any())
+            {
+                <p class="admin-empty">Няма достатъчно данни за анализ.</p>
+            }
+            else
+            {
+                <div class="analytics-table-wrap">
+                    <table class="analytics-table">
+                        <thead>
+                            <tr>
+                                <th>Магазин</th>
+                                <th>Прегледи</th>
+                                <th>Любими</th>
+                                <th>Количка</th>
+                                <th>Потенциални продажби</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var store in Model.Analytics.TopStorePerformance)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@store.Store.Name</strong>
+                                        <div class="analytics-muted">@store.Store.Category</div>
+                                    </td>
+                                    <td>@store.Views</td>
+                                    <td>@store.Favorites</td>
+                                    <td>@store.Carts</td>
+                                    <td>@store.PotentialRevenue.ToString("N2") лв.</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="admin-grid" id="stores">
         <article class="admin-panel admin-panel-highlight">
             <div class="admin-panel-header">
-                <h2>1) Чакащи за одобрение магазини</h2>
+                <h2>2) Чакащи за одобрение магазини</h2>
                 <span class="admin-pill">@Model.PendingStores.Count чакащи</span>
             </div>
             @if (!Model.PendingStores.Any())
@@ -51,7 +137,31 @@
 
         <article class="admin-panel">
             <div class="admin-panel-header">
-                <h2>2) Всички потребители</h2>
+                <h2>3) Всички магазини в платформата</h2>
+                <span class="admin-pill">@Model.AllStores.Count магазина</span>
+            </div>
+            @foreach (var store in Model.AllStores)
+            {
+                <div class="admin-row">
+                    <div>
+                        <strong>@store.Name</strong>
+                        <p>@store.Category</p>
+                        <span class="admin-status @(store.IsApproved ? "admin-status-success" : "admin-status-pending")">@(store.IsApproved ? "Одобрен" : "Чака одобрение")</span>
+                    </div>
+                    <form asp-action="DeleteStore" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш магазина?');">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="id" value="@store.Id" />
+                        <button class="btn btn-danger">Изтрий</button>
+                    </form>
+                </div>
+            }
+        </article>
+    </section>
+
+    <section class="admin-grid" id="users">
+        <article class="admin-panel">
+            <div class="admin-panel-header">
+                <h2>4) Всички потребители</h2>
                 <span class="admin-pill">@Model.Users.Count потребители</span>
             </div>
             @foreach (var item in Model.Users)
@@ -77,32 +187,12 @@
                 </div>
             }
         </article>
+    </section>
 
+    <section class="admin-grid" id="comments">
         <article class="admin-panel">
             <div class="admin-panel-header">
-                <h2>3) Всички магазини в платформата</h2>
-                <span class="admin-pill">@Model.AllStores.Count магазина</span>
-            </div>
-            @foreach (var store in Model.AllStores)
-            {
-                <div class="admin-row">
-                    <div>
-                        <strong>@store.Name</strong>
-                        <p>@store.Category</p>
-                        <span class="admin-status @(store.IsApproved ? "admin-status-success" : "admin-status-pending")">@(store.IsApproved ? "Одобрен" : "Чака одобрение")</span>
-                    </div>
-                    <form asp-action="DeleteStore" method="post" onsubmit="return confirm('Сигурен ли си, че искаш да изтриеш магазина?');">
-                        @Html.AntiForgeryToken()
-                        <input type="hidden" name="id" value="@store.Id" />
-                        <button class="btn btn-danger">Изтрий</button>
-                    </form>
-                </div>
-            }
-        </article>
-
-        <article class="admin-panel">
-            <div class="admin-panel-header">
-                <h2>4) Модериране на коментари</h2>
+                <h2>5) Модериране на коментари</h2>
                 <span class="admin-pill">@Model.RecentComments.Count коментара</span>
             </div>
             @if (!Model.RecentComments.Any())
@@ -127,5 +217,5 @@
                 }
             }
         </article>
-    </div>
+    </section>
 </section>
