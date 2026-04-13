@@ -12,8 +12,8 @@ namespace EcoLoop.Data.Models
         public int StoreProductId { get; set; }
         public StoreProduct StoreProduct { get; set; } = null!;
 
-        [Range(1, 99)]
-        public int Quantity { get; set; } = 1;
+        [Range(typeof(decimal), "0.1", "99")]
+        public decimal Quantity { get; set; } = 1m;
 
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
     }

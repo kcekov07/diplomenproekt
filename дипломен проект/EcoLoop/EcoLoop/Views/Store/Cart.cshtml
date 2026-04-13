@@ -47,8 +47,7 @@
                                 <form asp-controller="Store" asp-action="UpdateCartItem" method="post" class="catalog-buyForm">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="cartItemId" value="@item.CartItemId" />
-                                    <input type="number" name="quantity" min="1" max="99" value="@item.Quantity" />
-                                    <button type="submit" class="sd-btn">Обнови</button>
+                                    <input type="number" name="quantity" min="0.1" max="99" step="0.1" value="@item.Quantity.ToString("0.##")" />                                    <button type="submit" class="sd-btn">Обнови</button>
                                 </form>
 
                                 <form asp-controller="Store" asp-action="RemoveCartItem" method="post">
@@ -64,7 +63,7 @@
             </div>
 
             <aside class="cart-summary">
-                <div><span>Брой артикули</span><strong>@Model.TotalItems</strong></div>
+                <div><span>Брой артикули</span><strong>@Model.TotalItems.ToString("0.##")</strong></div>              
                 <div><span>Обща сума</span><strong>@Model.Subtotal.ToString("0.00") лв.</strong></div>
                 <form asp-controller="Store" asp-action="Checkout" method="post">
                     @Html.AntiForgeryToken()

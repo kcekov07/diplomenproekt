@@ -124,7 +124,7 @@ namespace EcoLoop.Controllers
                     }
 
                     ViewBag.IsFavorite = await _db.UserFavoriteStores.AnyAsync(x => x.UserId == userId && x.StoreId == id);
-                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (int?)x.Quantity) ?? 0;
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
                 }
             }
             ViewBag.CanManageProducts = await CanManageProductsAsync(store);
@@ -523,7 +523,7 @@ namespace EcoLoop.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 if (!string.IsNullOrWhiteSpace(userId))
                 {
-                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (int?)x.Quantity) ?? 0;
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
                 }
             }
 
@@ -744,12 +744,13 @@ namespace EcoLoop.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddToCart(int productId, int quantity = 1)
+        public async Task<IActionResult> AddToCart(int productId, decimal quantity = 1m)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrWhiteSpace(userId)) return Challenge();
 
-            quantity = Math.Clamp(quantity, 1, 20);
+            quantity = Math.Clamp(quantity, 0.1m, 20m);
+            quantity = decimal.Round(quantity, 2, MidpointRounding.AwayFromZero);
 
             var product = await _db.StoreProducts.FirstOrDefaultAsync(x => x.Id == productId && x.IsAvailable);
             if (product == null) return NotFound();
@@ -761,7 +762,8 @@ namespace EcoLoop.Controllers
             }
             else
             {
-                existing.Quantity = Math.Clamp(existing.Quantity + quantity, 1, 99);
+                existing.Quantity = Math.Clamp(existing.Quantity + quantity, 0.1m, 99m);
+                existing.Quantity = decimal.Round(existing.Quantity, 2, MidpointRounding.AwayFromZero);
             }
 
             await _db.SaveChangesAsync();
@@ -804,7 +806,7 @@ namespace EcoLoop.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateCartItem(int cartItemId, int quantity)
+        public async Task<IActionResult> UpdateCartItem(int cartItemId, decimal quantity)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrWhiteSpace(userId)) return Challenge();
@@ -815,8 +817,8 @@ namespace EcoLoop.Controllers
 
             if (item == null) return NotFound();
 
-            item.Quantity = Math.Clamp(quantity, 1, 99);
-            await _db.SaveChangesAsync();
+            item.Quantity = Math.Clamp(quantity, 0.1m, 99m);
+            item.Quantity = decimal.Round(item.Quantity, 2, MidpointRounding.AwayFromZero); await _db.SaveChangesAsync();
 
             return RedirectToAction(nameof(Cart));
         }

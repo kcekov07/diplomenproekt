@@ -4,7 +4,7 @@
     {
         public List<CartLineViewModel> Items { get; set; } = new();
         public decimal Subtotal => Items.Sum(x => x.LineTotal);
-        public int TotalItems => Items.Sum(x => x.Quantity);
+        public decimal TotalItems => Items.Sum(x => x.Quantity);
     }
 
     public class CartLineViewModel
@@ -16,7 +16,7 @@
         public string ProductName { get; set; } = string.Empty;
         public string? ProductImageUrl { get; set; }
         public decimal UnitPrice { get; set; }
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         public string? Unit { get; set; }
         public decimal LineTotal => UnitPrice * Quantity;
     }

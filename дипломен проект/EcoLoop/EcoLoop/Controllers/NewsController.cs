@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace EcoLoop.Controllers
 {
@@ -315,7 +316,10 @@ namespace EcoLoop.Controllers
                 NewsId = id,
                 UserId = userId,
                 VisitorName = string.IsNullOrWhiteSpace(visitorName) ? User.Identity?.Name : visitorName.Trim(),
+                VisitorKey = Convert.ToHexString(RandomNumberGenerator.GetBytes(16)),
+                EditToken = Convert.ToHexString(RandomNumberGenerator.GetBytes(24)),
                 Text = text.Trim(),
+                Rating = 5,
                 CreatedAt = DateTime.UtcNow
             });
 

@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = Model.Title;
+    var isParticipating = (bool?)(ViewBag.IsParticipating) ?? false;
 }
 
 
@@ -9,8 +10,6 @@
     <link rel="stylesheet" href="~/css/events.css" />
 }
 <section class="event-details-page">
-    <a asp-action="All" class="btn-link">← Назад към всички събития</a>
-
     <article class="event-details-card glass-card">
         <img src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "https://images.unsplash.com/photo-1536856136534-bb679c52a9aa?auto=format&fit=crop&w=1200&q=60" : Model.ImageUrl)"
              alt="Снимка за @Model.Title"
@@ -47,12 +46,14 @@
                         @Html.AntiForgeryToken()
                         <button type="submit" class="btn btn-primary">Участвай в събитието</button>
                     </form>
-                    <form asp-action="Leave" asp-route-id="@Model.Id" method="post" class="inline-delete-form">
-                        @Html.AntiForgeryToken()
-                        <button type="submit" class="btn btn-ghost">Откажи участие</button>
-                    </form>
+                    @if (isParticipating)
+                    {
+                        <form asp-action="Leave" asp-route-id="@Model.Id" method="post" class="inline-delete-form">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-ghost">Откажи участие</button>
+                        </form>
+                    }
                 }
-                <a asp-action="All" class="btn btn-ghost">Към списъка</a>
             </div>
         </div>
     </article>

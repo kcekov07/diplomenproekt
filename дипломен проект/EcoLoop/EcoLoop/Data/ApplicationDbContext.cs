@@ -113,6 +113,9 @@ namespace EcoLoop.Data
             builder.Entity<CartItem>()
                 .HasIndex(ci => new { ci.UserId, ci.StoreProductId })
                 .IsUnique();
+            builder.Entity<CartItem>()
+                .Property(ci => ci.Quantity)
+                .HasPrecision(9, 2);
         }
     }
 }

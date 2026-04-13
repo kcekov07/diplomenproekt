@@ -88,6 +88,18 @@ namespace EcoLoop.Controllers
             var item = await _db.Events.AsNoTracking().FirstOrDefaultAsync(e => e.Id == id);
             if (item == null) return NotFound();
 
+            if (User.Identity?.IsAuthenticated == true)
+            {
+                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                if (!string.IsNullOrWhiteSpace(userId))
+                {
+                    ViewBag.IsParticipating = await _db.UserEventParticipations
+                        .AsNoTracking()
+                        .AnyAsync(x => x.UserId == userId && x.EventId == id);
+                }
+            }
+
+
             return View(item);
         }
         [HttpGet]
