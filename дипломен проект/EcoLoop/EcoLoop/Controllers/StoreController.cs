@@ -614,6 +614,7 @@ namespace EcoLoop.Controllers
 
             ViewBag.StoreName = store.Name;
             ViewBag.ProductId = product.Id;
+            ViewBag.CurrentImageUrl = product.ImageUrl;
 
             return View(new StoreProductInputModel
             {

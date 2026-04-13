@@ -246,12 +246,7 @@
                 <div class="catalog-alert">@TempData["CatalogError"]</div>
             }
 
-            @if (canManageProducts)
-            {
-                <div class="catalog-manageLink">
-                    <a class="sd-btn sd-btn--primary" asp-controller="Store" asp-action="AddProduct" asp-route-storeId="@Model.Id">➕ Добави продукт</a>
-                </div>
-            }
+           
 
             @if (!products.Any())
             {

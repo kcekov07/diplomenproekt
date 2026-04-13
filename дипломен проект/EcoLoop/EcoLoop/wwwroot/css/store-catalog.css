@@ -156,6 +156,36 @@
         margin: 0;
     }
 
+.catalog-image-preview {
+    display: none;
+    border: 1px dashed #86efac;
+    border-radius: 16px;
+    padding: .8rem;
+    background: linear-gradient(160deg,#ecfdf5 0%,#f8fffb 100%);
+    margin-top: .4rem;
+}
+
+    .catalog-image-preview.is-visible {
+        display: grid;
+        gap: .5rem;
+    }
+
+    .catalog-image-preview img {
+        width: 100%;
+        max-height: 260px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 1px solid #bbf7d0;
+        box-shadow: 0 10px 24px rgba(16, 24, 40, .1);
+    }
+
+.catalog-image-preview__meta {
+    font-size: .82rem;
+    color: #14532d;
+    font-weight: 600;
+    word-break: break-word;
+}
+
 .catalog-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(255px,1fr));

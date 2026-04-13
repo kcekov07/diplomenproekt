@@ -62,7 +62,11 @@
 
             <label>
                 Изображение на продукта
-                <input asp-for="ProductImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+                <input id="productImageInput" asp-for="ProductImage" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+                <div id="productImagePreview" class="catalog-image-preview">
+                    <img id="productImagePreviewImg" src="" alt="Преглед на снимката" />
+                    <div id="productImagePreviewMeta" class="catalog-image-preview__meta"></div>
+                </div>
             </label>
 
             <label>
@@ -78,3 +82,35 @@
         </form>
     </div>
 </section>
+
+@section Scripts {
+    <script>
+        (function () {
+            const input = document.getElementById('productImageInput');
+            const preview = document.getElementById('productImagePreview');
+            const previewImg = document.getElementById('productImagePreviewImg');
+            const previewMeta = document.getElementById('productImagePreviewMeta');
+
+            if (!input || !preview || !previewImg || !previewMeta) {
+                return;
+            }
+
+            input.addEventListener('change', () => {
+                const file = input.files && input.files[0];
+                if (!file) {
+                    preview.classList.remove('is-visible');
+                    previewImg.src = '';
+                    previewMeta.textContent = '';
+                    return;
+                }
+
+                const objectUrl = URL.createObjectURL(file);
+                previewImg.src = objectUrl;
+                previewMeta.textContent = `${file.name} • ${Math.max(1, Math.round(file.size / 1024))} KB`;
+                preview.classList.add('is-visible');
+
+                previewImg.onload = () => URL.revokeObjectURL(objectUrl);
+            });
+        })();
+    </script>
+}

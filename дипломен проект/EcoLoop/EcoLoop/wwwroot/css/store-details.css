@@ -104,6 +104,7 @@
 
     .sd-btn--primary:hover {
         background: var(--brandHover);
+        color: #fff;
         transform: translateY(-1px);
         box-shadow: 0 18px 40px rgba(31,90,61,.35);
     }
