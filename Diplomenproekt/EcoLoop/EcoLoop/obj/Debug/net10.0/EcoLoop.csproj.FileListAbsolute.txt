@@ -1334,7 +1334,7 @@ D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.pdb
 D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\EcoLoop.genruntimeconfig.cache
 D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\ref\EcoLoop.dll
 D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\uywb1pq1h0-{0}-d9m8wwob03-d9m8wwob03.gz
-D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-nm27t67tco-nm27t67tco.gz
 D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\ecouxrgi2w-{0}-o4kukduw4c-o4kukduw4c.gz
 D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\twwks4b0bg-{0}-izp470pxgl-izp470pxgl.gz
-D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mudf53qmuw-{0}-58vg95mow7-58vg95mow7.gz
+D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\0v777x7xmr-{0}-lz9rsiwjgo-lz9rsiwjgo.gz
+D:\diplomenproekt\Diplomenproekt\EcoLoop\EcoLoop\obj\Debug\net10.0\compressed\mudf53qmuw-{0}-gmir0yo5c0-gmir0yo5c0.gz
