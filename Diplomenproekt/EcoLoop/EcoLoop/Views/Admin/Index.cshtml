@@ -69,8 +69,8 @@
 
         <div class="admin-subpanel">
             <h3>Най-силни магазини по интерес и потенциални продажби</h3>
-            <p class="admin-empty @(Model.Analytics.TopStorePerformance.Any() ? "d-none" : string.Empty)" id="analytics-empty-state">Няма достатъчно данни за анализ.</p>
-            <div class="analytics-table-wrap @(Model.Analytics.TopStorePerformance.Any() ? string.Empty : "d-none")" id="analytics-table-wrap">
+            <p class="admin-empty d-none" id="analytics-empty-state">Няма достатъчно данни за анализ.</p>
+            <div class="analytics-table-wrap" id="analytics-table-wrap">
                 <table class="analytics-table">
                     <thead>
                         <tr>
@@ -82,17 +82,26 @@
                         </tr>
                     </thead>
                     <tbody id="analytics-top-stores-body">
-                        @foreach (var store in Model.Analytics.TopStorePerformance)
+                        @if (Model.Analytics.TopStorePerformance.Any())
+                        {
+                            @foreach (var store in Model.Analytics.TopStorePerformance)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>@store.Store.Name</strong>
+                                        <div class="analytics-muted">@store.Store.Category</div>
+                                    </td>
+                                    <td>@store.Views</td>
+                                    <td>@store.Favorites</td>
+                                    <td>@store.Carts</td>
+                                    <td>@store.PotentialRevenue.ToString("N2") €</td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td>
-                                    <strong>@store.Store.Name</strong>
-                                    <div class="analytics-muted">@store.Store.Category</div>
-                                </td>
-                                <td>@store.Views</td>
-                                <td>@store.Favorites</td>
-                                <td>@store.Carts</td>
-                                <td>@store.PotentialRevenue.ToString("N2") €</td>
+                                <td colspan="5" class="analytics-muted">Все още няма събрани действия за класация по магазини.</td>
                             </tr>
                         }
                     </tbody>

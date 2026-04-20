@@ -279,6 +279,21 @@ namespace EcoLoop.Controllers
                 .Take(8)
                 .ToList();
 
+            if (topStorePerformance.Count == 0 && allStores.Count > 0)
+            {
+                topStorePerformance = allStores
+                    .Take(8)
+                    .Select(store => new StorePerformanceItemViewModel
+                    {
+                        Store = store,
+                        Views = 0,
+                        Favorites = 0,
+                        Carts = 0,
+                        PotentialRevenue = 0m
+                    })
+                    .ToList();
+            }
+
             return new AdminAnalyticsViewModel
             {
                 PotentialRevenue = totalPotentialRevenue,
