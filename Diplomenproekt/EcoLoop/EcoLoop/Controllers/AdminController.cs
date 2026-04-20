@@ -227,10 +227,31 @@ namespace EcoLoop.Controllers
         {
             var comment = await _db.Comments.FindAsync(id);
             if (comment == null) return NotFound();
-
+            var storeId = comment.StoreId;
             _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
+            if (storeId.HasValue)
+            {
+                await RecalculateStoreRatingAsync(storeId.Value);
+            }
             return RedirectToAction(nameof(Index));
+        }
+
+        private async Task RecalculateStoreRatingAsync(int storeId)
+        {
+            var store = await _db.Stores.FirstOrDefaultAsync(s => s.Id == storeId);
+            if (store == null)
+            {
+                return;
+            }
+
+            var averageRating = await _db.Comments
+                .Where(c => c.StoreId == storeId)
+                .Select(c => (decimal?)c.Rating)
+                .AverageAsync() ?? 0m;
+
+            store.Rating = Math.Round(averageRating, 1, MidpointRounding.AwayFromZero);
+            await _db.SaveChangesAsync();
         }
     }
 }

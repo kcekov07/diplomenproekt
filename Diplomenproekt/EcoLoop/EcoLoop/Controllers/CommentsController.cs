@@ -75,8 +75,8 @@ namespace EcoLoop.Controllers
 
             _db.Comments.Add(comment);
             await _db.SaveChangesAsync();
+            await RecalculateStoreRatingAsync(storeId);
 
-            
             return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
@@ -103,6 +103,7 @@ namespace EcoLoop.Controllers
             comment.EditedAt = DateTime.UtcNow;
 
             await _db.SaveChangesAsync();
+            await RecalculateStoreRatingAsync(comment.StoreId!.Value);
             return RedirectToAction("Details", "Store", new { id = comment.StoreId });
         }
 
@@ -123,8 +124,9 @@ namespace EcoLoop.Controllers
 
             _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
+            await RecalculateStoreRatingAsync(storeId);
 
-             return RedirectToAction("Details", "Store", new { id = storeId });
+            return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
         
@@ -158,6 +160,22 @@ namespace EcoLoop.Controllers
             if (storeId.HasValue) return RedirectToAction("Details", "Store", new { id = storeId.Value });
 
             return RedirectToAction("All", "Store");
+        }
+        private async Task RecalculateStoreRatingAsync(int storeId)
+        {
+            var store = await _db.Stores.FirstOrDefaultAsync(s => s.Id == storeId);
+            if (store == null)
+            {
+                return;
+            }
+
+            var averageRating = await _db.Comments
+                .Where(c => c.StoreId == storeId)
+                .Select(c => (decimal?)c.Rating)
+                .AverageAsync() ?? 0m;
+
+            store.Rating = Math.Round(averageRating, 1, MidpointRounding.AwayFromZero);
+            await _db.SaveChangesAsync();
         }
     }
 }
