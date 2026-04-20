@@ -1,16 +1,16 @@
 ﻿:root {
-    /* Base */
+    
     --bg: #f7f8f6;
     --card: #ffffff;
     --text: #1f2937;
     --muted: #6b7280;
     --line: rgba(31,41,55,.10);
-    /* Brand */
+    
     --brand: #1f5a3d;
     --brandHover: #174532;
     --brandSoft: rgba(31,90,61,.12);
     --brandBorder: rgba(31,90,61,.28);
-    /* Extras */
+    
     --warn: #b45309;
     --warnSoft: rgba(180,83,9,.10);
     --radius: 18px;
@@ -19,7 +19,7 @@
     --shadowSoft: 0 10px 25px rgba(31,41,55,.08);
 }
 
-/* ===== Page ===== */
+
 .sd-page {
     background: var(--bg);
     color: var(--text);
@@ -31,7 +31,7 @@
     color: var(--muted);
 }
 
-/* ===== Topbar ===== */
+
 .sd-topbar {
     width: min(1120px,92vw);
     margin: 16px auto 0;
@@ -67,7 +67,7 @@
         border-bottom-color: var(--brandHover);
     }
 
-/* ===== Buttons ===== */
+
 .sd-btn {
     min-height: 44px;
     padding: 0 18px;
@@ -121,7 +121,7 @@
         background: rgba(31,90,61,.10);
     }
 
-/* Small pill button (for actions in reviews) */
+
 .sd-pillbtn {
     height: 34px;
     padding: 0 12px;
@@ -154,7 +154,7 @@
         box-shadow: 0 12px 24px rgba(31,41,55,.12);
     }
 
-/* ===== Hero ===== */
+
 .sd-hero {
     position: relative;
     margin-top: 12px;
@@ -170,7 +170,7 @@
     inset: 0;
     background-size: cover;
     background-position: center center;
-    transform: scale(1.03); /* по-малко zoom */
+    transform: scale(1.03); 
     filter: saturate(1.15) contrast(1.05);
 }
 
@@ -282,7 +282,7 @@
     color: rgba(31,41,55,.86);
 }
 
-/* ===== Facts ===== */
+
 .sd-facts {
     display: grid;
     gap: 12px;
@@ -321,7 +321,7 @@
     padding: 12px 16px;
 }
 
-/* ===== Container & grid ===== */
+
 .sd-container {
     width: min(1120px,92vw);
     margin: 18px auto 0;
@@ -333,7 +333,7 @@
     gap: 14px;
 }
 
-/* ===== Card ===== */
+
 .sd-card {
     background: var(--card);
     border-radius: var(--radius);
@@ -369,7 +369,7 @@
     margin: 14px 0;
 }
 
-/* ===== Feature list ===== */
+
 .sd-featurelist {
     display: grid;
     gap: 12px;
@@ -403,7 +403,7 @@
     line-height: 1.45;
 }
 
-/* ===== Contact blocks ===== */
+
 .sd-block {
     margin-top: 12px;
 }
@@ -458,7 +458,7 @@
         box-shadow: 0 12px 26px rgba(31,90,61,.18);
     }
 
-/* ===== Section ===== */
+
 .sd-section {
     margin-top: 16px;
     background: var(--card);
@@ -477,7 +477,7 @@
     margin: 6px 0 0;
 }
 
-/* ===== Gallery ===== */
+
 .sd-gallery {
     margin-top: 12px;
     display: grid;
@@ -515,11 +515,7 @@
     transform: translateX(120%);
 }
 
-/* =========================================================
-   REVIEWS + BREAKDOWN + LIKES + EDIT/DELETE (NEW)
-   ========================================================= */
 
-/* Reviews layout wrapper inside sd-section */
 .sd-reviews {
     margin-top: 12px;
     display: grid;
@@ -578,7 +574,7 @@
     color: rgba(31,41,55,.86);
 }
 
-/* Actions row (like / edit / delete) */
+
 .sd-review-actions {
     margin-top: 12px;
     display: flex;
@@ -587,7 +583,7 @@
     flex-wrap: wrap;
 }
 
-/* Like button specific */
+
 .sd-likebtn {
     border-color: var(--brandBorder);
     background: rgba(31,90,61,.06);
@@ -599,11 +595,7 @@
         border-color: rgba(31,90,61,.40);
     }
 
-/* Edit mode (optional) */
 
-
-/* Star rating input (clickable) */
-/* Review form container */
 .sd-review-form {
     border: 1px solid rgba(31,41,55,.10);
     border-radius: 16px;
@@ -616,7 +608,7 @@
         margin-top: 12px;
     }
 
-/* ===== Breakdown ===== */
+
 .sd-breakdown {
     margin-top: 12px;
     display: grid;
@@ -646,14 +638,14 @@
         border-radius: 999px;
     }
 
-/* Optional small note row */
+
 .sd-note {
     margin-top: 10px;
     font-size: 12px;
     color: rgba(31,41,55,.60);
 }
 
-/* ===== Responsive ===== */
+
 @media (max-width: 980px) {
     .sd-hero__content {
         grid-template-columns: 1fr;
@@ -675,11 +667,7 @@
         grid-template-columns: repeat(2,1fr);
     }
 }
-/* =========================================================
-   REVIEWS – REAL FIX (MATCHES YOUR HTML)
-   ========================================================= */
 
-/* Review form */
 .sd-reviewForm {
     border: 1px solid rgba(31,41,55,.10);
     border-radius: 16px;
@@ -705,7 +693,7 @@
             box-shadow: 0 0 0 4px rgba(31,90,61,.12);
         }
 
-/* name + stars row */
+
 .sd-formRow {
     display: flex;
     gap: 12px;
@@ -739,20 +727,18 @@
         transition: color 0.15s;
     }
 
-        /* hover – отляво надясно */
+        
         .sd-starsInput label:hover,
         .sd-starsInput label:hover ~ label {
             color: #fbbc04;
         }
 
-    /* избрано – отляво надясно */
+    
     .sd-starsInput input:checked ~ label {
         color: #fbbc04;
     }
 
-/* =========================================================
-   REVIEW CARD
-   ========================================================= */
+
 .sd-review {
     border: 1px solid rgba(31,41,55,.10);
     border-radius: 16px;
@@ -761,7 +747,6 @@
     box-shadow: 0 10px 22px rgba(31,41,55,.06);
 }
 
-/* header */
 .sd-review__head {
     display: flex;
     justify-content: space-between;
@@ -783,7 +768,7 @@
         font-size: 12px;
     }
 
-/* stars display */
+
 .sd-stars {
     display: flex;
     gap: 2px;
@@ -798,16 +783,14 @@
             color: #fbbf24;
         }
 
-/* text */
+
 .sd-review__text {
     margin-top: 10px;
     line-height: 1.6;
     color: rgba(31,41,55,.88);
 }
 
-/* =========================================================
-   ACTIONS
-   ========================================================= */
+
 .sd-review__actions {
     margin-top: 12px;
     display: flex;
@@ -816,7 +799,7 @@
     flex-wrap: wrap;
 }
 
-/* Helpful */
+
 .sd-helpful {
     height: 34px;
     padding: 0 14px;
@@ -833,7 +816,7 @@
         border-color: rgba(31,90,61,.40);
     }
 
-/* Edit / delete */
+
 .sd-actionLink {
     font-size: 13px;
     font-weight: 900;
@@ -869,23 +852,20 @@
         box-shadow: 0 10px 20px rgba(127,29,29,.20);
     }
 
-/* =========================================================
-   EDIT FORM
-   ========================================================= */
-/* Edit form container */
+
 .sd-edit {
     margin-top: 10px;
     border-radius: 16px;
     padding: 12px;
-    background: rgba(247, 248, 246, 0.85); /* лек фон за отделяне */
+    background: rgba(247, 248, 246, 0.85); 
     border: 1px dashed rgba(31,41,55,0.16);
     box-shadow: 0 6px 16px rgba(31,41,55,0.06);
 }
 
-    /* Stars input in edit form */
+    
     .sd-edit .sd-starsInput {
         display: inline-flex;
-        flex-direction: row-reverse; /* звездите отляво надясно */
+        flex-direction: row-reverse; 
         gap: 6px;
         font-size: 22px;
         margin-bottom: 12px;
@@ -897,21 +877,21 @@
 
         .sd-edit .sd-starsInput label {
             cursor: pointer;
-            color: #d1d5db; /* сиво за неизбрани */
+            color: #d1d5db; 
             transition: color 0.15s, transform 0.08s;
         }
 
             .sd-edit .sd-starsInput label:hover,
             .sd-edit .sd-starsInput label:hover ~ label {
-                color: #fbbf24; /* пожълтяване при hover */
+                color: #fbbf24;
                 transform: translateY(-2px);
             }
 
         .sd-edit .sd-starsInput input:checked ~ label {
-            color: #fbbf24; /* пожълтяване при избрано */
+            color: #fbbf24; 
         }
 
-    /* Textarea за редакция */
+    
     .sd-edit textarea {
         width: 100%;
         min-height: 100px;
@@ -930,7 +910,7 @@
             box-shadow: 0 0 0 4px rgba(31,90,61,0.12);
         }
 
-/* Действия - бутон Запази */
+
 .sd-editForm__actions {
     display: flex;
     justify-content: flex-end;
@@ -957,9 +937,7 @@
             background: rgba(31,90,61,0.10);
         }
 
-/* =========================================================
-   RATING BREAKDOWN (TOP RIGHT)
-   ========================================================= */
+
 .sd-breakdown {
     margin-top: 10px;
     display: grid;
@@ -987,8 +965,8 @@
         border-radius: 999px;
     }
 .sd-fact__value div {
-    display: block; /* всяко работно време на нов ред */
-    margin-bottom: 2px; /* малко разстояние между редовете */
+    display: block; 
+    margin-bottom: 2px; 
     line-height: 1.5;
 }
 

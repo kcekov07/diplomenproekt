@@ -37,7 +37,7 @@ namespace EcoLoop.Data
         {
             base.OnModelCreating(builder);
 
-            // Optional: cascade delete configuration
+            
             builder.Entity<StoreImage>()
                 .HasOne(si => si.Store)
                 .WithMany(s => s.Images)
@@ -79,7 +79,7 @@ namespace EcoLoop.Data
     .HasForeignKey(h => h.CommentId)
     .OnDelete(DeleteBehavior.Cascade);
 
-            // one helpful per visitor per comment
+            
             builder.Entity<CommentHelpful>()
                 .HasIndex(h => new { h.CommentId, h.VisitorKey })
                 .IsUnique();

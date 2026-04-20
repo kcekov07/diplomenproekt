@@ -1,35 +1,35 @@
 ﻿:root {
-    /* 🌿 EcoLoop – light & modern + brand-green buttons */
+    
     --bg: #f7f8f6;
     --card: #ffffff;
     --text: #1f2937;
     --muted: #6b7280;
     --line: rgba(31,41,55,.08);
-    /* Soft eco accent (inputs/focus) */
+    
     --accent: #7aa89f;
     --accent-soft: rgba(122,168,159,.14);
-    /* Brand green (buttons – близко до лого) */
+   
     --brand: #1f5a3d;
     --brand-hover: #174532;
     --brand-soft: rgba(31,90,61,.12);
     --brand-border: rgba(31,90,61,.35);
-    /* Inputs */
+   
     --input-bg: #ffffff;
     --input-border: rgba(31,41,55,.12);
     --input-border-hover: rgba(122,168,159,.35);
     --input-ring: rgba(122,168,159,.22);
-    /* Radius & shadows */
+    
     --radius: 18px;
     --radius-sm: 14px;
     --shadow-soft: 0 8px 22px rgba(31,41,55,.06);
     --shadow-hover: 0 14px 34px rgba(31,41,55,.10);
-    /* Danger */
+   
     --danger-bg: rgba(220,38,38,.06);
     --danger-border: rgba(220,38,38,.16);
     --danger-text: #991b1b;
 }
 
-/* ===== Page ===== */
+
 .sf-page {
     background: var(--bg);
     padding: 20px 0 48px;
@@ -42,7 +42,7 @@
     margin: 0 auto;
 }
 
-/* ===== Header ===== */
+
 .sf-head {
     margin-bottom: 14px;
 }
@@ -59,13 +59,13 @@
     line-height: 1.55;
 }
 
-/* ===== Form ===== */
+
 .sf-form {
     display: grid;
     gap: 14px;
 }
 
-/* ===== Validation ===== */
+
 .sf-validation {
     background: var(--danger-bg);
     border: 1px solid var(--danger-border);
@@ -74,7 +74,7 @@
     color: var(--danger-text);
 }
 
-/* ===== Cards ===== */
+
 .sf-card {
     background: var(--card);
     border-radius: var(--radius);
@@ -101,7 +101,7 @@
     color: var(--muted);
 }
 
-/* ===== Grid ===== */
+
 .sf-grid {
     display: grid;
     gap: 12px;
@@ -119,7 +119,7 @@
     grid-column: span 2;
 }
 
-/* ===== Fields ===== */
+
 .sf-field label {
     display: block;
     font-size: 13px;
@@ -176,7 +176,7 @@
     margin-top: 6px;
 }
 
-/* ===== Toggles ===== */
+
 .sf-toggles {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -236,7 +236,7 @@
     color: rgba(31,41,55,.88);
 }
 
-/* ===== Phones repeater ===== */
+
 .sf-repeater {
     display: grid;
     gap: 10px;
@@ -249,7 +249,7 @@
     align-items: center;
 }
 
-/* Small icon buttons (remove phone, etc.) */
+
 .sf-iconbtn {
     height: 42px;
     width: 42px;
@@ -271,8 +271,7 @@
         box-shadow: 0 10px 22px rgba(31,90,61,.22);
     }
 
-/* ===== Buttons ===== */
-/* Secondary button (Add phone, Upload label, etc.) */
+
 .sf-secondary {
     height: 44px;
     padding: 0 18px;
@@ -295,7 +294,7 @@
         box-shadow: 0 12px 26px rgba(31,90,61,.20);
     }
 
-/* Primary button (Save) */
+
 .sf-primary {
     height: 46px;
     padding: 0 22px;
@@ -316,7 +315,7 @@
         box-shadow: 0 18px 40px rgba(31,90,61,.35);
     }
 
-/* Back link (as button) */
+
 .sf-link {
     background: none;
     border: none;
@@ -337,13 +336,13 @@
         border-bottom-color: var(--brand-hover);
     }
 
-/* ===== Upload ===== */
+
 .sf-upload {
     display: grid;
     gap: 10px;
 }
 
-/* Hide the raw file input when using a label button */
+
 .sf-file {
     position: absolute;
     width: 1px;
@@ -361,7 +360,7 @@
     color: var(--muted);
 }
 
-/* ===== Previews ===== */
+
 .sf-previews {
     margin-top: 12px;
     display: grid;
@@ -429,7 +428,7 @@
     background: rgba(255,255,255,.70);
 }
 
-/* ===== Existing images ===== */
+
 .sf-existing {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -468,7 +467,7 @@
         box-shadow: 0 12px 24px rgba(31,41,55,.12);
     }
 
-/* ===== Actions ===== */
+
 .sf-actions {
     display: flex;
     gap: 14px;
@@ -477,7 +476,7 @@
     padding-top: 4px;
 }
 
-/* ===== Responsive ===== */
+
 @media (max-width: 900px) {
     .sf-grid--2,
     .sf-grid--3 {

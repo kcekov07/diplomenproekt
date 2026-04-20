@@ -117,7 +117,7 @@
                         </div>
                     </div>
 
-                    <!-- Работно време -->
+                  
                     @if (!string.IsNullOrWhiteSpace(Model.WorkingHours))
                     {
                         <div class="sd-fact">
@@ -272,7 +272,7 @@
                                     <p>@product.Description</p>
                                 }
                                 <div class="catalog-meta">
-                                    <strong>@product.Price.ToString("0.00") лв.</strong>
+                                    <strong>@product.Price.ToString("0.00") €</strong>
                                     @if (!string.IsNullOrWhiteSpace(product.Unit))
                                     {
                                         <span>/ @product.Unit</span>
@@ -322,7 +322,7 @@
         </section>
 
 
-        <!-- REVIEWS -->
+        
         @if (User.Identity?.IsAuthenticated == true)
         {
             <form asp-controller="Comments"
@@ -335,7 +335,7 @@
 
                 <div class="sd-formRow">
 
-                    <!-- ⭐ STAR RATING -->
+                  
                     <div class="sd-starsInput">
 
                         <input type="radio" id="star1" name="rating" value="5" required>

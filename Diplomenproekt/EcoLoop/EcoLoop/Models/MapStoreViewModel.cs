@@ -15,7 +15,7 @@ namespace EcoLoop.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        // ЕДИН URL за картата
+        
         public string ImageUrl { get; set; }
 
         public bool AcceptsOwnPackaging { get; set; }

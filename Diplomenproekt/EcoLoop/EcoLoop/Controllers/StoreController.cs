@@ -22,7 +22,7 @@ namespace EcoLoop.Controllers
         private readonly ApplicationDbContext _db;
         private readonly ILogger<StoreController> _logger;
         private readonly IWebHostEnvironment _env;
-        private const long MaxFileBytes = 5 * 1024 * 1024; // 5 MB
+        private const long MaxFileBytes = 5 * 1024 * 1024; 
 
         public StoreController(ApplicationDbContext db, ILogger<StoreController> logger, IWebHostEnvironment env)
         {
@@ -48,7 +48,7 @@ namespace EcoLoop.Controllers
                     Rating = s.Rating,
                     ImageUrl = s.Images.OrderBy(i => i.Id).Select(i => i.Url).FirstOrDefault(),
 
-                    // NEW (само ако ги добавиш в StoreViewModel)
+                    
                     HasDelivery = s.HasDelivery,
                     HasRefillStation = s.HasRefillStation,
                     EcoTags = s.EcoTags
@@ -58,7 +58,7 @@ namespace EcoLoop.Controllers
             return View(stores);
         }
 
-        // GET: /Store/Details/{id}
+        // GET: /Store/Details/
         public async Task<IActionResult> Details(int id)
         {
             var store = await _db.Stores
@@ -70,10 +70,10 @@ namespace EcoLoop.Controllers
 
             if (store == null) return NotFound();
 
-            // visitorKey (ако има)
+           
             var visitorKey = Request.Cookies.TryGetValue("ecoloop_vid", out var vk) ? vk : null;
 
-            // Likes count per comment
+            
             var commentIds = store.Comments.Select(c => c.Id).ToList();
 
             var likesDict = await _db.CommentHelpfuls
@@ -84,7 +84,7 @@ namespace EcoLoop.Controllers
 
             ViewBag.CommentLikes = likesDict;
 
-            // Which comments this visitor liked
+            
             if (!string.IsNullOrWhiteSpace(visitorKey))
             {
                 var likedIds = await _db.CommentHelpfuls
@@ -98,7 +98,7 @@ namespace EcoLoop.Controllers
             {
                 ViewBag.LikedCommentIds = new HashSet<int>();
             }
-            // Which comments can be edited by current user
+            
             var canEdit = new HashSet<int>();
             var currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!string.IsNullOrWhiteSpace(currentUserId))
@@ -182,7 +182,7 @@ namespace EcoLoop.Controllers
                 CreatorId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                 IsApproved = User.IsInRole("Admin") || User.IsInRole("Moderator"),
 
-                // NEW
+               
                 EcoTags = string.IsNullOrWhiteSpace(model.EcoTags) ? null : model.EcoTags.Trim(),
                 Certifications = string.IsNullOrWhiteSpace(model.Certifications) ? null : model.Certifications.Trim(),
                 HasDelivery = model.HasDelivery,
@@ -202,7 +202,7 @@ namespace EcoLoop.Controllers
                 _db.Stores.Add(store);
                 await _db.SaveChangesAsync();
 
-                // Phones
+                
                 if (model.Phones != null)
                 {
                     foreach (var raw in model.Phones.Where(p => !string.IsNullOrWhiteSpace(p)))
@@ -211,7 +211,7 @@ namespace EcoLoop.Controllers
                     }
                 }
 
-                // Photos - save under wwwroot/images/stores/{id}/
+                
                 if (model.Photos != null && model.Photos.Any())
                 {
                     var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
@@ -251,7 +251,7 @@ namespace EcoLoop.Controllers
             }
         }
 
-        // GET Edit: optional id; also returns list for dropdown if needed
+        // GET Edit
         public async Task<IActionResult> Edit(int? id)
         {
             ViewData["Categories"] = new[] {
@@ -274,7 +274,7 @@ namespace EcoLoop.Controllers
 
             if (store == null) return NotFound();
 
-            // try to split working hours
+          
             string? mon = null, sat = null, sun = null;
             if (!string.IsNullOrWhiteSpace(store.WorkingHours))
             {
@@ -305,7 +305,7 @@ namespace EcoLoop.Controllers
                 SunHours = sun,
                 Website = store.Website,
 
-                // NEW
+                
                 EcoTags = store.EcoTags,
                 Certifications = store.Certifications,
                 HasDelivery = store.HasDelivery,
@@ -365,7 +365,7 @@ namespace EcoLoop.Controllers
             store.WorkingHours = BuildWorkingHours(model.MonToFriHours, model.SatHours, model.SunHours);
             store.Website = string.IsNullOrWhiteSpace(model.Website) ? null : model.Website.Trim();
 
-            // NEW
+            
             store.EcoTags = string.IsNullOrWhiteSpace(model.EcoTags) ? null : model.EcoTags.Trim();
             store.Certifications = string.IsNullOrWhiteSpace(model.Certifications) ? null : model.Certifications.Trim();
             store.HasDelivery = model.HasDelivery;
@@ -376,7 +376,7 @@ namespace EcoLoop.Controllers
 
             try
             {
-                // replace phones
+                
                 var existingPhones = await _db.StorePhones.Where(p => p.StoreId == store.Id).ToListAsync();
                 if (existingPhones.Any()) _db.StorePhones.RemoveRange(existingPhones);
 
@@ -386,7 +386,7 @@ namespace EcoLoop.Controllers
                         _db.StorePhones.Add(new StorePhone { StoreId = store.Id, PhoneNumber = raw.Trim() });
                 }
 
-                // append photos to wwwroot/images/stores/{id}
+                
                 if (model.Photos != null && model.Photos.Any())
                 {
                     var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
@@ -425,7 +425,7 @@ namespace EcoLoop.Controllers
             }
         }
 
-        // POST: delete image (AJAX)
+        // POST: delete image 
         [Authorize(Roles = "Producer,Moderator,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -444,7 +444,7 @@ namespace EcoLoop.Controllers
                 _db.StoreImages.Remove(img);
                 await _db.SaveChangesAsync();
 
-                // delete file from disk (image url stored like "/images/stores/{id}/{file}")
+                
                 try
                 {
                     var webRoot = _env?.WebRootPath ?? Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");

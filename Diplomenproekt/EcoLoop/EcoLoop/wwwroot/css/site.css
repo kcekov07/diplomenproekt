@@ -34,7 +34,7 @@ body {
     padding: 0 1rem;
 }
 
-/* Header / navbar */
+
 .site-header {
     position: sticky;
     top: 0;
@@ -234,7 +234,7 @@ body {
             background: var(--eco-green-soft);
         }
 
-/* Main content */
+
 .main-content {
     max-width: 1200px;
     margin: 1.4rem auto 2rem;

@@ -21,7 +21,7 @@
             @Html.AntiForgeryToken()
             <div asp-validation-summary="ModelOnly" class="sf-validation"></div>
 
-            <!-- SECTION: Основна информация -->
+            <!--osnovna informaciq za magazin -->
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Основна информация</h2>
@@ -62,7 +62,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Локация -->
+            <!--location-->
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Локация</h2>
@@ -90,7 +90,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Работно време -->
+            <!--working time -->
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Работно време</h2>
@@ -113,7 +113,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Еко & услуги -->
+            <!-- eco service -->
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Еко & услуги</h2>
@@ -160,7 +160,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Контакти -->
+            <!-- contact-->
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Контакти</h2>
@@ -193,8 +193,7 @@
                     </div>
                 </div>
 
-                <!-- Телефони (оставям ти го базово, защото при теб е List<string> Phones) -->
-                <div class="sf-field sf-mt">
+                               <div class="sf-field sf-mt">
                     <label>Телефони</label>
                     <div id="phonesList" class="sf-repeater">
                         <div class="sf-repeater__row">
@@ -206,7 +205,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Снимки -->
+            
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Снимки</h2>
@@ -266,11 +265,11 @@
             }
 
             addPhoneBtn?.addEventListener('click', () => addPhone());
-            // first row remove hidden unless >1
+            
             const firstRemove = phonesList.querySelector('.sf-remove');
             firstRemove?.addEventListener('click', (e) => {
                 e.preventDefault();
-                // shouldn't happen when hidden, but just in case:
+               
                 if (phonesList.querySelectorAll('.sf-repeater__row').length > 1) {
                     firstRemove.closest('.sf-repeater__row').remove();
                     refreshRemoveButtons();
@@ -278,7 +277,6 @@
             });
             refreshRemoveButtons();
 
-            // Photos preview + remove before submit (DataTransfer)
             const fileInput = document.getElementById('photosInput');
             const previews = document.getElementById('photoPreviews');
             let dt = new DataTransfer();
@@ -314,7 +312,7 @@
                     btn.className = 'sf-preview__remove';
                     btn.textContent = 'Премахни';
                     btn.addEventListener('click', () => {
-                        // remove by rebuilding DataTransfer
+                       
                         const newDt = new DataTransfer();
                         files.forEach((f, i) => { if (i !== index) newDt.items.add(f); });
                         dt = newDt;

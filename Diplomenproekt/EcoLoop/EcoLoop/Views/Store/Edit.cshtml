@@ -22,9 +22,7 @@
             <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="sf-validation"></div>
 
-            <!-- SECTION: Избор на магазин (ако ползваш dropdown) -->
-            @* Ако твоят Edit view позволява избор на магазин от dropdown, остави това:
-               Ако не ти трябва - махни секцията. *@
+            
             @if (ViewData["AllStores"] != null)
             {
                 var allStores = ViewData["AllStores"] as IEnumerable<dynamic>;
@@ -65,7 +63,7 @@
                 }
             }
 
-            <!-- SECTION: Основна информация -->
+            
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Основна информация</h2>
@@ -105,7 +103,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Локация -->
+           
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Локация</h2>
@@ -131,7 +129,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Работно време -->
+           
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Работно време</h2>
@@ -154,7 +152,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Еко & услуги -->
+           
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Еко & услуги</h2>
@@ -200,7 +198,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Контакти -->
+            
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Контакти</h2>
@@ -254,7 +252,7 @@
                 </div>
             </section>
 
-            <!-- SECTION: Съществуващи снимки -->
+            
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Текущи снимки</h2>
@@ -284,7 +282,7 @@
                 }
             </section>
 
-            <!-- SECTION: Добавяне на нови снимки -->
+            
             <section class="sf-card">
                 <div class="sf-card__head">
                     <h2>Добави нови снимки</h2>
@@ -313,11 +311,11 @@
 @section Scripts {
     <script>
         (function () {
-            // Anti-forgery token for AJAX
+            
             const tokenInput = document.querySelector('input[name="__RequestVerificationToken"]');
             const token = tokenInput ? tokenInput.value : "";
 
-            // Phones repeater
+            
             const phonesList = document.getElementById('phonesList');
             const addPhoneBtn = document.getElementById('addPhoneBtn');
 
@@ -353,7 +351,7 @@
 
             refreshRemoveButtons();
 
-            // Delete existing image (AJAX -> /Store/DeleteImage)
+            
             document.querySelectorAll('.sf-existing__delete').forEach(btn => {
                 btn.addEventListener('click', async () => {
                     const imgId = btn.getAttribute('data-imgid');
@@ -388,7 +386,7 @@
                 });
             });
 
-            // New photos preview + remove before submit (DataTransfer)
+            
             const fileInput = document.getElementById('photosInput');
             const previews = document.getElementById('photoPreviews');
             let dt = new DataTransfer();

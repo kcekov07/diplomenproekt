@@ -30,10 +30,10 @@ namespace EcoLoop.Models
 
         public bool IsProducer { get; set; }
 
-        // Keep a single field for storage, but expose structured fields for editing
+       
         public string? WorkingHours { get; set; }
 
-        // Structured fields used in the form (Mon-Fri / Sat / Sun)
+        
         [MaxLength(100)]
         public string? MonToFriHours { get; set; }
 
@@ -56,10 +56,10 @@ namespace EcoLoop.Models
         public string? FacebookUrl { get; set; }
        
 
-        // New photos to upload
+        
         public List<IFormFile>? Photos { get; set; }
 
-        // Existing images for display (Id and Url)
+       
         public List<ExistingImageViewModel> ExistingImages { get; set; } = new();
 
         public class ExistingImageViewModel

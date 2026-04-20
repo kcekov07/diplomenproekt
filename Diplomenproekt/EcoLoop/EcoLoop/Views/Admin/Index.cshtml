@@ -37,8 +37,8 @@
         <div class="analytics-grid">
             <article class="analytics-card">
                 <p class="analytics-label">Потенциални продажби</p>
-                <strong>@Model.Analytics.PotentialRevenue.ToString("N2") лв.</strong>
-                <p class="analytics-hint">30 дни: @Model.Analytics.PotentialRevenueLast30Days.ToString("N2") лв.</p>
+                <strong>@Model.Analytics.PotentialRevenue.ToString("N2") €</strong>
+                <p class="analytics-hint">30 дни: @Model.Analytics.PotentialRevenueLast30Days.ToString("N2") €</p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Прегледи на магазини</p>
@@ -97,7 +97,7 @@
                                     <td>@store.Views</td>
                                     <td>@store.Favorites</td>
                                     <td>@store.Carts</td>
-                                    <td>@store.PotentialRevenue.ToString("N2") лв.</td>
+                                    <td>@store.PotentialRevenue.ToString("N2") €</td>
                                 </tr>
                             }
                         </tbody>

@@ -1,4 +1,4 @@
-﻿// site.js - helpers for navbar (mobile toggle)
+﻿
 document.addEventListener('DOMContentLoaded', function () {
     var navToggle = document.getElementById('navToggle');
     var mobileNav = document.getElementById('mobileNav');

@@ -20,13 +20,13 @@ namespace EcoLoop.Controllers
             _db = db;
         }
 
-        // ===== Helpers =====
+        
         private string GetOrCreateVisitorKey()
         {
             if (Request.Cookies.TryGetValue(VisitorCookie, out var key) && !string.IsNullOrWhiteSpace(key))
                 return key;
 
-            var newKey = Convert.ToHexString(RandomNumberGenerator.GetBytes(16)); // 32 chars
+            var newKey = Convert.ToHexString(RandomNumberGenerator.GetBytes(16)); 
             Response.Cookies.Append(VisitorCookie, newKey, new CookieOptions
             {
                 HttpOnly = true,
@@ -40,9 +40,9 @@ namespace EcoLoop.Controllers
         }
 
         private static string NewToken()
-            => Convert.ToHexString(RandomNumberGenerator.GetBytes(24)); // 48 chars
+            => Convert.ToHexString(RandomNumberGenerator.GetBytes(24)); 
 
-        // ===== Create store review =====
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -80,7 +80,7 @@ namespace EcoLoop.Controllers
             return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
-        // ===== Edit store review =====
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -106,7 +106,7 @@ namespace EcoLoop.Controllers
             return RedirectToAction("Details", "Store", new { id = comment.StoreId });
         }
 
-        // ===== Delete store review =====
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -127,7 +127,7 @@ namespace EcoLoop.Controllers
              return RedirectToAction("Details", "Store", new { id = storeId });
         }
 
-        // ===== Helpful toggle =====
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
@@ -153,7 +153,7 @@ namespace EcoLoop.Controllers
 
             await _db.SaveChangesAsync();
 
-            // redirect back
+            
             var storeId = await _db.Comments.Where(c => c.Id == commentId).Select(c => c.StoreId).FirstOrDefaultAsync();
             if (storeId.HasValue) return RedirectToAction("Details", "Store", new { id = storeId.Value });
 

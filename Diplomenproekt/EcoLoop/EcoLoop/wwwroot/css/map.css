@@ -1,5 +1,5 @@
 ﻿
-/* Popup buttons – ECO design */
+
 .popup-btn-green {
     background: #2E7D32;
     border: 1px solid #256628;
@@ -14,7 +14,7 @@
         background: #256628;
     }
 
-/* White button with eco gray text + icon */
+
 .popup-btn-outline {
     background: #ffffff;
     border: 1px solid #8a9a8a;
@@ -31,12 +31,12 @@
         color: #2b3b2b !important;
     }
 
-/* Icon spacing */
+
 .btn-icon {
     margin-right: 6px;
     opacity: 0.9;
 }
-/* MAP PAGE — SIDEBAR + MAP ECO DESIGN */
+
 
 .map-wrapper {
     display: flex;
@@ -80,7 +80,7 @@
 
 
 
-/* Accordion */
+
 .accordion-section {
     margin-bottom: 12px;
 }
@@ -110,7 +110,7 @@
     padding: 4px 2px 10px 2px;
 }
 
-/* Dropdowns */
+
 .form-select {
     border-radius: 12px;
     border: 1px solid rgba(46, 125, 50, 0.2);
@@ -133,7 +133,7 @@
     font-size: 14px;
 }
 
-/* Full-width buttons */
+
 .sidebar-full-btn {
     width: 100%;
     font-weight: 600;
@@ -168,7 +168,7 @@
     .sidebar-full-btn + .sidebar-full-btn {
         margin-top: 8px;
     }
-/* Results */
+
 .results-summary {
     margin: 8px 0;
     font-size: 12px;
@@ -245,7 +245,7 @@
     border: 1px solid rgba(46, 125, 50, 0.15);
 }
 
-/* Map */
+
 #map {
     flex: 1;
     height: 100%;
@@ -271,7 +271,7 @@
     }
 
 
-/* Popup */
+
 .store-popup {
     font-size: 13px;
     max-width: 280px;
@@ -358,7 +358,7 @@
     white-space: nowrap;
 }
 
-/* Mobile */
+
 @media (max-width: 768px) {
     .map-wrapper {
         flex-direction: column;

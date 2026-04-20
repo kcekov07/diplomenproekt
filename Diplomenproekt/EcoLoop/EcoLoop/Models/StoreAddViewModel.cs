@@ -28,9 +28,9 @@ namespace EcoLoop.Models
 
         public bool IsProducer { get; set; }
 
-        // Structured working hours
+        
         [MaxLength(100)]
-        public string? MonToFriHours { get; set; } // e.g. "09:00-18:00"
+        public string? MonToFriHours { get; set; } 
 
         [MaxLength(100)]
         public string? SatHours { get; set; }
@@ -52,7 +52,7 @@ namespace EcoLoop.Models
        
 
 
-        // Files
+        
         public List<IFormFile>? Photos { get; set; }
     }
 }

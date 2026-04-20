@@ -20,7 +20,7 @@
 
     <div class="map-wrapper">
 
-        <!-- SIDEBAR -->
+        
         <div class="map-sidebar">
 
             <div class="sidebar-header-row">
@@ -30,7 +30,7 @@
                 </button>
             </div>
 
-            <!-- Категория -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">🏷️ Категория</button>
                 <div class="accordion-content">
@@ -45,7 +45,7 @@
                 </div>
             </div>
 
-            <!-- Разстояние -->
+           
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">📏 Разстояние</button>
                 <div class="accordion-content">
@@ -66,7 +66,7 @@
             </div>
 
 
-            <!-- Приема собствени опаковки -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">♻️ Собствени опаковки</button>
                 <div class="accordion-content">
@@ -78,7 +78,7 @@
                 </div>
             </div>
 
-            <!-- Refill / наливни продукти -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">🧴 Refill / наливни продукти</button>
                 <div class="accordion-content">
@@ -90,7 +90,7 @@
                 </div>
             </div>
 
-            <!-- Производител -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">🏭 Производител</button>
                 <div class="accordion-content">
@@ -102,7 +102,7 @@
                 </div>
             </div>
 
-            <!-- Доставка -->
+          
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">🚚 Доставка</button>
                 <div class="accordion-content">
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <!-- Еко тагове -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">🏷️ Еко тагове</button>
                 <div class="accordion-content">
@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <!-- Сертификати -->
+          
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">📜 Сертификати</button>
                 <div class="accordion-content">
@@ -132,7 +132,7 @@
                 </div>
             </div>
 
-            <!-- Работи сега -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">⏱️ Работи сега</button>
                 <div class="accordion-content">
@@ -144,7 +144,7 @@
                 </div>
             </div>
 
-            <!-- Рейтинг -->
+            
             <div class="sidebar-section accordion-section">
                 <button class="accordion-btn">⭐ Рейтинг</button>
                 <div class="accordion-content">
@@ -159,17 +159,17 @@
                 </div>
             </div>
 
-            <!-- БУТОН ТЪРСЕНЕ -->
+            
             <button id="btnApplyFilters" class="btn btn-outline-success sidebar-full-btn">
                 🔍 Търсене
             </button>
 
-            <!-- Нулирай филтрите -->
+           
             <button id="btnResetFilters" class="btn btn-outline-secondary sidebar-full-btn mt-2">
                 🔄 Нулирай филтрите
             </button>
 
-            <!-- LIVE RESULTS -->
+          
             <div class="sidebar-title mt-4">🏪 Резултати</div>
             <div id="resultsSummary" class="results-summary">Показани: 0 магазина</div>
             <div id="sidebarResults" class="sidebar-results">
@@ -178,7 +178,7 @@
 
         </div>
 
-        <!-- MAP -->
+       
         <div id="map"></div>
 
     </div>
@@ -259,7 +259,7 @@
         let userLocation = null;
         let userMarker = null;
 
-        // Accordion
+        
         document.querySelectorAll(".accordion-btn").forEach(btn=>{
             btn.addEventListener("click", ()=> {
                 let panel = btn.nextElementSibling;
@@ -279,7 +279,7 @@
             return km < 1 ? `${Math.round(km * 1000)} м` : `${km.toFixed(1)} км`;
         }
 
-        // Работно време
+        
           function parseTimeToHours(value){
             if(!value) return null;
             const match = value.trim().match(/^(\d{1,2})(?:[:.](\d{2}))?$/);
@@ -330,13 +330,13 @@
                   else if(/^нед/.test(normalized)) sun = hoursValue;
               });
 
-              const day = new Date().getDay(); // 0 Sun, 6 Sat
+              const day = new Date().getDay(); 
               if(day >= 1 && day <= 5) return monFri;
               if(day === 6) return sat;
               return sun;
           }
 
-        // Работно време
+       
         function isOpenNow(store){
            const todayHours = getTodayHours(store.WorkingHours);
             if(!todayHours) return null;
@@ -516,10 +516,10 @@
             });
         }
 
-        // Initial load
+        
         loadMarkers();
 
-        // GPS location
+        
         navigator.geolocation.getCurrentPosition(pos=>{
             userLocation={lat:pos.coords.latitude,lng:pos.coords.longitude};
             map.setView([userLocation.lat,userLocation.lng],14);
@@ -528,7 +528,7 @@
             loadMarkers();
         });
 
-        // Filters
+        
         document.getElementById("btnApplyFilters").addEventListener("click",()=>{
             const dist = document.getElementById("filterDistance").value;
             if(dist && !userLocation){
@@ -563,7 +563,7 @@
             loadMarkers();
         });
 
-        // Light/dark mode
+       
         document.getElementById("btnMapTheme").addEventListener("click",()=>{
             if(!isDarkMode){map.removeLayer(lightLayer);darkLayer.addTo(map);}
             else {map.removeLayer(darkLayer);lightLayer.addTo(map);}

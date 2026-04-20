@@ -36,7 +36,7 @@
                             <a href="/Store/Details/@item.StoreId" class="sd-actionLink">@item.StoreName</a>
                             <h3>@item.ProductName</h3>
                             <p>
-                                <strong>@item.UnitPrice.ToString("0.00") лв.</strong>
+                                <strong>@item.UnitPrice.ToString("0.00")  €</strong>
                                 @if (!string.IsNullOrWhiteSpace(item.Unit))
                                 {
                                     <span>/ @item.Unit</span>
@@ -57,14 +57,14 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="cart-item__line">@item.LineTotal.ToString("0.00") лв.</div>
+                        <div class="cart-item__line">@item.LineTotal.ToString("0.00")  €</div>
                     </article>
                 }
             </div>
 
             <aside class="cart-summary">
                 <div><span>Брой артикули</span><strong>@Model.TotalItems.ToString("0.##")</strong></div>              
-                <div><span>Обща сума</span><strong>@Model.Subtotal.ToString("0.00") лв.</strong></div>
+                <div><span>Обща сума</span><strong>@Model.Subtotal.ToString("0.00")  €</strong></div>
                 <form asp-controller="Store" asp-action="Checkout" method="post">
                     @Html.AntiForgeryToken()
                     <button type="submit" class="sd-btn sd-btn--primary">Изпрати поръчка</button>
