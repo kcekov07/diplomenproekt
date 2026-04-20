@@ -124,7 +124,7 @@ namespace EcoLoop.Controllers
                     }
 
                     ViewBag.IsFavorite = await _db.UserFavoriteStores.AnyAsync(x => x.UserId == userId && x.StoreId == id);
-                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId && !x.IsCheckedOut).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
                 }
             }
             ViewBag.CanManageProducts = await CanManageProductsAsync(store);
@@ -523,7 +523,7 @@ namespace EcoLoop.Controllers
                 var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
                 if (!string.IsNullOrWhiteSpace(userId))
                 {
-                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
+                    ViewBag.CartCount = await _db.CartItems.Where(x => x.UserId == userId && !x.IsCheckedOut).SumAsync(x => (decimal?)x.Quantity) ?? 0m;
                 }
             }
 
@@ -762,8 +762,12 @@ namespace EcoLoop.Controllers
             }
             else
             {
-                existing.Quantity = Math.Clamp(existing.Quantity + quantity, 0.1m, 99m);
-                existing.Quantity = decimal.Round(existing.Quantity, 2, MidpointRounding.AwayFromZero);
+                existing.Quantity = existing.IsCheckedOut
+                                   ? quantity
+                                   : Math.Clamp(existing.Quantity + quantity, 0.1m, 99m); existing.Quantity = decimal.Round(existing.Quantity, 2, MidpointRounding.AwayFromZero);
+                existing.IsCheckedOut = false;
+                existing.CheckedOutOn = null;
+                existing.AddedOn = DateTime.UtcNow;
             }
 
             await _db.SaveChangesAsync();
@@ -778,7 +782,7 @@ namespace EcoLoop.Controllers
             if (string.IsNullOrWhiteSpace(userId)) return Challenge();
 
             var items = await _db.CartItems
-                .Where(x => x.UserId == userId)
+               .Where(x => x.UserId == userId && !x.IsCheckedOut)
                 .Include(x => x.StoreProduct)
                 .ThenInclude(p => p.Store)
                 .OrderByDescending(x => x.AddedOn)
@@ -813,7 +817,7 @@ namespace EcoLoop.Controllers
 
             var item = await _db.CartItems
                 .Include(x => x.StoreProduct)
-                .FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId);
+               .FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId && !x.IsCheckedOut);
 
             if (item == null) return NotFound();
 
@@ -831,7 +835,7 @@ namespace EcoLoop.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrWhiteSpace(userId)) return Challenge();
 
-            var item = await _db.CartItems.FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId);
+            var item = await _db.CartItems.FirstOrDefaultAsync(x => x.Id == cartItemId && x.UserId == userId && !x.IsCheckedOut);
             if (item == null) return NotFound();
 
             _db.CartItems.Remove(item);
@@ -848,14 +852,18 @@ namespace EcoLoop.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrWhiteSpace(userId)) return Challenge();
 
-            var items = await _db.CartItems.Where(x => x.UserId == userId).ToListAsync();
+            var items = await _db.CartItems.Where(x => x.UserId == userId && !x.IsCheckedOut).ToListAsync();
             if (!items.Any())
             {
                 TempData["CartMessage"] = "Количката е празна.";
                 return RedirectToAction(nameof(Cart));
             }
 
-            _db.CartItems.RemoveRange(items);
+            foreach (var item in items)
+            {
+                item.IsCheckedOut = true;
+                item.CheckedOutOn = DateTime.UtcNow;
+            }
             await _db.SaveChangesAsync();
 
             TempData["CartMessage"] = "Поръчката е изпратена успешно. Магазините ще се свържат с теб за потвърждение.";

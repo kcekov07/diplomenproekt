@@ -16,5 +16,8 @@ namespace EcoLoop.Data.Models
         public decimal Quantity { get; set; } = 1m;
 
         public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public bool IsCheckedOut { get; set; }
+
+        public DateTime? CheckedOutOn { get; set; }
     }
 }
