@@ -37,73 +37,67 @@
         <div class="analytics-grid">
             <article class="analytics-card">
                 <p class="analytics-label">Потенциални продажби</p>
-                <strong>@Model.Analytics.PotentialRevenue.ToString("N2") €</strong>
-                <p class="analytics-hint">30 дни: @Model.Analytics.PotentialRevenueLast30Days.ToString("N2") €</p>
+                <strong id="analytics-potential-revenue">@Model.Analytics.PotentialRevenue.ToString("N2") €</strong>
+                <p class="analytics-hint">30 дни: <span id="analytics-potential-revenue-30">@Model.Analytics.PotentialRevenueLast30Days.ToString("N2") €</span></p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Прегледи на магазини</p>
-                <strong>@Model.Analytics.StoreViews</strong>
-                <p class="analytics-hint">30 дни: @Model.Analytics.StoreViewsLast30Days</p>
+                <strong id="analytics-store-views">@Model.Analytics.StoreViews</strong>
+                <p class="analytics-hint">30 дни: <span id="analytics-store-views-30">@Model.Analytics.StoreViewsLast30Days</span></p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Добавяния в любими</p>
-                <strong>@Model.Analytics.FavoriteActions</strong>
-                <p class="analytics-hint">30 дни: @Model.Analytics.FavoriteActionsLast30Days</p>
+                <strong id="analytics-favorite-actions">@Model.Analytics.FavoriteActions</strong>
+                <p class="analytics-hint">30 дни: <span id="analytics-favorite-actions-30">@Model.Analytics.FavoriteActionsLast30Days</span></p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Добавяния в количка</p>
-                <strong>@Model.Analytics.CartActions</strong>
-                <p class="analytics-hint">30 дни: @Model.Analytics.CartActionsLast30Days</p>
+                <strong id="analytics-cart-actions">@Model.Analytics.CartActions</strong>
+                <p class="analytics-hint">30 дни: <span id="analytics-cart-actions-30">@Model.Analytics.CartActionsLast30Days</span></p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Конверсия преглед → любими</p>
-                <strong>@Model.Analytics.ViewToFavoriteRate.ToString("P1")</strong>
+                <strong id="analytics-view-to-favorite">@Model.Analytics.ViewToFavoriteRate.ToString("P1")</strong>
                 <p class="analytics-hint">Колко от прегледите водят до интерес.</p>
             </article>
             <article class="analytics-card">
                 <p class="analytics-label">Конверсия преглед → количка</p>
-                <strong>@Model.Analytics.ViewToCartRate.ToString("P1")</strong>
+                <strong id="analytics-view-to-cart">@Model.Analytics.ViewToCartRate.ToString("P1")</strong>
                 <p class="analytics-hint">Колко от прегледите водят до намерение за покупка.</p>
             </article>
         </div>
 
         <div class="admin-subpanel">
             <h3>Най-силни магазини по интерес и потенциални продажби</h3>
-            @if (!Model.Analytics.TopStorePerformance.Any())
-            {
-                <p class="admin-empty">Няма достатъчно данни за анализ.</p>
-            }
-            else
-            {
-                <div class="analytics-table-wrap">
-                    <table class="analytics-table">
-                        <thead>
+            <p class="admin-empty @(Model.Analytics.TopStorePerformance.Any() ? "d-none" : string.Empty)" id="analytics-empty-state">Няма достатъчно данни за анализ.</p>
+            <div class="analytics-table-wrap @(Model.Analytics.TopStorePerformance.Any() ? string.Empty : "d-none")" id="analytics-table-wrap">
+                <table class="analytics-table">
+                    <thead>
+                        <tr>
+                            <th>Магазин</th>
+                            <th>Прегледи</th>
+                            <th>Любими</th>
+                            <th>Количка</th>
+                            <th>Потенциални продажби</th>
+                        </tr>
+                    </thead>
+                    <tbody id="analytics-top-stores-body">
+                        @foreach (var store in Model.Analytics.TopStorePerformance)
+                        {
                             <tr>
-                                <th>Магазин</th>
-                                <th>Прегледи</th>
-                                <th>Любими</th>
-                                <th>Количка</th>
-                                <th>Потенциални продажби</th>
+                                <td>
+                                    <strong>@store.Store.Name</strong>
+                                    <div class="analytics-muted">@store.Store.Category</div>
+                                </td>
+                                <td>@store.Views</td>
+                                <td>@store.Favorites</td>
+                                <td>@store.Carts</td>
+                                <td>@store.PotentialRevenue.ToString("N2") €</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var store in Model.Analytics.TopStorePerformance)
-                            {
-                                <tr>
-                                    <td>
-                                        <strong>@store.Store.Name</strong>
-                                        <div class="analytics-muted">@store.Store.Category</div>
-                                    </td>
-                                    <td>@store.Views</td>
-                                    <td>@store.Favorites</td>
-                                    <td>@store.Carts</td>
-                                    <td>@store.PotentialRevenue.ToString("N2") €</td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </section>
 
@@ -219,3 +213,118 @@
         </article>
     </section>
 </section>
+
+@section Scripts {
+    <script>
+        (() => {
+            const endpoint = '@Url.Action("AnalyticsSnapshot", "Admin")';
+            const pollIntervalMs = 3000;
+            const moneyFormatter = new Intl.NumberFormat('bg-BG', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            const intFormatter = new Intl.NumberFormat('bg-BG');
+            const percentFormatter = new Intl.NumberFormat('bg-BG', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+            const elements = {
+                potentialRevenue: document.getElementById('analytics-potential-revenue'),
+                potentialRevenue30: document.getElementById('analytics-potential-revenue-30'),
+                storeViews: document.getElementById('analytics-store-views'),
+                storeViews30: document.getElementById('analytics-store-views-30'),
+                favoriteActions: document.getElementById('analytics-favorite-actions'),
+                favoriteActions30: document.getElementById('analytics-favorite-actions-30'),
+                cartActions: document.getElementById('analytics-cart-actions'),
+                cartActions30: document.getElementById('analytics-cart-actions-30'),
+                viewToFavorite: document.getElementById('analytics-view-to-favorite'),
+                viewToCart: document.getElementById('analytics-view-to-cart'),
+                topStoresBody: document.getElementById('analytics-top-stores-body'),
+                emptyState: document.getElementById('analytics-empty-state'),
+                tableWrap: document.getElementById('analytics-table-wrap')
+            };
+
+            if (Object.values(elements).some(x => !x)) {
+                return;
+            }
+
+            let isLoading = false;
+
+            const setContent = (el, text) => {
+                if (el.textContent !== text) {
+                    el.textContent = text;
+                }
+            };
+
+            const buildStoreRow = (store) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>
+                        <strong>${store.name}</strong>
+                        <div class="analytics-muted">${store.category}</div>
+                    </td>
+                    <td>${intFormatter.format(store.views)}</td>
+                    <td>${intFormatter.format(store.favorites)}</td>
+                    <td>${intFormatter.format(store.carts)}</td>
+                    <td>${moneyFormatter.format(store.potentialRevenue)} €</td>
+                `;
+                return tr;
+            };
+
+            const updateTopStores = (stores) => {
+                elements.topStoresBody.innerHTML = '';
+
+                if (!stores || stores.length === 0) {
+                    elements.emptyState.classList.remove('d-none');
+                    elements.tableWrap.classList.add('d-none');
+                    return;
+                }
+
+                elements.emptyState.classList.add('d-none');
+                elements.tableWrap.classList.remove('d-none');
+                stores.forEach(store => {
+                    elements.topStoresBody.appendChild(buildStoreRow(store));
+                });
+            };
+
+            const updateUI = (data) => {
+                setContent(elements.potentialRevenue, `${moneyFormatter.format(data.potentialRevenue)} €`);
+                setContent(elements.potentialRevenue30, `${moneyFormatter.format(data.potentialRevenueLast30Days)} €`);
+                setContent(elements.storeViews, intFormatter.format(data.storeViews));
+                setContent(elements.storeViews30, intFormatter.format(data.storeViewsLast30Days));
+                setContent(elements.favoriteActions, intFormatter.format(data.favoriteActions));
+                setContent(elements.favoriteActions30, intFormatter.format(data.favoriteActionsLast30Days));
+                setContent(elements.cartActions, intFormatter.format(data.cartActions));
+                setContent(elements.cartActions30, intFormatter.format(data.cartActionsLast30Days));
+                setContent(elements.viewToFavorite, percentFormatter.format(data.viewToFavoriteRate));
+                setContent(elements.viewToCart, percentFormatter.format(data.viewToCartRate));
+                updateTopStores(data.topStorePerformance);
+            };
+
+            const loadAnalytics = async () => {
+                if (isLoading) {
+                    return;
+                }
+
+                isLoading = true;
+                try {
+                    const response = await fetch(endpoint, { method: 'GET', headers: { 'X-Requested-With': 'XMLHttpRequest' }, cache: 'no-store' });
+                    if (!response.ok) {
+                        return;
+                    }
+
+                    const data = await response.json();
+                    updateUI(data);
+                } catch {
+                    // keep silent to avoid noisy console errors in admin panel
+                } finally {
+                    isLoading = false;
+                }
+            };
+
+            loadAnalytics();
+            setInterval(loadAnalytics, pollIntervalMs);
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'visible') {
+                    loadAnalytics();
+                }
+            });
+            window.addEventListener('focus', loadAnalytics);
+        })();
+    </script>
+}

@@ -22,9 +22,6 @@ namespace EcoLoop.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var utcNow = DateTime.UtcNow;
-            var monthStart = utcNow.AddDays(-30);
-
             var pendingStores = await _db.Stores
                 .Where(s => !s.IsApproved)
                 .OrderByDescending(s => s.Id)
@@ -50,60 +47,8 @@ namespace EcoLoop.Controllers
                 .Take(30)
                 .ToListAsync();
 
-            var storeViewsByStore = await _db.UserVisitedStores
-                .AsNoTracking()
-                .GroupBy(x => x.StoreId)
-                .Select(g => new { StoreId = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.StoreId, x => x.Count);
+            var analytics = await BuildAnalyticsViewModelAsync(allStores);
 
-            var storeFavoritesByStore = await _db.UserFavoriteStores
-                .AsNoTracking()
-                .GroupBy(x => x.StoreId)
-                .Select(g => new { StoreId = g.Key, Count = g.Count() })
-                .ToDictionaryAsync(x => x.StoreId, x => x.Count);
-
-            var cartByStore = await _db.CartItems
-                .AsNoTracking()
-                .Include(ci => ci.StoreProduct)
-                .GroupBy(ci => ci.StoreProduct.StoreId)
-                .Select(g => new
-                {
-                    StoreId = g.Key,
-                    Count = g.Count(),
-                    Revenue = g.Sum(ci => ci.Quantity * ci.StoreProduct.Price)
-                })
-                .ToListAsync();
-
-            var cartByStoreCount = cartByStore.ToDictionary(x => x.StoreId, x => x.Count);
-            var cartByStoreRevenue = cartByStore.ToDictionary(x => x.StoreId, x => x.Revenue);
-
-            var totalViews = storeViewsByStore.Values.Sum();
-            var totalFavorites = storeFavoritesByStore.Values.Sum();
-            var totalCartActions = cartByStoreCount.Values.Sum();
-            var totalPotentialRevenue = cartByStoreRevenue.Values.Sum();
-
-            var viewsLast30Days = await _db.UserVisitedStores.CountAsync(x => x.CreatedOnUtc >= monthStart);
-            var favoritesLast30Days = await _db.UserFavoriteStores.CountAsync(x => x.CreatedOnUtc >= monthStart);
-            var cartsLast30Days = await _db.CartItems.CountAsync(x => x.AddedOn >= monthStart);
-            var potentialRevenueLast30Days = await _db.CartItems
-                .AsNoTracking()
-                .Where(x => x.AddedOn >= monthStart)
-                .Include(x => x.StoreProduct)
-                .SumAsync(x => x.Quantity * x.StoreProduct.Price);
-
-            var topStorePerformance = allStores
-                .Select(store => new StorePerformanceItemViewModel
-                {
-                    Store = store,
-                    Views = storeViewsByStore.GetValueOrDefault(store.Id, 0),
-                    Favorites = storeFavoritesByStore.GetValueOrDefault(store.Id, 0),
-                    Carts = cartByStoreCount.GetValueOrDefault(store.Id, 0),
-                    PotentialRevenue = cartByStoreRevenue.GetValueOrDefault(store.Id, 0m)
-                })
-                .OrderByDescending(x => x.PotentialRevenue)
-                .ThenByDescending(x => x.Views)
-                .Take(8)
-                .ToList();
             var model = new AdminDashboardViewModel
             {
                 PendingStores = pendingStores,
@@ -123,23 +68,44 @@ namespace EcoLoop.Controllers
                     Comment = comment,
                     TargetTitle = comment.Store?.Name ?? comment.News?.Title ?? "Без връзка"
                 }).ToList(),
-                Analytics = new AdminAnalyticsViewModel
-                {
-                    PotentialRevenue = totalPotentialRevenue,
-                    PotentialRevenueLast30Days = potentialRevenueLast30Days,
-                    StoreViews = totalViews,
-                    StoreViewsLast30Days = viewsLast30Days,
-                    FavoriteActions = totalFavorites,
-                    FavoriteActionsLast30Days = favoritesLast30Days,
-                    CartActions = totalCartActions,
-                    CartActionsLast30Days = cartsLast30Days,
-                    ViewToFavoriteRate = totalViews == 0 ? 0 : (decimal)totalFavorites / totalViews,
-                    ViewToCartRate = totalViews == 0 ? 0 : (decimal)totalCartActions / totalViews,
-                    TopStorePerformance = topStorePerformance
-                }
+                Analytics = analytics
             };
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> AnalyticsSnapshot()
+        {
+            var allStores = await _db.Stores
+                .AsNoTracking()
+                .OrderByDescending(s => s.Id)
+                .ToListAsync();
+
+            var analytics = await BuildAnalyticsViewModelAsync(allStores);
+
+            return Json(new
+            {
+                potentialRevenue = analytics.PotentialRevenue,
+                potentialRevenueLast30Days = analytics.PotentialRevenueLast30Days,
+                storeViews = analytics.StoreViews,
+                storeViewsLast30Days = analytics.StoreViewsLast30Days,
+                favoriteActions = analytics.FavoriteActions,
+                favoriteActionsLast30Days = analytics.FavoriteActionsLast30Days,
+                cartActions = analytics.CartActions,
+                cartActionsLast30Days = analytics.CartActionsLast30Days,
+                viewToFavoriteRate = analytics.ViewToFavoriteRate,
+                viewToCartRate = analytics.ViewToCartRate,
+                topStorePerformance = analytics.TopStorePerformance.Select(x => new
+                {
+                    name = x.Store.Name,
+                    category = x.Store.Category,
+                    views = x.Views,
+                    favorites = x.Favorites,
+                    carts = x.Carts,
+                    potentialRevenue = x.PotentialRevenue
+                })
+            });
         }
 
         [HttpPost]
@@ -252,6 +218,81 @@ namespace EcoLoop.Controllers
 
             store.Rating = Math.Round(averageRating, 1, MidpointRounding.AwayFromZero);
             await _db.SaveChangesAsync();
+        }
+        private async Task<AdminAnalyticsViewModel> BuildAnalyticsViewModelAsync(List<Store> allStores)
+        {
+            var utcNow = DateTime.UtcNow;
+            var monthStart = utcNow.AddDays(-30);
+
+            var storeViewsByStore = await _db.UserVisitedStores
+                .AsNoTracking()
+                .GroupBy(x => x.StoreId)
+                .Select(g => new { StoreId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.StoreId, x => x.Count);
+
+            var storeFavoritesByStore = await _db.UserFavoriteStores
+                .AsNoTracking()
+                .GroupBy(x => x.StoreId)
+                .Select(g => new { StoreId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.StoreId, x => x.Count);
+
+            var cartByStore = await _db.CartItems
+                .AsNoTracking()
+                .Include(ci => ci.StoreProduct)
+                .GroupBy(ci => ci.StoreProduct.StoreId)
+                .Select(g => new
+                {
+                    StoreId = g.Key,
+                    Count = g.Count(),
+                    Revenue = g.Sum(ci => ci.Quantity * ci.StoreProduct.Price)
+                })
+                .ToListAsync();
+
+            var cartByStoreCount = cartByStore.ToDictionary(x => x.StoreId, x => x.Count);
+            var cartByStoreRevenue = cartByStore.ToDictionary(x => x.StoreId, x => x.Revenue);
+
+            var totalViews = storeViewsByStore.Values.Sum();
+            var totalFavorites = storeFavoritesByStore.Values.Sum();
+            var totalCartActions = cartByStoreCount.Values.Sum();
+            var totalPotentialRevenue = cartByStoreRevenue.Values.Sum();
+
+            var viewsLast30Days = await _db.UserVisitedStores.CountAsync(x => x.CreatedOnUtc >= monthStart);
+            var favoritesLast30Days = await _db.UserFavoriteStores.CountAsync(x => x.CreatedOnUtc >= monthStart);
+            var cartsLast30Days = await _db.CartItems.CountAsync(x => x.AddedOn >= monthStart);
+            var potentialRevenueLast30Days = await _db.CartItems
+                .AsNoTracking()
+                .Where(x => x.AddedOn >= monthStart)
+                .Include(x => x.StoreProduct)
+                .SumAsync(x => x.Quantity * x.StoreProduct.Price);
+
+            var topStorePerformance = allStores
+                .Select(store => new StorePerformanceItemViewModel
+                {
+                    Store = store,
+                    Views = storeViewsByStore.GetValueOrDefault(store.Id, 0),
+                    Favorites = storeFavoritesByStore.GetValueOrDefault(store.Id, 0),
+                    Carts = cartByStoreCount.GetValueOrDefault(store.Id, 0),
+                    PotentialRevenue = cartByStoreRevenue.GetValueOrDefault(store.Id, 0m)
+                })
+                .OrderByDescending(x => x.PotentialRevenue)
+                .ThenByDescending(x => x.Views)
+                .Take(8)
+                .ToList();
+
+            return new AdminAnalyticsViewModel
+            {
+                PotentialRevenue = totalPotentialRevenue,
+                PotentialRevenueLast30Days = potentialRevenueLast30Days,
+                StoreViews = totalViews,
+                StoreViewsLast30Days = viewsLast30Days,
+                FavoriteActions = totalFavorites,
+                FavoriteActionsLast30Days = favoritesLast30Days,
+                CartActions = totalCartActions,
+                CartActionsLast30Days = cartsLast30Days,
+                ViewToFavoriteRate = totalViews == 0 ? 0 : (decimal)totalFavorites / totalViews,
+                ViewToCartRate = totalViews == 0 ? 0 : (decimal)totalCartActions / totalViews,
+                TopStorePerformance = topStorePerformance
+            };
         }
     }
 }
